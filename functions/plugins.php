@@ -149,9 +149,17 @@ function abbey_time_diff( $since, $diff, $from, $to ){
 
 add_filter('the_content', 'abbey_filter_content', 99 );
 function abbey_filter_content( $content ){
-    $content = preg_replace( '#<([^ >]+)[^>]*>([[:space:]]|&nbsp;)*</\1>#', '', $content );
+    $content = preg_replace( '#<([^ >]+)[^>]*(^iframe)>([[:space:]]|&nbsp;)*</\1>#', '', $content );
     return $content;
 }
+
+add_action( "init", "abbey_add_post_type_description" );
+function abbey_add_post_type_description(){
+    global $wp_post_types;
+
+    $wp_post_types['post']->description = __("Posts are just some words i typed now", "abbey" );
+}
+
 /*
 function modify_read_more_link() {
     return '<a class="more-link" href="' . get_permalink() . '">Your Read More Link Text</a>';

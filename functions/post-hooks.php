@@ -201,3 +201,11 @@ function abbey_gallery_slides( $galleries ){
 
 	//print_r($slide_images);//
 }
+
+
+function abbey_recording_video(){
+	$content = get_the_content();
+	$embeds = get_media_embedded_in_content( $content );
+
+	echo $embeds[0];
+}

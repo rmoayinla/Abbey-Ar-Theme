@@ -25,12 +25,31 @@
 #primary-menu{
 	&:extend(.no-border, .bg-white);
 	.custom-logo{
-		.image-size(48px, 48px) !important;
+		height: 48px;
 	}
 	.navbar-collapse{
-		&:extend(.float-left,.float-none-sm, .float-none-xs);
+		&:extend(.float-right,.float-none-sm, .float-none-xs);
 		li > a{
 			padding-top: 24px;
+		}
+		.navbar-form{
+			margin-top: 12px;
+		}
+		.menu-item a{
+			&:extend(.primary);
+			transition: all 0.8s ease-in-out;
+			&:visited{
+
+			}
+			&:hover{
+				&:extend(.bg-dark);
+			}
+			.active{
+				&:extend(.bg-primary);
+			}
+		}
+		#navbar-search-box.in{
+			&:extend(.inline);
 		}
 
 	}
@@ -50,5 +69,13 @@
 #primary-icon-nav{
 	.fa{
 		font-size: 18px;
+	}
+}
+
+#social-contacts{
+	.nav{
+		a{
+			&:extend(.pad-xs);
+		}
 	}
 }

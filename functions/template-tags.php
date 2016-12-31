@@ -89,7 +89,7 @@ function abbey_post_info( $echo = true, $keys = array() ){
 		$info["more"] = sprintf( '<a href="%1$s" title="%2$s" role="button" class="">%3$s </a>', 
 	 				esc_url( $cat_link ), 
 	 				__( "Click to read more posts", "abbey" ), 
-	 				sprintf( __( "More posts from %s", "abbey" ), esc_html( $cats[0]->name ) )
+	 				sprintf( __( "اقرأ من المقالات الأخرى من %s", "abbey" ), esc_html( $cats[0]->name ) )
 	 				);
 	}
 
@@ -131,20 +131,21 @@ function abbey_post_pagination( $args = array() ){
 
 }
 
-function abbey_show_nav( $post, $nav = "previous" ){
+function abbey_show_nav( $post, $nav = "previous"){
 	$class = ( $nav === "previous" ) ? "previous-button" : "next-button";
 	$icon = ( $nav === "previous" ) ? "glyphicon-chevron-left" : "glyphicon glyphicon-chevron-right";
 	$title = ( !get_post_format( $post->ID ) ) ? "" : sprintf( '%s:', ucwords( get_post_format( $post->ID ) ) );
+	$nav_text = sprintf( '%s post', ucwords( $nav ) );
+
 	
 	return sprintf( '<a href="%1$s" class="%2$s-button" title="%3$s">
 				<span class="glyphicon %4$s"></span>
-		 		<p> %5$s </p><h4 class="%2$s-post-title"><em>%6$s</em> %7$s </h4>
+		 		<h4 class="%2$s-post-title"><em>%5$s</em> %6$s </h4>
 		 	   </a>',
 			get_permalink($post->ID),
 			esc_attr( $nav ),
-			sprintf( __( "Click to view %s post", "abbey" ), $nav ),
+			sprintf( __( "Click to view %s", "abbey" ), $nav_text ),
 			esc_attr( $icon ),
-			sprintf( '%s post', ucwords( $nav ) ),
 			$title,
 			apply_filters( "the_title", $post->post_title )
 			);
@@ -192,13 +193,16 @@ function abbey_show_post_type(){
 	$post = "";
 	switch ( $post_type ){
 		case "post":
-			$post = __( "Blog post", "abbey" );
+			$post = __( "مقالة", "abbey" );
 			break; 
 		case "page":
 			$post = __( "Page", "abbey" ); 
 			break; 
+		case "news":
+			$post = __( "أخبار", "abbey" );
+		
 		default: 
-			$post = $post_type; 
+			$post = ucwords( $post_type ); 
 	}
-	echo $post;
+	echo apply_filters( "abbey_post_type", $post );
 }

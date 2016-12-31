@@ -13,20 +13,14 @@
 	*
 */
 function abbey_default_header(){
-	echo '
-	<div class="alert alert-dismissable text-center" id="contact-me">
-	 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	 	<span aria-hidden="true">&times;</span>
-	 </button>
-	Want to hire me? Contact me
-	</div>';
+	
 }
 add_action( "abbey_theme_before_header", "abbey_default_header" );//hook to default header; check header.php //
 
 function abbey_header_address( $contact ){
 
 	echo '
-		<div class="col-md-3 col-sm-4 col-xs-6 header-contacts" id="header-address">
+		<div class="header-contacts" id="header-address">
 			<div class="row">
 				<div class="col-md-1 col-sm-1 col-xs-1 lead"> <i class="fa fa-map-marker"></i> </div>
 				<div class="col-md-10 col-sm-10 col-xs-10">
@@ -39,11 +33,11 @@ function abbey_header_address( $contact ){
 		</div>
 	';
 }
-add_action( "abbey_theme_header_contact", "abbey_header_address" );//hook to header_contact; check header.php //
+add_action( "abbey_theme_footer_widgets", "abbey_header_address" );//hook to header_contact; check header.php //
 
 function abbey_header_telephone( $contact ){
 	echo '
-		<div class="col-md-3 col-sm-4 col-xs-6 header-contacts" id="header-telephone">
+		<div class="header-contacts" id="header-telephone">
 			<div class="row">
 				<div class="col-md-1 col-sm-1 col-xs-1 lead"> <i class="fa fa-clock-o"> </i> </div>
 				<div class="col-md-10 col-sm-10 col-xs-10">
@@ -54,27 +48,25 @@ function abbey_header_telephone( $contact ){
 		</div>
 	';
 }
-add_action( "abbey_theme_header_contact", "abbey_header_telephone", 20 );
+add_action( "abbey_theme_footer_widgets", "abbey_header_telephone", 20 );
 
 function abbey_header_social_icons($contact){
-	echo '<div class="col-md-3 col-sm-4 col-xs-12 header-contacts" id="header-social-icons">';
+	echo '<div class="header-contacts" id="header-social-icons">';
 	abbey_social_menu();
 	echo '</div>';
 }
-add_action( "abbey_theme_header_contact", "abbey_header_social_icons", 30 );
+add_action( "abbey_theme_footer_widgets", "abbey_header_social_icons", 30 );
 
 function abbey_slide_default_caption () {
 	global $abbey_defaults;
 	$defaults = $abbey_defaults;
 	ob_start(); ?>
-		<div class="col-md-6 col-sm-8 col-xs-12 text-left" id="site-info">
+		<div class="col-md-6 col-sm-8 col-xs-12 text-right" id="site-details">
 			<div class="page-header no-bottom-margin"><h1><?php bloginfo('name'); ?> </h1></div>
 			<div class="description"><p><?php bloginfo('description');?></p></div>
 			<div class="" id="about-site"><?php echo esc_html($defaults["about"]); ?></div>
-			<div class="margin-top-md" id="secondary-menu">
-				<?php abbey_secondary_menu(); ?>
-			</div>
-		</div><!--#site-info closes-->
+			
+		</div><!--#site-details closes-->
 	<?php return ob_get_clean(); 
 }
 
@@ -114,9 +106,14 @@ function abbey_front_page_slides(){
 			$html .= '<div class="item '.$active.'">';
 			$html .= '<img src="'.esc_url( $slide["image"] ).'" alt="'.basename( $slide["image"], "jpg" ).'" class="carousel-image">';
       		$html .= '<div class="carousel-caption">';
-      		if( !empty( $slide["caption"] ) ){ $html .= "";}
-      		else{ $html .= $default_caption;}
       		$html .= $fixed_caption;
+      		if( !empty( $slide["caption"] ) ){ 
+      			$html .= "";
+      		}
+      		else{ 
+      			$html .= $default_caption;
+      		}
+      		
       		$html .= '</div></div>';
 		}
 		$html .= '<ol class="carousel-indicators">';

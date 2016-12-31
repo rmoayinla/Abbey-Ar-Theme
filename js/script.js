@@ -2,7 +2,14 @@
 (function($) {
 	$( document ).ready( function() {
 
-		setupMoreButton();
+		$("#floating-video").affix({
+		  offset: {
+		    top: $(".entry-content iframe").offset().top
+		    
+		  }
+		});
+
+		
 
 		$(".gallery-slides").slick({
 			autoplay: true, 
@@ -52,3 +59,4 @@ function setupMoreButton(){
 		moreButton.unwrap(); 
 		moreButton.nextAll().wrapAll("<div id='more-content' class='hidden'></div>");
 }
+

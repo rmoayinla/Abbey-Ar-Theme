@@ -42,7 +42,7 @@
 		<div class="clearfix"></div>
 
 		<footer class="entry-footer"> 
-			<?php abbey_post_nav( "المقالة السابقة والتالية", "abbey" ); ?>
+			<?php abbey_post_nav( "أخبار السابق والتالي", "abbey" ); ?>
 			<?php abbey_post_author_info( __( "عرَف المؤلف", "abbey" ) ); ?>
 		</footer>
 	

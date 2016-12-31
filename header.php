@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> class="no-js">
+<html <?php language_attributes(); ?> class="">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,7 @@
 				<nav class="navbar navbar-default no-bottom-margin" role="navigation" id="primary-menu">
 	  				<div class="navbar-header">
 	      				<a class="navbar-brand" href="<?php echo home_url( "/" ); ?>">
-	               			<?php abbey_show_logo(); ?>
+	               			<?php abbey_show_logo( "", "", false ); ?>
 	      				</a>
 	      				<!-- Brand and toggle get grouped for better mobile display -->
 	      				<?php echo abbey_nav_toggle(); ?>

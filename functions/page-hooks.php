@@ -72,34 +72,33 @@ function abbey_latest_quotes(){
 }
 add_action ( "abbey_theme_404_page_widgets", "abbey_latest_quotes", 20 );
 
-function abbey_footer_credits(){
-	$footer_defaults = ( !empty( abbey_get_defaults( "footer" ) ) ) ? abbey_get_defaults( "footer" ) : "";
-	$footer_credits = ( !empty( $footer_defaults ) ) ? $footer_defaults[ "credits" ] : "";
-
-	if( count( $footer_credits ) > 0 ) : 
-		$html = '<ul class="list-inline">';
-		foreach ( $footer_credits as $title => $credits ) : 
-			$html .= '<li>'.$credits.'</li>';
-		endforeach;
-		$html .= '</ul>';
-	endif;
-
-	echo $html;
+function abbey_footer_menu(){
+	$args = array(
+		'menu'				=>	'footer', 
+		'theme_location'	=>	'footer',
+		'depth'             => 1,
+	    'container'         => 'ul',
+	    'menu_class'   		=> 'list-inline'
+	);
+	abbey_nav_menu( $args );
 }
 
-add_action ( "abbey_theme_footer_credits", "abbey_footer_credits" );
+add_action ( "abbey_theme_footer_credits", "abbey_footer_menu" );
 
-function abbey_post_nav(){
+function abbey_post_nav( $title = "" ){
 	$prev_post = get_previous_post(); // previous post//
 	$next_post = get_next_post(); // next post //
-	$html = "<div class='row post-navigation'>\n";
+	$html = "<div class='post-navigation md-50'>\n";
+	if( !empty( $title ) )
+		$html.= sprintf( '<h4 class="entry-footer-heading">%s</h4>', esc_html($title) );
+
 	if ( !empty( $prev_post ) ) {
-		$html .= "<div class='col-md-6 previous-post text-left'>\n";
-		$html .= abbey_show_nav( $prev_post ); // check core for function documentation //
+		$html .= "<div class='previous-post text-left'>\n";
+		$html .= abbey_show_nav( $prev_post, "previous" ); // check core for function documentation //
 		$html .= "</div>";//close of previous-post class div//
 	}
 	if ( !empty( $next_post ) ){
-		$html .= "<div class='col-md-6 next-post text-right'>\n";
+		$html .= "<div class='next-post text-right'>\n";
 		$html .= abbey_show_nav( $next_post, "next" );
 		$html .= "</div>"; // close of next-post div //
 	}
@@ -107,14 +106,18 @@ function abbey_post_nav(){
 	echo $html;
 }
 
-add_action( "abbey_theme_post_footer", "abbey_post_nav", 99);
 
-function abbey_post_author_info(){
+
+function abbey_post_author_info( $title = "" ){
 	$author = abbey_post_author();
 	$author_info = abbey_author_info( $author );
 
 	$html = "<div class='author-info'>";
-	$html .= "<div class='author-photo'>".abbey_author_photo( $author->ID, 64, "img-circle" ). "</div>";
+	if( !empty( $title ) )
+		$html.= sprintf( '<h4 class="entry-footer-heading">%s</h4>', esc_html($title) );
+	
+	$html .= "<div class='author-photo'>".abbey_author_photo( $author->ID, 120, "img-circle" ). "</div>";
+	$html .= "<div class='author-details'>";
 	$html .= sprintf( '<div class="author-title row">
 						<div class="author-name col-md-7"><h4 class="no-top-margin no-bottom-margin"> %1$s </h4></div>
 						<div class="author-rate col-md-5"> <em> %2$s </em> <span class="author-post-count"> %3$s </span>
@@ -133,11 +136,11 @@ function abbey_post_author_info(){
 		$html .= "</ul>";
 	}
 	$html .= "</footer>";
-	$html .= "</div>"; //.author-info //
+	$html .= "</div>\n</div>"; //.author-info //
 
 	echo $html; 
 }
-add_action ( "abbey_theme_post_footer", "abbey_post_author_info", 20);
+
 
 function abbey_post_categories(){
 	$notes = sprintf( '<p class="small cats-note">%s</p>',
@@ -176,7 +179,7 @@ search page
 
 */
 
-add_action( "abbey_search_page_summary", "abbey_search_summary" ); 
+add_action( "abbey_archive_page_summary", "abbey_search_summary" ); 
 function abbey_search_summary( $abbey ){
 	$summaries = ( isset( $abbey["summary"] ) ) ? $abbey["summary"] : array();
 	$html = $keyword = "";
@@ -198,3 +201,11 @@ function abbey_search_summary( $abbey ){
 	echo $html;
 
 }
+
+add_action( "abbey_archive_page_heading", "abbey_archive_heading" ); 
+function abbey_archive_heading( $queried_object ){	?>
+	<h1 class="page-title"><?php echo $queried_object->labels->menu_name; ?> </h1>
+	<summary class="archive-description"><?php echo $queried_object->description; ?> </summary>
+	<?php
+}
+

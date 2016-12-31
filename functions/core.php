@@ -135,12 +135,19 @@ function abbey_get_contact( $type, $key = "" ){
 function abbey_theme_page_id( $id= "" ){
 	if ( empty($id) ) {
 		if( is_front_page() ){ $id = "front-page"; }
-		if ( is_page() ) { $id = "site-page"; }
-		if( is_404() ) { $id = "error-404-page"; }
-		if( is_search() ) { $id = "search-page"; }
-		if ( is_single() ) {
+		elseif ( is_page() ) { $id = "site-page"; }
+		elseif( is_404() ) { $id = "error-404-page"; }
+		elseif( is_search() ) { $id = "search-page"; }
+		elseif ( is_single() ) {
 			$id = ( ! has_post_format() ) ? "post-page" : get_post_format()."-post-page"; 
 		}
+		elseif( is_search() ){
+			$id = "search-page";
+		}
+		elseif ( is_archive() ){
+			$id = get_queried_object()->name."-archive";
+		}
+
 	} 
 	echo esc_attr( apply_filters( "abbey_theme_page_id", $id ) );
 
@@ -299,44 +306,7 @@ function abbey_display_sidebar ( $sidebar_id ){
 	}
 }
 
-/*
-* a wp filter to add icons to nav_menu
-*
-*/
-function abbey_add_to_primary_menu ( $items, $args ) {
-	if( 'primary' === $args->theme_location ) {
-		$items .= '</ul>';
-		$items = apply_filters( "abbey_extra_primary_menu", $items );
-	}
-	return $items;
-}
-add_filter( 'wp_nav_menu_items','abbey_add_to_primary_menu',10,2 );//wp filter to add to nav menus //
 
-function abbey_add_extra_primary_menu ( $extras ){
-	$extras .= "<div class='navbar-right'><ul class='nav navbar-nav' id='primary-icon-nav'>";
-	$icons = apply_filters( "abbey_icon_navs", 
-		array(
-			"search" => "fa-search",
-			"comment" => "fa-comments", 
-			"read-snippets" => "fa-code", 
-			"print" => "fa-print",
-			"read-latest-posts" => "fa-th"
-		) 
-	);
-	foreach ( $icons as $title => $icon ){
-		$extras .= sprintf( '<li><a href="#" id="%1$s-icon-nav" class="js-link" title="%2$s">
-							<span class="fa %3$s"></span>
-							</a></li>', 
-							esc_attr( $title ),
-							esc_attr( sprintf( __( "Click to %s", "abbey" ), $title ) ), 
-							esc_attr( $icon )
-			);
-	}
-	
-	$extras .= "</ul></div>";
-	return $extras;
-}
-add_filter( "abbey_extra_primary_menu", "abbey_add_extra_primary_menu" );
 
 function abbey_comments_args(){
 	$commenter = wp_get_current_commenter();
@@ -426,3 +396,24 @@ function abbey_gallery_images(){
 
 	return $slide_images; 
 }
+
+/*
+* a wp filter to add icons to nav_menu
+*
+*/
+function abbey_add_to_primary_menu ( $items, $args ) {
+	if( 'primary' === $args->theme_location ) {
+		$items .= '</ul>';
+		$items .= sprintf( '<form class="navbar-form navbar-left" action="%1$s/" method="get">
+	        				<div class="form-group">
+	          					<input type="search" class="form-control" placeholder="Search" name="s" />
+	        				</div>
+
+      					</form>', 
+      					esc_url( home_url() )
+      					);
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_items','abbey_add_to_primary_menu',10,2 );//wp filter to add to nav menus //
+

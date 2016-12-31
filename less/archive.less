@@ -1,5 +1,5 @@
-#search-page{
-	#site-content-header{
+#search-page, #news-archive{
+	.archive-header{
 		&:extend(.inner-pad-responsive, .outer-pad-medium, #box-shadow .box-shadow-md, .bg-white);
 	}
 	#content{
@@ -12,9 +12,10 @@
 	}
 	.post-panel.post-count-1{
 		&:extend(.bg-light, .border-radius-md, .margin-bottom-md);
-		.post-panel-heading, .post-panel-body, .post-panel-footer{
+		.post-panel-heading, .post-panel-footer{
 			&:extend(.pad-medium);
 		}
+
 	}
 	.post-panel{
 		&:extend(.bg-white, #box-shadow .box-shadow-md, .relative, .margin-bottom-sm);
@@ -26,7 +27,7 @@
 				&:extend(.float-none);
 			}
 	}
-	.post-panel-heading, .post-panel-body, .post-panel-footer{
+	.post-panel-heading,.post-panel-footer{
 		&:extend(.pad-small, .inner-pad-medium, .relative);
 	}
 	.post-panel-heading{
@@ -61,7 +62,10 @@
 		}
 	}
 	.post-excerpts{
-		&:extend(.text-justify);
+		&:extend(.text-justify, .inner-pad-medium);
+	}
+	.post-panel:not(.post-count-1){
+		
 	}
 	.categories-list, .tags-list{
 		&:extend(#post-page .tags-list);
@@ -78,8 +82,5 @@
 		}
 	}
 
-	#search-results-summary{
-		&:extend(.pad-small, .bg-white);
-	}
 
 }

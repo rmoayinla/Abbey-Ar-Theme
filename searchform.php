@@ -12,4 +12,5 @@
 	    	/>
 	    </span>
 	</div>
+	<?php do_action( "abbey_theme_search_form" ); ?>
 </form>

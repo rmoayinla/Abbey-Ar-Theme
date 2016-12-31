@@ -31,11 +31,7 @@
 	.responsive-width(){
 		@responsive-center-width: 60%;
 	}
-	#site-footer{
-		#inner-footer{
-			&:extend(.wid-70);
-		}
-	}
+
 	.md-50{
 		.responsive-width();
 		width: @responsive-center-width;
@@ -47,22 +43,9 @@
 		border-right: 1px solid;
 	}
 	
-	#primary-menu{
-		.navbar-collapse{
-			width: 85%;
-		}
 
-	}
-	#site-page{
-
-	}
-	#post-page{
-		.post-media{}
-	}
-	#custom-page{
-		#inner-content{
-			width: 90%;
-		}
+	#custom-page #inner-content{
+		width: 90%;
 	}
 	.no-padding-right-lg-screen{
 		padding-right: 0px !important;
@@ -75,6 +58,10 @@
 	}
 	.third-largescreen{
 		width: 31%;
+	}
+
+	#floating-video.affix{
+		left: 15px;
 	}
 }
 
@@ -111,6 +98,7 @@
 	.half-largescreen{
 		width: 48%;
 	}
+
 }
 
 /* responsive design for tablets i.e between 768 and 460px */
@@ -211,13 +199,13 @@
 		padding-right: 30px;
 	}
 	.full-width-xs{
-		float: none;
+		&:extend(.float-none-xs);
 		width: 100%; 
 		margin: auto;
 	}
 
 	.float-right-responsive{
-		float: none;
+		&:extend(.float-none-xs);
 	}
 	.no-inner-padding-mobile{
 		padding-left: 0px;
@@ -269,17 +257,9 @@
 			text-align: center;
 			.navbar-brand{
 				width: 100%;
-				font-size: 36px;
 			}
 			.navbar-toggle{
 				&:extend(.float-none-xs);
-				margin-top: 0px;
-				top: 80px;
-				position: absolute;
-				left: 45%;
-				border-radius: 100%;
-				padding: 15px;
-				background-color: @white;
 				&:hover,&:active{
 					background-color: @primary-color;
 				}
@@ -318,31 +298,30 @@
 	}
 	#custom-page .entry-content,
 	#custom-page #page-sidebar, 
-	#search-page #search-results
+	#search-page #search-results,
+	#post page #comments
 	{
 	 	&:extend(.no-inner-padding-mobile);
 	}
-	#post-page{
-		#content{
-			&:extend(.inner-padding-mobile);
-		}
-		#comments{
-			&:extend(.inner-padding-mobile);
-		}
-		.post-excerpt{
-			font-size: 14px;
-		}
+	#post-page , #content,
+	.post-panel-heading .top-post-info{
+		padding-left: 5px !important;
+		padding-right: 5px !important;
 	}
-	#search-page{
-		#content{
-			&:extend(.inner-padding-mobile);
-		}
-		#search-results{
+
+	#post-page .post-excerpt{
+		font-size: 14px;
+	}
+	
+	#search-page #content{
+		&:extend(.inner-padding-mobile);
+	}
+	#search-page #search-results{
 			margin-top: 15px;
-		}
 	}
+	
 	.post-panel{
-		.post-panel-heading, .post-panel-body, .post-panel-footer{
+		.post-panel-heading,.post-excerpts, .post-panel-footer{
 			&:extend(.inner-padding-mobile);
 		} 
 	}
@@ -356,6 +335,12 @@
 	.mini-popup{
 		left: 5%;
 	}
-	
+	.author-photo, .author-title{
+		text-align: center;
+	}
+	#floating-video.affix{
+		right: 15px;
+		bottom: 300px;
+	}
 
 }

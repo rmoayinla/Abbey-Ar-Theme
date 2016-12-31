@@ -1,0 +1,63 @@
+/*
+Theme Name: Abbey
+Description: Abbey is my first wordpress theme.
+Version: 0.1
+
+
+*/
+
+@screen-sm-max: 768px; 
+@screen-md-max: 1026px;
+
+
+@screen-xs: 468px;
+@screen-lg: (@screen-md-max + 1); // 1026 + 1 = 1027 //
+
+@screen-sm-min: (@screen-xs + 1px); // 468 + 1 = 469 //
+@screen-md-min: (@screen-sm-max + 1); // 768 + 1 = 769 //
+
+
+@import "structure.less";
+
+body, #content{
+	direction: rtl;
+  	unicode-bidi: embed;
+  	font-size: 130%;
+  	font-weight: 700;
+}
+
+.entry-content{
+	text-align: right;
+}
+.author-info, #site-footer, 
+input, button, .input-group, 
+#news-archive .top-post-info li{
+	direction: ltr;
+	
+}
+#news-archive .top-post-info{
+	&:extend(.no-list-style);
+	li + li:after{
+		content: "|";
+		&:extend(.pad-xs);
+	}
+}
+.archive-description{
+	font-size: 20px;
+}
+/* reponsive design for devices larger than 1027px */
+@media(min-width: @screen-lg){
+	#post-page #content, 
+	#news-archive .top-post-info li{
+		float: right !important;
+			
+	}
+}
+
+/* responsive styles for mobile phones i.e 468px and below */
+@media (max-width: @screen-xs){
+	#news-archive .top-post-info li{
+		float: right !important;
+	}
+
+}

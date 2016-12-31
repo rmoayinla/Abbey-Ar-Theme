@@ -31,7 +31,7 @@ if( !function_exists( "abbey_theme_setup" ) ) {
     	/**
     	 * Enable support for post thumbnails and featured images.
     	 */
-    	$abbey_theme_post_thumbnails_support = apply_filters ( "abbey_theme_post_thumbnails_support", array( "post", "page" ) );
+    	$abbey_theme_post_thumbnails_support = apply_filters ( "abbey_theme_post_thumbnails_support", array( "post", "page", "news", "recordings" ) );
    	 	add_theme_support( 'post-thumbnails', $abbey_theme_post_thumbnails_support );
 
    	 	$abbey_theme_thumbnail_size = apply_filters ( "abbey_theme_thumbnail_size", array ("width" => 320, "height" => 320 ) );

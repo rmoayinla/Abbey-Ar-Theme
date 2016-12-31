@@ -12,7 +12,7 @@ global $more; ?>
 			</header>
 			
 			<?php if( ! has_post_format() ) : ?>
-				<?php get_template_part("templates/content", "post"); ?>
+				<?php get_template_part("templates/content", get_post_type() ); ?>
 			<?php else: ?>
 				<?php get_template_part("templates/content", get_post_format() ); ?>
 			<?php endif; ?>

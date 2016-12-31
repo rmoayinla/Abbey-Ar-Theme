@@ -144,3 +144,11 @@
 	-ms-transform:scale(1, -1);
 	transform:scale(1, -1);
 }
+
+#floating-video.affix{
+	width: 300px;
+	animation: slideintop 3s forwards;
+	iframe{
+		&:extend(.full-width-image);
+	}
+}

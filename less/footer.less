@@ -3,25 +3,35 @@
 *
 */
 #site-footer{
-	&:extend(.inner-pad-lg);
-	padding-top: 80px;
 	box-shadow: 2px 0px 2px @dark-primary-color;
 	webkit-box-shadow: 2px 0px 2px @dark-primary-color;
 	&:extend(.margin-top-md, .bg-light);
 	
 	#footer-bottom{
-		&:extend(.margin-top-md);
+		&:extend(.margin-top-md, .inner-pad-responsive, .outer-pad-small, .bg-dark);
 
 	}
 	#inner-footer{
-		&:extend(.relative, .md-50);
+		&:extend(.relative, .md-50, .outer-pad-lg);
 		#site-about{
-			&:extend(.pad-small, .oblique, .left-border);
+			&:extend(.pad-small, .oblique);
 		}
+		.header-contacts{
+			&:extend(.inline, .block-mobile, .full-width-mobile);
+			width: 30%;
+			vertical-align: top;
+		}
+		.fa-2x{
+			font-size: 20px;
+		}
+	}
+	#footer-header{
+
 	}
 	#site-info{
 		.custom-logo{
-			&:extend(.logo-small);
+			&:extend(.logo-md);
+			width: auto;
 		}
 		#site-name{
 			font-size: 32px;

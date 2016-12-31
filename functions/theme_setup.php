@@ -28,19 +28,13 @@ function abbey_theme_defaults(){
 			), 
 			"front-page" => array(
 					"blog-posts" => array(
-						"header-text" => __("latest from my blog", "abbey"),
-						"body-text" => __("Read the latest articles from my trending blog posts ", "abbey"),
+						"header-text" => __("آخر من بلدي بلوق", "abbey"),
+						"body-text" => __("قراءة أحدث المقالات من بلدي تتجه بلوق وظائف", "abbey"),
 						"posts_no" => 5
 					), 
 					"services" => array(
-						"header-text" => __("My Services - What I do", "abbey"), 
-						"body-text" => __("Since my service is based in Lagos, Nigeria, I am totally
-							aware of the difficulties and the lack of tehcnical know-how that has 
-							discouraged lots of organisations and indiviudals from having a Personal
-							blog or a business website. I dont just build websites, what makes me 
-							standout is I give you a website and handover all the necessary tools
-							to fully utilize, personalize and customize your website without contacting 
-							a Developer.", "abbey"),
+						"header-text" => __("خدماتي - ما أقوم به", "abbey"), 
+						"body-text" => __("نحن مجموعة من الأفراد الملتزمين في تحسين مستوى ونوعية اللغة العربية في نيجيريا وغرب أفريقيا", "abbey"),
 						"lists" => array()
 							
 					), 
@@ -54,7 +48,7 @@ function abbey_theme_defaults(){
 						"quotes_no" => 3
 					),
 					"contact" => array(
-						"header-text" => __("contact me", "abbey"),
+						"header-text" => __("اتصل بي", "abbey"),
 						"body-text" => __("Hire me for your web projects, Want me to review your codes,
 							Want to join my dev team, you have a feedback/review/comment on any of my
 							projects?.", "abbey"),
@@ -76,12 +70,7 @@ function abbey_theme_defaults(){
 			"footer" => array(
 				"contacts" => true, 
 				"social-icons" => true, 
-				"credits" => array(
-					"package" => sprintf ( __( "<em> Powered by: </em> <strong> %s </strong>", "abbey" ), "<a href='".esc_url('http://wordpress.org')."'>Wordpress</a>" ), 
-					"theme" => sprintf ( __( "<em> Built with: </em><strong> %s </strong>", "abbey" ), "Abbey" ), 
-					"version" => sprintf ( __( "<em> Version: </em><strong> %s </strong>", "abbey" ), "0.1" ), 
-					"designer" => sprintf( __( "<em>Designed and Developed by: </em> <strong> %s </strong>", "abbey" ), "Rabiu Mustapha" )
-				)
+				"credits" => ""
 			)
 		)
 	);
@@ -101,8 +90,8 @@ function abbey_get_defaults( $key ){
 }
 function abbey_theme_add_services($defaults){
 	$defaults["services"]["lists"] = array(
-		array("icon" => "fa-registered", "header-text" => __("Domain registration", "abbey"), 
-				"body-text" => __("We register and transfer domain names from the most popular and trusted domain providers", "abbey") 
+		array("icon" => "fa-registered", "header-text" => __("تنقيح و نقد", "abbey"), 
+				"body-text" => __("نستعرض المواد، والأغاني، والمنشورات والمجلات للأفراد والمؤسسات", "abbey") 
 		), 
 		array("icon"=> "fa-globe", "header-text" => __("Web Hosting and Website/Domain transfer", "abbey"),
 				"body-text" => __("Never experience hosting or bandwith issues with your websites again,
