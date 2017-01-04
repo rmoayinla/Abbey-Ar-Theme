@@ -185,9 +185,12 @@ function abbey_archive_heading( $queried_object ){	?>
 }
 
 add_action( "abbey_theme_page_media", "abbey_video_thumbnail" );
-function abbey_video_thumbnail(){
-	if( is_post_type_archive( "recordings" ) ){
-		
-	}
+function abbey_video_thumbnail( $thumbnail ){
+	
+	if( is_post_type_archive( "recordings" ) )
+		$thumbnail = abbey_recording_video( false );
+	
+
+	return $thumbnail;
 
 }

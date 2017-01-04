@@ -7,15 +7,7 @@
 	* @version: 0.1 
 */
 
-/*
-	* this function is hooked to abbey_theme_before_header
-	* it echoes/prints out any site notice 
-	*
-*/
-function abbey_default_header(){
-	
-}
-add_action( "abbey_theme_before_header", "abbey_default_header" );//hook to default header; check header.php //
+
 
 function abbey_header_address( $contact ){
 
@@ -102,7 +94,7 @@ function abbey_slide_caption( $caption ){
 				<div class="col-md-5 col-md-offset-1 col-sm-3 col-xs-12 posts-slides text-left">
 				<?php while( $posts_query->have_posts() ) : $posts_query->the_post(); ?>
 						<div class="post-slide">
-							<?php echo sprintf( '<h4 class="slide-title"><a href="1$%s">%2$s</a></h4>', get_permalink(), get_the_title() );
+							<?php echo sprintf( '<h4 class="slide-title"><a href="%1$s">%2$s</a></h4>', get_permalink(), get_the_title() );
 							if( has_post_thumbnail() ) : the_post_thumbnail(); endif; ?>
 							<summary class='slide-excerpt'> <?php the_excerpt(); ?></summary>
 							

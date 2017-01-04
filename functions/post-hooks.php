@@ -203,9 +203,12 @@ function abbey_gallery_slides( $galleries ){
 }
 
 
-function abbey_recording_video(){
+function abbey_recording_video( $echo = true ){
 	$content = get_the_content();
 	$embeds = get_media_embedded_in_content( $content );
+
+	if( ! $echo  )
+		return $embeds[0];
 
 	echo $embeds[0];
 }

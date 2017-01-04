@@ -155,7 +155,9 @@ body {
 }
 .full-width,
 .entry-content .gallery-columns-1 .gallery-item,
-#sitehead #header-top .alert-dismissable {
+#sitehead #header-top .alert-dismissable,
+.archives .post-thumbnail iframe,
+#search-page .post-thumbnail iframe {
   width: 100%;
   outline: 0px;
   border-color: transparent !important;
@@ -856,7 +858,9 @@ body {
 }
 .full-width,
 .entry-content .gallery-columns-1 .gallery-item,
-#sitehead #header-top .alert-dismissable {
+#sitehead #header-top .alert-dismissable,
+.archives .post-thumbnail iframe,
+#search-page .post-thumbnail iframe {
   width: 100%;
 }
 .entry-content {
