@@ -202,8 +202,9 @@ Version: 0.1
 .margin-minus-top-sm {
   margin-top: -15px;
 }
-.font-small {
-  font-size: 13px;
+.font-small,
+.small {
+  font-size: 15px;
 }
 .font-large {
   font-size: 60px;
@@ -298,11 +299,12 @@ Version: 0.1
   padding: 0;
 }
 body,
-#content {
+#content,
+.post-slide {
   direction: rtl;
   unicode-bidi: embed;
   font-size: 130%;
-  font-weight: 700;
+  font-weight: 600;
 }
 .entry-content {
   text-align: right;
@@ -312,7 +314,8 @@ body,
 input,
 button,
 .input-group,
-#news-archive .top-post-info li {
+#news-archive .top-post-info li,
+#carousel {
   direction: ltr;
 }
 #news-archive .top-post-info li + li:after {

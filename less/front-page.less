@@ -1,34 +1,46 @@
 #front-page {
 	.frontpage-sections{
 		&:extend(.pad-large);
-		
 	}
 	#site-banner{
 		&:extend(.relative);
-		p{
-			font-size: 20px;
-		}
-		#carousel{
-			.carousel-image{
+	}
+	#carousel{
+		.carousel-image{
 				width: 100% !important;
 				height: 480px;
+		}
+		.carousel-caption{
+			top: 10px;
+			right: 15%;
+		}
+		.page-header{
+			&:extend(.pad-large .page-header);
+			h1{
+				&:extend(.font-large);
 			}
-			.carousel-caption{
-				top: 10px;
-				right: 15%;
-				.page-header{
-					&:extend(.pad-large .page-header);
-					h1{&:extend(.font-large);}
-				}
-				#site-info{
+		}
+		#admin-profile{
+			&:extend(.margin-top-md);
+		}
+		.posts-slides{
+			.post-slide{
+				&:extend(.border-radius-md, .bg-white);
+			}
+			img.wp-post-image{
+				&:extend(.full-width-image);
+				height: 160px !important;
+			}
+			summary{
+				&:extend(.font-small, .pad-small);
+			}
+			.slide-title{
+				&:extend(.pad-small);
+			}
+		}
+			
+	}//#carousel
 
-				}
-				#admin-profile{
-					&:extend(.margin-top-md);
-				}
-			}//.carousel-caption
-		}//#carousel
-	}
 	#services{
 		.service-icons {
 			min-height: 250px;

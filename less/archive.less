@@ -1,4 +1,4 @@
-#search-page, #news-archive{
+.archives, #search-page{
 	.archive-header{
 		&:extend(.inner-pad-responsive, .outer-pad-medium, #box-shadow .box-shadow-md, .bg-white);
 	}
@@ -82,5 +82,10 @@
 		}
 	}
 
+	.archive-posts-summary{
+		.list-group{
+			&:extend(.no-outer-padding);
+		}
+	}
 
 }

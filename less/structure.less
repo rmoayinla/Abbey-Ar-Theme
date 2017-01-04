@@ -151,6 +151,9 @@ body{
 .no-padding{
 	padding: 0px;
 }
+.no-outer-padding{
+	&:extend(.no-padding-left, .no-padding-right);
+}
 
 
 .no-border{

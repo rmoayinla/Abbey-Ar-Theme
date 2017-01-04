@@ -206,3 +206,18 @@ function abbey_show_post_type(){
 	}
 	echo apply_filters( "abbey_post_type", $post );
 }
+
+function abbey_post_icon( $id = 0 ){
+	return ""; //<span class="fa %1$s page-title-icon"></span>
+}
+
+function abbey_page_media( $size = "medium" ){
+	$icon = "";
+
+	if ( has_post_thumbnail() )
+		$icon = the_post_thumbnail( $size );
+	 
+	//$icon = '<div><h2 class="icon-large"><span class="glyphicon glyphicon-blackboard"></span></h2></div>';//
+	echo apply_filters( "abbey_theme_page_media", $icon );
+}
+

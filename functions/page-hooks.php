@@ -1,25 +1,6 @@
 <?php
 
-function abbey_page_title(){
-	global $abbey_defaults;
-	$page_description = ( !empty( $abbey_defaults["page"]["description"] ) ) ? esc_html( $abbey_defaults["page"]["description"] ) : "";
-	
-	$title = sprintf('<div class="page-title-wrap">
-							<h1 class="page-title" itemprop="headline">
-								<span class="fa %1$s page-title-icon"></span> 
-								<span class="page-title-text">%2$s</span>
-							</h1>
-							<summary class="description" itemprop="summary">
-								<em>%3$s</em>
-							</summary>
-						</div>',
-						apply_filters( "abbey_page_icon", "fa-envelope" ),
-						get_the_title(), 
-						apply_filters( "abbey_page_description", $page_description, get_the_ID() )
-					);
 
-	echo apply_filters( "abbey_theme_page_title", $title );
-}
 
 function abbey_post_title(){
 	$summary = get_the_excerpt();
@@ -31,15 +12,7 @@ function abbey_post_title(){
 }
 
 
-function abbey_page_media(){
-	if ( has_post_thumbnail() ){
-		$icon = the_post_thumbnail();
-	} else{
-		$icon = "";
-	}
-	//$icon = '<div><h2 class="icon-large"><span class="glyphicon glyphicon-blackboard"></span></h2></div>';//
-	echo apply_filters( "abbey_theme_page_header_media", $icon );
-}
+
 
 
 function abbey_latest_posts(){
@@ -184,6 +157,7 @@ function abbey_search_summary( $abbey ){
 	$summaries = ( isset( $abbey["summary"] ) ) ? $abbey["summary"] : array();
 	$html = $keyword = "";
 	if( count( $summaries ) > 0 )
+		$html .= "<ul class='list-group'>";
 		foreach( $summaries as $title => $summary ){
 			$html .= "<li class='list-group-item $title relative'>";
 			if( !empty( $summary["title"] ) )
@@ -196,6 +170,7 @@ function abbey_search_summary( $abbey ){
 							);
 			$html .= "</li>";
 		}
+		$html .= "</ul>";
 		
 
 	echo $html;
@@ -204,8 +179,15 @@ function abbey_search_summary( $abbey ){
 
 add_action( "abbey_archive_page_heading", "abbey_archive_heading" ); 
 function abbey_archive_heading( $queried_object ){	?>
-	<h1 class="page-title"><?php echo $queried_object->labels->menu_name; ?> </h1>
+	<h1 class="page-title"><?php echo $queried_object->labels->archives; ?> </h1>
 	<summary class="archive-description"><?php echo $queried_object->description; ?> </summary>
 	<?php
 }
 
+add_action( "abbey_theme_page_media", "abbey_video_thumbnail" );
+function abbey_video_thumbnail(){
+	if( is_post_type_archive( "recordings" ) ){
+		
+	}
+
+}

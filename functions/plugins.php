@@ -160,23 +160,22 @@ function abbey_add_post_type_description(){
     $wp_post_types['post']->description = __("Posts are just some words i typed now", "abbey" );
 }
 
-/*
-function modify_read_more_link() {
-    return '<a class="more-link" href="' . get_permalink() . '">Your Read More Link Text</a>';
-}
-add_filter( 'the_content_more_link', 'modify_read_more_link' );
 
-function remove_more_link_scroll( $link ) {
-    $link = preg_replace( '|#more-[0-9]+|', '', $link );
-    return $link;
-}
-add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
+
+
 
 // Replaces the excerpt "Read More" text by a link
-function new_excerpt_more($more) {
-       global $post;
-    return '<a class="moretag" href="'. get_permalink($post->ID) . '"> Read the full article...</a>';
+function new_excerpt_more( $text ) {
+    global $post;
+    if( is_main_query() )
+        return '';
+    
+    return sprintf( '<a href="%1$s" class="more-link" title="%2$s">%2$s</a>',
+                        get_permalink( $post->ID ), 
+                        __( "Continue reading", "abbey" )
+                 );
+
+    
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
-*/

@@ -17,7 +17,7 @@ $queried_object = get_queried_object();
 $queried_name = $queried_object->name;
 ?>
 
-	<main id="<?php abbey_theme_page_id(); ?>" class="row archive">
+	<main id="<?php abbey_theme_page_id(); ?>" class="row archives">
 		
 		<header id="<?php echo $queried_name; ?>-archive-header" class="text-center archive-header">
 			<div class="md-50"><?php do_action( "abbey_archive_page_heading", $queried_object ); ?></div>
@@ -27,18 +27,17 @@ $queried_name = $queried_object->name;
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
 				
 				<div class="col-md-3 archive-posts-summary" id="<?php echo $queried_name; ?>-archive-summary">
-					<ul class="list-group">
 						<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
-					</ul>
 				</div>
 
 				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-6 col-md-offset-1 archive-posts">
 					
 					<?php while ( have_posts() ) : the_post(); $count++; ?>
 					
-						<?php get_template_part("templates/content", "search"); ?>
+						<?php get_template_part("templates/content", "archive"); ?>
 
-					<?php endwhile; ?> 
+					<?php endwhile; ?>
+
 					<div><?php the_posts_pagination();?></div>
 				</div>
 
@@ -50,7 +49,7 @@ $queried_name = $queried_object->name;
 	<?php endif; ?>
 		
 
-	</main>		<div style="direction: ltr;"> <?php //print_r( get_post_type_object( "post" ) );
-				print_r( get_queried_object() ); ?></div><?php
+	</main>		<div style="direction: ltr;"> <?php print_r( get_post_type_object( "news" ) );
+				//print_r( get_queried_object() ); ?></div><?php
 
 get_footer();

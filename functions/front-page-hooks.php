@@ -67,14 +67,7 @@ function abbey_slide_default_caption () {
 			<div class="" id="about-site"><?php echo esc_html($defaults["about"]); ?></div>
 			
 		</div><!--#site-details closes-->
-	<?php return ob_get_clean(); 
-}
-
-function abbey_slide_permanent_caption(){
-	global $abbey_defaults;
-	$defaults = $abbey_defaults; 
-	ob_start(); ?>
-	<div class="col-md-4 col-md-offset-1 text-center col-sm-3 col-xs-12" id="admin-profile">
+		<div class="col-md-4 col-md-offset-1 text-center col-sm-3 col-xs-12" id="admin-profile">
 			<?php do_action( "abbey_theme_before_admin_info" ); ?>
 			<div class="no-border">
 				<div class="col-xs-4 col-md-12 col-sm-12" id="admin-picture">
@@ -87,39 +80,79 @@ function abbey_slide_permanent_caption(){
 				</div>
 
 			</div>
-	</div><!--#admin-info closes --> <?php
-	return ob_get_clean();
+		</div><!--#admin-info closes --> 
+	<?php return ob_get_clean(); 
 }
+
+function abbey_slide_caption( $caption ){
+	$html = "";
+	ob_start(); ?>
+	<div class="col-md-4 col-sm-8 col-xs-12 text-right">
+		<?php if( !empty( $caption["title"] ) ) ?>
+			<div class="page-header no-bottom-margin"><h1><?php esc_html_e( $caption["title"] ); ?> </h1></div>
+		<?php if( !empty( $caption["description"] ) ) ?>	
+			<div class="description"><p><?php esc_html_e( $caption["description"] ); ?></p></div>	
+		<?php if( !empty( $caption["url"] ) ) ?>	
+			<a href="<?php echo esc_url( $caption["url"] ); ?>" class="btn btn-block btn-default">Read all </a>		
+	</div><!--#site-details closes-->
+
+	<?php if( !empty( $caption["query"] ) ) : 
+			$posts_query = abbey_get_posts( $caption["query"] ); 
+			if( $posts_query->have_posts() ) : ?>
+				<div class="col-md-5 col-md-offset-1 col-sm-3 col-xs-12 posts-slides text-left">
+				<?php while( $posts_query->have_posts() ) : $posts_query->the_post(); ?>
+						<div class="post-slide">
+							<?php echo sprintf( '<h4 class="slide-title"><a href="1$%s">%2$s</a></h4>', get_permalink(), get_the_title() );
+							if( has_post_thumbnail() ) : the_post_thumbnail(); endif; ?>
+							<summary class='slide-excerpt'> <?php the_excerpt(); ?></summary>
+							
+						</div>
+
+				<?php endwhile; ?>
+				</div>
+			<?php wp_reset_postdata(); endif; ?>
+	<?php endif; ?>	
+	
+		<?php return ob_get_clean(); 
+}
+
 function abbey_front_page_slides(){
 	global $abbey_defaults;
 	$slides = ( isset( $abbey_defaults["front-page"]["slides"] ) ) ? $abbey_defaults["front-page"]["slides"] : "";
 	if ( count( $slides ) > 0 ){
-		$html = '<div id="carousel" class="carousel slide" data-ride="carousel">';
+		$html = '<div id="carousel" class="carousel slide" data-ride="carousel" data-interval="10000">';
 		$html .= '<div class="carousel-inner" role="listbox">';
 		$indicators = "";
 		foreach ( $slides as $no => $slide ){
 			$active = ( $no === 0 ) ? "active" : "";
 			$default_caption = abbey_slide_default_caption();
-			$fixed_caption = abbey_slide_permanent_caption();
+			
 
-			$indicators .= '<li data-target="carousel" data-slide-to="'.esc_attr($no).'" class="'.$active.'"> </li>';
+			$indicators .= '<li data-target="#carousel" data-slide-to="'.esc_attr($no).'" class="'.$active.'"> </li>';
 			$html .= '<div class="item '.$active.'">';
-			$html .= '<img src="'.esc_url( $slide["image"] ).'" alt="'.basename( $slide["image"], "jpg" ).'" class="carousel-image">';
-      		$html .= '<div class="carousel-caption">';
-      		$html .= $fixed_caption;
-      		if( !empty( $slide["caption"] ) ){ 
-      			$html .= "";
-      		}
-      		else{ 
-      			$html .= $default_caption;
-      		}
+			
+				if( !empty( $slide["image"] ) )
+					$html .= '<img src="'.esc_url( $slide["image"] ).'" alt="'.basename( $slide["image"], "jpg" ).'" 
+						class="carousel-image">';
+	      		
+	      		$html .= '<div class="carousel-caption">';
+
+	      			if( $no === 0 )
+	      				$html .= $default_caption;
+	      			elseif ( !empty( $slide["caption"] ) )
+	      				$html .= abbey_slide_caption( $slide["caption"] );
+
+      			
+      			$html .= "</div>\n"; //.carousel-caption div closes //
       		
-      		$html .= '</div></div>';
-		}
+      		
+      		$html .= "</div>\n"; // .item div closes //
+		} //end foreach //
+
 		$html .= '<ol class="carousel-indicators">';
 		$html .= $indicators;
  		$html .= '</ol>';
-		$html .= '</div>';
+		$html .= "</div>\n";//.carousel-inner closes //
 		$html .= '<a class="left carousel-control" href="#carousel" role="button" data-slide="prev" title="previous slide">
     				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     				<span class="sr-only">Previous</span>
@@ -128,7 +161,7 @@ function abbey_front_page_slides(){
     				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     				<span class="sr-only">Next</span>
   					</a>';
-  		$html .= '</div>';
+  		$html .= "</div>\n"; //.carousel slide closes //
 	}
 	echo $html;
 }

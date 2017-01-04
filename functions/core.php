@@ -417,3 +417,18 @@ function abbey_add_to_primary_menu ( $items, $args ) {
 }
 add_filter( 'wp_nav_menu_items','abbey_add_to_primary_menu',10,2 );//wp filter to add to nav menus //
 
+function abbey_get_posts( $args = array() ){
+	$defaults = array(
+		'posts_per_page'   => 5,
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'post',
+		'post_status'      => 'publish',
+		'no_found_rows'		=> true
+	);
+	$args = wp_parse_args( $args, $defaults ); 
+
+	$posts = new WP_Query( $args ); 
+
+	return $posts;
+}

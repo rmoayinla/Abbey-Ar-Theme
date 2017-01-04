@@ -17,11 +17,10 @@ global $count;
 				<ul class="breadcrumb"><?php abbey_post_info( true, array( "author", "date" )); ?></ul>
 			</header>
 			<div class="post-panel-body">
-				<?php if( has_post_thumbnail() ) : ?>
-					<div class="post-thumbnail">
-						<?php the_post_thumbnail( "large" ); ?>
-					</div>
-				<?php endif; ?>
+				<div class="post-thumbnail">
+					<?php abbey_page_media( "large" ); ?>
+				</div>
+				
 				<div class="post-excerpts">
 					<?php the_excerpt(); ?>
 				</div>

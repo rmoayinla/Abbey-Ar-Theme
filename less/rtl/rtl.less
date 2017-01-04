@@ -19,11 +19,12 @@ Version: 0.1
 
 @import "structure.less";
 
-body, #content{
+body, #content, 
+.post-slide{
 	direction: rtl;
   	unicode-bidi: embed;
   	font-size: 130%;
-  	font-weight: 700;
+  	font-weight: 600;
 }
 
 .entry-content{
@@ -31,7 +32,8 @@ body, #content{
 }
 .author-info, #site-footer, 
 input, button, .input-group, 
-#news-archive .top-post-info li{
+#news-archive .top-post-info li,
+#carousel{
 	direction: ltr;
 	
 }
@@ -45,6 +47,7 @@ input, button, .input-group,
 .archive-description{
 	font-size: 20px;
 }
+
 /* reponsive design for devices larger than 1027px */
 @media(min-width: @screen-lg){
 	#post-page #content, 

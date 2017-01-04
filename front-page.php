@@ -8,12 +8,15 @@
 */
 
 get_header();  ?>
-
+	
 	<main id="<?php abbey_theme_page_id();?>" class="site-content">
-		<div class="row" id="site-banner" role="banner">
-			<?php do_action( "abbey_theme_front_page_banner" ); ?>
-		</div><!--end of jumbotron/#site-banner --> <?php 
-		
-		get_template_part("templates/content", "front-page");//include the front-page content layout //
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post() ?>
+			<div class="row" id="site-banner" role="banner">
+				<?php do_action( "abbey_theme_front_page_banner" ); ?>
+			</div><!--end of jumbotron/#site-banner --> <?php 
+			
+			get_template_part("templates/content", "front-page");//include the front-page content layout //
+
+		endwhile; endif;
 
 get_footer();

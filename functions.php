@@ -120,9 +120,7 @@ if( !function_exists( "abbey_theme_setup" ) ) {
 
     	$content_width = apply_filters( "abbey_theme_content_width", 400 );
 
-    	global $abbey_defaults;
-
-    	$abbey_defaults = abbey_theme_defaults();
+    	
 
 		/*
 		* abbey theme custom hook
@@ -242,3 +240,10 @@ add_filter( "abbey_theme_sidebars", function ( $sidebars ){
 	);
 	return $sidebars;
 } );
+
+add_action( "init", "abbey_init_defaults", 50 );
+function abbey_init_defaults(){
+	global $abbey_defaults;
+
+    $abbey_defaults = abbey_theme_defaults();
+}

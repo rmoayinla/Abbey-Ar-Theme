@@ -1,14 +1,6 @@
 // jquery-javascript //
 (function($) {
 	$( document ).ready( function() {
-
-		$("#floating-video").affix({
-		  offset: {
-		    top: $(".entry-content iframe").offset().top
-		    
-		  }
-		});
-
 		
 
 		$(".gallery-slides").slick({
@@ -32,12 +24,25 @@
 			dots: true
 		});
 
+		$(".posts-slides").slick({
+			autoplay: true, 
+			autoplaySpeed: 3000, 
+			arrows: true,
+			dots: false
+		});
+
 		$(document).on("click", ".entry-content .more-button", function(event){
 			var _this, nextElements;
 			_this = $(this);
 			nextElements = _this.next("#more-content");
 			nextElements.toggleClass("hidden in");
 		}); //.more-button
+
+		$("#floating-video").affix({
+		  offset: {
+		    top: $(".entry-content iframe").offset().top
+		    }
+		});
 
 	}); //document.ready //
 

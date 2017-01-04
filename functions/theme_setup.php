@@ -156,12 +156,21 @@ add_filter( "abbey_theme_defaults", "abbey_theme_add_contacts", 30 );
 
 function abbey_add_front_page_slides( $defaults ){
 	$front_page = $defaults["front-page"]; 
+	$news =  get_post_type_object("news");
 	$front_page[ "slides" ] = apply_filters( "abbey_front_page_slides", array(
 			array(
 				"image" => get_template_directory_uri()."/img/banner-1.jpg"
 			), 	
 			array(
-				"image" => get_template_directory_uri()."/img/banner-2.jpg"
+				"image" => get_template_directory_uri()."/img/banner-2.jpg", 
+				"caption" => array(
+					"title" => $news->labels->archives,
+					"description" => $news->description,
+					"url" =>  get_post_type_archive_link( "news" ),
+					"query" => array(
+						"post_type" => "news", "posts_per_page" => 2
+					)
+				)
 			 ),
 			array(
 				"image" => get_template_directory_uri()."/img/banner-3.jpg"
