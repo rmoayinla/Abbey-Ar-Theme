@@ -26,9 +26,9 @@
 
 		$(".posts-slides").slick({
 			autoplay: true, 
-			autoplaySpeed: 3000, 
 			arrows: true,
 			dots: false
+
 		});
 
 		$(document).on("click", ".entry-content .more-button", function(event){

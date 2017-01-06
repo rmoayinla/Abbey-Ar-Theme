@@ -12,7 +12,7 @@ $count = ( $current_page > 1 ) ? ( ( $current_page - 1) * (int) get_option( 'pos
 
 $abbey_query = array();
 
-$queried_object = get_queried_object();
+
 
 
 ?>

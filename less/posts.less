@@ -214,6 +214,21 @@
 
 		}
 	}
+	.related-posts{
+		&:extend(.inner-pad-responsive, .bg-light, .relative, .outer-pad-medium);
+		.post-panel{
+			
+			.post-panel-thumbnail{
+				&:extend(.one-third-largescreen);
+				vertical-align: top;
+			}
+			.post-panel-thumbnail + .post-panel-body{
+				&:extend(.two-third-largescreen, .margin-right-sm);
+			}
+			
+		}
+		
+	}
 
 }
 

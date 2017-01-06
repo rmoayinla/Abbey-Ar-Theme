@@ -114,6 +114,35 @@ function abbey_post_author_info( $title = "" ){
 	echo $html; 
 }
 
+function abbey_show_related_posts( $title = "" ){
+	$args =  array(
+		'post_type' => get_post_type(), 
+		'posts_per_page' => 3, 
+		'post__not_in' => array( get_the_ID() )
+	);
+	$related_posts = abbey_get_posts( $args );
+	if( $related_posts->have_posts() ) : 
+		ob_start(); ?>
+		<div class="related-posts">	<?php
+		if( !empty( $title ) )
+			echo sprintf( '<h4 class="entry-footer-heading">%s</h4>', esc_html($title) ); ?>
+			<div class="posts-slides" data-slick='{"rtl": true}'>
+		<?php while( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
+			<aside class="post-panel">
+				<?php if( has_post_thumbnail() ) : ?>
+					<figure class="post-panel-thumbnail inline"><?php the_post_thumbnail(); ?></figure>
+				<?php endif; ?>
+				<div class="post-panel-body inline">
+					<h4 class="post-panel-heading"><?php the_title(); ?></h4>
+					<div class="post-panel-excerpt text-justify"><?php the_excerpt(); ?> </div>
+				</div>
+			</aside>
+		<?php endwhile; wp_reset_postdata(); ?>
+		</div></div><?php endif; 
+		
+		echo ob_get_clean();
+
+}
 
 function abbey_post_categories(){
 	$notes = sprintf( '<p class="small cats-note">%s</p>',

@@ -323,6 +323,11 @@ body{
 	font-size: 7em;
 }
 
+.clearfix{
+	clear:both;
+	display: table;
+}
+
 .text-center{
 	text-align: center;
 }
@@ -427,7 +432,7 @@ body{
 	.gallery-columns-3, 
 	div[class*="columns-4"]{
 		.gallery-item{
-			&:extend(.inline, .margin-right-xs, .margin-top-xs, .third-largescreen, .half-mobile, .half-tablets);
+			&:extend(.inline, .margin-right-xs, .margin-top-xs, .one-third-largescreen, .half-mobile, .half-tablets);
 			vertical-align: top;
 		}
 	}

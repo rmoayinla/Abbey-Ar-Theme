@@ -36,6 +36,7 @@ body {
 #post-page .entry-content figure.alignleft,
 #post-page .entry-content figure.alignright,
 #post-page .entry-content figure.alignnone,
+#post-page .related-posts,
 #gallery-post-page .gallery-widgets:nth-child(even):not(:last-of-type),
 #link .secondary:hover,
 #site-footer,
@@ -272,6 +273,7 @@ body {
 .outer-pad-medium,
 #sitehead #admin-info,
 #post-page .post-navigation,
+#post-page .related-posts,
 .archives .archive-header,
 #search-page .archive-header {
   padding-top: 40px;
@@ -483,7 +485,8 @@ body {
   margin-bottom: 30px;
 }
 .margin-right-sm,
-#post-page .categories-list li {
+#post-page .categories-list li,
+#post-page .related-posts .post-panel .post-panel-thumbnail + .post-panel-body {
   margin-right: 15px;
 }
 .margin-right-xs,
@@ -702,6 +705,7 @@ body {
 #post-page .post-navigation .previous-post .next-button,
 #post-page .post-navigation .next-post .next-button,
 #post-page .entry-footer-heading,
+#post-page .related-posts,
 #gallery-post-page #gallery-sidebar,
 #gallery-post-page .gallery-widgets,
 #tool-tip .tool-tip-box,
@@ -754,6 +758,10 @@ body {
 }
 .icon-large {
   font-size: 7em;
+}
+.clearfix {
+  clear: both;
+  display: table;
 }
 .text-center,
 .entry-content figure.alignnone,
@@ -1150,6 +1158,9 @@ body {
   top: 20px;
   border-bottom: 3px solid #b34700;
 }
+#post-page .related-posts .post-panel .post-panel-thumbnail {
+  vertical-align: top;
+}
 #quote-post-page .breadcrumb li + li:before {
   content: "";
 }
@@ -1416,6 +1427,7 @@ body {
   }
   .inner-pad-responsive,
   #post-page .author-info,
+  #post-page .related-posts,
   #site-footer #footer-bottom,
   .archives .archive-header,
   #search-page .archive-header {
@@ -1458,10 +1470,15 @@ body {
   #gallery-post-page .entry-content .gallery-item {
     width: 48%;
   }
-  .third-largescreen,
+  .one-third-largescreen,
   .entry-content .gallery-columns-3 .gallery-item,
-  .entry-content div[class*="columns-4"] .gallery-item {
+  .entry-content div[class*="columns-4"] .gallery-item,
+  #post-page .related-posts .post-panel .post-panel-thumbnail {
     width: 31%;
+  }
+  .two-third-largescreen,
+  #post-page .related-posts .post-panel .post-panel-thumbnail + .post-panel-body {
+    width: 62%;
   }
   #floating-video.affix {
     left: 15px;
@@ -1477,6 +1494,7 @@ body {
   }
   .inner-pad-responsive,
   #post-page .author-info,
+  #post-page .related-posts,
   #site-footer #footer-bottom,
   .archives .archive-header,
   #search-page .archive-header {
@@ -1521,6 +1539,7 @@ body {
   }
   .inner-pad-responsive,
   #post-page .author-info,
+  #post-page .related-posts,
   #site-footer #footer-bottom,
   .archives .archive-header,
   #search-page .archive-header {
@@ -1619,6 +1638,7 @@ body {
   }
   .inner-pad-responsive,
   #post-page .author-info,
+  #post-page .related-posts,
   #site-footer #footer-bottom,
   .archives .archive-header,
   #search-page .archive-header {

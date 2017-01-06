@@ -170,6 +170,7 @@ function abbey_gallery_pictures( $galleries ){
 				); 
 			if( $image_count === $no )
 				$html .= "</div>";
+			
 			$image_in_slide += 1;
 		}
 	$html .= "</div> \n </div>";
