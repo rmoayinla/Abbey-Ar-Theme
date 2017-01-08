@@ -55,6 +55,7 @@ body {
 #primary-menu .navbar-collapse .menu-item a:hover,
 #post-page .gallery-item figcaption,
 #button .button-md:hover,
+.btn-primary,
 #link .secondary .active,
 #site-footer #footer-bottom,
 #post-page .pagination li.active > a,
@@ -85,6 +86,7 @@ body {
 #gallery-post-page .entry-content .gallery-item:hover,
 #gallery-post-page .gallery-widgets:last-of-type,
 #button .button-md,
+.btn-primary:hover,
 #link .secondary,
 .mini-popup,
 #sidebar-404 #latest-posts,
@@ -127,7 +129,7 @@ body {
 #comments .media .media-body time,
 .archives .post-panel-heading .top-post-info,
 #search-page .post-panel-heading .top-post-info,
-#content a:hover,
+#content a:not(.btn):hover,
 #custom-page .breadcrumb,
 #post-page .entry-content p > a:not(img):hover,
 .archives .breadcrumb,
@@ -145,7 +147,7 @@ body {
 #button .button-md,
 #link .primary,
 #link .secondary,
-#content a,
+#content a:not(.btn),
 #post-page .pagination li > a,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
@@ -372,6 +374,7 @@ body {
 #gallery-post-page .entry-content .gallery-item:hover,
 #gallery-post-page #gallery-sidebar,
 #button .button-md,
+.btn-primary,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
@@ -605,7 +608,7 @@ body {
 #site-footer #site-info .description,
 .archives .post-panel-footer .fa-fw,
 #search-page .post-panel-footer .fa-fw,
-#content a:visited,
+#content a:not(.btn):visited,
 #quote-post-page .tags-icon,
 #quote-post-page .categories-icon {
   font-weight: 600;
@@ -793,8 +796,8 @@ body {
 #button .button-md:hover,
 #link .primary:visited,
 #link .primary:hover,
-#content a:visited,
-#content a:hover,
+#content a:not(.btn):visited,
+#content a:not(.btn):hover,
 #post-page .entry-content p > a:not(img):hover,
 #post-page .post-navigation .previous-post .previous-button:hover,
 #post-page .post-navigation .next-post .previous-button:hover,
@@ -1155,7 +1158,7 @@ body {
   height: 5px;
   width: 50px;
   left: 45%;
-  top: 20px;
+  top: 30px;
   border-bottom: 3px solid #b34700;
 }
 #post-page .related-posts .post-panel .post-panel-thumbnail {
@@ -1268,12 +1271,23 @@ body {
   -webkit-box-shadow: 0px 3px 8px #b34700;
   box-shadow: 0px 3px 8px #b34700;
 }
+.btn-primary {
+  transition: all 0.8s ease-in-out 0s;
+  -webkit-transition: all 0.8s ease-in-out 0s;
+  -o-transition: all 0.8s ease-in-out 0s;
+  -moz-transition: all 0.8s ease-in-out 0s;
+}
+.btn-primary:hover {
+  -webkit-box-shadow: 0px 2px 4px #b34700;
+  box-shadow: 0px 2px 4px #b34700;
+  border-color: #FF6600;
+}
 #link .primary:visited,
-#content a:visited {
+#content a:not(.btn):visited {
   border-bottom: 1px solid #FF6600;
 }
 #link .primary:hover,
-#content a:hover,
+#content a:not(.btn):hover,
 #post-page .entry-content p > a:not(img):hover {
   border-bottom: 1px solid #b34700;
 }

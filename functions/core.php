@@ -376,6 +376,30 @@ function abbey_setup_query(){
 
 }
 
+function abbey_group_posts( &$custom_posts ){
+	$post_types = get_post_types( array( 'public' =>  true ), 'names' );
+	$custom_posts = array();
+	if( !empty( $post_types ) ){
+		foreach( $post_types as $post_type ){
+		$custom_posts[$post_type] = array();
+		}
+	}
+
+}
+function abbey_add_posts( &$custom_posts ){
+	$post_type = get_post_type();
+	if( array_key_exists( $post_type, $custom_posts ) ){
+		$custom_posts[$post_type][] = array(
+			"ID" => get_the_ID(), 
+			"excerpt" => get_the_excerpt(), 
+			"thumbnail" => get_the_post_thumbnail(), 
+			"url" => get_permalink(), 
+			"title" => get_the_title()
+		);
+
+
+	}
+}
 function abbey_gallery_images(){
 	global $post; 
 	

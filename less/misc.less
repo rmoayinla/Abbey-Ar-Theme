@@ -62,6 +62,16 @@
 	}
 }
 
+.btn-primary{
+	&:extend(.bg-dark,.border);
+	.transition(all,0.8s,ease-in-out);
+	&:hover{
+		.box-shadow(0px, 2px, 4px, @dark-primary-color);
+		&:extend(.bg-white);
+		border-color: @primary-color;
+	}
+}
+
 #link{
 	.primary{
 		&:extend(.primary);

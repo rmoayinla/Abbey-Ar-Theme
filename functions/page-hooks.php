@@ -63,7 +63,7 @@ function abbey_post_nav( $title = "" ){
 	$next_post = get_next_post(); // next post //
 	$html = "<div class='post-navigation md-50'>\n";
 	if( !empty( $title ) )
-		$html.= sprintf( '<h4 class="entry-footer-heading">%s</h4>', esc_html($title) );
+		$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
 
 	if ( !empty( $prev_post ) ) {
 		$html .= "<div class='previous-post text-left'>\n";
@@ -87,7 +87,7 @@ function abbey_post_author_info( $title = "" ){
 
 	$html = "<div class='author-info'>";
 	if( !empty( $title ) )
-		$html.= sprintf( '<h4 class="entry-footer-heading">%s</h4>', esc_html($title) );
+		$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
 	
 	$html .= "<div class='author-photo'>".abbey_author_photo( $author->ID, 120, "img-circle" ). "</div>";
 	$html .= "<div class='author-details'>";
@@ -125,7 +125,7 @@ function abbey_show_related_posts( $title = "" ){
 		ob_start(); ?>
 		<div class="related-posts">	<?php
 		if( !empty( $title ) )
-			echo sprintf( '<h4 class="entry-footer-heading">%s</h4>', esc_html($title) ); ?>
+			echo sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) ); ?>
 			<div class="posts-slides" data-slick='{"rtl": true}'>
 		<?php while( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
 			<aside class="post-panel">
@@ -133,8 +133,11 @@ function abbey_show_related_posts( $title = "" ){
 					<figure class="post-panel-thumbnail inline"><?php the_post_thumbnail(); ?></figure>
 				<?php endif; ?>
 				<div class="post-panel-body inline">
-					<h4 class="post-panel-heading"><?php the_title(); ?></h4>
-					<div class="post-panel-excerpt text-justify"><?php the_excerpt(); ?> </div>
+					<h4 class="post-panel-heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+					<div class="post-panel-excerpt text-justify">
+						<?php the_excerpt(); ?> 
+						<a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php _e("Read more", "abbey"); ?></a>
+					</div>
 				</div>
 			</aside>
 		<?php endwhile; wp_reset_postdata(); ?>
@@ -207,8 +210,13 @@ function abbey_search_summary( $abbey ){
 }
 
 add_action( "abbey_archive_page_heading", "abbey_archive_heading" ); 
-function abbey_archive_heading( $queried_object ){	?>
-	<h1 class="page-title"><?php echo $queried_object->labels->archives; ?> </h1>
+function abbey_archive_heading( $queried_object ){	
+	if( $queried_object instanceof WP_User )
+		$title = $queried_object->display_name; 
+	elseif( $queried_object instanceof WP_Post_Type )
+		$title = $queried_object->labels->archives;
+	 ?>
+	<h1 class="page-title"><?php echo esc_html( $title ); ?> </h1>
 	<summary class="archive-description"><?php echo $queried_object->description; ?> </summary>
 	<?php
 }

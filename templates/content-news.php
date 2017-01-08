@@ -33,7 +33,7 @@
 		<div class="clearfix"></div>
 
 		<footer class="entry-footer"> 
-			<?php abbey_show_related_posts(); ?>
+			<?php abbey_show_related_posts( "الأخبار المتصلة", "abbey" ); ?>
 			<?php abbey_post_nav( "أخبار السابق والتالي", "abbey" ); ?>
 			<?php abbey_post_author_info( __( "عرَف المؤلف", "abbey" ) ); ?>
 

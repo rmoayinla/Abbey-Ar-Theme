@@ -165,7 +165,7 @@ function abbey_add_post_type_description(){
 
 
 // Replaces the excerpt "Read More" text by a link
-function new_excerpt_more( $text ) {
+function abbey_excerpt_more( $text ) {
     global $post;
     if( is_main_query() )
         return '';
@@ -177,5 +177,5 @@ function new_excerpt_more( $text ) {
 
     
 }
-add_filter('excerpt_more', 'new_excerpt_more');
+add_filter('excerpt_more', 'abbey_excerpt_more');
 

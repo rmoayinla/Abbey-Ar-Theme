@@ -5,16 +5,17 @@ global $count;
 
 global $wp_query;
 
-global $abbey_query;
+global $abbey_author_posts;
+
 
 $current_page = (int) get_query_var( 'paged' );
 $count = ( $current_page > 1 ) ? ( ( $current_page - 1) * (int) get_option( 'posts_per_page' ) ) : 0;
 
-$abbey_query = array();
+$abbey_author_posts = array();
 
 $queried_object = get_queried_object();
 
-$queried_name = $queried_object->name;
+$queried_name = "author";
 ?>
 
 	<main id="<?php abbey_theme_page_id(); ?>" class="row archives">
@@ -24,21 +25,18 @@ $queried_name = $queried_object->name;
 		</header>
 
 		<section id="content" class="row archive-content">
-			<?php if ( have_posts() ) : abbey_setup_query(); ?>
-				
-				<div class="col-md-3 archive-posts-summary" id="<?php echo $queried_name; ?>-archive-summary">
-						<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
-				</div>
-
+			<?php if ( have_posts() ) : abbey_group_posts( $abbey_author_posts ); ?>
 				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-6 col-md-offset-1 archive-posts">
-					
-					<?php while ( have_posts() ) : the_post(); $count++; ?>
+					<?php while ( have_posts() ) : the_post(); $count++; abbey_add_posts( $abbey_author_posts ); ?>
 					
 						<?php get_template_part("templates/content", "archive"); ?>
 
+
 					<?php endwhile; ?>
 
-					<div><?php the_posts_pagination();?></div>
+						<?php get_template_part("templates/content", "author-archive"); ?>
+
+					
 				</div>
 
 		
@@ -49,7 +47,7 @@ $queried_name = $queried_object->name;
 	<?php endif; ?>
 		
 
-	</main>		<div style="direction: ltr;"> <?php //print_r( get_post_type_object( "news" ) );
-				print_r( get_queried_object() ); ?></div><?php
+	</main>		<div style="direction: ltr;"> <?php 
+				 ?></div><?php
 
 get_footer();
