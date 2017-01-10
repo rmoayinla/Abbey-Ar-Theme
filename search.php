@@ -37,7 +37,7 @@ $abbey_query = array();
 					
 					<?php while ( have_posts() ) : the_post(); $count++; ?>
 					
-						<?php get_template_part("templates/content", "search"); ?>
+						<?php get_template_part("templates/content", "archive"); ?>
 
 					<?php endwhile; ?> 
 					<div><?php the_posts_pagination();?></div>

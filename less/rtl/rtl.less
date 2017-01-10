@@ -48,6 +48,16 @@ input, button, .input-group,
 	font-size: 20px;
 }
 
+ul.pagination{
+	li > a, li > span{
+		&:extend(.float-right);
+	}
+	li:first-child a, li:first-child span, 
+	li:last-child a, li:last-child span{
+		border-radius: 0px;
+	}
+}
+
 /* reponsive design for devices larger than 1027px */
 @media(min-width: @screen-lg){
 	#post-page #content, 

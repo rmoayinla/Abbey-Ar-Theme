@@ -28,11 +28,11 @@
 			}
 	}
 	.post-panel-heading,.post-panel-footer{
-		&:extend(.pad-small, .inner-pad-medium, .relative);
+		&:extend(.pad-small, .inner-pad-small, .relative);
 	}
 	.post-panel-heading{
 		.top-post-info{
-			&:extend(.dark, .font-small, .oblique, .no-margin );
+			&:extend(.dark, .font-small, .oblique, .no-margin, .inner-pad-small );
 			li{
 				&:extend(.float-left);
 				margin-right: 20px;
@@ -65,7 +65,7 @@
 		}
 	}
 	.post-excerpts{
-		&:extend(.text-justify, .inner-pad-medium);
+		&:extend(.text-justify, .inner-pad-small);
 	}
 	.post-panel:not(.post-count-1){
 		
@@ -89,6 +89,14 @@
 		.list-group{
 			&:extend(.no-outer-padding);
 		}
+	}
+	
+
+}
+
+.category-archive-posts{
+	.post-panel:not(.post-count-1){
+		&:extend(.inline, .half-largescreen, .float-left);
 	}
 
 }

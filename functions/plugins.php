@@ -39,9 +39,10 @@ function abbey_custom_avatar( $avatar, $id_or_email, $size, $default, $alt, $arg
     return $avatar;
 }
 
-add_filter( 'wp_link_pages_link', 'abbey_post_navigation_link', 10, 2 );
+add_filter( 'wp_link_pages_link', 'abbey_post_pagination_link', 10, 2 );
 
-function abbey_post_navigation_link( $link, $i ){
+
+function abbey_post_pagination_link( $link, $i ){
     global $page, $numpages, $multipage, $more;
     $active = ( $i === $page ) ? "active" : "";
     if ( $page === $numpages && $i === $page ){
@@ -51,6 +52,7 @@ function abbey_post_navigation_link( $link, $i ){
     }
     return $link;
 }
+
 
 add_filter('wp_link_pages_args','abbey_add_next_and_number');
 function abbey_add_next_and_number( $args ){

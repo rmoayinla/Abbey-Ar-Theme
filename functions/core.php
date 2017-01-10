@@ -456,3 +456,20 @@ function abbey_get_posts( $args = array() ){
 
 	return $posts;
 }
+
+function abbey_posts_pagination( $args = array() ){
+	$defaults = array( "type" => "array", "mid_size" => 1 ); 
+	$args = wp_parse_args( $defaults, $args );
+	$navigation = "";
+	if( $GLOBALS['wp_query']->max_num_pages > 1 ){
+		$links = paginate_links( $args ); 
+		$navigation .= "<ul class='pagination'>";
+
+		foreach( $links as $link ){
+			$navigation .= "<li>".$link."</li>\n";
+		}
+		$navigation .= "</ul>\n";
+	}
+	echo $navigation; 
+
+}

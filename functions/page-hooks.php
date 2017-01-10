@@ -215,6 +215,8 @@ function abbey_archive_heading( $queried_object ){
 		$title = $queried_object->display_name; 
 	elseif( $queried_object instanceof WP_Post_Type )
 		$title = $queried_object->labels->archives;
+	elseif( $queried_object instanceof WP_Term )
+		$title = $queried_object->name;
 	 ?>
 	<h1 class="page-title"><?php echo esc_html( $title ); ?> </h1>
 	<summary class="archive-description"><?php echo $queried_object->description; ?> </summary>

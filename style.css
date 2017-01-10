@@ -43,9 +43,10 @@ body {
 #comments .bypostauthor,
 .archives .post-panel.post-count-1,
 #search-page .post-panel.post-count-1,
+.pagination li > a:hover,
+.navigation li > a:hover,
 #custom-page .entry-content .panel-heading,
 #custom-page .entry-content .panel-footer,
-#post-page .pagination li > a:hover,
 #quote-post-page #post-content-header,
 #gallery-post-page #post-content-header {
   background-color: #ffefe5;
@@ -58,7 +59,8 @@ body {
 .btn-primary,
 #link .secondary .active,
 #site-footer #footer-bottom,
-#post-page .pagination li.active > a,
+.pagination li.active > a,
+.navigation li.active > a,
 #post-page .post-navigation .previous-post .previous-button:hover,
 #post-page .post-navigation .next-post .previous-button:hover,
 #post-page .post-navigation .previous-post .next-button:hover,
@@ -95,7 +97,8 @@ body {
 #search-page .archive-header,
 .archives .post-panel,
 #search-page .post-panel,
-#post-page .pagination li > a,
+.pagination li > a,
+.navigation li > a,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
@@ -148,7 +151,8 @@ body {
 #link .primary,
 #link .secondary,
 #content a:not(.btn),
-#post-page .pagination li > a,
+.pagination li > a,
+.navigation li > a,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
@@ -257,18 +261,20 @@ body {
   border-bottom: 0px;
 }
 .inner-pad-small,
-#custom-page #page-sidebar {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-.inner-pad-medium,
+#custom-page #page-sidebar,
 .archives .post-panel-heading,
 #search-page .post-panel-heading,
 .archives .post-panel-footer,
 #search-page .post-panel-footer,
+.archives .post-panel-heading .top-post-info,
+#search-page .post-panel-heading .top-post-info,
 .archives .post-excerpts,
 #search-page .post-excerpts,
 #quote-post-page .entry-content footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.inner-pad-medium {
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -627,7 +633,8 @@ body {
 #comments .comment-form-author,
 #comments .comment-form-email,
 .archives .post-panel-heading .top-post-info li,
-#search-page .post-panel-heading .top-post-info li {
+#search-page .post-panel-heading .top-post-info li,
+.category-archive-posts .post-panel:not(.post-count-1) {
   float: left;
 }
 .float-none,
@@ -665,6 +672,7 @@ body {
 #search-page .categories-list .tag-list li,
 .archives .tags-list .tag-list li,
 #search-page .tags-list .tag-list li,
+.category-archive-posts .post-panel:not(.post-count-1),
 #quote-post-page .tags-list,
 .archives .categories-list,
 #search-page .categories-list,
@@ -762,7 +770,9 @@ body {
 .icon-large {
   font-size: 7em;
 }
-.clearfix {
+.clearfix,
+.pagination:before,
+.navigation:before {
   clear: both;
   display: table;
 }
@@ -910,6 +920,14 @@ body {
 }
 #search-form .input-group .btn {
   padding: 10px 20px;
+}
+.pagination li > a,
+.navigation li > a {
+  border-color: #FF6600 !important;
+}
+.pagination:before,
+.navigation:before {
+  content: "";
 }
 /*
 * header styles 
@@ -1099,9 +1117,6 @@ body {
   opacity: 0.5;
   filter: alpha(opacity=0.5);
   /* For IE8 and earlier */
-}
-#post-page .pagination li > a {
-  border-color: #FF6600 !important;
 }
 #post-page .entry-footer {
   color: #000;
@@ -1481,8 +1496,10 @@ body {
   }
   .half-largescreen,
   #post-page .gallery-columns-2 .gallery-item,
-  #gallery-post-page .entry-content .gallery-item {
+  #gallery-post-page .entry-content .gallery-item,
+  .category-archive-posts .post-panel:not(.post-count-1) {
     width: 48%;
+    margin-right: 5px;
   }
   .one-third-largescreen,
   .entry-content .gallery-columns-3 .gallery-item,
@@ -1534,7 +1551,8 @@ body {
   }
   .half-largescreen,
   #post-page .gallery-columns-2 .gallery-item,
-  #gallery-post-page .entry-content .gallery-item {
+  #gallery-post-page .entry-content .gallery-item,
+  .category-archive-posts .post-panel:not(.post-count-1) {
     width: 48%;
   }
 }

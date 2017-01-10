@@ -477,3 +477,21 @@ body{
 #content > .row, #post-page .post-navigation{
 	&:extend(.no-left-padding, .no-right-padding, .no-left-margin, .no-right-margin);
 }
+
+.pagination,
+.navigation{
+	li >a{
+		&:extend(#link .secondary);
+		border-color: @primary-color !important;
+		&:hover{
+			&:extend(#link .secondary:hover);
+		}
+	}
+	li.active > a{
+		&:extend(#link .secondary .active);
+	}
+	&:before{
+		content: "";
+		&:extend(.clearfix);
+	}
+}

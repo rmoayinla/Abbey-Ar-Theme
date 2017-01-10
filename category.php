@@ -14,7 +14,7 @@ $abbey_query = array();
 
 $queried_object = get_queried_object();
 
-$queried_name = $queried_object->name;
+$queried_name = $queried_object->slug;
 ?>
 
 	<main id="<?php abbey_theme_page_id(); ?>" class="row archives">
@@ -27,10 +27,10 @@ $queried_name = $queried_object->name;
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
 				
 				<div class="col-md-3 archive-posts-summary" id="<?php echo $queried_name; ?>-archive-summary">
-						<?php //do_action( "abbey_archive_page_summary", $abbey_query ); ?>
+						<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
 				</div>
 
-				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-6 col-md-offset-1 archive-posts">
+				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-1 category-archive-posts">
 					
 					<?php while ( have_posts() ) : the_post(); $count++; ?>
 					
@@ -38,7 +38,7 @@ $queried_name = $queried_object->name;
 
 					<?php endwhile; ?>
 
-					<div><?php the_posts_pagination();?></div>
+					<div class="navigation" role="navigation"><?php abbey_posts_pagination();?></div>
 				</div>
 
 		
@@ -50,6 +50,6 @@ $queried_name = $queried_object->name;
 		
 
 	</main>		<div style="direction: ltr;"> <?php //print_r( get_post_type_object( "news" ) );
-				print_r( $abbey_query); ?></div><?php
+				print_r( $queried_object ); ?></div><?php
 
 get_footer();
