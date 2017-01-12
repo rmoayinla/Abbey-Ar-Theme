@@ -7,39 +7,7 @@ function remove_width_attribute( $html ) {
    $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
    return $html;
 }
-// Apply filter
-add_filter( 'get_avatar' , 'abbey_custom_avatar' , 1 , 6 );//
 
-function abbey_custom_avatar( $avatar, $id_or_email, $size, $default, $alt, $args ) {
-    $user = false;
-    global $abbey_defaults;
-
-    if ( is_numeric( $id_or_email ) ) {
-		$id = (int) $id_or_email;
-        $user = get_user_by( 'id' , $id );
-
-    } elseif ( is_object( $id_or_email ) ) {
-
-        if ( ! empty( $id_or_email->user_id ) ) {
-            $id = (int) $id_or_email->user_id;
-            $user = get_user_by( 'id' , $id );
-        }
-
-    } else {
-        $user = get_user_by( 'email', $id_or_email );	
-    }
-
-    if ( $user && is_object( $user ) && $default === "user_upload" ) {
-            $avatar = $abbey_defaults["admin"]["pics"];
-            $class = ( !empty($args) && isset( $args["class"] ) ) ? esc_attr( $args["class"] ) : "";
-            $avatar = "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} {$class}' height='{$size}' width='{$size}' />";
-        }
-
-
-    return $avatar;
-}
-
-add_filter( 'wp_link_pages_link', 'abbey_post_pagination_link', 10, 2 );
 
 
 function abbey_post_pagination_link( $link, $i ){
@@ -169,13 +137,13 @@ function abbey_add_post_type_description(){
 // Replaces the excerpt "Read More" text by a link
 function abbey_excerpt_more( $text ) {
     global $post;
-    if( is_main_query() )
+    if( is_main_query() && ( is_front_page() || is_singular() ) )
         return '';
-    
-    return sprintf( '<a href="%1$s" class="more-link" title="%2$s">%2$s</a>',
-                        get_permalink( $post->ID ), 
-                        __( "Continue reading", "abbey" )
-                 );
+    else 
+        return sprintf( '<p><a href="%1$s" class="more-link btn btn-primary" title="%2$s" role="button">%2$s</a></p>',
+                            get_permalink( $post->ID ), 
+                            __( "Continue reading", "abbey" )
+                     );
 
     
 }

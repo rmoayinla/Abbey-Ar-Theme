@@ -45,6 +45,8 @@ body {
 #search-page .post-panel.post-count-1,
 .pagination li > a:hover,
 .navigation li > a:hover,
+.pagination li > span:hover,
+.navigation li > span:hover,
 #custom-page .entry-content .panel-heading,
 #custom-page .entry-content .panel-footer,
 #quote-post-page #post-content-header,
@@ -99,6 +101,8 @@ body {
 #search-page .post-panel,
 .pagination li > a,
 .navigation li > a,
+.pagination li > span,
+.navigation li > span,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
@@ -153,6 +157,8 @@ body {
 #content a:not(.btn),
 .pagination li > a,
 .navigation li > a,
+.pagination li > span,
+.navigation li > span,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
@@ -495,7 +501,8 @@ body {
 }
 .margin-right-sm,
 #post-page .categories-list li,
-#post-page .related-posts .post-panel .post-panel-thumbnail + .post-panel-body {
+#post-page .related-posts .post-panel .post-panel-thumbnail + .post-panel-body,
+.more-link {
   margin-right: 15px;
 }
 .margin-right-xs,
@@ -922,7 +929,9 @@ body {
   padding: 10px 20px;
 }
 .pagination li > a,
-.navigation li > a {
+.navigation li > a,
+.pagination li > span,
+.navigation li > span {
   border-color: #FF6600 !important;
 }
 .pagination:before,
