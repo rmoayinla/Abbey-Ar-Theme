@@ -211,10 +211,13 @@ function abbey_search_summary( $abbey ){
 
 add_action( "abbey_archive_page_heading", "abbey_archive_heading" ); 
 function abbey_archive_heading( $queried_object ){	
+	
 	if( $queried_object instanceof WP_User )
 		$title = $queried_object->display_name; 
+
 	elseif( $queried_object instanceof WP_Post_Type )
 		$title = $queried_object->labels->archives;
+
 	elseif( $queried_object instanceof WP_Term )
 		$title = $queried_object->name;
 	 ?>

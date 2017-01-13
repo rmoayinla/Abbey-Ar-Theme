@@ -27,7 +27,7 @@
 				&:extend(.float-none);
 			}
 	}
-	.post-panel-heading,.post-panel-footer{
+	.post-panel-heading,.post-panel-footer, .post-panel-title{
 		&:extend(.pad-small, .inner-pad-small, .relative);
 	}
 	.post-panel-heading{
@@ -99,4 +99,19 @@
 		&:extend(.inline, .half-largescreen, .float-left);
 	}
 
+}
+#author-archive-posts{
+	.post-panel-body{
+		&:extend(.no-top-margin);
+	}
+	time{
+		&:extend(.font-small);
+	}
+	.post-excerpts{
+		&:extend(.padding-bottom-sm);
+	}
+	.post-panel-footer{
+		border-top: 4px outset @light-primary-color;
+		&:extend(.bg-light);
+	}
 }

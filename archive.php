@@ -38,7 +38,7 @@ $queried_name = $queried_object->name;
 
 					<?php endwhile; ?>
 
-					<div><?php the_posts_pagination();?></div>
+					<div class="text-center"><?php abbey_posts_pagination();?></div>
 				</div>
 
 		

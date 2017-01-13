@@ -43,6 +43,7 @@ body {
 #comments .bypostauthor,
 .archives .post-panel.post-count-1,
 #search-page .post-panel.post-count-1,
+#author-archive-posts .post-panel-footer,
 .pagination li > a:hover,
 .navigation li > a:hover,
 .pagination li > span:hover,
@@ -195,6 +196,8 @@ body {
 #search-page .post-panel-heading,
 .archives .post-panel-footer,
 #search-page .post-panel-footer,
+.archives .post-panel-title,
+#search-page .post-panel-title,
 #quote-post-page #quote-content,
 #quote-post-page .entry-content footer,
 #gallery-post-page #quote-content,
@@ -242,6 +245,8 @@ body {
 }
 .no-padding-right,
 .no-outer-padding,
+.pagination,
+.navigation,
 #post-page .post-navigation .previous-post,
 #post-page .post-navigation .next-post,
 .archives .archive-posts-summary .list-group,
@@ -272,6 +277,8 @@ body {
 #search-page .post-panel-heading,
 .archives .post-panel-footer,
 #search-page .post-panel-footer,
+.archives .post-panel-title,
+#search-page .post-panel-title,
 .archives .post-panel-heading .top-post-info,
 #search-page .post-panel-heading .top-post-info,
 .archives .post-excerpts,
@@ -317,7 +324,8 @@ body {
 #site-page #page-content-header .page-title-wrap,
 #custom-page #page-sidebar,
 #post-page .entry-content h2,
-#post-page .entry-footer-heading {
+#post-page .entry-footer-heading,
+#author-archive-posts .post-excerpts {
   padding-bottom: 15px;
 }
 .padding-top-sm,
@@ -439,7 +447,8 @@ body {
 #comments .comment-form-author {
   margin-bottom: 0px;
 }
-.no-top-margin {
+.no-top-margin,
+#author-archive-posts .post-panel-body {
   margin-top: 0px;
 }
 .no-left-margin,
@@ -501,8 +510,7 @@ body {
 }
 .margin-right-sm,
 #post-page .categories-list li,
-#post-page .related-posts .post-panel .post-panel-thumbnail + .post-panel-body,
-.more-link {
+#post-page .related-posts .post-panel .post-panel-thumbnail + .post-panel-body {
   margin-right: 15px;
 }
 .margin-right-xs,
@@ -594,6 +602,7 @@ body {
 #search-page .post-panel-heading .top-post-info,
 .archives .post-panel-footer,
 #search-page .post-panel-footer,
+#author-archive-posts time,
 #custom-page #inner-content .post-thumbnail .post-thumbnail-caption,
 #custom-page .breadcrumb,
 #quote-post-page .entry-content footer,
@@ -659,6 +668,8 @@ body {
 .inline,
 .entry-content .gallery-columns-3 .gallery-item,
 .entry-content div[class*="columns-4"] .gallery-item,
+.pagination li,
+.navigation li,
 #primary-menu .navbar-collapse #navbar-search-box.in,
 #post-page .entry-content p > a:not(img),
 #post-page .gallery-columns-2 .gallery-item,
@@ -738,6 +749,8 @@ body {
 #search-page .post-panel-heading,
 .archives .post-panel-footer,
 #search-page .post-panel-footer,
+.archives .post-panel-title,
+#search-page .post-panel-title,
 #quote-post-page .entry-content footer,
 .tooltip-box-md {
   position: relative;
@@ -1306,6 +1319,10 @@ body {
   box-shadow: 0px 2px 4px #b34700;
   border-color: #FF6600;
 }
+.more-link {
+  -webkit-box-shadow: 0px 4px 4px #ffa366;
+  box-shadow: 0px 4px 4px #ffa366;
+}
 #link .primary:visited,
 #content a:not(.btn):visited {
   border-bottom: 1px solid #FF6600;
@@ -1449,6 +1466,9 @@ body {
 #quote-post-page .tags-icon,
 #quote-post-page .categories-icon {
   font-size: 20px;
+}
+#author-archive-posts .post-panel-footer {
+  border-top: 4px outset #ffa366;
 }
 /*
 *

@@ -151,20 +151,27 @@ function abbey_show_nav( $post, $nav = "previous"){
 			);
 }
 
-function abbey_cats_or_tags( $cats, $title = "", $icon = "", $notes = "" ){
+function abbey_cats_or_tags( $cats, $title = "", $icon = "", $notes = "", $post_id = "" ){
+	global $post; 
+	$post_id = (!empty ( $post_id ) ) ? (int) $post_id : $post->ID;
+
+	// taxonomy_exists( $cats  ) //
 	$list = $cats;
-	if( $cats === "categories" )
-		$list = get_the_category_list(); 
+	if( $cats === "categories" || $cats === "category" ) 
+		$list = get_the_category_list( '', '', $post_id ); 
 
-	elseif ( $cats === "tags"  )
-		$list = get_the_tag_list( "<ul class='tag-list'><li>", "</li><li>", "</li></ul>" );
+	elseif ( $cats === "tags" || $cats === "post_tag" )  
+		$list = get_the_tag_list( "<ul class='tag-list'><li>", "</li><li>", "</li></ul>", $post_id );
 
+	elseif( taxonomy_exists( $cats ) )
+		$list = get_the_term_list( $post_id, $cats, "<ul class='{$cats}-list'><li>", ',</li><li>', '</li></ul>' );
+
+	 
 
 	if( empty( $list ) )
 		return;
 	
-	if( $cats !== "categories" && $cats !== "tags" )
-		$cats = "categories"; 
+	
 
 	$html = sprintf( '<i class="fa %1$s fa-fw %5$s-icon"></i><span class="%5$s-heading">%2$s</span>
 						%3$s
@@ -176,6 +183,38 @@ function abbey_cats_or_tags( $cats, $title = "", $icon = "", $notes = "" ){
 							esc_attr($cats)			
 				);
 	return $html;
+}
+
+function abbey_post_terms( $post_id ){
+	$taxonomy  = get_object_taxonomies( get_post_type( $post_id ), 'names' );
+	$list = "";
+	$icon = ""; 
+	if( $taxonomy ){
+		$list .= "<ul class='list-inline'>";
+		foreach( $taxonomy as $terms ){
+			$list .= abbey_cats_or_tags( $terms, "", "", "", "", $post_id  );
+		}
+
+		$list .= "</ul>";
+	}
+
+	echo $list;
+
+}
+
+function abbey_post_date( $echo = true, $post_id = "", $icon = "" ){
+	
+	$date = sprintf( '<time datetime="%3$s"><span class="sr-only">%2$s</span><span>%1$s </span></time>',
+						get_the_time( get_option( 'date_format' ).' \@ '.get_option( 'time_format' ), $post_id ), 
+						__( "Posted on:", "abbey" ), 
+						get_the_time('Y-md-d', $post_id)
+					); 
+	if( !empty( $icon ) )
+		$date =  $icon.$date;
+	if( ! $echo )
+		return $date;
+	echo $date;
+
 }
 
 function abbey_list_comments( $args = array() ){

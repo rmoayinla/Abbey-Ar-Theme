@@ -480,6 +480,7 @@ body{
 
 .pagination,
 .navigation{
+	&:extend(.no-padding-right);
 	li >a, li > span{
 		&:extend(#link .secondary);
 		border-color: @primary-color !important;
@@ -493,5 +494,8 @@ body{
 	&:before{
 		content: "";
 		&:extend(.clearfix);
+	}
+	li{
+		&:extend(.inline);
 	}
 }
