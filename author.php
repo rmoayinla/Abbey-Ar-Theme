@@ -45,7 +45,7 @@ $queried_name = "author";
 	<?php endif; ?>
 		
 
-	</main>		<div style="direction: ltr;"> <?php 
+	</main>		<div style="direction: ltr;"> <?php print_r(get_queried_object());
 				 ?></div><?php
 
 get_footer();

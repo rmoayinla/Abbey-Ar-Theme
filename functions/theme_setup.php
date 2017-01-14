@@ -22,9 +22,9 @@ function abbey_theme_defaults(){
 						"abbey"
 			),
 			"admin" => array(
-				"name" => __("Rabiu Mustapha", "abbey"),
-				"roles" => array("Developer", "Writer", "Administrator"), 
-				"pics"	=> get_template_directory_uri()."/img/author.jpg"
+				"name" => "",
+				"roles" => "",
+				"pics"	=> ""
 			), 
 			"front-page" => array(
 					"blog-posts" => array(
@@ -182,3 +182,28 @@ function abbey_add_front_page_slides( $defaults ){
 	return $defaults;
 }
 add_filter( "abbey_theme_defaults", "abbey_add_front_page_slides", 40 );
+
+
+add_filter( "abbey_theme_defaults", "abbey_add_admin_info", 5 );
+function abbey_add_admin_info( $defaults ){
+	$admin = $defaults["admin"]; 
+	$args = array(
+		"role" => "administrator", 
+		"number" => 1
+	);
+	$admin_user = get_users( $args );
+
+	if( !empty( $admin_user ) ){
+		foreach( $admin_user as $user ){
+			$admin["pics"] = get_avatar( $user->ID, "", "", "", array("class" => "img-circle" ) );
+			$admin["name"] = $user->display_name;
+			$admin["info"] = $user;
+			$admin["roles"] = array();
+			$admin["url"] = get_author_posts_url( $user->ID );
+		}
+	}
+
+	$defaults[ "admin" ] = wp_parse_args ( $admin, $defaults["admin"] );
+
+	return $defaults; 
+}

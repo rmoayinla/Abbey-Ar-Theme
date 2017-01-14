@@ -49,7 +49,7 @@ $queried_name = $queried_object->name;
 	<?php endif; ?>
 		
 
-	</main>		<div style="direction: ltr;"> <?php //print_r( get_post_type_object( "news" ) );
-				print_r( $abbey_query); ?></div><?php
+	</main>		<div style="direction: ltr;"> <?php print_r( get_queried_object() );
+				?></div><?php
 
 get_footer();

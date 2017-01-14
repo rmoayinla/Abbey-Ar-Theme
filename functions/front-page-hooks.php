@@ -60,15 +60,16 @@ function abbey_slide_default_caption () {
 			
 		</div><!--#site-details closes-->
 		<div class="col-md-4 col-md-offset-1 text-center col-sm-3 col-xs-12" id="admin-profile">
-			<?php do_action( "abbey_theme_before_admin_info" ); ?>
+			<?php ?>
 			<div class="no-border">
 				<div class="col-xs-4 col-md-12 col-sm-12" id="admin-picture">
-					<img src="<?php echo esc_url($defaults['admin']['pics']); ?>" 
-						alt="Admin Logo" class="img-circle logo-md">
+					<?php echo $defaults['admin']['pics']; ?>
 				</div>
 				<div class="col-xs-8 col-md-12 col-sm-12" id="admin-info">
 					<h3> <?php echo esc_html($defaults['admin']['name']); ?></h3>
-					<em class="small italize"> <?php echo esc_html(implode($defaults['admin']['roles'], " , " ) ); ?> </em>
+					<em class="small italize"> <?php echo implode( $defaults['admin']['roles'], " , " );  ?> </em>
+					<a href="<?php echo esc_url( $defaults["admin"]["url"] ); ?>" class="btn btn-block btn-primary">
+						Visit Author page </a>
 				</div>
 
 			</div>
