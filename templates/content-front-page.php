@@ -19,7 +19,7 @@ $contact_section = $front_page_defaults["contact"];
 			<div class="small description inner-pad-medium"><?php echo esc_html($blog_section["body-text"]); ?></div>
 			<article><?php do_action("abbey_theme_front_page_recent_posts"); ?></article>
 			
-			<div class="md-50 margin-top-md col-md-offset-3 center-block">
+			<div class="md-50 margin-top-md">
 				<a href="" role="button" class="btn btn-default btn-lg btn-block"> <?php esc_html_e("View all articles", "abbey" ); ?></a>
 			</div><!--.inner-wrapper closes -->
 		</div>
@@ -29,7 +29,7 @@ $contact_section = $front_page_defaults["contact"];
 		<h2 class="page-header text-capitalize"><?php echo esc_html($service_section["header-text"]);?></h2>
 		<div class="small description"><?php echo esc_html($service_section["body-text"]); ?></div>
 		<div class="row margin-top-md" id=""><?php abbey_theme_show_services(); ?></div>
-		<div class="row margin-top-md" id=""><?php do_action("abbey_theme_more_services");?></div>
+		
 	</section><!--end of #services section -->
 
 	<section id="quotes" class="frontpage-sections text-center row">

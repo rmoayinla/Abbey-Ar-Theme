@@ -93,42 +93,18 @@ function abbey_theme_add_services($defaults){
 		array("icon" => "fa-registered", "header-text" => __("تنقيح و نقد", "abbey"), 
 				"body-text" => __("نستعرض المواد، والأغاني، والمنشورات والمجلات للأفراد والمؤسسات", "abbey") 
 		), 
-		array("icon"=> "fa-globe", "header-text" => __("Web Hosting and Website/Domain transfer", "abbey"),
-				"body-text" => __("Never experience hosting or bandwith issues with your websites again,
-				tell us your budget and we would recommend suitable hosting plans for your websites or blog
-				without experiencing downtime issues", "abbey")
+		array("icon"=> "fa-globe", "header-text" => __("الأخبار والتحديثات", "abbey"),
+				"body-text" => __("نعطي كسر وآخر الأخبار عن التحديثات والمعلومات حول الأحداث الرئيسية في نيجيريا وغرب أفريقيا والعالم كله", "abbey")
 		),
-		array("icon" => "fa-lock", "header-text" => __("Website security, backup and maintenance", "abbey"), 
-			"body-text" => __( "We secure websites from hackers, bots, spammers and site crash, either its 
-				a site built by us or another developer, we provide intensive code review to fix bugs and loopholes
-				in your website source codes", "abbey" )
-		),
-		array("icon" => "fa-wordpress", "header-text" => __("Wordpress themes and plugins", "abbey"), 
-			"body-text" => __("I am a wordpress fan both as a user and a developer, I build themes and plugins either 
-				for personal use or open source.","abbey")
-		),
-		array( "icon" => "fa-rss", "header-text" => __("Personal Blogs and Corporate/Institutional Websites", "abbey"),
-			"body-text" => __("There are mulitple reasons you need a website, either its a blog where you 
-				can share your ideas or a full blown website for your business", "abbey")
+		array("icon" => "fa-lock", "header-text" => __("المقالات و المنشورات", "abbey"), 
+			"body-text" => __( "نكتب المنشورات في شكل مقالات ومحاضرات ومناقشات، والتاريخ، والأغاني وغيرها الكثير للمجلات أو المنتديات الإسلامية أو العربية.", "abbey" )
 		)
 	);
 	return $defaults;
 }
 add_filter( "abbey_theme_defaults", "abbey_theme_add_services" );
 
-function abbey_theme_extra_services($defaults){
-	$defaults["services"]["extras"] = array(
-		array("icon" => "fa-code", "text" => __("Own a website without writing a line of code", "abbey") ),
-		array("icon" => "fa-mobile", "text" => __("Mobile First Design: your site will look cool on every device no matter the size", "abbey") ),
-		array("icon" => "fa-photo", "text" => __("Easily integrate photo galleries into your blog or websites", "abbey") ),
-		array("icon" => "fa-video-camera", "text" => __("Want to share videos, easily embed videos from youtube or vimeo", "abbey") ),
-		array("icon" => "fa-rocket", "text" => __("Our websites are optimized for speed, fast loading time and less bandwith", "abbey") ),
-		array("icon" => "fa-signal", "text" => __("Let us handle your hosting and wave goodbye to downtime errors and unresponding servers", "abbey") ),
-		array("icon" => "fa-upload", "text" => __("You dont need to code or contact an developer, be in charge of your website and customize to your taste", "abbey") )
-	);
-	return $defaults;
-}
-add_filter( "abbey_theme_defaults", "abbey_theme_extra_services", 20 );
+
 
 function abbey_theme_add_contacts($defaults){
 	$contacts = $defaults["contacts"];

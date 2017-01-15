@@ -21,6 +21,7 @@ $queried_name = $queried_object->slug;
 		
 		<header id="<?php echo $queried_name; ?>-archive-header" class="text-center archive-header">
 			<div class="md-50"><?php do_action( "abbey_archive_page_heading", $queried_object ); ?></div>
+			<?php print_r( get_term_meta( 5, "thumbnail", true ) ); ?>
 		</header>
 
 		<section id="content" class="row archive-content">

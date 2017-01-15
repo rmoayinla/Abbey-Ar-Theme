@@ -226,7 +226,7 @@ function abbey_archive_heading( $queried_object ){
 	<?php
 }
 
-add_action( "abbey_theme_page_media", "abbey_video_thumbnail" );
+add_filter( "abbey_theme_page_media", "abbey_video_thumbnail" );
 function abbey_video_thumbnail( $thumbnail ){
 	
 	if( is_post_type_archive( "recordings" ) )
@@ -235,4 +235,22 @@ function abbey_video_thumbnail( $thumbnail ){
 
 	return $thumbnail;
 
+}
+
+add_filter( "abbey_theme_page_media", "abbey_category_thumbnail" );
+function abbey_category_thumbnail( $thumbnail ){
+	if( !empty( $thumbnail ) )
+		return $thumbnail;
+
+	if( $categories = get_the_category() ){
+		$cat_thumbnail = get_term_meta( $categories[0]->term_id, "thumbnail", true ); 
+		if( !empty( $cat_thumbnail ) )
+			$thumbnail = sprintf('<img class="wp-post-image" src="%s" />', $cat_thumbnail ); 
+
+		return $thumbnail;
+	}
+
+
+
+	
 }
