@@ -59,6 +59,7 @@ body {
 #custom-header #header-top,
 #primary-menu .navbar-collapse .menu-item a:hover,
 #post-page .gallery-item figcaption,
+#post-page .author-social-contacts a:hover,
 #button .button-md:hover,
 .btn-primary,
 #link .secondary .active,
@@ -86,7 +87,8 @@ body {
 #site-page .entry-content,
 #site-page #primary-sidebar .widget_abbey-contact-form,
 #custom-page #page-sidebar .widget_abbey-contact-form,
-#post-page .post-entry,
+#post-page .single-post-panel,
+#post-page .author-social-contacts a,
 #quote-post-page #post-content-header,
 #quote-post-page .entry-content,
 #gallery-post-page .entry-content .gallery-item:hover,
@@ -148,12 +150,12 @@ body {
 }
 .gray,
 #post-page #post-cats .cats-note,
+#post-page .post-thumbnail-caption,
 #comments .media .media-heading .secondary {
   color: #ddd;
 }
 .primary,
 #primary-menu .navbar-collapse .menu-item a,
-#post-page .post-thumbnail-caption,
 #button .button-md,
 .btn-default,
 #link .primary,
@@ -173,6 +175,7 @@ body {
 .full-width,
 .entry-content .gallery-columns-1 .gallery-item,
 #sitehead #header-top .alert-dismissable,
+#post-page .author-social-contacts,
 .archives .post-thumbnail iframe,
 #search-page .post-thumbnail iframe {
   width: 100%;
@@ -190,7 +193,6 @@ body {
 #site-page #primary-sidebar .widget_abbey-contact-form,
 #custom-page #inner-content,
 #custom-page #page-sidebar .widget,
-#post-page .post-thumbnail-caption,
 #gallery-post-page .gallery-widgets,
 #site-footer #inner-footer #site-about,
 #comments .media .media-body .comment-content,
@@ -217,6 +219,7 @@ body {
 #post-page .entry-content p em:only-child,
 #post-page .gallery-columns-2 .gallery-item,
 #post-page .post-excerpt,
+#post-page .post-thumbnail-caption,
 #comments .comment-form-author,
 #comments .comment-form-email,
 #comments .bypostauthor {
@@ -276,6 +279,8 @@ body {
 }
 .inner-pad-small,
 #custom-page #page-sidebar,
+#post-page .entry-header,
+#post-page .post-thumbnail-caption,
 .archives .post-panel-heading,
 #search-page .post-panel-heading,
 .archives .post-panel-footer,
@@ -389,11 +394,10 @@ body {
 #site-page .entry-content,
 #site-page #primary-sidebar .widget_abbey-contact-form,
 #custom-page .entry-content figure.alignleft,
-#post-page .post-entry,
+#post-page .single-post-panel,
 #post-page .entry-content figure.alignleft,
 #post-page .entry-content figure.alignright,
 #post-page .entry-content figure.alignnone,
-#post-page .post-thumbnail-caption,
 #gallery-post-page .entry-content .gallery-item:hover,
 #gallery-post-page #gallery-sidebar,
 #button .button-md,
@@ -413,6 +417,7 @@ body {
 #site-page #page-content-header .page-title-wrap,
 #custom-page .entry-content .panel-heading,
 #custom-page .entry-content .panel-footer,
+#post-page .entry-header,
 #post-page .entry-content p em:only-child,
 #gallery-post-page .gallery-widgets {
   border-bottom: 1px solid #b34700;
@@ -431,7 +436,6 @@ body {
 #front-page #carousel .posts-slides .post-slide,
 #site-page .entry-content,
 #site-page #primary-sidebar .widget_abbey-contact-form,
-#post-page .post-entry,
 #quote-post-page .post-entry,
 #gallery-post-page #gallery-sidebar,
 .archives .post-panel.post-count-1,
@@ -440,15 +444,20 @@ body {
 }
 .no-bottom-border,
 .entry-content table tr:last-child td,
-.page-header {
+.page-header,
+#post-page .author-social-contacts a:hover {
   border-bottom: 0px;
 }
 .no-bottom-margin,
 .navbar,
 #sitehead #header-top .alert-dismissable,
 #custom-header #header-top .alert,
+#post-page .breadcrumb,
 #comments .comment-form-comment,
-#comments .comment-form-author {
+#comments .comment-form-author,
+#custom-page .breadcrumb,
+.archives .breadcrumb,
+#search-page .breadcrumb {
   margin-bottom: 0px;
 }
 .no-top-margin,
@@ -471,11 +480,11 @@ body {
 .entry-content table,
 #search-form,
 #post-page .entry-content p em:only-child,
-#post-page .entry-footer,
 #post-page .author-info .author-description,
 #post-page .categories-list,
 #post-page .entry-footer-heading,
 #comments ol.children,
+#comments .comment-form-comment + .form-submit,
 .archives .post-thumbnail + .post-excerpts,
 #search-page .post-thumbnail + .post-excerpts {
   margin-top: 15px;
@@ -601,6 +610,8 @@ body {
 #custom-page .entry-content figure.alignleft .wp-caption-text,
 #custom-page .post-summary,
 #post-page .breadcrumb,
+#post-page .author-info .author-rate,
+#post-page .post-thumbnail-caption,
 #comments .media .media-body time,
 .archives .post-panel-heading .top-post-info,
 #search-page .post-panel-heading .top-post-info,
@@ -679,6 +690,7 @@ body {
 #post-page .gallery-columns-2 .gallery-item,
 #post-page .author-info .author-photo,
 #post-page .author-info .author-details,
+#post-page .author-social-contacts a,
 #post-page .categories-list li,
 #post-page .tags-list,
 #post-page .tag-list li,
@@ -732,7 +744,7 @@ body {
 #custom-page #page-sidebar .widget,
 #post-page #content,
 #post-page .post-content,
-#post-page .post-entry,
+#post-page .single-post-panel,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
@@ -780,6 +792,7 @@ body {
 .container,
 .entry-content .gallery-item,
 #custom-page .entry-content,
+#post-page .post-thumbnail,
 #gallery-post-page .entry-content .gallery-item,
 #gallery-post-page .entry-content .gallery-icon,
 #gallery-post-page .gallery-image,
@@ -802,6 +815,7 @@ body {
 }
 .text-center,
 .entry-content figure.alignnone,
+#post-page .author-social-contacts a,
 #post-page .entry-footer-heading {
   text-align: center;
 }
@@ -904,6 +918,7 @@ body {
 .full-width,
 .entry-content .gallery-columns-1 .gallery-item,
 #sitehead #header-top .alert-dismissable,
+#post-page .author-social-contacts,
 .archives .post-thumbnail iframe,
 #search-page .post-thumbnail iframe {
   width: 100%;
@@ -1122,9 +1137,12 @@ body {
 #post-page .breadcrumb li {
   display: inline;
 }
-#post-page .post-entry {
+#post-page .single-post-panel {
   overflow: hidden;
   border-color: #ddd;
+}
+#post-page .entry-header {
+  border-bottom-color: #ddd;
 }
 #post-page .entry-content p > a:not(img) {
   border-bottom: 1px dotted #FF6600;
@@ -1143,9 +1161,6 @@ body {
   opacity: 0.5;
   filter: alpha(opacity=0.5);
   /* For IE8 and earlier */
-}
-#post-page .entry-footer {
-  color: #000;
 }
 #post-page .post-navigation .glyphicon {
   font-size: 36px;
@@ -1176,9 +1191,26 @@ body {
   vertical-align: top;
   width: 75%;
 }
+#post-page .author-social-contacts a {
+  border-radius: 50%;
+  height: 36px;
+  width: 36px;
+  padding-top: 6px;
+  transition: all 0.4s ease-in-out 0s;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -o-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+}
+#post-page .author-social-contacts a:hover {
+  color: #fff !important;
+  transform: scale(1.2, 1.2);
+}
 #post-page #post-cats .categories-heading,
 #post-page #post-cats .categories-icon {
   font-size: 24px;
+}
+#post-page .post-thumbnail {
+  max-height: 360px;
 }
 #post-page .tag-list li + li:before,
 #quote-post-page .tag-list li + li:before,
@@ -1256,7 +1288,7 @@ body {
 #site-page #primary-sidebar .widget_abbey-contact-form,
 #custom-page .entry-content figure.alignleft,
 #custom-page #page-content-header,
-#post-page .post-entry,
+#post-page .single-post-panel,
 #quote-post-page .entry-content,
 #sidebar-404 #latest-posts,
 #sidebar-404 #quotes,

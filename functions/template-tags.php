@@ -45,34 +45,18 @@ function abbey_show_author( $echo = true ){
 	return $html;
 }
 
-function abbey_author_info( $author, $key = "" ){
-	$author_info = array(); // array to contain author info which will be displayed in a dropdown //
-	$author_info["email"] = sprintf( '<a href="mailto:%1$s" title="%2$s" id="emailauthor">
-									<span class="fa fa-envelope"></span></a>', 
-							antispambot( $author->user_email ), 
-							esc_attr( __( "Send this author an email", "abbey" ) )
-							); 
-	
-	$author_info["website"] = sprintf( '<a href="%1$s" title="%2$s" target="_blank">
-										<span class="fa fa-fw fa-globe"></span> </a>',
-									esc_url( $author->user_url ),
-									esc_attr( __( "Visit author's website", "abbey" ) )
-							);
 
-
-	$author_info["profile"] = sprintf( '<a href="#" title="%1$s" id="authorprofile" class="js-link"> 
-										<span class="fa fa-fw fa-user"></span> </a>',
-										esc_attr( __( "View author's profile", "abbey" ) )
-							);
-
-	$author_info["posts"] = sprintf( '<a href="%1$s" title="%2$s"> 
-									<span class="fa fa-fw fa-newspaper-o"></span> </a>', 
-							esc_url( get_author_posts_url( $author->ID ) ),
-							esc_attr( sprintf( __( "View posts by %s", "abbey" ), $author->display_name ) )
-							 );
-	return $author_info;
+function abbey_author_contacts( $author, $key = "" ){
+	$social_contacts = array( "facebook", "twitter", "google-plus", "linkedin", "github" );
+	$author_contacts = array();
+	if( !empty( $social_contacts ) ){
+		foreach( $social_contacts as $contact ){
+			if( $author_contact = get_the_author_meta( $contact, $author->ID ) )
+				$author_contacts[$contact] = $author_contact;
+		}
+	}
+	return $author_contacts;
 }
-
 function abbey_post_info( $echo = true, $keys = array() ){
 	$info = array();
 	$cats = get_the_category(); // $cats[0]->name->categroy_count

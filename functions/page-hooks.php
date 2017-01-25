@@ -83,7 +83,8 @@ function abbey_post_nav( $title = "" ){
 
 function abbey_post_author_info( $title = "" ){
 	$author = abbey_post_author();
-	$author_info = abbey_author_info( $author );
+	
+	$author_contacts = abbey_author_contacts( $author );
 
 	$html = "<div class='author-info'>";
 	if( !empty( $title ) )
@@ -92,23 +93,31 @@ function abbey_post_author_info( $title = "" ){
 	$html .= "<div class='author-photo'>".abbey_author_photo( $author->ID, 120, "img-circle" ). "</div>";
 	$html .= "<div class='author-details'>";
 	$html .= sprintf( '<div class="author-title row">
-						<div class="author-name col-md-7"><h4 class="no-top-margin no-bottom-margin"> %1$s </h4></div>
-						<div class="author-rate col-md-5"> <em> %2$s </em> <span class="author-post-count"> %3$s </span>
-						</div></div>',
+						<div class="author-name col-md-4"><h4 class="no-top-margin no-bottom-margin"><a href="%4$s"> %1$s </a> </h4></div>
+						<div class="author-rate col-md-3"> <em> %2$s </em> <span class="author-post-count"> %3$s </span></div>
+						',
 						$author->display_name, 
 						__( "Published posts:", "abbey" ),
-						get_the_author_posts()
+						get_the_author_posts(), 
+						get_author_posts_url( $author->ID )
 					);
+	
+	$html .= "</div>"; //.author-title .row closes //
+
 	$html .= "<div class='author-description'>".esc_html( $author->description ). "</div>";
-	$html .= '<footer class="author-info-footer h4">';
-	if ( !empty( $author_info ) ){
-		$html .= "<ul class='list-inline'>";
-		foreach ( $author_info as $info ){
-			$html .= "<li>$info</li>";
+	
+		if( !empty( $author_contacts )  ){
+			$html .= "<footer class='author-social-contacts col-md-5 h4 text-center'>";
+			$html .= "<ul class='list-inline'>"; 
+			foreach( $author_contacts as $social => $contact ){
+				$html .= sprintf( '<li><a href="%1$s" title="%2$s" class="icon"><span class="fa fa-%3$s"></span></a></li>', 
+								esc_url( $contact ), __( "Visit author's facebook", "abbey" ), esc_attr( $social )
+							);
+			}
+			$html .= "</footer>";
 		}
-		$html .= "</ul>";
-	}
-	$html .= "</footer>";
+			
+	
 	$html .= "</div>\n</div>"; //.author-info //
 
 	echo $html; 
@@ -226,10 +235,10 @@ function abbey_archive_heading( $queried_object ){
 	<?php
 }
 
-add_filter( "abbey_theme_page_media", "abbey_video_thumbnail" );
+add_filter( "abbey_theme_page_media", "abbey_video_thumbnail", 20 );
 function abbey_video_thumbnail( $thumbnail ){
 	
-	if( is_post_type_archive( "recordings" ) )
+	if( get_post_type() === "recordings" )
 		$thumbnail = abbey_recording_video( false );
 	
 
@@ -237,20 +246,13 @@ function abbey_video_thumbnail( $thumbnail ){
 
 }
 
-add_filter( "abbey_theme_page_media", "abbey_category_thumbnail" );
+add_filter( "abbey_theme_page_media", "abbey_category_thumbnail", 10 );
 function abbey_category_thumbnail( $thumbnail ){
-	if( !empty( $thumbnail ) )
-		return $thumbnail;
-
 	if( $categories = get_the_category() ){
 		$cat_thumbnail = get_term_meta( $categories[0]->term_id, "thumbnail", true ); 
 		if( !empty( $cat_thumbnail ) )
 			$thumbnail = sprintf('<img class="wp-post-image" src="%s" />', $cat_thumbnail ); 
-
-		return $thumbnail;
 	}
-
-
-
+	return $thumbnail;
 	
 }
