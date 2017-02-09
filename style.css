@@ -484,9 +484,7 @@ body {
 #post-page .categories-list,
 #post-page .entry-footer-heading,
 #comments ol.children,
-#comments .comment-form-comment + .form-submit,
-.archives .post-thumbnail + .post-excerpts,
-#search-page .post-thumbnail + .post-excerpts {
+#comments .comment-form-comment + .form-submit {
   margin-top: 15px;
 }
 .margin-bottom-sm,
@@ -597,9 +595,7 @@ body {
 .margin-minus-right-sm {
   margin-right: -15px;
 }
-.margin-minus-top-sm,
-.archives .post-panel-body,
-#search-page .post-panel-body {
+.margin-minus-top-sm {
   margin-top: -15px;
 }
 .font-small,
@@ -665,7 +661,8 @@ body {
 #comments .comment-form-email,
 .archives .post-panel-heading .top-post-info li,
 #search-page .post-panel-heading .top-post-info li,
-.category-archive-posts .post-panel:not(.post-count-1) {
+.category-archive-posts .post-panel:not(.post-count-1),
+#news-archive-posts .post-panel:not(.post-count-1) {
   float: left;
 }
 .float-none,
@@ -707,6 +704,7 @@ body {
 .archives .tags-list .tag-list li,
 #search-page .tags-list .tag-list li,
 .category-archive-posts .post-panel:not(.post-count-1),
+#news-archive-posts .post-panel:not(.post-count-1),
 #quote-post-page .tags-list,
 .archives .categories-list,
 #search-page .categories-list,
@@ -1047,6 +1045,12 @@ body {
 .logo-xx {
   width: 240px;
   height: 240px;
+}
+.avatar {
+  transition: all 0.8s ease-in-out;
+}
+.avatar:hover {
+  transform: scale(1.5, 1.5);
 }
 /*
 * front-page styles 
@@ -1416,10 +1420,10 @@ body {
 }
 @keyframes slideintop {
   0% {
-    transform: translateY(0%);
+    transform: translateY(-10%);
   }
   100% {
-    transform: translateY(100%);
+    transform: translateY(0%);
   }
 }
 .lightbox {
@@ -1573,8 +1577,9 @@ body {
   .half-largescreen,
   #post-page .gallery-columns-2 .gallery-item,
   #gallery-post-page .entry-content .gallery-item,
-  .category-archive-posts .post-panel:not(.post-count-1) {
-    width: 48%;
+  .category-archive-posts .post-panel:not(.post-count-1),
+  #news-archive-posts .post-panel:not(.post-count-1) {
+    width: 49%;
     margin-right: 5px;
   }
   .one-third-largescreen,
@@ -1586,6 +1591,11 @@ body {
   .two-third-largescreen,
   #post-page .related-posts .post-panel .post-panel-thumbnail + .post-panel-body {
     width: 62%;
+  }
+  .post-panel.post-count-1 .post-panel-heading {
+    position: absolute;
+    top: 10%;
+    text-shadow: 2px 1px 2px #fff;
   }
   #floating-video.affix {
     left: 15px;
@@ -1628,7 +1638,8 @@ body {
   .half-largescreen,
   #post-page .gallery-columns-2 .gallery-item,
   #gallery-post-page .entry-content .gallery-item,
-  .category-archive-posts .post-panel:not(.post-count-1) {
+  .category-archive-posts .post-panel:not(.post-count-1),
+  #news-archive-posts .post-panel:not(.post-count-1) {
     width: 48%;
   }
 }
@@ -1737,6 +1748,7 @@ body {
     margin: auto;
   }
   .no-inner-padding-mobile,
+  #primary-menu .navbar-collapse,
   #custom-page .entry-content,
   #custom-page #page-sidebar,
   #search-page #search-results,
@@ -1745,6 +1757,7 @@ body {
     padding-right: 0px;
   }
   .inner-pad-responsive,
+  .navbar-form,
   #post-page .author-info,
   #post-page .related-posts,
   #site-footer #footer-bottom,
@@ -1754,6 +1767,7 @@ body {
     padding-right: 30px;
   }
   .inner-padding-mobile,
+  #primary-menu .navbar-nav .menu-item,
   #search-page #content,
   .post-panel .post-panel-heading,
   .post-panel .post-excerpts,
@@ -1808,7 +1822,24 @@ body {
   #primary-menu .navbar-header .navbar-toggle:active {
     background-color: #FF6600;
   }
-  #inner-header #header-social-icons {
+  #primary-menu .navbar-nav {
+    padding-right: 0px;
+  }
+  #primary-menu .collapse.in {
+    animation: slideintop 3s forwards;
+  }
+  .navbar-collapse.in {
+    overflow-y: unset !important;
+  }
+  .navbar-nav,
+  .navbar-form {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .navbar-nav .menu-item,
+  #header-social-icons,
+  .author-photo,
+  .author-title {
     text-align: center;
   }
   #inner-header .navbar-toggle {
@@ -1852,10 +1883,6 @@ body {
   }
   .mini-popup {
     left: 5%;
-  }
-  .author-photo,
-  .author-title {
-    text-align: center;
   }
   #floating-video.affix {
     right: 15px;

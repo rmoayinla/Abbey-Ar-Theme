@@ -2,6 +2,10 @@
 global $count;
 ?>
 		<article class="post-panel <?php echo "post-count-".$count; ?>" >
+			<?php if ( $count === 1 ) : ?>
+				<div class="post-thumbnail"><?php abbey_page_media( "large" ); ?></div>
+				<div class="panel-body">
+			<?php endif;  ?>
 			<header class="post-panel-heading">
 				<div class="row margin-minus-bottom-sm">
 					<ul class="top-post-info">
@@ -16,21 +20,24 @@ global $count;
 								); ?>
 				<ul class="breadcrumb"><?php abbey_post_info( true, array( "author", "date" )); ?></ul>
 			</header>
-			<div class="post-panel-body">
+			<?php if( $count > 1 ) :  ?>
 				<div class="post-thumbnail">
 					<?php abbey_page_media( "large" ); ?>
 				</div>
-				
+				<div class="post-panel-body">
+			<?php endif; ?>
 				<div class="post-excerpts">
 					<?php the_excerpt(); ?>
 				</div>
-			</div>
+			
 			<footer class="post-panel-footer">
 				<ul class="list-inline no-list-style">
 					<li><?php echo abbey_cats_or_tags( "categories", "", "fa-folder-o" ); ?></li>
 					<li><?php echo abbey_cats_or_tags( "tags", "", "fa-tags" );  ?></li>
 				</ul>
 			</footer>
+
+			</div><!--panel-body closes-->
 
 			
 		</article>

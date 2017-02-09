@@ -26,11 +26,11 @@ $queried_name = $queried_object->name;
 		<section id="content" class="row archive-content">
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
 				
-				<div class="col-md-3 archive-posts-summary" id="<?php echo $queried_name; ?>-archive-summary">
+				<div class="archive-posts-summary" id="<?php echo $queried_name; ?>-archive-summary">
 						<?php //do_action( "abbey_archive_page_summary", $abbey_query ); ?>
 				</div>
 
-				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-6 col-md-offset-1 archive-posts">
+				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-2 archive-posts">
 					
 					<?php while ( have_posts() ) : the_post(); $count++; ?>
 					

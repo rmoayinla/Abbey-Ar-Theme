@@ -50,9 +50,7 @@
 			&:extend(#post-page .post-categories);
 		}
 	}
-	.post-panel-body{
-		&:extend(.margin-minus-top-sm);
-	}
+
 	.post-thumbnail{
 		img{
 			&:extend(.full-width-image);
@@ -60,16 +58,12 @@
 		iframe{
 			&:extend(.full-width);
 		}
-		& + .post-excerpts{
-			&:extend(.margin-top-sm);
-		}
+
 	}
 	.post-excerpts{
 		&:extend(.text-justify, .inner-pad-small);
 	}
-	.post-panel:not(.post-count-1){
-		
-	}
+	
 	.categories-list, .tags-list{
 		&:extend(#post-page .tags-list);
 		.post-categories, .tag-list {
@@ -94,12 +88,15 @@
 
 }
 
-.category-archive-posts{
+.category-archive-posts, 
+#news-archive-posts
+{
 	.post-panel:not(.post-count-1){
 		&:extend(.inline, .half-largescreen, .float-left);
 	}
 
 }
+
 #author-archive-posts{
 	.post-panel-body{
 		&:extend(.no-top-margin);
