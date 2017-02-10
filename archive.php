@@ -37,7 +37,7 @@ $queried_name = $queried_object->name;
 						<?php get_template_part("templates/content", "archive"); ?>
 
 					<?php endwhile; ?>
-
+					<div class="clearfix"></div>
 					<div class="text-center"><?php abbey_posts_pagination();?></div>
 				</div>
 

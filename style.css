@@ -966,7 +966,7 @@ body {
 }
 .pagination:before,
 .navigation:before {
-  content: "";
+  content: "  ";
 }
 /*
 * header styles 
@@ -1051,6 +1051,7 @@ body {
 }
 .avatar:hover {
   transform: scale(1.5, 1.5);
+  border: 3px solid #ddd;
 }
 /*
 * front-page styles 
