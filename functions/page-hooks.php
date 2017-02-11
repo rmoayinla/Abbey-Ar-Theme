@@ -220,18 +220,25 @@ function abbey_search_summary( $abbey ){
 
 add_action( "abbey_archive_page_heading", "abbey_archive_heading" ); 
 function abbey_archive_heading( $queried_object ){	
-	
-	if( $queried_object instanceof WP_User )
+	$title = $icon = "";
+	if( $queried_object instanceof WP_User ){
 		$title = $queried_object->display_name; 
-
-	elseif( $queried_object instanceof WP_Post_Type )
+		$icon = abbey_author_photo( $queried_object->ID, 120, "img-circle" );
+	}
+	elseif( $queried_object instanceof WP_Post_Type ){
 		$title = $queried_object->labels->archives;
-
-	elseif( $queried_object instanceof WP_Term )
+	}
+	elseif( $queried_object instanceof WP_Term ){
 		$title = $queried_object->name;
+	}
 	 ?>
-	<h1 class="page-title"><?php echo esc_html( $title ); ?> </h1>
-	<summary class="archive-description"><?php echo $queried_object->description; ?> </summary>
+	 <?php if( !empty( $icon ) ) : ?>
+	 	<div class='heading-icon'><?php echo $icon; ?> </div>
+	 <?php endif; ?>
+	 <div class='heading-content'>
+		<h1 class="page-title"><?php echo esc_html( $title ); ?> </h1>
+		<summary class="archive-description"><?php echo $queried_object->description; ?> </summary>
+	</div>
 	<?php
 }
 

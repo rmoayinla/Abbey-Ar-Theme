@@ -395,7 +395,7 @@ function abbey_add_posts( &$custom_posts ){
 		$custom_posts[$post_type]["posts"][] = array(
 			"ID" => get_the_ID(), 
 			"excerpt" => get_the_excerpt(), 
-			"thumbnail" => get_the_post_thumbnail(), 
+			"thumbnail" => abbey_page_media( "", get_the_ID(), false ), 
 			"url" => get_permalink(), 
 			"title" => get_the_title()
 		);

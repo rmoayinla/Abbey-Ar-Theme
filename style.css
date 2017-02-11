@@ -44,7 +44,6 @@ body {
 #comments .bypostauthor,
 .archives .post-panel.post-count-1,
 #search-page .post-panel.post-count-1,
-#author-archive-posts .post-panel-footer,
 .pagination li > a:hover,
 .navigation li > a:hover,
 .pagination li > span:hover,
@@ -304,7 +303,8 @@ body {
 #post-page .post-navigation,
 #post-page .related-posts,
 .archives .archive-header,
-#search-page .archive-header {
+#search-page .archive-header,
+#author-archive-posts .page-heading {
   padding-top: 40px;
   padding-bottom: 40px;
 }
@@ -483,6 +483,7 @@ body {
 #post-page .author-info .author-description,
 #post-page .categories-list,
 #post-page .entry-footer-heading,
+.more-link,
 #comments ol.children,
 #comments .comment-form-comment + .form-submit {
   margin-top: 15px;
@@ -549,7 +550,8 @@ body {
 .margin-left-sm,
 #site-page .entry-content blockquote,
 #post-page #post-content-header .post-author .post-author-name,
-#post-page .author-info .author-details {
+#post-page .author-info .author-details,
+.heading-icon + .heading-content {
   margin-left: 15px;
 }
 .margin-left-md {
@@ -662,7 +664,8 @@ body {
 .archives .post-panel-heading .top-post-info li,
 #search-page .post-panel-heading .top-post-info li,
 .category-archive-posts .post-panel:not(.post-count-1),
-#news-archive-posts .post-panel:not(.post-count-1) {
+#news-archive-posts .post-panel:not(.post-count-1),
+#author-archive-posts .post-panel:not(.post-count-1) {
   float: left;
 }
 .float-none,
@@ -705,6 +708,9 @@ body {
 #search-page .tags-list .tag-list li,
 .category-archive-posts .post-panel:not(.post-count-1),
 #news-archive-posts .post-panel:not(.post-count-1),
+#author-archive-posts .post-panel:not(.post-count-1),
+.heading-icon,
+.heading-icon + .heading-content,
 #quote-post-page .tags-list,
 .archives .categories-list,
 #search-page .categories-list,
@@ -717,7 +723,9 @@ body {
 }
 .middle,
 #gallery-post-page .widget-icon,
-#gallery-post-page .widget-text {
+#gallery-post-page .widget-text,
+.heading-icon,
+.heading-icon + .heading-content {
   vertical-align: middle;
 }
 .block,
@@ -807,7 +815,8 @@ body {
 }
 .clearfix,
 .pagination:before,
-.navigation:before {
+.navigation:before,
+#author-archive-posts .panel-posts:after {
   clear: both;
   display: table;
 }
@@ -1457,6 +1466,9 @@ body {
   width: 300px;
   animation: slideintop 3s forwards;
 }
+.clickable {
+  cursor: pointer;
+}
 /*
 * Sidebar styles 
 */
@@ -1519,8 +1531,14 @@ body {
 #quote-post-page .categories-icon {
   font-size: 20px;
 }
-#author-archive-posts .post-panel-footer {
-  border-top: 4px outset #ffa366;
+#author-archive-posts .page-heading h2 {
+  font-size: 48px;
+}
+#author-archive-posts .panel-posts:after {
+  content: " ";
+}
+.heading-icon + .heading-content {
+  width: 75%;
 }
 /*
 *
@@ -1579,7 +1597,8 @@ body {
   #post-page .gallery-columns-2 .gallery-item,
   #gallery-post-page .entry-content .gallery-item,
   .category-archive-posts .post-panel:not(.post-count-1),
-  #news-archive-posts .post-panel:not(.post-count-1) {
+  #news-archive-posts .post-panel:not(.post-count-1),
+  #author-archive-posts .post-panel:not(.post-count-1) {
     width: 49%;
     margin-right: 5px;
   }
@@ -1640,7 +1659,8 @@ body {
   #post-page .gallery-columns-2 .gallery-item,
   #gallery-post-page .entry-content .gallery-item,
   .category-archive-posts .post-panel:not(.post-count-1),
-  #news-archive-posts .post-panel:not(.post-count-1) {
+  #news-archive-posts .post-panel:not(.post-count-1),
+  #author-archive-posts .post-panel:not(.post-count-1) {
     width: 48%;
   }
 }
@@ -1786,7 +1806,8 @@ body {
   .block-mobile,
   #post-page .author-info .author-photo,
   #post-page .author-info .author-details,
-  #site-footer #inner-footer .header-contacts {
+  #site-footer #inner-footer .header-contacts,
+  .heading-icon {
     display: block !important;
   }
   .responsive-right-border,
@@ -1808,6 +1829,9 @@ body {
   #primary-menu .navbar-header .navbar-toggle,
   .entry-content,
   #primary-menu .navbar-collapse,
+  .category-archive-posts .post-panel:not(.post-count-1),
+  #news-archive-posts .post-panel:not(.post-count-1),
+  #author-archive-posts .post-panel:not(.post-count-1),
   #comments .comment-form-author,
   #comments .comment-form-email {
     float: none;
@@ -1862,7 +1886,8 @@ body {
   }
   .full-width-mobile,
   #post-page .author-info .author-details,
-  #site-footer #inner-footer .header-contacts {
+  #site-footer #inner-footer .header-contacts,
+  .heading-icon + .heading-content {
     width: 100%;
   }
   #post-page,

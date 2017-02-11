@@ -234,14 +234,16 @@ function abbey_post_icon( $id = 0 ){
 	return ""; //<span class="fa %1$s page-title-icon"></span>
 }
 
-function abbey_page_media( $size = "medium", $page_id = "" ){
+function abbey_page_media( $size = "medium", $page_id = "", $echo = true ){
 	$icon = "";
 
 	if ( has_post_thumbnail() )
-		$icon = the_post_thumbnail( $size );
+		$icon = ( $echo ) ? the_post_thumbnail( $size ) : get_the_post_thumbnail( $size );
 	else 
 		$icon =  apply_filters( "abbey_theme_page_media", $icon, $page_id );
 	
+	if( !$echo )
+		return $icon;
 	echo $icon;
 }
 

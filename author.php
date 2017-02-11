@@ -26,11 +26,13 @@ $queried_name = "author";
 
 		<section id="content" class="row archive-content">
 			<?php if ( have_posts() ) : abbey_group_posts( $abbey_author_posts ); ?>
-				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-6 col-md-offset-1 archive-posts">
+				
+				<div id="<?php echo $queried_name; ?>-archive-posts" 
+					class="col-md-8 col-md-offset-2 archive-posts" >
 					
-					<?php while ( have_posts() ) : the_post(); $count++; 
+					<?php while ( have_posts() ) : the_post(); 
 							abbey_add_posts( $abbey_author_posts ); 
-							endwhile; 	?>
+					endwhile; 	?>
 
 					<?php get_template_part("templates/content", "author-archive"); ?>
 
