@@ -317,7 +317,8 @@ input,
 button,
 .input-group,
 #news-archive .top-post-info li,
-#carousel {
+#carousel,
+.mfp-wrap {
   direction: ltr;
 }
 #news-archive .top-post-info li + li:after {

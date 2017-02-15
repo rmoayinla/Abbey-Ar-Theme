@@ -112,18 +112,23 @@
 		
 	}
 	.page-heading{
-		&:extend( .outer-pad-medium );
+		&:extend( .outer-pad-xs, .bg-white );
 		h2{
 			font-size: 48px;
 		}
 	}
-	.panel-posts{
+	.panel-post{
 		&:after{
 			content: " ";
 			&:extend( .clearfix );
 
 		}
+		&:extend(.pad-small, .bg-white);
 	}
+	.panel-posts{
+		&:extend(.margin-bottom-sm, .relative);
+	}
+	
 }
 
 .heading-icon{

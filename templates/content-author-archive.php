@@ -6,10 +6,11 @@ $post_types = get_post_types( array( 'public' =>  true ), 'names' );
 ?>
 	<?php if( !empty( $post_types ) ) : foreach( $post_types as $post_type ) : ?>
 		<?php if( count( $abbey_author_posts[ $post_type ]["posts"] )  > 0 ) : ?>
+			<div class="panel-posts scroll-animate slide-left">
 				<header class="page-heading collapse-heading clickable">
 					<h2><?php echo ucwords( $abbey_author_posts[$post_type]["labels"]->archives ); ?></h2>
 				</header>
-					<div class="<?php echo $post_type;?>-posts panel-posts collapse-item">
+				<div class="<?php echo $post_type;?>-posts collapse-item panel-post">
 					<?php foreach( $abbey_author_posts[ $post_type ]["posts"] as $author_posts  ) : $post_count++?>
 					
 						<article class="post-panel <?php echo "post-count-".$post_count; ?>">
@@ -37,6 +38,7 @@ $post_types = get_post_types( array( 'public' =>  true ), 'names' );
 						</article>
 					<?php endforeach; ?>	
 				</div>
+			</div>
 				
 
 	<?php endif; $post_count = $count; endforeach; endif;  ?>

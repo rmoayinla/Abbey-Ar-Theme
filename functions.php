@@ -183,6 +183,14 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) {
 		wp_enqueue_style("abbey-slick-theme", $theme_dir."/libs/slick/slick-theme.css" );
 
 		/*
+		* Magnific popup 
+		* style and javascript for popup 
+		*
+		*/
+		wp_enqueue_script( "abbey-magnific-js", $theme_dir."/libs/magnific popup/jquery.magnific-popup.min.js", array( "jquery" ), "", true );
+		wp_enqueue_style("abbey-magnific-css", $theme_dir."/libs/magnific popup/magnific-popup.css" );
+
+		/*
 		* action hook for other enqueueus 
 		*
 		*/

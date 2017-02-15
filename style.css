@@ -57,7 +57,6 @@ body {
 .bg-dark,
 #custom-header #header-top,
 #primary-menu .navbar-collapse .menu-item a:hover,
-#post-page .gallery-item figcaption,
 #post-page .author-social-contacts a:hover,
 #button .button-md:hover,
 .btn-primary,
@@ -103,6 +102,8 @@ body {
 #search-page .archive-header,
 .archives .post-panel,
 #search-page .post-panel,
+#author-archive-posts .page-heading,
+#author-archive-posts .panel-post,
 .pagination li > a,
 .navigation li > a,
 .pagination li > span,
@@ -136,6 +137,8 @@ body {
 #error-404-page .entry-content .page-header,
 #post-page .breadcrumb,
 #post-page .entry-content p em:only-child,
+#post-page .entry-content .slick-prev:before,
+#post-page .entry-content .slick-next:before,
 #link .primary:hover,
 #comments .media .media-body time,
 .archives .post-panel-heading .top-post-info,
@@ -202,6 +205,7 @@ body {
 #search-page .post-panel-footer,
 .archives .post-panel-title,
 #search-page .post-panel-title,
+#author-archive-posts .panel-post,
 #quote-post-page #quote-content,
 #quote-post-page .entry-content footer,
 #gallery-post-page #quote-content,
@@ -303,8 +307,7 @@ body {
 #post-page .post-navigation,
 #post-page .related-posts,
 .archives .archive-header,
-#search-page .archive-header,
-#author-archive-posts .page-heading {
+#search-page .archive-header {
   padding-top: 40px;
   padding-bottom: 40px;
 }
@@ -321,6 +324,11 @@ body {
 #site-footer #inner-footer {
   padding-top: 80px;
   padding-bottom: 80px;
+}
+.outer-pad-xs,
+#author-archive-posts .page-heading {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .inner-pad-lg {
   padding-left: 80px;
@@ -419,7 +427,8 @@ body {
 #custom-page .entry-content .panel-footer,
 #post-page .entry-header,
 #post-page .entry-content p em:only-child,
-#gallery-post-page .gallery-widgets {
+#gallery-post-page .gallery-widgets,
+.collapse-heading {
   border-bottom: 1px solid #b34700;
 }
 .top-border,
@@ -498,12 +507,14 @@ body {
 #post-page .categories-list,
 #gallery-post-page .gallery-pictures-widget .widget-content a,
 .archives .post-panel,
-#search-page .post-panel {
+#search-page .post-panel,
+#author-archive-posts .panel-posts {
   margin-bottom: 15px;
 }
 .margin-top-md,
 #front-page #carousel #admin-profile,
 #site-page .entry-content,
+#post-page .entry-content .gallery,
 #site-footer,
 #site-footer #footer-bottom {
   margin-top: 30px;
@@ -722,6 +733,7 @@ body {
   height: auto;
 }
 .middle,
+#post-page #post-content-header .post-author .post-author-name,
 #gallery-post-page .widget-icon,
 #gallery-post-page .widget-text,
 .heading-icon,
@@ -773,6 +785,7 @@ body {
 #search-page .post-panel-footer,
 .archives .post-panel-title,
 #search-page .post-panel-title,
+#author-archive-posts .panel-posts,
 #quote-post-page .entry-content footer,
 .tooltip-box-md {
   position: relative;
@@ -806,8 +819,7 @@ body {
   overflow: hidden;
 }
 .no-display,
-.screen-reader-text,
-#post-page .gallery-item figcaption {
+.screen-reader-text {
   display: none !important;
 }
 .icon-large {
@@ -816,7 +828,7 @@ body {
 .clearfix,
 .pagination:before,
 .navigation:before,
-#author-archive-posts .panel-posts:after {
+#author-archive-posts .panel-post:after {
   clear: both;
   display: table;
 }
@@ -1145,9 +1157,6 @@ body {
   right: 0px;
   z-index: 10;
 }
-#post-page #post-content-header .post-author .post-author-name {
-  vertical-align: middle;
-}
 #post-page .breadcrumb li {
   display: inline;
 }
@@ -1164,8 +1173,33 @@ body {
 #post-page .entry-content h2 {
   border-left: 3px solid #b34700;
 }
+#post-page .entry-content .slick-center {
+  transform: scale(1.2, 1.2);
+  -webkit-transform: scale(1.2, 1.2);
+  -o-transform: scale(1.2, 1.2);
+  -moz-transform: scale(1.2, 1.2);
+  z-index: 50;
+}
+#post-page .gallery-item figcaption {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  /* For IE8 and earlier */
+  transform: translate3d(0px, -10px, 0px);
+  -webkit-transform: translate3d(0px, -10px, 0px);
+  -o-transform: translate3d(0px, -10px, 0px);
+  -moz-transform: translate3d(0px, -10px, 0px);
+  transition: all 800ms ease-in-out;
+}
 #post-page .gallery-item:hover figcaption {
-  display: block !important;
+  opacity: 1;
+  filter: alpha(opacity=1);
+  /* For IE8 and earlier */
+  transform: translate3d(0px, 0px, 0px);
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -o-transform: translate3d(0px, 0px, 0px);
+  -moz-transform: translate3d(0px, 0px, 0px);
+  background-color: #b34700;
+  color: #fff;
 }
 #post-page .gallery-columns-2 .gallery-item {
   vertical-align: top;
@@ -1269,6 +1303,8 @@ body {
 #gallery-post-page .entry-content .gallery-item img:hover {
   transform: scale(1.5, 1.5);
   -webkit-transform: scale(1.5, 1.5);
+  -o-transform: scale(1.5, 1.5);
+  -moz-transform: scale(1.5, 1.5);
 }
 #gallery-post-page .gallery-image,
 #gallery-post-page .gallery-pictures-widget .widget-content a {
@@ -1304,6 +1340,8 @@ body {
 #custom-page #page-content-header,
 #post-page .single-post-panel,
 #quote-post-page .entry-content,
+.collapse-heading,
+.collapse-item,
 #sidebar-404 #latest-posts,
 #sidebar-404 #quotes,
 #quote-post-page #post-content-header,
@@ -1469,6 +1507,28 @@ body {
 .clickable {
   cursor: pointer;
 }
+.slide-left {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  /* For IE8 and earlier */
+  transition: all 800ms ease-in-out 0s;
+  -webkit-transition: all 800ms ease-in-out 0s;
+  -o-transition: all 800ms ease-in-out 0s;
+  -moz-transition: all 800ms ease-in-out 0s;
+  transform: translate3d(-100px, 0px, 0px);
+  -webkit-transform: translate3d(-100px, 0px, 0px);
+  -o-transform: translate3d(-100px, 0px, 0px);
+  -moz-transform: translate3d(-100px, 0px, 0px);
+}
+.slide-left.in-view {
+  opacity: 1;
+  filter: alpha(opacity=1);
+  /* For IE8 and earlier */
+  transform: translate3d(0px, 0px, 0px);
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -o-transform: translate3d(0px, 0px, 0px);
+  -moz-transform: translate3d(0px, 0px, 0px);
+}
 /*
 * Sidebar styles 
 */
@@ -1534,7 +1594,7 @@ body {
 #author-archive-posts .page-heading h2 {
   font-size: 48px;
 }
-#author-archive-posts .panel-posts:after {
+#author-archive-posts .panel-post:after {
   content: " ";
 }
 .heading-icon + .heading-content {
