@@ -38,7 +38,6 @@ body {
 #post-page .entry-content figure.alignnone,
 #post-page .related-posts,
 #gallery-post-page .gallery-widgets:nth-child(even):not(:last-of-type),
-.btn-default:hover,
 #link .secondary:hover,
 #site-footer,
 #comments .bypostauthor,
@@ -60,6 +59,7 @@ body {
 #post-page .author-social-contacts a:hover,
 #button .button-md:hover,
 .btn-primary,
+.btn-default:hover,
 #link .secondary .active,
 #site-footer #footer-bottom,
 .pagination li.active > a,
@@ -125,7 +125,8 @@ body {
 #search-page .breadcrumb {
   background-color: transparent !important;
 }
-.white {
+.white,
+.btn-default:hover {
   color: #fff;
 }
 .light,
@@ -145,7 +146,7 @@ body {
 #search-page .post-panel-heading .top-post-info,
 #content a:not(.btn):hover,
 #custom-page .breadcrumb,
-#post-page .entry-content p > a:not(img):hover,
+#post-page .entry-content p > a:not(img, .btn):hover,
 .archives .breadcrumb,
 #search-page .breadcrumb {
   color: #b34700;
@@ -394,7 +395,8 @@ body {
 #front-page #contact .panel-default,
 #site-page .entry-content blockquote,
 #error-404-page .entry-content .page-header,
-#gallery-post-page .gallery-widgets:last-of-type {
+#gallery-post-page .gallery-widgets:last-of-type,
+.btn-default:hover {
   border: 0px;
   border-radius: 0px;
 }
@@ -697,7 +699,6 @@ body {
 .pagination li,
 .navigation li,
 #primary-menu .navbar-collapse #navbar-search-box.in,
-#post-page .entry-content p > a:not(img),
 #post-page .gallery-columns-2 .gallery-item,
 #post-page .author-info .author-photo,
 #post-page .author-info .author-details,
@@ -746,7 +747,8 @@ body {
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
-#post-page .post-navigation .next-post .next-button {
+#post-page .post-navigation .next-post .next-button,
+.video-popup {
   display: block;
 }
 .table-cell,
@@ -865,7 +867,7 @@ body {
 #link .primary:hover,
 #content a:not(.btn):visited,
 #content a:not(.btn):hover,
-#post-page .entry-content p > a:not(img):hover,
+#post-page .entry-content p > a:not(img, .btn):hover,
 #post-page .post-navigation .previous-post .previous-button:hover,
 #post-page .post-navigation .next-post .previous-button:hover,
 #post-page .post-navigation .previous-post .next-button:hover,
@@ -1167,8 +1169,9 @@ body {
 #post-page .entry-header {
   border-bottom-color: #ddd;
 }
-#post-page .entry-content p > a:not(img) {
+#post-page .entry-content p > a:not(img, .btn) {
   border-bottom: 1px dotted #FF6600;
+  display: inline-block;
 }
 #post-page .entry-content h2 {
   border-left: 3px solid #b34700;
@@ -1414,9 +1417,12 @@ body {
   -moz-transition: all 0.8s ease-in-out 0s;
 }
 .btn-default:hover {
-  -webkit-box-shadow: 0px 2px 4px #FF6600;
-  box-shadow: 0px 2px 4px #FF6600;
-  border-color: #ffa366;
+  -webkit-box-shadow: 0px 1px 2px #ddd;
+  box-shadow: 0px 1px 2px #ddd;
+  transform: translate3d(0px, -2px, 0px);
+  -webkit-transform: translate3d(0px, -2px, 0px);
+  -o-transform: translate3d(0px, -2px, 0px);
+  -moz-transform: translate3d(0px, -2px, 0px);
 }
 .more-link {
   -webkit-box-shadow: 0px 4px 4px #ffa366;
@@ -1428,7 +1434,7 @@ body {
 }
 #link .primary:hover,
 #content a:not(.btn):hover,
-#post-page .entry-content p > a:not(img):hover {
+#post-page .entry-content p > a:not(img, .btn):hover {
   border-bottom: 1px solid #b34700;
 }
 .zoom-cursor,
@@ -1528,6 +1534,9 @@ body {
   -webkit-transform: translate3d(0px, 0px, 0px);
   -o-transform: translate3d(0px, 0px, 0px);
   -moz-transform: translate3d(0px, 0px, 0px);
+}
+.video-popup {
+  width: 120px;
 }
 /*
 * Sidebar styles 

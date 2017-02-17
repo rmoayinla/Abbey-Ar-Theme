@@ -39,13 +39,14 @@
 					&:extend(.full-width-image);
 				}
 			}
-			p > a:not(img){
+			p > a:not(img, .btn){
 				border-bottom: 1px dotted @primary-color;
-				&:extend(.inline);
+				display: inline-block;
 				&:hover{
 					&:extend(#link .primary:hover);
 				}
 			}
+
 			p em:only-child{
 				&:extend(.dark,.block, .pad-xs, .bottom-border, .top-border, .margin-top-sm, .margin-bottom-sm);
 			}

@@ -137,8 +137,8 @@
 		});//function ends //
 
 	$( function(){
-		var gallery, image_link;
-		gallery = $( ".entry-content .gallery" );
+		var gallery, image_link, iframe_video;
+		gallery = $('.entry-content .gallery-item:not(.slick-cloned)');
 		gallery.find( ".gallery-item" ).each(function(){
 			var _this, imgSrc, imgTitle;
 			_this = $( this );
@@ -150,7 +150,7 @@
 			});
 
 		});
-		$('.entry-content .gallery-item:not(.slick-cloned)').magnificPopup({
+		gallery.magnificPopup({
 		  type: 'image',
 		  //delegate: '.gallery-item:not(.slick-cloned)',//
 		  gallery:{
@@ -158,7 +158,46 @@
 		    tCounter: '<span class="mfp-counter">%curr% of %total%</span>'
 		  }
 		});
-	} );
+
+		iframe_video = $( "iframe[src*='youtube'], iframe[src*='vimeo']" ); 
+		iframe_video.each( function(){
+			var _this = $(this);
+			var src = _this.attr( "src" ).replace( /(.+)\/embed\/(.+)/, "$1/watch/?v=$2" );
+			_this.after( '<a href="'+src+'" class="btn btn-default video-popup" role="button">View in popup </a>' );
+		} );
+
+		
+		$( ".video-popup" ).magnificPopup({
+			type: 'iframe', 
+			patterns: {
+			    youtube: {
+			      index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
+
+			      id: 'v=', // String that splits URL in a two parts, second part should be %id%
+			      // Or null - full URL will be returned
+			      // Or a function that should return %id%, for example:
+			      // id: function(url) { return 'parsed id'; }
+
+			      src: 'https://www.youtube.com/embed/%id%?autoplay=1' // URL that will be set as a source for iframe.
+			    },
+			    vimeo: {
+			      index: 'vimeo.com/',
+			      id: '/',
+			      src: '//player.vimeo.com/video/%id%?autoplay=1'
+			    },
+			    gmaps: {
+			      index: '//maps.google.',
+			      src: '%id%&output=embed'
+			    }
+
+		    // you may add here more sources
+
+		  }
+
+		});
+
+
+	});//end of fucntion 
 		
 		
 		
