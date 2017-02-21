@@ -420,6 +420,8 @@ body {
 #button .button-md,
 .btn-primary,
 .btn-default,
+.mfp-container > .warning,
+.mfp-container > .success,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
@@ -1555,6 +1557,15 @@ body {
 }
 .video-popup {
   width: 120px;
+}
+.mfp-ready.bg-white {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.mfp-container > .warning {
+  border-color: #ffa366;
+}
+.mfp-container > .success {
+  border-color: #0e702e;
 }
 /*
 * Sidebar styles 
