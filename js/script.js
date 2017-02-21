@@ -159,7 +159,7 @@
 		  }
 		});
 
-		iframe_video = $( "iframe[src*='youtube'], iframe[src*='vimeo']" ); 
+		iframe_video = $( "iframe[src*='youtube'], iframe[src*='vimeo'], iframe[src*='google']" ); 
 		iframe_video.each( function(){
 			var _this = $(this);
 			var src = _this.attr( "src" ).replace( /(.+)\/embed\/(.+)/, "$1/watch/?v=$2" );

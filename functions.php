@@ -109,11 +109,11 @@ if( !function_exists( "abbey_theme_setup" ) ) {
     	 * register custom navigation menus.
     	 */
     	register_nav_menus( apply_filters("abbey_theme_nav_menus", 
-    	array(
-        'primary'   => __( "Primary Menu", "abbey" ),
-        'secondary' => __("Secondary Menu", "abbey" ), 
-        'social' => __( "Social Icons Menu", "abbey")
-    	) 
+					    	array(
+						        'primary'   => __( "Primary Menu", "abbey" ),
+						        'secondary' => __("Secondary Menu", "abbey" ), 
+						        'social' => __( "Social Icons Menu", "abbey")
+					    	) 
     	) );
 
     	global $content_width; 

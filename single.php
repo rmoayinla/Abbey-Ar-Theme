@@ -33,6 +33,9 @@ global $more; ?>
 
 	<?php endif; ?>
 
+	<aside class="col-md-4 col-md-offset-1 sidebar" role="complimentary" id="primary-sidebar">
+		<?php abbey_display_sidebar( "sidebar-main" ); ?>
+	</aside>
 
 	</main>		<?php
 

@@ -129,12 +129,16 @@
 	.author-info{
 		&:extend(.pad-medium,.inner-pad-responsive, .bg-gray);
 		.author-photo, .author-details{
-			&:extend(.inline, .block-mobile);
+			//&:extend(.inline, .block-mobile);
+			img{
+			width: 90px;
+			height: 90px;
+			}
 		}
 		.author-details{
-			&:extend(.margin-left-sm, .full-width-mobile);
+			//&:extend(.margin-left-sm, .full-width-mobile);
 			vertical-align: top;
-			width: 75%;
+			
 		}
 		.author-description{
 			&:extend(.margin-top-sm);

@@ -318,7 +318,8 @@ button,
 .input-group,
 #news-archive .top-post-info li,
 #carousel,
-.mfp-wrap {
+.mfp-wrap,
+form {
   direction: ltr;
 }
 #news-archive .top-post-info li + li:after {

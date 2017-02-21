@@ -90,11 +90,11 @@ function abbey_post_author_info( $title = "" ){
 	if( !empty( $title ) )
 		$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
 	
-	$html .= "<div class='author-photo'>".abbey_author_photo( $author->ID, 120, "img-circle" ). "</div>";
-	$html .= "<div class='author-details'>";
-	$html .= sprintf( '<div class="author-title row">
-						<div class="author-name col-md-4"><h4 class="no-top-margin no-bottom-margin"><a href="%4$s"> %1$s </a> </h4></div>
-						<div class="author-rate col-md-3"> <em> %2$s </em> <span class="author-post-count"> %3$s </span></div>
+	$html .= "<div class='author-photo heading-icon'>".abbey_author_photo( $author->ID, 120, "img-circle" ). "</div>";
+	$html .= "<div class='author-details heading-content'>";
+	$html .= sprintf( '<div class="author-title">
+						<div class="author-name"><h4 class="no-top-margin no-bottom-margin"><a href="%4$s"> %1$s </a> </h4></div>
+						<div class="author-rate"> <em> %2$s </em> <span class="author-post-count"> %3$s </span></div>
 						',
 						$author->display_name, 
 						__( "Published posts:", "abbey" ),
@@ -102,7 +102,7 @@ function abbey_post_author_info( $title = "" ){
 						get_author_posts_url( $author->ID )
 					);
 	
-	$html .= "</div>"; //.author-title .row closes //
+	$html .= "</div>"; //.author-title .row closes & author-details //
 
 	$html .= "<div class='author-description'>".esc_html( $author->description ). "</div>";
 	

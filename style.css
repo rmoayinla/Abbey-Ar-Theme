@@ -61,6 +61,7 @@ body {
 .btn-primary,
 .btn-default:hover,
 #link .secondary .active,
+#post-page .sidebar .widget-title,
 #site-footer #footer-bottom,
 .pagination li.active > a,
 .navigation li.active > a,
@@ -97,6 +98,7 @@ body {
 #link .secondary,
 .mini-popup,
 #sidebar-404 #latest-posts,
+#post-page .sidebar .widget,
 #comments,
 .archives .archive-header,
 #search-page .archive-header,
@@ -285,6 +287,8 @@ body {
 #custom-page #page-sidebar,
 #post-page .entry-header,
 #post-page .post-thumbnail-caption,
+#post-page .sidebar .widget,
+#post-page .sidebar .widget-title,
 .archives .post-panel-heading,
 #search-page .post-panel-heading,
 .archives .post-panel-footer,
@@ -327,6 +331,7 @@ body {
   padding-bottom: 80px;
 }
 .outer-pad-xs,
+#post-page .sidebar .widget-title,
 #author-archive-posts .page-heading {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -342,6 +347,7 @@ body {
 #custom-page #page-sidebar,
 #post-page .entry-content h2,
 #post-page .entry-footer-heading,
+#post-page .sidebar .widget,
 #author-archive-posts .post-excerpts {
   padding-bottom: 15px;
 }
@@ -384,6 +390,7 @@ body {
 }
 .no-padding,
 #gallery-post-page #gallery-sidebar,
+#post-page .sidebar,
 .archives .breadcrumb,
 #search-page .breadcrumb {
   padding: 0px;
@@ -449,6 +456,7 @@ body {
 #site-page #primary-sidebar .widget_abbey-contact-form,
 #quote-post-page .post-entry,
 #gallery-post-page #gallery-sidebar,
+#post-page .sidebar .widget,
 .archives .post-panel.post-count-1,
 #search-page .post-panel.post-count-1 {
   border-radius: 10px;
@@ -472,6 +480,7 @@ body {
   margin-bottom: 0px;
 }
 .no-top-margin,
+#post-page .sidebar .widget-title,
 #author-archive-posts .post-panel-body {
   margin-top: 0px;
 }
@@ -563,7 +572,6 @@ body {
 .margin-left-sm,
 #site-page .entry-content blockquote,
 #post-page #post-content-header .post-author .post-author-name,
-#post-page .author-info .author-details,
 .heading-icon + .heading-content {
   margin-left: 15px;
 }
@@ -601,13 +609,15 @@ body {
 .margin-minus-bottom-md {
   margin-bottom: -30px;
 }
-.margin-minus-left-sm {
+.margin-minus-left-sm,
+#post-page .sidebar .widget-title {
   margin-left: -15px;
 }
 .margin-minus-bottom-sm {
   margin-bottom: -15px;
 }
-.margin-minus-right-sm {
+.margin-minus-right-sm,
+#post-page .sidebar .widget-title {
   margin-right: -15px;
 }
 .margin-minus-top-sm {
@@ -700,8 +710,6 @@ body {
 .navigation li,
 #primary-menu .navbar-collapse #navbar-search-box.in,
 #post-page .gallery-columns-2 .gallery-item,
-#post-page .author-info .author-photo,
-#post-page .author-info .author-details,
 #post-page .author-social-contacts a,
 #post-page .categories-list li,
 #post-page .tags-list,
@@ -789,7 +797,8 @@ body {
 #search-page .post-panel-title,
 #author-archive-posts .panel-posts,
 #quote-post-page .entry-content footer,
-.tooltip-box-md {
+.tooltip-box-md,
+#post-page .sidebar .widget-title {
   position: relative;
 }
 .absolute,
@@ -817,6 +826,7 @@ body {
 #gallery-post-page .entry-content .gallery-item,
 #gallery-post-page .entry-content .gallery-icon,
 #gallery-post-page .gallery-image,
+#post-page .sidebar .widget,
 #gallery-post-page .gallery-pictures-widget .widget-content a {
   overflow: hidden;
 }
@@ -933,6 +943,7 @@ body {
 .entry-content img.size-large,
 .entry-content figure.alignnone img,
 .entry-content iframe[src*="youtube"],
+.entry-content iframe,
 .entry-content .gallery {
   max-width: 100% !important;
 }
@@ -955,7 +966,8 @@ body {
 .entry-content figure.alignright {
   max-width: 48% !important;
 }
-.entry-content iframe[src*="youtube"] {
+.entry-content iframe[src*="youtube"],
+.entry-content iframe {
   min-height: 314px;
 }
 .entry-content .gallery-columns-3 .gallery-item,
@@ -1238,9 +1250,13 @@ body {
   left: 0px;
   right: 5px;
 }
+#post-page .author-info .author-photo img,
+#post-page .author-info .author-details img {
+  width: 90px;
+  height: 90px;
+}
 #post-page .author-info .author-details {
   vertical-align: top;
-  width: 75%;
 }
 #post-page .author-social-contacts a {
   border-radius: 50%;
@@ -1324,7 +1340,8 @@ body {
   width: 46%;
 }
 #tool-tip .tool-tip-box::after,
-.tooltip-box-md:after {
+.tooltip-box-md:after,
+#post-page .sidebar .widget-title:after {
   content: "";
   position: absolute;
   top: 100%;
@@ -1332,7 +1349,8 @@ body {
   margin-left: -5px;
   border-style: solid;
 }
-.tooltip-box-md:after {
+.tooltip-box-md:after,
+#post-page .sidebar .widget-title:after {
   border-width: 25px;
   border-color: #fff transparent transparent transparent;
   z-index: 50;
@@ -1544,6 +1562,16 @@ body {
 #sidebar-404 #quotes {
   background-color: #acacac;
 }
+#post-page .sidebar .widget {
+  box-shadow: 0px 2px 1px #ddd;
+}
+#post-page .sidebar .widget-title {
+  border-bottom: 2px inset #b34700;
+}
+#post-page .sidebar .widget-title:after {
+  border-color: #b34700 transparent transparent transparent;
+  border-width: 15px;
+}
 /*
 * footer styles 
 *
@@ -1649,12 +1677,17 @@ body {
   #custom-page .entry-content {
     border-right: 1px solid;
   }
+  .sidebar {
+    margin-top: 30px;
+  }
   #custom-page #inner-content,
+  #post-page,
   #quote-post-page #quote-content,
   #gallery-post-page #quote-content,
   .archives #content,
   #search-page #content {
     width: 90%;
+    margin: auto;
   }
   .no-padding-right-lg-screen {
     padding-right: 0px !important;
@@ -1674,7 +1707,8 @@ body {
   .one-third-largescreen,
   .entry-content .gallery-columns-3 .gallery-item,
   .entry-content div[class*="columns-4"] .gallery-item,
-  #post-page .related-posts .post-panel .post-panel-thumbnail {
+  #post-page .related-posts .post-panel .post-panel-thumbnail,
+  #post-page .sidebar {
     width: 31%;
   }
   .two-third-largescreen,
@@ -1873,8 +1907,6 @@ body {
     clear: both;
   }
   .block-mobile,
-  #post-page .author-info .author-photo,
-  #post-page .author-info .author-details,
   #site-footer #inner-footer .header-contacts,
   .heading-icon {
     display: block !important;
@@ -1954,7 +1986,6 @@ body {
     width: 46%;
   }
   .full-width-mobile,
-  #post-page .author-info .author-details,
   #site-footer #inner-footer .header-contacts,
   .heading-icon + .heading-content {
     width: 100%;

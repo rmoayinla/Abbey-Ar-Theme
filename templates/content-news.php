@@ -2,7 +2,7 @@
 	$has_thumbnail = ( has_post_thumbnail() ) ? true : false;
 	$navigation_title = ""
 ?>
-<section  id="content" class="post-content col-md-8" itemscope itemtype="http://schema.org/Article">
+<section  id="content" class="post-content col-md-7" itemscope itemtype="http://schema.org/Article">
 	<div class="single-post-panel">
 		<header id="post-content-header" class="entry-header">
 			<h1 class="post-title" itemprop="headline"><?php the_title(); ?></h1>
