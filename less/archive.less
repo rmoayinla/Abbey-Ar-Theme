@@ -113,6 +113,7 @@
 	}
 	.page-heading{
 		&:extend( .outer-pad-xs, .bg-white );
+		border-bottom: 2px solid @gray-color;
 		h2{
 			font-size: 48px;
 		}
@@ -127,6 +128,10 @@
 	}
 	.panel-posts{
 		&:extend(.margin-bottom-sm, .relative);
+	}
+
+	.collapse-heading, .collapse-item{
+		&:extend(#box-shadow .box-shadow-small);
 	}
 	
 }

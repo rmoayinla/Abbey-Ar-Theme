@@ -17,6 +17,7 @@
 				}
 			]
 		});
+
 		$(".photo-carousel").slick({
 			autoplay: true, 
 			autoplaySpeed: 3000, 
@@ -31,20 +32,29 @@
 
 		});
 
-		$( document ).on( "click", ".collapse-heading", function(e){
-			var _this;
-			e.preventDefault();
-			_this = $( this );
-			_this.next( ".collapse-item" ).collapse( "toggle" );
-		} );
+		$(function(){
+			$( ".collapse-heading" ).each( function(){
+				var _this = $( this );
+				_this.prepend( '<a href="#" class="toggle-icon"><i class="fa fa-chevron-circle-up fa-lg"></i></a>' );
+			} );
 
-		$(".collapse-item").on('show.bs.collapse', function(){
-        	$( this ).slideDown( "slow" );
-    	});
+			$( document ).on( "click", ".collapse-heading", function(e){
+				var _this;
+				e.preventDefault();
+				_this = $( this );
+				_this.next( ".collapse-item" ).collapse( "toggle" );
+			} );
 
-    	 $(".collapse-item").on('hide.bs.collapse', function(){
-       		$(this).slideUp( "slow" );
-   		 });
+			$(".collapse-item").on('show.bs.collapse', function(){
+	        	$( this ).slideDown( "slow" );
+	        	$(this).prev( ".collapse-heading" ).find( ".toggle-icon" ).html( '<i class="fa fa-chevron-circle-up fa-lg"></i>' );
+	    	});
+
+	    	 $(".collapse-item").on('hide.bs.collapse', function(){
+	       		$(this).slideUp( "slow" );
+	       		$(this).prev( ".collapse-heading" ).find( ".toggle-icon" ).html( '<i class="fa fa-chevron-circle-down fa-lg"></i>' );
+	   		 });
+		});
 
 		$(document).on("click", ".entry-content .more-button", function(event){
 			var _this, nextElements;

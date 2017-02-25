@@ -165,6 +165,7 @@ body {
 .btn-default,
 #link .primary,
 #link .secondary,
+.author-rating .fa-star,
 #content a:not(.btn),
 .pagination li > a,
 .navigation li > a,
@@ -420,8 +421,8 @@ body {
 #button .button-md,
 .btn-primary,
 .btn-default,
-.mfp-container > .warning,
-.mfp-container > .success,
+.mfp-content > .warning,
+.mfp-content > .success,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
@@ -438,8 +439,7 @@ body {
 #custom-page .entry-content .panel-footer,
 #post-page .entry-header,
 #post-page .entry-content p em:only-child,
-#gallery-post-page .gallery-widgets,
-.collapse-heading {
+#gallery-post-page .gallery-widgets {
   border-bottom: 1px solid #b34700;
 }
 .top-border,
@@ -506,6 +506,7 @@ body {
 #post-page .categories-list,
 #post-page .entry-footer-heading,
 .more-link,
+#post-page .sidebar .widget + .widget,
 #comments ol.children,
 #comments .comment-form-comment + .form-submit {
   margin-top: 15px;
@@ -539,6 +540,7 @@ body {
 #post-page .post-excerpt,
 #post-page .entry-footer-heading,
 #sidebar-404,
+#post-page .sidebar .widget-title,
 #comments .media,
 .archives .post-panel.post-count-1,
 #search-page .post-panel.post-count-1 {
@@ -785,6 +787,7 @@ body {
 #gallery-post-page .gallery-widgets,
 #tool-tip .tool-tip-box,
 .mini-popup,
+.collapse-heading,
 #site-footer #inner-footer,
 #comments .media .media-body,
 .archives #content,
@@ -812,11 +815,11 @@ body {
 #post-page .post-navigation .previous-post .next-button .glyphicon,
 #post-page .post-navigation .next-post .next-button .glyphicon,
 #post-page .entry-footer-heading:after,
-.more-icon {
+.more-icon,
+.collapse-heading .toggle-icon {
   position: absolute;
 }
-.fixed,
-.lightbox {
+.fixed {
   position: fixed;
 }
 .no-overflow,
@@ -1363,10 +1366,10 @@ body {
 #custom-page #page-content-header,
 #post-page .single-post-panel,
 #quote-post-page .entry-content,
-.collapse-heading,
-.collapse-item,
 #sidebar-404 #latest-posts,
 #sidebar-404 #quotes,
+#author-archive-posts .collapse-heading,
+#author-archive-posts .collapse-item,
 #quote-post-page #post-content-header,
 #gallery-post-page .entry-content .gallery-item,
 #gallery-post-page #post-content-header {
@@ -1484,13 +1487,9 @@ body {
 .mini-popup {
   padding: 20px;
   max-width: 85%;
+  left: 45%;
   width: 500px;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1), 0px 3px 6px rgba(0, 0, 0, 0.3);
-}
-.mini-popup.slide-in-top {
-  top: 35%;
-  left: 25%;
-  animation: slideintop 3s forwards;
 }
 @keyframes slideintop {
   0% {
@@ -1499,13 +1498,6 @@ body {
   100% {
     transform: translateY(0%);
   }
-}
-.lightbox {
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  top: 0px;
-  left: 0px;
 }
 .fade-to {
   opacity: 0.2 !important;
@@ -1532,6 +1524,21 @@ body {
 }
 .clickable {
   cursor: pointer;
+}
+.collapse-heading .toggle-icon {
+  left: 20px;
+  top: 40%;
+  transition: all 800ms linear 0s;
+  -webkit-transition: all 800ms linear 0s;
+  -o-transition: all 800ms linear 0s;
+  -moz-transition: all 800ms linear 0s;
+}
+.collapse-heading:hover .toggle-icon {
+  color: #b34700 !important;
+  transform: scale(1.2, 1.2);
+  -webkit-transform: scale(1.2, 1.2);
+  -o-transform: scale(1.2, 1.2);
+  -moz-transform: scale(1.2, 1.2);
 }
 .slide-left {
   opacity: 0;
@@ -1561,11 +1568,18 @@ body {
 .mfp-ready.bg-white {
   background-color: rgba(255, 255, 255, 0.3);
 }
-.mfp-container > .warning {
+.mfp-content > .warning {
   border-color: #ffa366;
 }
-.mfp-container > .success {
+.mfp-content > .success {
   border-color: #0e702e;
+}
+.author-rating .fa-star {
+  transition: all 800ms ease-in 0s;
+  -webkit-transition: all 800ms ease-in 0s;
+  -o-transition: all 800ms ease-in 0s;
+  -moz-transition: all 800ms ease-in 0s;
+  margin-right: 7px;
 }
 /*
 * Sidebar styles 
@@ -1639,6 +1653,9 @@ body {
 #quote-post-page .categories-icon {
   font-size: 20px;
 }
+#author-archive-posts .page-heading {
+  border-bottom: 2px solid #ddd;
+}
 #author-archive-posts .page-heading h2 {
   font-size: 48px;
 }
@@ -1664,6 +1681,7 @@ body {
   .inner-pad-responsive,
   #post-page .author-info,
   #post-page .related-posts,
+  .collapse-heading,
   #site-footer #footer-bottom,
   .archives .archive-header,
   #search-page .archive-header {
@@ -1746,6 +1764,7 @@ body {
   .inner-pad-responsive,
   #post-page .author-info,
   #post-page .related-posts,
+  .collapse-heading,
   #site-footer #footer-bottom,
   .archives .archive-header,
   #search-page .archive-header {
@@ -1794,6 +1813,7 @@ body {
   .inner-pad-responsive,
   #post-page .author-info,
   #post-page .related-posts,
+  .collapse-heading,
   #site-footer #footer-bottom,
   .archives .archive-header,
   #search-page .archive-header {
@@ -1895,6 +1915,7 @@ body {
   .navbar-form,
   #post-page .author-info,
   #post-page .related-posts,
+  .collapse-heading,
   #site-footer #footer-bottom,
   .archives .archive-header,
   #search-page .archive-header {

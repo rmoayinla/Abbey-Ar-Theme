@@ -22,9 +22,13 @@
 		&:extend(.bg-white, .inner-pad-small, .padding-bottom-sm, .border-radius-md, .no-overflow);
 		box-shadow: 0px 2px 1px @gray-color;
 	}
+
+	.widget + .widget{
+		&:extend( .margin-top-sm );
+	}
 	.widget-title{
 		&:extend( .outer-pad-xs, .margin-minus-left-sm, .margin-minus-right-sm, 
-		.no-top-margin, .inner-pad-small, .tooltip-box-md, .bg-dark );
+		.no-top-margin, .inner-pad-small, .tooltip-box-md, .bg-dark, .margin-bottom-md );
 		border-bottom: 2px inset @dark-primary-color;
 		&:after{
 			&:extend( .tooltip-box-md:after );

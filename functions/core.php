@@ -302,7 +302,7 @@ function abbey_display_sidebar ( $sidebar_id ){
 	if ( is_active_sidebar( $sidebar_id ) ){ // check if a sidebar is registered with this id //
 		dynamic_sidebar( $sidebar_id );
 	} else {
-		echo __( "Sorry, there is no sidebar widget registerd with {$sidebar_id}", "abbey" );
+		echo __( "Sorry, there is no sidebar widget registered with {$sidebar_id}", "abbey" );
 	}
 }
 
@@ -432,12 +432,11 @@ function abbey_add_to_primary_menu ( $items, $args ) {
 	if( 'primary' === $args->theme_location ) {
 		$items .= '</ul>';
 		$items .= sprintf( '<form class="navbar-form navbar-left" action="%1$s/" method="get">
-	        				<div class="form-group">
-	          					<input type="search" class="form-control" placeholder="Search" name="s" />
-	        				</div>
-
-      					</form>', 
-      					esc_url( home_url() )
+		        				<div class="form-group">
+		          					<input type="search" class="form-control" placeholder="Search" name="s" />
+		        				</div>
+	        				</form>', 
+      						esc_url( home_url() )
       					);
 	}
 	return $items;
