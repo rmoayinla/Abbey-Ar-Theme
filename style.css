@@ -59,7 +59,9 @@ body {
 #post-page .author-social-contacts a:hover,
 #button .button-md:hover,
 .btn-primary,
+a.btn-primary,
 .btn-default:hover,
+a.btn-default:hover,
 #link .secondary .active,
 #post-page .sidebar .widget-title,
 #site-footer #footer-bottom,
@@ -94,7 +96,9 @@ body {
 #gallery-post-page .gallery-widgets:last-of-type,
 #button .button-md,
 .btn-primary:hover,
+a.btn-primary:hover,
 .btn-default,
+a.btn-default,
 #link .secondary,
 .mini-popup,
 #sidebar-404 #latest-posts,
@@ -128,7 +132,8 @@ body {
   background-color: transparent !important;
 }
 .white,
-.btn-default:hover {
+.btn-default:hover,
+a.btn-default:hover {
   color: #fff;
 }
 .light,
@@ -142,13 +147,10 @@ body {
 #post-page .entry-content p em:only-child,
 #post-page .entry-content .slick-prev:before,
 #post-page .entry-content .slick-next:before,
-#link .primary:hover,
 #comments .media .media-body time,
 .archives .post-panel-heading .top-post-info,
 #search-page .post-panel-heading .top-post-info,
-#content a:not(.btn):hover,
 #custom-page .breadcrumb,
-#post-page .entry-content p > a:not(img, .btn):hover,
 .archives .breadcrumb,
 #search-page .breadcrumb {
   color: #b34700;
@@ -163,9 +165,11 @@ body {
 #primary-menu .navbar-collapse .menu-item a,
 #button .button-md,
 .btn-default,
+a.btn-default,
 #link .primary,
 #link .secondary,
 .author-rating .fa-star,
+#post-page .sidebar a:not(.btn),
 #content a:not(.btn),
 .pagination li > a,
 .navigation li > a,
@@ -227,6 +231,7 @@ body {
 #post-page .gallery-columns-2 .gallery-item,
 #post-page .post-excerpt,
 #post-page .post-thumbnail-caption,
+.thumbnail-post:hover .post-thumbnail-image,
 #comments .comment-form-author,
 #comments .comment-form-email,
 #comments .bypostauthor {
@@ -391,6 +396,10 @@ body {
 }
 .no-padding,
 #gallery-post-page #gallery-sidebar,
+.thumbnail-post,
+.thumbnail-post .post-thumbnail-image,
+.thumbnail-post .post-thumbnail-content,
+.thumbnail-post .row,
 #post-page .sidebar,
 .archives .breadcrumb,
 #search-page .breadcrumb {
@@ -404,7 +413,9 @@ body {
 #site-page .entry-content blockquote,
 #error-404-page .entry-content .page-header,
 #gallery-post-page .gallery-widgets:last-of-type,
-.btn-default:hover {
+.btn-default:hover,
+a.btn-default:hover,
+.thumbnail-post {
   border: 0px;
   border-radius: 0px;
 }
@@ -420,7 +431,9 @@ body {
 #gallery-post-page #gallery-sidebar,
 #button .button-md,
 .btn-primary,
+a.btn-primary,
 .btn-default,
+a.btn-default,
 .mfp-content > .warning,
 .mfp-content > .success,
 #post-page .post-navigation .previous-post .previous-button,
@@ -599,6 +612,9 @@ body {
   margin-right: auto;
 }
 .no-margin,
+.thumbnail-post .post-thumbnail-image,
+.thumbnail-post .post-thumbnail-content,
+.thumbnail-post .row,
 .archives .post-panel-heading .top-post-info,
 #search-page .post-panel-heading .top-post-info {
   margin: 0px;
@@ -720,6 +736,7 @@ body {
 #post-page .tag-list li,
 #gallery-post-page .entry-content .gallery-item,
 #gallery-post-page .gallery-pictures-widget .widget-content a,
+#link .primary,
 #site-footer #inner-footer .header-contacts,
 #comments .media .media-body .list-inline .collapse.in,
 .archives .categories-list .post-categories li,
@@ -735,6 +752,7 @@ body {
 #author-archive-posts .post-panel:not(.post-count-1),
 .heading-icon,
 .heading-icon + .heading-content,
+#content a:not(.btn),
 #quote-post-page .tags-list,
 .archives .categories-list,
 #search-page .categories-list,
@@ -878,8 +896,10 @@ body {
 }
 .no-text-decoration,
 #button .button-md:hover,
+#link .primary,
 #link .primary:visited,
 #link .primary:hover,
+#content a:not(.btn),
 #content a:not(.btn):visited,
 #content a:not(.btn):hover,
 #post-page .entry-content p > a:not(img, .btn):hover,
@@ -1366,6 +1386,7 @@ body {
 #custom-page #page-content-header,
 #post-page .single-post-panel,
 #quote-post-page .entry-content,
+.thumbnail-post,
 #sidebar-404 #latest-posts,
 #sidebar-404 #quotes,
 #author-archive-posts .collapse-heading,
@@ -1422,24 +1443,28 @@ body {
   -webkit-box-shadow: 0px 3px 8px #b34700;
   box-shadow: 0px 3px 8px #b34700;
 }
-.btn-primary {
+.btn-primary,
+a.btn-primary {
   transition: all 0.8s ease-in-out 0s;
   -webkit-transition: all 0.8s ease-in-out 0s;
   -o-transition: all 0.8s ease-in-out 0s;
   -moz-transition: all 0.8s ease-in-out 0s;
 }
-.btn-primary:hover {
+.btn-primary:hover,
+a.btn-primary:hover {
   -webkit-box-shadow: 0px 2px 4px #b34700;
   box-shadow: 0px 2px 4px #b34700;
   border-color: #FF6600;
 }
-.btn-default {
+.btn-default,
+a.btn-default {
   transition: all 0.8s ease-in-out 0s;
   -webkit-transition: all 0.8s ease-in-out 0s;
   -o-transition: all 0.8s ease-in-out 0s;
   -moz-transition: all 0.8s ease-in-out 0s;
 }
-.btn-default:hover {
+.btn-default:hover,
+a.btn-default:hover {
   -webkit-box-shadow: 0px 1px 2px #ddd;
   box-shadow: 0px 1px 2px #ddd;
   transform: translate3d(0px, -2px, 0px);
@@ -1450,6 +1475,13 @@ body {
 .more-link {
   -webkit-box-shadow: 0px 4px 4px #ffa366;
   box-shadow: 0px 4px 4px #ffa366;
+}
+#link .primary,
+#content a:not(.btn) {
+  transition: all 0.8s ease-in-out 0s;
+  -webkit-transition: all 0.8s ease-in-out 0s;
+  -o-transition: all 0.8s ease-in-out 0s;
+  -moz-transition: all 0.8s ease-in-out 0s;
 }
 #link .primary:visited,
 #content a:not(.btn):visited {
@@ -1580,6 +1612,26 @@ body {
   -o-transition: all 800ms ease-in 0s;
   -moz-transition: all 800ms ease-in 0s;
   margin-right: 7px;
+}
+.thumbnail-post {
+  transition: all 0.9s ease-in-out 0s;
+  -webkit-transition: all 0.9s ease-in-out 0s;
+  -o-transition: all 0.9s ease-in-out 0s;
+  -moz-transition: all 0.9s ease-in-out 0s;
+  background-color: #fff;
+}
+.thumbnail-post .post-thumbnail-content {
+  padding-left: 7px !important;
+  padding-right: 7px !important;
+}
+.thumbnail-post .post-thumbnail-image .wp-post-image {
+  height: 90px !important;
+}
+.thumbnail-post:hover {
+  background-color: #ddd;
+}
+.thumbnail-post:hover .post-thumbnail-image .wp-post-image {
+  border-radius: 100%;
 }
 /*
 * Sidebar styles 

@@ -9,6 +9,14 @@
 	{
 		"less2css":
 		{
+			"autoCompile": true,
+			"autoprefix": false,
+			"lessBaseDir": "./less",
+			"main_file": "style.less",
+			"minify": false,
+			"outputDir": ".",
+			"outputFile": "style.css",
+			"showErrorWithWindow": true
 		}
 	}
 }

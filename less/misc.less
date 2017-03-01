@@ -62,8 +62,9 @@
 	}
 }
 
-.btn-primary{
+.btn-primary, a.btn-primary{
 	&:extend(.bg-dark,.border);
+
 	.transition(all,0.8s,ease-in-out);
 	&:hover{
 		.box-shadow(0px, 2px, 4px, @dark-primary-color);
@@ -71,7 +72,7 @@
 		border-color: @primary-color;
 	}
 }
-.btn-default{
+.btn-default, a.btn-default{
 	&:extend(.bg-white,.border, .primary);
 	.transition(all,0.8s,ease-in-out);
 	&:hover{
@@ -88,13 +89,14 @@
 
 #link{
 	.primary{
-		&:extend(.primary);
+		&:extend(.primary, .inline, .no-text-decoration);
+		.transition(all,0.8s,ease-in-out);
 		&:visited{
 			border-bottom: 1px solid @primary-color;
 			&:extend(.strong, .no-text-decoration);
 		}
 		&:hover{
-			&:extend(.dark, .no-text-decoration);
+			&:extend(.no-text-decoration);
 			border-bottom: 1px solid @dark-primary-color;
 		}
 	}
@@ -218,4 +220,31 @@
 	&:extend(.primary);
 	margin-right: 7px;
 
+}
+
+.thumbnail-post{
+	&:extend(.no-padding, .no-border, #box-shadow .box-shadow-small);
+	.transition(all,0.9s, ease-in-out);
+	background-color: #fff;
+	.post-thumbnail-image, .post-thumbnail-content, .row{
+		&:extend( .no-padding, .no-margin );
+	}
+	.post-thumbnail-content{
+		padding-left: 7px !important;
+		padding-right: 7px !important;
+	}
+	.post-thumbnail-image{
+		.wp-post-image{
+			height: 90px !important;
+		}
+	}
+	&:hover{
+		background-color: @gray-color;
+		.post-thumbnail-image{
+			&:extend(.pad-xs);
+			.wp-post-image{
+				border-radius: 100%;
+			}
+		}
+	}
 }

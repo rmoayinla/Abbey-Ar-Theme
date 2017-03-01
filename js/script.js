@@ -149,7 +149,7 @@
 	$( function(){
 		var gallery, image_link, iframe_video;
 		gallery = $('.entry-content .gallery-item:not(.slick-cloned)');
-		gallery.find( ".gallery-item" ).each(function(){
+		gallery.each(function(){
 			var _this, imgSrc, imgTitle;
 			_this = $( this );
 			imgSrc = _this.find( "a" ).attr( "href" );
