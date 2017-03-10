@@ -139,13 +139,13 @@ function abbey_show_related_posts( $title = "" ){
 		<?php while( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
 			<aside class="post-panel">
 				<?php if( has_post_thumbnail() ) : ?>
-					<figure class="post-panel-thumbnail inline"><?php the_post_thumbnail(); ?></figure>
+					<figure class="post-panel-thumbnail"><?php the_post_thumbnail(); ?></figure>
 				<?php endif; ?>
-				<div class="post-panel-body inline">
+				<div class="post-panel-body">
 					<h4 class="post-panel-heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 					<div class="post-panel-excerpt text-justify">
-						<?php the_excerpt(); ?> 
-						<a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php _e("Read more", "abbey"); ?></a>
+						<?php abbey_excerpt( "", "", true ); ?> 
+						<?php /*<a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php _e("Read more", "abbey"); ?></a>*/?>
 					</div>
 				</div>
 			</aside>

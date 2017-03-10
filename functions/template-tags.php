@@ -247,3 +247,12 @@ function abbey_page_media( $size = "medium", $page_id = "", $echo = true ){
 	echo $icon;
 }
 
+function abbey_excerpt( $length = "", $more = "", $echo = false ){
+	$length = empty( $length ) ? 55 : $length;
+	$more_text = empty( $more ) ? abbey_excerpt_more() : "...";
+	if( !$echo )
+		return wp_trim_words( get_the_excerpt(), $length, $more_text );
+
+	echo wp_trim_words( get_the_content(), $length, $more_text );
+	//the_excerpt();
+}

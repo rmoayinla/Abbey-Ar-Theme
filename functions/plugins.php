@@ -135,17 +135,30 @@ function abbey_add_post_type_description(){
 
 
 // Replaces the excerpt "Read More" text by a link
-function abbey_excerpt_more( $text ) {
+function abbey_excerpt_more() {
     global $post;
-    if( is_main_query() && ( is_front_page() || is_singular() ) )
-        return '';
-    else 
-        return sprintf( '<p><a href="%1$s" class="more-link btn btn-primary" title="%2$s" role="button">%2$s</a></p>',
+
+    $button = "<div class='dropdown'>";
+    $button .= sprintf( '<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">%s<span class="caret"></span></button>',
+                            __( 'Read more', "abbey" )
+                    );
+    $button .= "<ul class='dropdown-menu'>";
+    $button .= sprintf( '<li><a href="%1$s" class="" title="%2$s">%2$s</a></li>',
+                        get_permalink( $post->ID ), 
+                        __( "Continue reading", "abbey" )
+                 );
+    $button .= sprintf( '<li><a class="popup-post" href="%1$s" data-url="%2$s" data-post-type="%3$s" data-post-id="%4$s">%5$s</a></li>', 
                             get_permalink( $post->ID ), 
-                            __( "Continue reading", "abbey" )
-                     );
+                            admin_url( "admin-ajax.php" ), 
+                            $post->post_type, 
+                            $post->ID, 
+                            __( "Read in popup", "abbey" )
+                    );
+    $button .= "</ul></div>";
+
+    return $button;
 
     
 }
-add_filter('excerpt_more', 'abbey_excerpt_more');
+//add_filter('excerpt_more', 'abbey_excerpt_more');
 

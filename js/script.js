@@ -1,7 +1,6 @@
 // jquery-javascript //
 (function($) {
 	$( document ).ready( function() {
-		
 
 		$(".gallery-slides").slick({
 			autoplay: true, 
@@ -96,10 +95,6 @@
 			$window.on('scroll resize', check_if_in_view);
 			$window.trigger('scroll');
 
-		
-
-		
-
 		$(function(){
 			var clone_gallery, gallery; 
 			gallery = $( ".gallery" );
@@ -173,7 +168,7 @@
 		iframe_video.each( function(){
 			var _this = $(this);
 			var src = _this.attr( "src" ).replace( /(.+)\/embed\/(.+)/, "$1/watch/?v=$2" );
-			_this.after( '<a href="'+src+'" class="btn btn-default video-popup" role="button">View in popup </a>' );
+			_this.after( '<a href="'+src+'" class="btn btn-default video-popup" role="button">View in popup </a>' ).parent().addClass("video-iframe");
 		} );
 
 		
@@ -210,7 +205,11 @@
 	});//end of fucntion 
 		
 		
-		
+	$("#floating-video").affix({
+  		offset: {
+    		top: $(".entry-content iframe").offset().top
+  		}
+	});
 
 		
 
@@ -237,8 +236,3 @@ function setupMoreButton(){
 		moreButton.nextAll().wrapAll("<div id='more-content' class='hidden'></div>");
 }
 
-jQuery("#floating-video").affix({
-  offset: {
-    top: jQuery(".entry-content iframe").offset().top
-  }
-});

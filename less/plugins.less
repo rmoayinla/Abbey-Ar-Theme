@@ -1,0 +1,110 @@
+/* maginfic popup custom styles */
+.mini-popup, .full-popup{
+	&:extend(.bg-white, .relative);
+	box-shadow: 3px 3px 6px rgba(179,71,0, 0.3), 0px 3px 6px rgba(179,71,0, 0.8);
+	.popup-body{
+		&:extend(.pad-small, .inner-padding-mobile);
+	}
+}
+.mini-popup{
+	max-width: 85%;
+	left: 45%;
+	width: 500px;
+	&:extend(.inner-pad-responsive, .pad-small);
+}
+.full-popup{
+	width: 700px;
+	max-width: 90%;
+	left: 25%;
+	top: 25px;
+	.opacity(0);
+	.transition(all, 0.8s, ease-in);
+	&:extend(.relative);
+	margin-bottom: 60px;
+}
+.full-popup.fade-in{
+	.opacity(1);
+}
+
+.full-popup .mfp-close{
+	.transition(all,800ms,ease-in);
+	border-radius: 50%;
+	background-color: @primary-color !important;
+	color: #fff !important;
+	&:extend(.margin-minus-top-sm);
+	right: -15px;
+}
+.mfp-ready.bg-white{
+	background-color: rgba(255,255,255,0.3);
+}
+.mfp-content > .warning{
+	&:extend(.border);
+	border-color: @light-primary-color;
+}
+.mfp-content > .success{
+	 &:extend(.border);
+	 border-color: #0e702e;
+}
+
+.mfp-bg{
+	background-color: rgba(179,71,0, 0.3) !important;
+}
+
+//===============end of maginific popup =============== //
+
+/* Bootstrap collapse */
+.collapse-heading{
+	&:extend(.inner-pad-responsive, .relative);
+	.toggle-icon{
+		&:extend(.absolute);
+		left: 20px;
+		top: 40%;
+		.transition(all, 800ms, linear);
+	}
+
+}
+.collapse-heading:hover .toggle-icon{
+	color: @dark-primary-color !important;
+	.scale( 1.2, 1.2 );
+}
+
+//============ end of bootstrap collapse ================== //
+
+/* WP plugin Abbey_Recent_Posts */
+.thumbnail-post{
+	&:extend(.no-padding, .no-border, #box-shadow .box-shadow-small);
+	.transition(all,0.9s, ease-in-out);
+	background-color: #fff;
+	.post-thumbnail-image, .post-thumbnail-content, .row{
+		&:extend( .no-padding, .no-margin );
+	}
+	.post-thumbnail-content{
+		padding-left: 7px !important;
+		padding-right: 7px !important;
+	}
+	.post-thumbnail-image{
+		.wp-post-image{
+			height: 120px !important;
+		}
+	}
+	&:hover{
+		background-color: @gray-color;
+		.post-thumbnail-image{
+			&:extend(.pad-xs);
+			.wp-post-image{
+				border-radius: 100%;
+			}
+		}
+	}
+}
+
+.icons-footer{
+	&:extend(.relative);
+	padding-top: 5px;
+	.dropdown-menu{
+		right: 0px;
+		left: 100%;
+	}
+}
+
+
