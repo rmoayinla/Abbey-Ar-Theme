@@ -11,7 +11,7 @@
 				{
 					breakpoint: 480,
 					settings: {
-					slidesToShow: 2
+						slidesToShow: 2
 					}
 				}
 			]
@@ -28,21 +28,20 @@
 			autoplay: true, 
 			arrows: true,
 			dots: false
-
 		});
 
 		$(function(){
 			$( ".collapse-heading" ).each( function(){
 				var _this = $( this );
 				_this.prepend( '<a href="#" class="toggle-icon"><i class="fa fa-chevron-circle-up fa-lg"></i></a>' );
-			} );
+			});
 
 			$( document ).on( "click", ".collapse-heading", function(e){
 				var _this;
 				e.preventDefault();
 				_this = $( this );
 				_this.next( ".collapse-item" ).collapse( "toggle" );
-			} );
+			});
 
 			$(".collapse-item").on('show.bs.collapse', function(){
 	        	$( this ).slideDown( "slow" );
@@ -94,6 +93,7 @@
 
 			$window.on('scroll resize', check_if_in_view);
 			$window.trigger('scroll');
+
 
 		$(function(){
 			var clone_gallery, gallery; 
@@ -169,7 +169,7 @@
 			var _this = $(this);
 			var src = _this.attr( "src" ).replace( /(.+)\/embed\/(.+)/, "$1/watch/?v=$2" );
 			_this.after( '<a href="'+src+'" class="btn btn-default video-popup" role="button">View in popup </a>' ).parent().addClass("video-iframe");
-		} );
+		});
 
 		
 		$( ".video-popup" ).magnificPopup({
@@ -205,13 +205,13 @@
 	});//end of fucntion 
 		
 		
-	$("#floating-video").affix({
-  		offset: {
-    		top: $(".entry-content iframe").offset().top
-  		}
+	$(function(){
+		$("#floating-video").affix({
+  			offset: {
+    			top: $(".entry-content iframe").offset().top
+  			}
+		});
 	});
-
-		
 
 
 

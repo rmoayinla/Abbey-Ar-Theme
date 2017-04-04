@@ -5,8 +5,8 @@
 *@theme: Abbey
 *@version: 
 */
+global $error_404_defaults;
 
-$error_404_defaults = abbey_get_defaults( "error-404-page" );
 ?>
 			<article <?php abbey_post_class(); ?> id="page-no-content">
 				<div class="pad-large text-center">

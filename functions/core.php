@@ -475,3 +475,11 @@ function abbey_posts_pagination( $args = array() ){
 	echo $navigation; 
 
 }
+
+function abbey_custom_field( $value, $echo = false ){
+	if ( !function_exists( "get_field" ) )
+		return; 
+	if( !$echo  )
+		return get_field( $value );
+	echo get_field( $value );
+}

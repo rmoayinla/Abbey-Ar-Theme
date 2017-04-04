@@ -1,7 +1,7 @@
 <?php
 
 
-
+$error_404_defaults = abbey_get_defaults( "error-404-page" );
 
 
 get_header();	?>

@@ -162,3 +162,8 @@ function abbey_excerpt_more() {
 }
 //add_filter('excerpt_more', 'abbey_excerpt_more');
 
+add_action( 'init', 'abbey_add_excerpts_to_pages' );
+function abbey_add_excerpts_to_pages() {
+    add_post_type_support( 'page', 'excerpt' );
+}
+

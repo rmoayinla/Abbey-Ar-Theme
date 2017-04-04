@@ -31,6 +31,7 @@ body {
 .entry-content table th,
 .entry-content table tr:hover,
 #custom-header .navbar,
+#site-page #page-content-header,
 #custom-page .entry-content .well,
 #custom-page #page-content-header,
 #post-page .entry-content figure.alignleft,
@@ -85,8 +86,7 @@ a.btn-default:hover,
 #custom-header #inner-header .navbar-header .navbar-toggle .icon-bar,
 #primary-menu,
 #front-page #carousel .posts-slides .post-slide,
-#site-page .entry-content,
-#site-page #primary-sidebar .widget_abbey-contact-form,
+#site-page .page-content,
 #custom-page #page-sidebar .widget_abbey-contact-form,
 #post-page .single-post-panel,
 #post-page .author-social-contacts a,
@@ -103,6 +103,7 @@ a.btn-default,
 #floating-video.affix,
 #sidebar-404 #latest-posts,
 #post-page .sidebar .widget,
+#site-page .sidebar .widget,
 #comments,
 .archives .archive-header,
 #search-page .archive-header,
@@ -202,11 +203,11 @@ a.btn-default,
 #custom-header #inner-header,
 #front-page #carousel .posts-slides summary,
 #front-page #carousel .posts-slides .slide-title,
-#site-page #primary-sidebar .widget_abbey-contact-form,
 #custom-page #inner-content,
 #custom-page #page-sidebar .widget,
 #gallery-post-page .gallery-widgets,
 #floating-video.affix .post-panel-body,
+#site-page .sidebar .widget,
 #site-footer #inner-footer #site-about,
 #comments .media .media-body .comment-content,
 #comments .comment-list > .comment,
@@ -246,8 +247,7 @@ a.btn-default,
 .pad-medium,
 .entry-content,
 .entry-content .gallery-columns-1,
-#site-page .page-content,
-#site-page .entry-content,
+#site-page #page-content-header .page-title-wrap,
 #site-page .entry-content blockquote,
 #custom-page #page-content-header,
 #post-page #content,
@@ -321,6 +321,7 @@ a.btn-default,
 }
 .outer-pad-medium,
 #sitehead #admin-info,
+#site-page .inner-content,
 #post-page .post-navigation,
 #post-page .related-posts,
 .archives .archive-header,
@@ -334,7 +335,6 @@ a.btn-default,
   padding-bottom: 15px;
 }
 .outer-pad-lg,
-#site-page #primary-sidebar,
 #custom-page #page-content-header #page-title-wrap,
 #custom-page #page-sidebar,
 #quote-post-page #quote-content,
@@ -355,7 +355,6 @@ a.btn-default,
 .padding-bottom-sm,
 .entry-content table th,
 .entry-content table td,
-#site-page #page-content-header .page-title-wrap,
 #custom-page #page-sidebar,
 #post-page .entry-content h2,
 #post-page .entry-footer-heading,
@@ -397,10 +396,12 @@ a.btn-default,
 .no-bottom-padding {
   padding-bottom: 0px;
 }
-.no-top-padding {
+.no-top-padding,
+#site-page .sidebar .widget {
   padding-top: 0px;
 }
 .no-padding,
+#site-page .page-content,
 #gallery-post-page #gallery-sidebar,
 #post-page .sidebar,
 .archives .breadcrumb,
@@ -426,8 +427,7 @@ a.btn-default:hover,
   border-radius: 0px;
 }
 .border,
-#site-page .entry-content,
-#site-page #primary-sidebar .widget_abbey-contact-form,
+#site-page .page-content,
 #custom-page .entry-content figure.alignleft,
 #post-page .single-post-panel,
 #post-page .entry-content figure.alignleft,
@@ -440,6 +440,7 @@ a.btn-default:hover,
 a.btn-primary,
 .btn-default,
 a.btn-default,
+#site-page .sidebar .widget,
 .mfp-content > .warning,
 .mfp-content > .success,
 #post-page .post-navigation .previous-post .previous-button,
@@ -453,7 +454,6 @@ a.btn-default,
 .bottom-border,
 .entry-content table th,
 .entry-content table td,
-#site-page #page-content-header .page-title-wrap,
 #custom-page .entry-content .panel-heading,
 #custom-page .entry-content .panel-footer,
 #post-page .entry-header,
@@ -473,11 +473,11 @@ a.btn-default,
 }
 .border-radius-md,
 #front-page #carousel .posts-slides .post-slide,
-#site-page .entry-content,
-#site-page #primary-sidebar .widget_abbey-contact-form,
+#site-page .page-content,
 #quote-post-page .post-entry,
 #gallery-post-page #gallery-sidebar,
 #post-page .sidebar .widget,
+#site-page .sidebar .widget,
 .archives .post-panel.post-count-1,
 #search-page .post-panel.post-count-1 {
   border-radius: 10px;
@@ -534,11 +534,11 @@ a.btn-default,
 .entry-content figure,
 .entry-content .gallery,
 .entry-content table,
-#site-page #page-content-header .page-title-wrap,
 #post-page .entry-content,
 #post-page .entry-content p em:only-child,
 #post-page .categories-list,
 #gallery-post-page .gallery-pictures-widget .widget-content a,
+#site-page .sidebar .widget,
 .archives .post-panel,
 #search-page .post-panel,
 #author-archive-posts .panel-posts {
@@ -677,9 +677,9 @@ a.btn-default,
   font-size: 60px;
 }
 .font-medium,
-#site-page #primary-sidebar .widget .widget-title,
 #post-page .post-excerpt,
-#gallery-post-page .widget-icon {
+#gallery-post-page .widget-icon,
+#site-page .sidebar .widget .widget-title {
   font-size: 24px;
 }
 .strong,
@@ -881,8 +881,10 @@ a.btn-default,
 }
 .text-center,
 .entry-content figure.alignnone,
+.no-sidebar .page-title-wrap,
 #post-page .author-social-contacts a,
-#post-page .entry-footer-heading {
+#post-page .entry-footer-heading,
+#site-page .sidebar .widget .widget-title {
   text-align: center;
 }
 .text-justify,
@@ -939,7 +941,6 @@ a.btn-default,
 .entry-content figure.alignnone,
 .entry-content .gallery-item img,
 #front-page #carousel .posts-slides img.wp-post-image,
-#site-page #page-content-header.has-thumbnail #page-media .wp-post-image,
 #custom-page #inner-content .post-thumbnail img,
 #custom-page .entry-content figure.alignleft a img,
 #post-page .entry-content figure.alignleft img,
@@ -961,7 +962,6 @@ a.btn-default,
 .entry-content figure.alignnone,
 .entry-content .gallery-item img,
 #front-page #carousel .posts-slides img.wp-post-image,
-#site-page #page-content-header.has-thumbnail #page-media .wp-post-image,
 #custom-page #inner-content .post-thumbnail img,
 #custom-page .entry-content figure.alignleft a img,
 #post-page .entry-content figure.alignleft img,
@@ -1150,6 +1150,21 @@ a.btn-default,
 * Styling pages 
 *
 */
+#site-page .inner-content {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#site-page #page-media {
+  border-radius: 10px 10px 0px 0px;
+}
+#site-page #page-media .wp-post-image {
+  width: 100%;
+  height: 240px;
+  transition: height 800ms ease-in;
+}
+#site-page #page-media .wp-post-image:hover {
+  height: auto;
+}
 #site-page .entry-content blockquote:before,
 #site-page .entry-content blockquote:after {
   font-family: 'FontAwesome';
@@ -1164,8 +1179,8 @@ a.btn-default,
   bottom: 10px;
   right: 3px;
 }
-#site-page #primary-sidebar .widget_abbey-contact-form {
-  border-bottom-width: 20px;
+.no-sidebar .page-title-wrap {
+  border-bottom: 0px !important;
 }
 #error-404-page .entry-content .page-header {
   font-size: 8em;
@@ -1393,7 +1408,6 @@ a.btn-default,
   z-index: 50;
 }
 #box-shadow .box-shadow-small,
-#site-page #primary-sidebar .widget_abbey-contact-form,
 #custom-page .entry-content figure.alignleft,
 #custom-page #page-content-header,
 #post-page .single-post-panel,
@@ -1401,6 +1415,7 @@ a.btn-default,
 #floating-video.affix,
 #sidebar-404 #latest-posts,
 #sidebar-404 #quotes,
+#site-page .sidebar .widget,
 #author-archive-posts .collapse-heading,
 #author-archive-posts .collapse-item,
 .thumbnail-post,
@@ -1622,6 +1637,9 @@ a.btn-default:hover {
 #post-page .sidebar .widget-title:after {
   border-color: #b34700 transparent transparent transparent;
   border-width: 15px;
+}
+#site-page .sidebar .widget {
+  border-bottom-width: 20px;
 }
 /*
 * footer styles 

@@ -19,7 +19,7 @@ $post_types = get_post_types( array( 'public' =>  true ), 'names' );
 							<?php endif;?>
 							<div class="post-panel-body">
 								<div class="post-panel-title">
-									<h2><?php echo $author_posts["title"]; ?></h2>
+									<h2><a href="<?php echo $author_posts["url"]; ?>"><?php echo $author_posts["title"]; ?></a></h2>
 									<?php abbey_post_date(); ?>
 								</div>
 								
