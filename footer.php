@@ -3,37 +3,47 @@
 $site_about = ( !empty( abbey_get_defaults( "about" ) ) ) ? abbey_get_defaults( "about" ) : "";
 
 ?>
-		<aside class="row" id="before-footer"> <?php do_action( "abbey_theme_before_footer" ) ; ?></aside> 
 		
-		<footer class="row" id="site-footer" role="footer">	
-			
-			<section class="" id="inner-footer">
-				<div class="text-center" id="site-info"> 
-					<?php abbey_show_logo( "", "", false ); ?> 
-					<p class="small description text-center"> <?php bloginfo( "description" ); ?> </p>
-				</div>
-				
-				<div class="" id="site-about">
-					<?php if ( !empty( $site_about ) ) : ?>
-						<summary> <?php echo esc_html ( $site_about ); ?> </summary>
-					<?php endif; ?>
-				</div>
-				
-				<aside id="footer-header" class="">
-				<?php do_action( "abbey_theme_footer_widgets" ); ?>
+		<footer id="site-footer" role="footer" class="row">	
+			<aside class="row" id="before-footer"> <?php do_action( "abbey_theme_before_footer" ) ; ?></aside> 
+			<section id="inner-footer" class="row">
+				<aside class="col-md-3" id="site-info">
+						<div class="text-center"><?php abbey_show_logo( "", "", false ); ?> 
+						<p class="small description"> <?php bloginfo( "description" ); ?> </p>
+					</div>
+					<address> 
+						<span class="text-capitalize"><?php _e( "Visit us:", "abbey" ); ?> </span>
+						<?php echo esc_html( abbey_get_contact( "address", "office" ) ) ; ?>. <br />
+						<span class="text-capitalize"><?php _e( "or Call:", "abbey" ); ?></span>
+						<?php echo esc_html( implode( abbey_get_contact( "tel" ), " , " ) ); ?>. <br/>
+						<span class="text-capitalize"><?php _e( "Email:", "abbey" ); ?></span>
+						<?php echo esc_html( implode( abbey_get_contact( "email" ), " , " ) ); ?>.
+					</address>
 				</aside>
-
-			</section>
-
-			<div class="clearfix"></div>
-
-			<div id="footer-bottom" class="row">
-				<div class="col-md-4"><?php echo sprintf(__( "All rights reserved &copy; %s", "abbey" ), date("Y") ); ?></div>
-				<div class="col-md-8">
-					<?php do_action( "abbey_theme_footer_credits" ); ?>
+				<aside class="col-md-3">
+				</aside>
+				<aside class="col-md-3">
+					<h4><?php _e( "Connect with us on social media", "abbey"); ?> </h4>
+					<?php abbey_social_menu(); ?>
+				</aside>
+				
+				<div class="md-50 text-center">
+					<p class="disclaimer small"><?php echo apply_filters( "abbey_theme_footer_disclaimer", 
+											__( "* All publications, articles, reviews published on this website should not be redistributed, republished or printed without our authorised consent", "abbey" 
+											) 
+									); ?>
+					</p>
+					<?php echo sprintf(__( "All rights reserved &copy; %s", "abbey" ), date("Y") ); ?>
 				</div>
-			</div>
-
+			</section>
+				
+				<div id="footer-bottom" class="row">
+					
+					<div class="">
+						<?php do_action( "abbey_theme_footer_credits" ); ?>
+					</div>
+				</div>
+			
 
 		</footer>
 

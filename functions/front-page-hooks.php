@@ -25,7 +25,7 @@ function abbey_header_address( $contact ){
 		</div>
 	';
 }
-add_action( "abbey_theme_footer_widgets", "abbey_header_address" );//hook to header_contact; check header.php //
+add_action( "abbey_theme_footer_contacts", "abbey_header_address" );//hook to header_contact; check header.php //
 
 function abbey_header_telephone( $contact ){
 	echo '
@@ -40,14 +40,14 @@ function abbey_header_telephone( $contact ){
 		</div>
 	';
 }
-add_action( "abbey_theme_footer_widgets", "abbey_header_telephone", 20 );
+add_action( "abbey_theme_footer_contacts", "abbey_header_telephone", 20 );
 
 function abbey_header_social_icons($contact){
 	echo '<div class="header-contacts" id="header-social-icons">';
 	abbey_social_menu();
 	echo '</div>';
 }
-add_action( "abbey_theme_footer_widgets", "abbey_header_social_icons", 30 );
+//add_action( "abbey_theme_footer_widgets", "abbey_header_social_icons", 30 );
 
 function abbey_slide_default_caption () {
 	global $abbey_defaults;

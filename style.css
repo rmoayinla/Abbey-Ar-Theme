@@ -31,6 +31,7 @@ body {
 .entry-content table th,
 .entry-content table tr:hover,
 #custom-header .navbar,
+#menu-social li a:active,
 #site-page #page-content-header,
 #custom-page .entry-content .well,
 #custom-page #page-content-header,
@@ -66,8 +67,10 @@ a.btn-default:hover,
 #link .secondary .active,
 #post-page .sidebar .widget-title,
 #site-footer #footer-bottom,
+#site-footer #before-footer,
 .pagination li.active > a,
 .navigation li.active > a,
+#menu-social li a:hover,
 #post-page .post-navigation .previous-post .previous-button:hover,
 #post-page .post-navigation .next-post .previous-button:hover,
 #post-page .post-navigation .previous-post .next-button:hover,
@@ -77,6 +80,7 @@ a.btn-default:hover,
   color: #fff;
 }
 .bg-gray,
+#menu-social li a:visited,
 #post-page .author-info {
   background-color: #ddd;
 }
@@ -117,6 +121,7 @@ a.btn-default,
 .navigation li > a,
 .pagination li > span,
 .navigation li > span,
+#menu-social li a,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
@@ -145,6 +150,7 @@ a.btn-default:hover {
 }
 .dark,
 .entry-content table th,
+#menu-social li a:active,
 #error-404-page .entry-content .page-header,
 #post-page .breadcrumb,
 #post-page .entry-content p em:only-child,
@@ -166,6 +172,7 @@ a.btn-default:hover {
 }
 .primary,
 #primary-menu .navbar-collapse .menu-item a,
+#menu-social li a:visited,
 #button .button-md,
 .btn-default,
 a.btn-default,
@@ -286,7 +293,8 @@ a.btn-default,
   padding-left: 0px !important;
 }
 .pad-large,
-#front-page .frontpage-sections {
+#front-page .frontpage-sections,
+#site-footer #inner-footer {
   padding-top: 80px;
   padding-bottom: 100px;
 }
@@ -330,15 +338,15 @@ a.btn-default,
   padding-bottom: 40px;
 }
 .outer-pad-small,
-#site-footer #footer-bottom {
+#site-footer #footer-bottom,
+#site-footer #before-footer {
   padding-top: 15px;
   padding-bottom: 15px;
 }
 .outer-pad-lg,
 #custom-page #page-content-header #page-title-wrap,
 #custom-page #page-sidebar,
-#quote-post-page #quote-content,
-#site-footer #inner-footer {
+#quote-post-page #quote-content {
   padding-top: 80px;
   padding-bottom: 80px;
 }
@@ -485,7 +493,8 @@ a.btn-default,
 .no-bottom-border,
 .entry-content table tr:last-child td,
 .page-header,
-#post-page .author-social-contacts a:hover {
+#post-page .author-social-contacts a:hover,
+#menu-social li a:hover {
   border-bottom: 0px;
 }
 .no-bottom-margin,
@@ -548,8 +557,7 @@ a.btn-default,
 #front-page #carousel #admin-profile,
 #site-page .entry-content,
 #post-page .entry-content .gallery,
-#site-footer,
-#site-footer #footer-bottom {
+#site-footer {
   margin-top: 30px;
 }
 .margin-bottom-md,
@@ -700,7 +708,8 @@ a.btn-default,
 .float-right,
 .entry-content figure.alignright,
 #primary-menu .navbar-collapse,
-#quote-post-page .entry-content footer:before {
+#quote-post-page .entry-content footer:before,
+#site-footer #footer-bottom .list-right {
   float: right;
 }
 .float-left,
@@ -708,6 +717,7 @@ a.btn-default,
 #front-page #contact .contact-icon,
 #gallery-post-page .entry-content .gallery-item,
 #gallery-post-page .gallery-pictures-widget .widget-content a,
+#site-footer #footer-bottom .list-left,
 #comments .comment-form-author,
 #comments .comment-form-email,
 .archives .post-panel-heading .top-post-info li,
@@ -744,7 +754,6 @@ a.btn-default,
 #gallery-post-page .entry-content .gallery-item,
 #gallery-post-page .gallery-pictures-widget .widget-content a,
 #link .primary,
-#site-footer #inner-footer .header-contacts,
 #comments .media .media-body .list-inline .collapse.in,
 .archives .categories-list .post-categories li,
 #search-page .categories-list .post-categories li,
@@ -761,6 +770,7 @@ a.btn-default,
 .heading-icon,
 .heading-icon + .heading-content,
 #content a:not(.btn),
+#menu-social li a,
 #quote-post-page .tags-list,
 .archives .categories-list,
 #search-page .categories-list,
@@ -884,7 +894,8 @@ a.btn-default,
 .no-sidebar .page-title-wrap,
 #post-page .author-social-contacts a,
 #post-page .entry-footer-heading,
-#site-page .sidebar .widget .widget-title {
+#site-page .sidebar .widget .widget-title,
+#menu-social li a {
   text-align: center;
 }
 .text-justify,
@@ -931,6 +942,7 @@ a.btn-default,
 #post-page .post-excerpt,
 #post-page .post-thumbnail-caption,
 #site-footer #inner-footer #site-about,
+#site-footer .disclaimer,
 #comments .media .media-body time,
 #comments .media .media-heading .secondary,
 .archives .post-panel-heading .top-post-info,
@@ -1101,12 +1113,15 @@ a.btn-default,
 #primary-icon-nav .fa {
   font-size: 18px;
 }
+#menu-social li a {
+  color: #FF6600;
+  margin-right: 7px;
+}
 .logo-small {
   width: 60px;
   height: 60px;
 }
-.logo-md,
-#site-footer #site-info .custom-logo {
+.logo-md {
   width: 120px;
   height: 120px;
 }
@@ -1310,7 +1325,8 @@ a.btn-default,
 #post-page .author-info .author-details {
   vertical-align: top;
 }
-#post-page .author-social-contacts a {
+#post-page .author-social-contacts a,
+#menu-social li a {
   border-radius: 50%;
   height: 36px;
   width: 36px;
@@ -1320,7 +1336,8 @@ a.btn-default,
   -o-transition: all 0.4s ease-in-out 0s;
   -moz-transition: all 0.4s ease-in-out 0s;
 }
-#post-page .author-social-contacts a:hover {
+#post-page .author-social-contacts a:hover,
+#menu-social li a:hover {
   color: #fff !important;
   transform: scale(1.2, 1.2);
 }
@@ -1649,20 +1666,47 @@ a.btn-default:hover {
   box-shadow: 2px 0px 2px #b34700;
   webkit-box-shadow: 2px 0px 2px #b34700;
 }
-#site-footer #inner-footer .header-contacts {
-  width: 30%;
-  vertical-align: top;
-}
 #site-footer #inner-footer .fa-2x {
   font-size: 20px;
 }
 #site-footer #site-info .custom-logo {
-  width: auto;
+  width: 240px;
+  height: auto;
 }
 #site-footer #site-info #site-name {
   font-size: 32px;
   margin-left: 10px;
   vertical-align: middle;
+}
+#site-footer #footer-bottom {
+  color: #000;
+}
+#site-footer #footer-bottom .list-right li {
+  transition: all 800ms ease-in-out 0s;
+  -webkit-transition: all 800ms ease-in-out 0s;
+  -o-transition: all 800ms ease-in-out 0s;
+  -moz-transition: all 800ms ease-in-out 0s;
+}
+#site-footer #footer-bottom .list-right li .oblique {
+  display: none;
+}
+#site-footer #footer-bottom .list-right li:hover .oblique {
+  display: block;
+}
+#site-footer #footer-bottom a {
+  transition: all 800ms ease-in-out 0s;
+  -webkit-transition: all 800ms ease-in-out 0s;
+  -o-transition: all 800ms ease-in-out 0s;
+  -moz-transition: all 800ms ease-in-out 0s;
+}
+#site-footer #footer-bottom a:link {
+  color: #ddd;
+}
+#site-footer #footer-bottom a:visited {
+  text-decoration: underline;
+}
+#site-footer #footer-bottom a:hover {
+  color: #fff;
 }
 #comments .parent {
   border-left: 3px solid #FF6600;
@@ -1816,7 +1860,8 @@ a.btn-default:hover {
 @media (min-width: 1027px) {
   .pad-large-lg,
   .pad-large,
-  #front-page .frontpage-sections {
+  #front-page .frontpage-sections,
+  #site-footer #inner-footer {
     padding-left: 120px;
     padding-right: 120px;
   }
@@ -1824,6 +1869,7 @@ a.btn-default:hover {
   #post-page .author-info,
   #post-page .related-posts,
   #site-footer #footer-bottom,
+  #site-footer #before-footer,
   .archives .archive-header,
   #search-page .archive-header,
   .mini-popup,
@@ -1838,8 +1884,7 @@ a.btn-default:hover {
     width: 70% !important;
     clear: both;
   }
-  .md-50,
-  #site-footer #inner-footer {
+  .md-50 {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
@@ -1899,7 +1944,8 @@ a.btn-default:hover {
 @media (min-width: 769px) and (max-width: 1026px) {
   .pad-large-md,
   .pad-large,
-  #front-page .frontpage-sections {
+  #front-page .frontpage-sections,
+  #site-footer #inner-footer {
     padding-left: 120px;
     padding-right: 120px;
   }
@@ -1907,6 +1953,7 @@ a.btn-default:hover {
   #post-page .author-info,
   #post-page .related-posts,
   #site-footer #footer-bottom,
+  #site-footer #before-footer,
   .archives .archive-header,
   #search-page .archive-header,
   .mini-popup,
@@ -1917,8 +1964,7 @@ a.btn-default:hover {
   .float-right-responsive {
     float: right;
   }
-  .md-50,
-  #site-footer #inner-footer {
+  .md-50 {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
@@ -1950,7 +1996,8 @@ a.btn-default:hover {
   }
   .pad-large-sm,
   .pad-large,
-  #front-page .frontpage-sections {
+  #front-page .frontpage-sections,
+  #site-footer #inner-footer {
     padding-left: 60px;
     padding-right: 60px;
   }
@@ -1958,6 +2005,7 @@ a.btn-default:hover {
   #post-page .author-info,
   #post-page .related-posts,
   #site-footer #footer-bottom,
+  #site-footer #before-footer,
   .archives .archive-header,
   #search-page .archive-header,
   .mini-popup,
@@ -1974,8 +2022,7 @@ a.btn-default:hover {
   .float-right-responsive {
     float: left;
   }
-  .md-50,
-  #site-footer #inner-footer {
+  .md-50 {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
@@ -2037,7 +2084,8 @@ a.btn-default:hover {
 @media (max-width: 468px) {
   .pad-large-xs,
   .pad-large,
-  #front-page .frontpage-sections {
+  #front-page .frontpage-sections,
+  #site-footer #inner-footer {
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -2061,6 +2109,7 @@ a.btn-default:hover {
   #post-page .author-info,
   #post-page .related-posts,
   #site-footer #footer-bottom,
+  #site-footer #before-footer,
   .archives .archive-header,
   #search-page .archive-header,
   .mini-popup,
@@ -2079,15 +2128,13 @@ a.btn-default:hover {
     padding-left: 15px !important;
     padding-right: 15px !important;
   }
-  .md-50,
-  #site-footer #inner-footer {
+  .md-50 {
     width: 85%;
     margin-left: auto;
     margin-right: auto;
     clear: both;
   }
   .block-mobile,
-  #site-footer #inner-footer .header-contacts,
   .heading-icon {
     display: block !important;
   }
@@ -2110,6 +2157,8 @@ a.btn-default:hover {
   #primary-menu .navbar-header .navbar-toggle,
   .entry-content,
   #primary-menu .navbar-collapse,
+  #site-footer #footer-bottom .list-left,
+  #site-footer #footer-bottom .list-right,
   .category-archive-posts .post-panel:not(.post-count-1),
   #news-archive-posts .post-panel:not(.post-count-1),
   #author-archive-posts .post-panel:not(.post-count-1),
@@ -2167,7 +2216,6 @@ a.btn-default:hover {
     width: 46%;
   }
   .full-width-mobile,
-  #site-footer #inner-footer .header-contacts,
   .heading-icon + .heading-content {
     width: 100%;
   }

@@ -17,7 +17,7 @@ Version: 0.1
 @screen-md-min: (@screen-sm-max + 1); // 768 + 1 = 769 //
 
 
-@import "structure.less";
+
 
 body, #content, 
 .post-slide{
@@ -39,21 +39,12 @@ form{
 	direction: ltr;
 	
 }
-#news-archive .top-post-info{
-	&:extend(.no-list-style);
-	li + li:after{
-		content: "|";
-		&:extend(.pad-xs);
-	}
-}
-.archive-description{
-	font-size: 20px;
+
+.archive-description, .small{
+	font-size: 13px;
 }
 
 ul.pagination{
-	li > a, li > span{
-		&:extend(.float-right);
-	}
 	li:first-child a, li:first-child span, 
 	li:last-child a, li:last-child span{
 		border-radius: 0px;

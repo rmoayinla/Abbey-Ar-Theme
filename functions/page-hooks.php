@@ -51,13 +51,39 @@ function abbey_footer_menu(){
 		'theme_location'	=>	'footer',
 		'depth'             => 1,
 	    'container'         => 'ul',
-	    'menu_class'   		=> 'list-inline'
+	    'menu_class'   		=> 'list-inline list-left'
 	);
 	abbey_nav_menu( $args );
 }
 
 add_action ( "abbey_theme_footer_credits", "abbey_footer_menu" );
 
+function abbey_theme_details(){
+	$current_theme = wp_get_theme();
+	?>
+	<ul class="list-inline list-right">
+		<li> <span class="oblique"><?php _e( "Powered by:", "abbey" ); ?></span>
+				<a href="www.wordpress.org" target="_blank"><?php _e( "Wordpress", "abbey" ); ?></a>
+		</li>
+		<li> <span class="oblique"><?php _e( "Theme:", "abbey" ); ?></span>
+			<?php echo sprintf( '<a href="%1$s" target="_blank">%2$s </a>',
+								 esc_url( $current_theme->get( "ThemeURI" ) ), 
+								 esc_html( $current_theme->get( "Name" ) ) 
+								); ?>
+		</li>
+		<li> <span class="oblique"><?php _e( "Version:", "abbey" ); ?></span>
+				<span><?php echo $current_theme->get( "Version" ); ?> </span>
+		</li>
+		<li> <span class="oblique"><?php _e( "Theme design:", "abbey" ); ?></span>
+			<?php echo sprintf( '<a href="%1$s" target="_blank">%2$s </a>',
+								 esc_url( $current_theme->get( "AuthorURI" ) ), 
+								 esc_html( $current_theme->get( "Author" ) ) 
+								); ?>
+		</li>
+	</ul>
+		<?php
+}
+add_action ( "abbey_theme_footer_credits", "abbey_theme_details", 20 );
 function abbey_post_nav( $title = "" ){
 	$prev_post = get_previous_post(); // previous post//
 	$next_post = get_next_post(); // next post //
