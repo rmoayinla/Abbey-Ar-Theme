@@ -1681,18 +1681,6 @@ a.btn-default:hover {
 #site-footer #footer-bottom {
   color: #000;
 }
-#site-footer #footer-bottom .list-right li {
-  transition: all 800ms ease-in-out 0s;
-  -webkit-transition: all 800ms ease-in-out 0s;
-  -o-transition: all 800ms ease-in-out 0s;
-  -moz-transition: all 800ms ease-in-out 0s;
-}
-#site-footer #footer-bottom .list-right li .oblique {
-  display: none;
-}
-#site-footer #footer-bottom .list-right li:hover .oblique {
-  display: block;
-}
 #site-footer #footer-bottom a {
   transition: all 800ms ease-in-out 0s;
   -webkit-transition: all 800ms ease-in-out 0s;

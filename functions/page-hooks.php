@@ -62,21 +62,29 @@ function abbey_theme_details(){
 	$current_theme = wp_get_theme();
 	?>
 	<ul class="list-inline list-right">
-		<li> <span class="oblique"><?php _e( "Powered by:", "abbey" ); ?></span>
-				<a href="www.wordpress.org" target="_blank"><?php _e( "Wordpress", "abbey" ); ?></a>
+		<li> 
+			<?php echo sprintf( '<a href="www.wordpress.org" target="_blank" data-toggle="tooltip" title="%1$s">%2$s</a>',
+								__( "Powered by:", "abbey" ),
+								__( "Wordpress", "abbey" )
+							); ?>
 		</li>
-		<li> <span class="oblique"><?php _e( "Theme:", "abbey" ); ?></span>
-			<?php echo sprintf( '<a href="%1$s" target="_blank">%2$s </a>',
+		<li> 
+			<?php echo sprintf( '<a href="%1$s" target="_blank" data-toggle="tooltip" title="%2$s">%3$s </a>',
 								 esc_url( $current_theme->get( "ThemeURI" ) ), 
+								 esc_attr( __( "Built on:", "abbey" ) ),
 								 esc_html( $current_theme->get( "Name" ) ) 
 								); ?>
 		</li>
-		<li> <span class="oblique"><?php _e( "Version:", "abbey" ); ?></span>
-				<span><?php echo $current_theme->get( "Version" ); ?> </span>
+		<li> 
+			<?php echo sprintf( '<a href="#" data-toggle="tooltip" title="%1$s">%2$s</a>',
+									__( "Theme version:", "abbey" ),
+									$current_theme->get( "Version" )
+							); ?> 
 		</li>
-		<li> <span class="oblique"><?php _e( "Theme design:", "abbey" ); ?></span>
-			<?php echo sprintf( '<a href="%1$s" target="_blank">%2$s </a>',
+		<li> 
+			<?php echo sprintf( '<a href="%1$s" target="_blank" data-toggle="tooltip" title="%2$s">%3$s </a>',
 								 esc_url( $current_theme->get( "AuthorURI" ) ), 
+								 __( "Theme design:", "abbey" ),
 								 esc_html( $current_theme->get( "Author" ) ) 
 								); ?>
 		</li>

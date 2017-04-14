@@ -203,7 +203,8 @@
 
 
 	});//end of fucntion 
-		
+	
+	 $('[data-toggle="tooltip"]').tooltip(); 
 		
 	$(function(){
 		$("#floating-video").affix({
