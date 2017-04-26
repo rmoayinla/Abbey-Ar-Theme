@@ -151,19 +151,21 @@
 			&:extend(.dark);
 		}
 	}
-	.post-panel{
-		&:extend(.inline, .float-left, .float-none-xs);
-	}
-	.post-panel:not(.post-count-1){
-		&:extend(.one-third-largescreen, .no-overflow);
-		height: 320px;
-		transition: all 2s ease-in-out;
-	}
-	.post-panel:hover{
-		height: auto;
-	}
-	.post-panel.post-count-1{
-		&:extend(.half-largescreen);
+	#search-results{
+		.post-panel{
+			&:extend(.inline, .float-left, .float-none-xs);
+		}
+		.post-panel:not(.post-count-1){
+			&:extend(.one-third-largescreen, .no-overflow);
+			height: 320px;
+			transition: all 2s ease-in-out;
+		}
+		.post-panel:hover{
+			height: auto;
+		}
+		.post-panel.post-count-1{
+			&:extend(.half-largescreen);
+		}
 	}
 
 }

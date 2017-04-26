@@ -89,6 +89,7 @@ a.btn-default:hover,
 #custom-header #inner-header,
 #custom-header #inner-header .navbar-header .navbar-toggle .icon-bar,
 #primary-menu,
+.navbar-form .search-submit,
 #front-page #carousel .posts-slides .post-slide,
 #site-page .page-content,
 #custom-page #page-sidebar .widget_abbey-contact-form,
@@ -150,6 +151,7 @@ a.btn-default:hover {
 }
 .dark,
 .entry-content table th,
+.navbar-form .search-submit:hover,
 #menu-social li a:active,
 #error-404-page .entry-content .page-header,
 #post-page .breadcrumb,
@@ -174,6 +176,7 @@ a.btn-default:hover {
 }
 .primary,
 #primary-menu .navbar-collapse .menu-item a,
+.navbar-form .search-submit,
 #menu-social li a:visited,
 #button .button-md,
 .btn-default,
@@ -427,6 +430,7 @@ a.btn-default,
 .entry-content .gallery-item,
 #custom-header .navbar,
 #primary-menu,
+.navbar-form .search-submit,
 #front-page #contact .panel-default,
 #site-page .entry-content blockquote,
 #error-404-page .entry-content .page-header,
@@ -727,7 +731,7 @@ a.btn-default,
 #news-archive-posts .post-panel:not(.post-count-1),
 #author-archive-posts .post-panel:not(.post-count-1),
 #recordings-archive-posts .post-panel:not(.post-count-1),
-#search-page .post-panel {
+#search-page #search-results .post-panel {
   float: left;
 }
 .float-none,
@@ -771,7 +775,7 @@ a.btn-default,
 #recordings-archive-posts .post-panel:not(.post-count-1),
 .heading-icon,
 .heading-icon + .heading-content,
-#search-page .post-panel,
+#search-page #search-results .post-panel,
 #content a:not(.btn),
 #menu-social li a,
 #quote-post-page .tags-list,
@@ -851,6 +855,7 @@ a.btn-default,
   position: relative;
 }
 .absolute,
+.navbar-form .search-submit,
 #site-page .entry-content blockquote:before,
 #site-page .entry-content blockquote:after,
 #custom-page #page-sidebar .widget:after,
@@ -877,7 +882,7 @@ a.btn-default,
 #gallery-post-page .entry-content .gallery-icon,
 #gallery-post-page .gallery-image,
 #post-page .sidebar .widget,
-#search-page .post-panel:not(.post-count-1),
+#search-page #search-results .post-panel:not(.post-count-1),
 #gallery-post-page .gallery-pictures-widget .widget-content a {
   overflow: hidden;
 }
@@ -1125,6 +1130,17 @@ a.btn-default,
 }
 #primary-icon-nav .fa {
   font-size: 18px;
+}
+.navbar-form .search-submit {
+  left: 85%;
+  top: 5px;
+  transition: all 800ms linear 0s;
+  -webkit-transition: all 800ms linear 0s;
+  -o-transition: all 800ms linear 0s;
+  -moz-transition: all 800ms linear 0s;
+}
+.navbar-form .search-submit .fa {
+  font-size: 20px;
 }
 #menu-social li a {
   color: #FF6600;
@@ -1760,11 +1776,11 @@ a.btn-default:hover {
 .heading-icon + .heading-content {
   width: 75%;
 }
-#search-page .post-panel:not(.post-count-1) {
+#search-page #search-results .post-panel:not(.post-count-1) {
   height: 320px;
   transition: all 2s ease-in-out;
 }
-#search-page .post-panel:hover {
+#search-page #search-results .post-panel:hover {
   height: auto;
 }
 .widget_abbey_recent_posts {
@@ -1937,7 +1953,7 @@ a.btn-default:hover {
   #news-archive-posts .post-panel:not(.post-count-1),
   #author-archive-posts .post-panel:not(.post-count-1),
   #recordings-archive-posts .post-panel:not(.post-count-1),
-  #search-page .post-panel.post-count-1 {
+  #search-page #search-results .post-panel.post-count-1 {
     width: 49%;
     margin-right: 5px;
   }
@@ -1945,7 +1961,7 @@ a.btn-default:hover {
   .entry-content .gallery-columns-3 .gallery-item,
   .entry-content div[class*="columns-4"] .gallery-item,
   #post-page .sidebar,
-  #search-page .post-panel:not(.post-count-1) {
+  #search-page #search-results .post-panel:not(.post-count-1) {
     width: 31%;
   }
   .two-third-largescreen {
@@ -2004,7 +2020,7 @@ a.btn-default:hover {
   #news-archive-posts .post-panel:not(.post-count-1),
   #author-archive-posts .post-panel:not(.post-count-1),
   #recordings-archive-posts .post-panel:not(.post-count-1),
-  #search-page .post-panel.post-count-1 {
+  #search-page #search-results .post-panel.post-count-1 {
     width: 48%;
   }
 }
@@ -2190,7 +2206,7 @@ a.btn-default:hover {
   #news-archive-posts .post-panel:not(.post-count-1),
   #author-archive-posts .post-panel:not(.post-count-1),
   #recordings-archive-posts .post-panel:not(.post-count-1),
-  #search-page .post-panel,
+  #search-page #search-results .post-panel,
   #comments .comment-form-author,
   #comments .comment-form-email {
     float: none;
@@ -2266,7 +2282,7 @@ a.btn-default:hover {
     left: 5%;
   }
   #floating-video.affix {
-    right: 15px;
-    bottom: 300px;
+    top: unset;
+    bottom: 10px;
   }
 }

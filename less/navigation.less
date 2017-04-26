@@ -79,7 +79,20 @@
 		}
 	}
 }
-
+.navbar-form{
+	.search-submit{
+		&:extend(.absolute, .no-border, .bg-white, .primary);
+		left: 85%;
+		top: 5px;
+		.transition(all;800ms;linear);
+		.fa{
+			font-size: 20px;
+		}
+		&:hover{
+			&:extend(.dark);
+		}
+	}
+}
 #menu-social{
 	li a{
 		&:extend( #post-page .author-social-contacts a );

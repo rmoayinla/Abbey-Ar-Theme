@@ -432,8 +432,9 @@ function abbey_add_to_primary_menu ( $items, $args ) {
 	if( 'primary' === $args->theme_location ) {
 		$items .= '</ul>';
 		$items .= sprintf( '<form class="navbar-form navbar-left" action="%1$s/" method="get">
-		        				<div class="form-group">
-		          					<input type="search" class="form-control" placeholder="Search" name="s" />
+		        				<div class="form-group relative">
+		          					<input type="search" class="form-control" placeholder="Click on the search icon to search" name="s" />
+		          					<button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
 		        				</div>
 	        				</form>', 
       						esc_url( home_url() )
