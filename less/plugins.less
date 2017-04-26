@@ -5,6 +5,9 @@
 	.popup-body{
 		&:extend(.pad-small, .inner-padding-mobile);
 	}
+	img.wp-post-image{
+		&:extend(.full-width-image);
+	}
 }
 .mini-popup{
 	max-width: 85%;
@@ -12,9 +15,13 @@
 	width: 500px;
 	&:extend(.inner-pad-responsive, .pad-small);
 }
+
+.rtl .mini-popup, .rtl .full-popup{
+	direction: rtl;
+}
 .full-popup{
 	width: 700px;
-	max-width: 90%;
+	max-width: 94%;
 	left: 25%;
 	top: 25px;
 	.opacity(0);

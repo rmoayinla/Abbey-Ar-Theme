@@ -156,9 +156,11 @@ a.btn-default:hover {
 #post-page .entry-content p em:only-child,
 #post-page .entry-content .slick-prev:before,
 #post-page .entry-content .slick-next:before,
+#site-footer .disclaimer,
 #comments .media .media-body time,
 .archives .post-panel-heading .top-post-info,
 #search-page .post-panel-heading .top-post-info,
+#search-page .archive-header .search-keyword,
 #custom-page .breadcrumb,
 .archives .breadcrumb,
 #search-page .breadcrumb {
@@ -180,6 +182,7 @@ a.btn-default,
 #link .secondary,
 .author-rating .fa-star,
 #post-page .sidebar a:not(.btn),
+.sidebar .btn-link,
 #content a:not(.btn),
 .pagination li > a,
 .navigation li > a,
@@ -428,8 +431,6 @@ a.btn-default,
 #site-page .entry-content blockquote,
 #error-404-page .entry-content .page-header,
 #gallery-post-page .gallery-widgets:last-of-type,
-.btn-default:hover,
-a.btn-default:hover,
 .thumbnail-post {
   border: 0px;
   border-radius: 0px;
@@ -725,7 +726,8 @@ a.btn-default,
 .category-archive-posts .post-panel:not(.post-count-1),
 #news-archive-posts .post-panel:not(.post-count-1),
 #author-archive-posts .post-panel:not(.post-count-1),
-#recordings-archive-posts .post-panel:not(.post-count-1) {
+#recordings-archive-posts .post-panel:not(.post-count-1),
+#search-page .post-panel {
   float: left;
 }
 .float-none,
@@ -769,6 +771,7 @@ a.btn-default,
 #recordings-archive-posts .post-panel:not(.post-count-1),
 .heading-icon,
 .heading-icon + .heading-content,
+#search-page .post-panel,
 #content a:not(.btn),
 #menu-social li a,
 #quote-post-page .tags-list,
@@ -795,7 +798,9 @@ a.btn-default,
 #post-page .post-navigation .previous-post .previous-button,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
-#post-page .post-navigation .next-post .next-button {
+#post-page .post-navigation .next-post .next-button,
+.archives .pagination,
+#search-page .pagination {
   display: block;
 }
 .table-cell,
@@ -872,6 +877,7 @@ a.btn-default,
 #gallery-post-page .entry-content .gallery-icon,
 #gallery-post-page .gallery-image,
 #post-page .sidebar .widget,
+#search-page .post-panel:not(.post-count-1),
 #gallery-post-page .gallery-pictures-widget .widget-content a {
   overflow: hidden;
 }
@@ -895,6 +901,8 @@ a.btn-default,
 #post-page .author-social-contacts a,
 #post-page .entry-footer-heading,
 #site-page .sidebar .widget .widget-title,
+.archives .pagination,
+#search-page .pagination,
 #menu-social li a {
   text-align: center;
 }
@@ -942,6 +950,7 @@ a.btn-default,
 #post-page .post-excerpt,
 #post-page .post-thumbnail-caption,
 #site-footer #inner-footer #site-about,
+#site-footer #site-info address,
 #site-footer .disclaimer,
 #comments .media .media-body time,
 #comments .media .media-heading .secondary,
@@ -963,6 +972,8 @@ a.btn-default,
 #floating-video.affix iframe,
 .archives .post-thumbnail img,
 #search-page .post-thumbnail img,
+.mini-popup img.wp-post-image,
+.full-popup img.wp-post-image,
 #gallery-post-page .gallery-pictures-widget .widget-content img {
   width: 100% !important;
 }
@@ -984,6 +995,8 @@ a.btn-default,
 #floating-video.affix iframe,
 .archives .post-thumbnail img,
 #search-page .post-thumbnail img,
+.mini-popup img.wp-post-image,
+.full-popup img.wp-post-image,
 #gallery-post-page .gallery-pictures-widget .widget-content img {
   height: auto;
 }
@@ -1512,10 +1525,6 @@ a.btn-default {
 a.btn-default:hover {
   -webkit-box-shadow: 0px 1px 2px #ddd;
   box-shadow: 0px 1px 2px #ddd;
-  transform: translate3d(0px, -2px, 0px);
-  -webkit-transform: translate3d(0px, -2px, 0px);
-  -o-transform: translate3d(0px, -2px, 0px);
-  -moz-transform: translate3d(0px, -2px, 0px);
 }
 .more-link {
   -webkit-box-shadow: 0px 4px 4px #ffa366;
@@ -1678,6 +1687,16 @@ a.btn-default:hover {
   margin-left: 10px;
   vertical-align: middle;
 }
+#site-footer #site-info address {
+  line-height: 1.5em;
+}
+#site-footer .line-divider {
+  border: 1px solid #ddd;
+  clear: both;
+}
+#site-footer .copyright {
+  font-size: 17px;
+}
 #site-footer #footer-bottom {
   color: #000;
 }
@@ -1741,6 +1760,13 @@ a.btn-default:hover {
 .heading-icon + .heading-content {
   width: 75%;
 }
+#search-page .post-panel:not(.post-count-1) {
+  height: 320px;
+  transition: all 2s ease-in-out;
+}
+#search-page .post-panel:hover {
+  height: auto;
+}
 .widget_abbey_recent_posts {
   padding-bottom: 30px !important;
 }
@@ -1754,9 +1780,13 @@ a.btn-default:hover {
   left: 45%;
   width: 500px;
 }
+.rtl .mini-popup,
+.rtl .full-popup {
+  direction: rtl;
+}
 .full-popup {
   width: 700px;
-  max-width: 90%;
+  max-width: 94%;
   left: 25%;
   top: 25px;
   opacity: 0;
@@ -1906,14 +1936,16 @@ a.btn-default:hover {
   .category-archive-posts .post-panel:not(.post-count-1),
   #news-archive-posts .post-panel:not(.post-count-1),
   #author-archive-posts .post-panel:not(.post-count-1),
-  #recordings-archive-posts .post-panel:not(.post-count-1) {
+  #recordings-archive-posts .post-panel:not(.post-count-1),
+  #search-page .post-panel.post-count-1 {
     width: 49%;
     margin-right: 5px;
   }
   .one-third-largescreen,
   .entry-content .gallery-columns-3 .gallery-item,
   .entry-content div[class*="columns-4"] .gallery-item,
-  #post-page .sidebar {
+  #post-page .sidebar,
+  #search-page .post-panel:not(.post-count-1) {
     width: 31%;
   }
   .two-third-largescreen {
@@ -1971,7 +2003,8 @@ a.btn-default:hover {
   .category-archive-posts .post-panel:not(.post-count-1),
   #news-archive-posts .post-panel:not(.post-count-1),
   #author-archive-posts .post-panel:not(.post-count-1),
-  #recordings-archive-posts .post-panel:not(.post-count-1) {
+  #recordings-archive-posts .post-panel:not(.post-count-1),
+  #search-page .post-panel.post-count-1 {
     width: 48%;
   }
 }
@@ -2111,6 +2144,7 @@ a.btn-default:hover {
   .post-panel .post-panel-heading,
   .post-panel .post-excerpts,
   .post-panel .post-panel-footer,
+  .sidebar,
   .mini-popup .popup-body,
   .full-popup .popup-body {
     padding-left: 15px !important;
@@ -2121,6 +2155,11 @@ a.btn-default:hover {
     margin-left: auto;
     margin-right: auto;
     clear: both;
+  }
+  .text-center-mobile,
+  #site-footer #footer-bottom .list-left,
+  #site-footer #footer-bottom .list-right {
+    text-align: center;
   }
   .block-mobile,
   .heading-icon {
@@ -2151,12 +2190,13 @@ a.btn-default:hover {
   #news-archive-posts .post-panel:not(.post-count-1),
   #author-archive-posts .post-panel:not(.post-count-1),
   #recordings-archive-posts .post-panel:not(.post-count-1),
+  #search-page .post-panel,
   #comments .comment-form-author,
   #comments .comment-form-email {
     float: none;
   }
   #primary-menu .navbar-header {
-    padding: 10px 10px 40px 10px;
+    padding: 10px 10px 5px 10px;
     text-align: center;
   }
   #primary-menu .navbar-header .navbar-brand {
@@ -2168,9 +2208,6 @@ a.btn-default:hover {
   }
   #primary-menu .navbar-nav {
     padding-right: 0px;
-  }
-  #primary-menu .collapse.in {
-    animation: slideintop 3s forwards;
   }
   .navbar-collapse.in {
     overflow-y: unset !important;

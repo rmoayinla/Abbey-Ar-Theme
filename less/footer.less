@@ -33,18 +33,29 @@
 		.description{
 			&:extend(.margin-top-xs, .strong);
 		}
+		address{
+			line-height: 1.5em; 
+			&:extend(.oblique);
+		}
 
 	}
 	.disclaimer{
-		&:extend(.oblique);
+		&:extend(.oblique, .dark);
+	}
+	.line-divider{
+		border: 1px solid @gray-color;
+		clear: both;
+	}
+	.copyright{
+		font-size: 17px;
 	}
 	#footer-bottom{
 		color: #000;
 		.list-left{
-			&:extend(.float-left, .float-none-xs);
+			&:extend(.float-left, .float-none-xs, .text-center-mobile);
 		}
 		.list-right{
-			&:extend(.float-right, .float-none-xs);
+			&:extend(.float-right, .float-none-xs, .text-center-mobile);
 		}
 		a{
 			.transition(all,800ms,ease-in-out);

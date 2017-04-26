@@ -15,40 +15,42 @@ $abbey_query = array();
 
 	<main id="<?php abbey_theme_page_id(); ?>" class="row">
 		
-		<header id="site-content-header" class="text-center">
+		<header id="site-content-header" class="text-center archive-header">
 			<h2 class="page-header no-margin"> 
-				<?php echo sprintf( __( "Search results for <span class='search-keyword'>%s</span>", "abbey" ), 
-										get_search_query() ); ?> 
+				<i class="fa fa-search"></i>
+				<?php echo sprintf( __( "Search results for '<span class='search-keyword'>%s</span>'", "abbey" ), 
+										get_search_query() 
+								); ?> 
 			</h2>
-			<p class="description h4"> <?php  ?> </p>
 			<div id="search-form"> <?php get_search_form(); ?></div>
 		</header>
 
 		<section id="content" class="row">
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
 				
-				<div class="col-md-3" id="search-results-summary">
-					<ul class="list-group">
-						<?php do_action( "abbey_search_page_summary", $abbey_query ); ?>
-					</ul>
+				<div class="" id="search-results-summary">
+					<ul class="list-group"><?php do_action( "abbey_search_page_summary", $abbey_query ); ?></ul>
 				</div>
 
-				<div id="search-results" class="col-md-6 col-md-offset-1">
+				<div id="search-results" class="">
 					
 					<?php while ( have_posts() ) : the_post(); $count++; ?>
 					
 						<?php get_template_part("templates/content", "archive"); ?>
 
 					<?php endwhile; ?> 
-					<div><?php the_posts_pagination();?></div>
+					
+					<div class="navigation" role="navigation"><?php abbey_posts_pagination();?></div>
 				</div>
 
 		
 				<?php else : get_template_part("templates/content", "archive-none"); ?>
+
+			<?php endif; ?>	
 		</section>
 
 
-	<?php endif; ?>
+	
 		
 
 	</main>		<?php
