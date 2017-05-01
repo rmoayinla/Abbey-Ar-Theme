@@ -12,7 +12,7 @@
 	}
 	.post-panel.post-count-1{
 		&:extend(.bg-light, .border-radius-md, .margin-bottom-md);
-		.post-panel-heading, .post-panel-footer{
+		.post-panel-heading{
 			&:extend(.pad-medium);
 		}
 
@@ -41,7 +41,7 @@
 		}
 	}//.post-panel-heading
 	.post-panel-footer{
-		&:extend(.font-small, .text-right);
+		&:extend(.font-small, .text-right, .no-top-padding, .no-bottom-padding, .margin-top-md);
 		.fa-fw{
 			&:extend(.strong);
 			font-size: 20px;

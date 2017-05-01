@@ -38,6 +38,7 @@ body {
 #post-page .entry-content figure.alignleft,
 #post-page .entry-content figure.alignright,
 #post-page .entry-content figure.alignnone,
+#post-page .post-taxonomies,
 #post-page .related-posts,
 #gallery-post-page .gallery-widgets:nth-child(even):not(:last-of-type),
 #link .secondary:hover,
@@ -58,7 +59,7 @@ body {
 .bg-dark,
 #custom-header #header-top,
 #primary-menu .navbar-collapse .menu-item a:hover,
-#post-page .author-social-contacts a:hover,
+#post-page .social-contacts a:hover,
 #button .button-md:hover,
 .btn-primary,
 a.btn-primary,
@@ -75,7 +76,8 @@ a.btn-default:hover,
 #post-page .post-navigation .next-post .previous-button:hover,
 #post-page .post-navigation .previous-post .next-button:hover,
 #post-page .post-navigation .next-post .next-button:hover,
-#post-page #post-cats .categories-list a[rel='category']:hover {
+#post-page .categories-list a[rel='category']:hover,
+#post-page .terms-list a[rel='category']:hover {
   background-color: #b34700;
   color: #fff;
 }
@@ -94,7 +96,7 @@ a.btn-default:hover,
 #site-page .page-content,
 #custom-page #page-sidebar .widget_abbey-contact-form,
 #post-page .single-post-panel,
-#post-page .author-social-contacts a,
+#post-page .social-contacts a,
 #quote-post-page #post-content-header,
 #quote-post-page .entry-content,
 #gallery-post-page .entry-content .gallery-item:hover,
@@ -127,7 +129,8 @@ a.btn-default,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
 #post-page .post-navigation .next-post .next-button,
-#post-page #post-cats .categories-list a[rel='category'],
+#post-page .categories-list a[rel='category'],
+#post-page .terms-list a[rel='category'],
 #gallery-post-page #post-content-header {
   background-color: #fff;
   color: #000;
@@ -169,7 +172,8 @@ a.btn-default:hover {
   color: #b34700;
 }
 .gray,
-#post-page #post-cats .cats-note,
+#post-page .categories-list .cats-note,
+#post-page .terms-list .cats-note,
 #post-page .post-thumbnail-caption,
 #comments .media .media-heading .secondary {
   color: #ddd;
@@ -195,13 +199,14 @@ a.btn-default,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
 #post-page .post-navigation .next-post .next-button,
-#post-page #post-cats .categories-list a[rel='category'] {
+#post-page .categories-list a[rel='category'],
+#post-page .terms-list a[rel='category'] {
   color: #FF6600;
 }
 .full-width,
 .entry-content .gallery-columns-1 .gallery-item,
 #sitehead #header-top .alert-dismissable,
-#post-page .author-social-contacts,
+#post-page .social-contacts,
 .archives .post-thumbnail iframe,
 #search-page .post-thumbnail iframe {
   width: 100%;
@@ -264,7 +269,6 @@ a.btn-default,
 #site-page .entry-content blockquote,
 #custom-page #page-content-header,
 #post-page #content,
-#post-page .author-info,
 #quote-post-page .post-entry,
 #quote-post-page .entry-content,
 #gallery-post-page #quote-content,
@@ -274,8 +278,6 @@ a.btn-default,
 #search-page #content,
 .archives .post-panel.post-count-1 .post-panel-heading,
 #search-page .post-panel.post-count-1 .post-panel-heading,
-.archives .post-panel.post-count-1 .post-panel-footer,
-#search-page .post-panel.post-count-1 .post-panel-footer,
 #quote-post-page #post-content-header,
 #gallery-post-page #post-content-header {
   padding: 30px;
@@ -284,16 +286,12 @@ a.btn-default,
 .no-outer-padding,
 .pagination,
 .navigation,
-#post-page .post-navigation .previous-post,
-#post-page .post-navigation .next-post,
 .archives .archive-posts-summary .list-group,
 #search-page .archive-posts-summary .list-group {
   padding-right: 0px !important;
 }
 .no-padding-left,
 .no-outer-padding,
-#post-page .post-navigation .previous-post,
-#post-page .post-navigation .next-post,
 .archives .archive-posts-summary .list-group,
 #search-page .archive-posts-summary .list-group {
   padding-left: 0px !important;
@@ -312,6 +310,7 @@ a.btn-default,
 .inner-pad-small,
 #custom-page #page-sidebar,
 #post-page .entry-header,
+#post-page .post-taxonomies,
 #post-page .post-thumbnail-caption,
 #post-page .sidebar .widget,
 #post-page .sidebar .widget-title,
@@ -336,8 +335,8 @@ a.btn-default,
 .outer-pad-medium,
 #sitehead #admin-info,
 #site-page .inner-content,
-#post-page .post-navigation,
-#post-page .related-posts,
+#post-page .post-taxonomies,
+#post-page .entry-footer-info,
 .archives .archive-header,
 #search-page .archive-header {
   padding-top: 40px;
@@ -371,7 +370,7 @@ a.btn-default,
 .entry-content table td,
 #custom-page #page-sidebar,
 #post-page .entry-content h2,
-#post-page .entry-footer-heading,
+#post-page .entry-footer-info .entry-footer-heading,
 #post-page .sidebar .widget,
 #author-archive-posts .post-excerpts {
   padding-bottom: 15px;
@@ -407,11 +406,17 @@ a.btn-default,
 #post-page .post-navigation {
   padding-right: 0px;
 }
-.no-bottom-padding {
+.no-bottom-padding,
+.archives .post-panel-footer,
+#search-page .post-panel-footer,
+#quote-post-page .entry-content footer {
   padding-bottom: 0px;
 }
 .no-top-padding,
-#site-page .sidebar .widget {
+#site-page .sidebar .widget,
+.archives .post-panel-footer,
+#search-page .post-panel-footer,
+#quote-post-page .entry-content footer {
   padding-top: 0px;
 }
 .no-padding,
@@ -460,7 +465,8 @@ a.btn-default,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
 #post-page .post-navigation .next-post .next-button,
-#post-page #post-cats .categories-list a[rel='category'],
+#post-page .categories-list a[rel='category'],
+#post-page .terms-list a[rel='category'],
 #gallery-post-page .entry-content .gallery-item {
   border: 1px solid #b34700;
 }
@@ -498,7 +504,7 @@ a.btn-default,
 .no-bottom-border,
 .entry-content table tr:last-child td,
 .page-header,
-#post-page .author-social-contacts a:hover,
+#post-page .social-contacts a:hover,
 #menu-social li a:hover {
   border-bottom: 0px;
 }
@@ -537,7 +543,7 @@ a.btn-default,
 #post-page .entry-content p em:only-child,
 #post-page .author-info .author-description,
 #post-page .categories-list,
-#post-page .entry-footer-heading,
+#post-page .entry-footer-info .entry-footer-heading,
 .more-link,
 #post-page .sidebar .widget + .widget,
 #comments ol.children,
@@ -562,7 +568,10 @@ a.btn-default,
 #front-page #carousel #admin-profile,
 #site-page .entry-content,
 #post-page .entry-content .gallery,
-#site-footer {
+#site-footer,
+.archives .post-panel-footer,
+#search-page .post-panel-footer,
+#quote-post-page .entry-content footer {
   margin-top: 30px;
 }
 .margin-bottom-md,
@@ -570,7 +579,7 @@ a.btn-default,
 #front-page #contact .contact-wrapper,
 #error-404-page .page-content,
 #post-page .post-excerpt,
-#post-page .entry-footer-heading,
+#post-page .entry-footer-info .entry-footer-heading,
 #sidebar-404,
 #post-page .sidebar .widget-title,
 #comments .media,
@@ -588,7 +597,8 @@ a.btn-default,
 .entry-content .gallery-columns-2,
 .entry-content .gallery-columns-3 .gallery-item,
 .entry-content div[class*="columns-4"] .gallery-item,
-#post-page #post-cats .categories-icon,
+#post-page .categories-list .categories-icon,
+#post-page .terms-list .categories-icon,
 #gallery-post-page .entry-content .gallery-item,
 #gallery-post-page .gallery-pictures-widget .widget-content a {
   margin-right: 7px;
@@ -618,7 +628,6 @@ a.btn-default,
 }
 .inner-auto-margin,
 #custom-page #inner-content,
-#post-page .post-navigation,
 #gallery-post-page #quote-content,
 .archives #content,
 #search-page #content,
@@ -697,8 +706,10 @@ a.btn-default,
 }
 .strong,
 .entry-content table tr:hover,
-#post-page #post-cats .categories-heading,
-#post-page #post-cats .categories-icon,
+#post-page .categories-list .categories-heading,
+#post-page .terms-list .categories-heading,
+#post-page .categories-list .categories-icon,
+#post-page .terms-list .categories-icon,
 #post-page .post-excerpt,
 #gallery-post-page .entry-content .gallery-item:hover figcaption,
 #link .primary:visited,
@@ -753,7 +764,13 @@ a.btn-default,
 .navigation li,
 #primary-menu .navbar-collapse #navbar-search-box.in,
 #post-page .gallery-columns-2 .gallery-item,
-#post-page .author-social-contacts a,
+#post-page .social-contacts a,
+#post-page .categories-list,
+#post-page .terms-list,
+#post-page .categories-list .categories-icon,
+#post-page .terms-list .categories-icon,
+#post-page .categories-list .list-inline,
+#post-page .terms-list .list-inline,
 #post-page .categories-list li,
 #post-page .tags-list,
 #post-page .tag-list li,
@@ -825,8 +842,8 @@ a.btn-default,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
 #post-page .post-navigation .next-post .next-button,
-#post-page .entry-footer-heading,
-#post-page .related-posts,
+#post-page .entry-footer-info,
+#post-page .entry-footer-info .entry-footer-heading,
 #gallery-post-page #gallery-sidebar,
 #gallery-post-page .gallery-widgets,
 #tool-tip .tool-tip-box,
@@ -863,7 +880,7 @@ a.btn-default,
 #post-page .post-navigation .next-post .previous-button .glyphicon,
 #post-page .post-navigation .previous-post .next-button .glyphicon,
 #post-page .post-navigation .next-post .next-button .glyphicon,
-#post-page .entry-footer-heading:after,
+#post-page .entry-footer-info .entry-footer-heading:after,
 .more-icon,
 .video-popup,
 .collapse-heading .toggle-icon {
@@ -903,8 +920,8 @@ a.btn-default,
 .text-center,
 .entry-content figure.alignnone,
 .no-sidebar .page-title-wrap,
-#post-page .author-social-contacts a,
-#post-page .entry-footer-heading,
+#post-page .social-contacts a,
+#post-page .entry-footer-info .entry-footer-heading,
 #site-page .sidebar .widget .widget-title,
 .archives .pagination,
 #search-page .pagination,
@@ -945,13 +962,15 @@ a.btn-default,
 #post-page .post-navigation .next-post .previous-button:hover,
 #post-page .post-navigation .previous-post .next-button:hover,
 #post-page .post-navigation .next-post .next-button:hover,
-#post-page #post-cats .categories-list a[rel='category']:hover {
+#post-page .categories-list a[rel='category']:hover,
+#post-page .terms-list a[rel='category']:hover {
   text-decoration: none;
 }
 .oblique,
 .entry-content figcaption.wp-caption-text,
 #custom-page .post-summary,
-#post-page #post-cats .cats-note,
+#post-page .categories-list .cats-note,
+#post-page .terms-list .cats-note,
 #post-page .post-excerpt,
 #post-page .post-thumbnail-caption,
 #site-footer #inner-footer #site-about,
@@ -1017,7 +1036,7 @@ a.btn-default,
 .full-width,
 .entry-content .gallery-columns-1 .gallery-item,
 #sitehead #header-top .alert-dismissable,
-#post-page .author-social-contacts,
+#post-page .social-contacts,
 .archives .post-thumbnail iframe,
 #search-page .post-thumbnail iframe {
   width: 100%;
@@ -1325,17 +1344,11 @@ a.btn-default,
   font-size: 36px;
   top: 20%;
 }
-#post-page .post-navigation .previous-post .previous-button,
-#post-page .post-navigation .next-post .previous-button,
-#post-page .post-navigation .previous-post .next-button,
-#post-page .post-navigation .next-post .next-button {
+#post-page .post-navigation .previous-post .previous-button {
   padding-left: 40px !important;
   padding-right: 10px !important;
 }
-#post-page .post-navigation .previous-post .previous-button .glyphicon,
-#post-page .post-navigation .next-post .previous-button .glyphicon,
-#post-page .post-navigation .previous-post .next-button .glyphicon,
-#post-page .post-navigation .next-post .next-button .glyphicon {
+#post-page .post-navigation .previous-post .glyphicon {
   left: 5px;
 }
 #post-page .post-navigation .next-post .next-button {
@@ -1343,7 +1356,6 @@ a.btn-default,
   padding-right: 40px !important;
 }
 #post-page .post-navigation .next-post .next-button .glyphicon {
-  left: 0px;
   right: 5px;
 }
 #post-page .author-info .author-photo img,
@@ -1354,7 +1366,7 @@ a.btn-default,
 #post-page .author-info .author-details {
   vertical-align: top;
 }
-#post-page .author-social-contacts a,
+#post-page .social-contacts a,
 #menu-social li a {
   border-radius: 50%;
   height: 36px;
@@ -1365,14 +1377,20 @@ a.btn-default,
   -o-transition: all 0.4s ease-in-out 0s;
   -moz-transition: all 0.4s ease-in-out 0s;
 }
-#post-page .author-social-contacts a:hover,
+#post-page .social-contacts a:hover,
 #menu-social li a:hover {
   color: #fff !important;
   transform: scale(1.2, 1.2);
 }
-#post-page #post-cats .categories-heading,
-#post-page #post-cats .categories-icon {
+#post-page .categories-list .categories-heading,
+#post-page .terms-list .categories-heading,
+#post-page .categories-list .categories-icon,
+#post-page .terms-list .categories-icon {
   font-size: 24px;
+}
+#post-page .categories-list .list-inline,
+#post-page .terms-list .list-inline {
+  padding-right: 0px;
 }
 #post-page .post-thumbnail {
   max-height: 360px;
@@ -1391,7 +1409,7 @@ a.btn-default,
   content: "\00bb";
   padding: 0 5px;
 }
-#post-page .entry-footer-heading:after {
+#post-page .entry-footer-info .entry-footer-heading:after {
   content: "";
   height: 5px;
   width: 50px;
@@ -1501,7 +1519,8 @@ a.btn-default,
 #post-page .post-navigation .next-post .previous-button,
 #post-page .post-navigation .previous-post .next-button,
 #post-page .post-navigation .next-post .next-button,
-#post-page #post-cats .categories-list a[rel='category'] {
+#post-page .categories-list a[rel='category'],
+#post-page .terms-list a[rel='category'] {
   padding: 8px 16px;
   border-color: #FF6600;
   -webkit-box-shadow: 0px 2px 4px #FF6600;
@@ -1513,9 +1532,11 @@ a.btn-default,
 #post-page .post-navigation .next-post .previous-button:hover,
 #post-page .post-navigation .previous-post .next-button:hover,
 #post-page .post-navigation .next-post .next-button:hover,
-#post-page #post-cats .categories-list a[rel='category']:hover {
+#post-page .categories-list a[rel='category']:hover,
+#post-page .terms-list a[rel='category']:hover {
   -webkit-box-shadow: 0px 3px 8px #b34700;
   box-shadow: 0px 3px 8px #b34700;
+  text-decoration: none;
 }
 .btn-primary,
 a.btn-primary {
@@ -1900,8 +1921,7 @@ a.btn-default:hover {
     padding-right: 120px;
   }
   .inner-pad-responsive,
-  #post-page .author-info,
-  #post-page .related-posts,
+  #post-page .entry-footer-info,
   #site-footer #footer-bottom,
   #site-footer #before-footer,
   .archives .archive-header,
@@ -1948,6 +1968,8 @@ a.btn-default:hover {
   }
   .half-largescreen,
   #post-page .gallery-columns-2 .gallery-item,
+  #post-page .categories-list,
+  #post-page .terms-list,
   #gallery-post-page .entry-content .gallery-item,
   .category-archive-posts .post-panel:not(.post-count-1),
   #news-archive-posts .post-panel:not(.post-count-1),
@@ -1986,8 +2008,7 @@ a.btn-default:hover {
     padding-right: 120px;
   }
   .inner-pad-responsive,
-  #post-page .author-info,
-  #post-page .related-posts,
+  #post-page .entry-footer-info,
   #site-footer #footer-bottom,
   #site-footer #before-footer,
   .archives .archive-header,
@@ -2015,6 +2036,8 @@ a.btn-default:hover {
   }
   .half-largescreen,
   #post-page .gallery-columns-2 .gallery-item,
+  #post-page .categories-list,
+  #post-page .terms-list,
   #gallery-post-page .entry-content .gallery-item,
   .category-archive-posts .post-panel:not(.post-count-1),
   #news-archive-posts .post-panel:not(.post-count-1),
@@ -2039,8 +2062,7 @@ a.btn-default:hover {
     padding-right: 60px;
   }
   .inner-pad-responsive,
-  #post-page .author-info,
-  #post-page .related-posts,
+  #post-page .entry-footer-info,
   #site-footer #footer-bottom,
   #site-footer #before-footer,
   .archives .archive-header,
@@ -2143,8 +2165,7 @@ a.btn-default:hover {
   }
   .inner-pad-responsive,
   .navbar-form,
-  #post-page .author-info,
-  #post-page .related-posts,
+  #post-page .entry-footer-info,
   #site-footer #footer-bottom,
   #site-footer #before-footer,
   .archives .archive-header,
@@ -2178,6 +2199,8 @@ a.btn-default:hover {
     text-align: center;
   }
   .block-mobile,
+  #post-page .categories-list,
+  #post-page .terms-list,
   .heading-icon {
     display: block !important;
   }

@@ -1,4 +1,18 @@
 <?php
+/*
+* Abbey theme defaults
+* the functions and filters are default values for some of Abbey theme infos e.g. author name, 
+* address, phone no, logo, author avatar e.t.c. 
+*
+*
+*/
+
+/*
+* Main function containing the Abbey theme filter 
+* this function provide some default values or an empty array 
+* @return: array $defaults - Abbey theme default values 
+*
+*/
 function abbey_theme_defaults(){
 	$defaults = apply_filters( "abbey_theme_defaults", 
 		array(
@@ -78,16 +92,37 @@ function abbey_theme_defaults(){
 	return $defaults;
 }
 
+/*
+* function to get only the front-page keys from global defaults 
+* @return: array 
+*
+*
+*/
 function abbey_theme_front_page_defaults(){
 	global $abbey_defaults; 
 	return $abbey_defaults["front-page"];
 }
 
+/*
+* function to get a particular key from global defaults 
+* @return: array or string - depending on the key requested, if key is not found it returns an empty string 
+*
+*
+*/
 function abbey_get_defaults( $key ){
 	global $abbey_defaults;
 
 	return ( isset( $abbey_defaults[$key] ) ) ? $abbey_defaults[$key] : "";
 }
+
+/*
+* A filter for Abbey defaults adding list of services to be displayed 
+* @return: array - Abbey defaults 
+*
+*
+*/
+add_filter( "abbey_theme_defaults", "abbey_theme_add_services" );
+
 function abbey_theme_add_services($defaults){
 	$defaults["services"]["lists"] = array(
 		array("icon" => "fa-registered", "header-text" => __("تنقيح و نقد", "abbey"), 
@@ -100,14 +135,19 @@ function abbey_theme_add_services($defaults){
 			"body-text" => __( "نكتب المنشورات في شكل مقالات ومحاضرات ومناقشات، والتاريخ، والأغاني وغيرها الكثير للمجلات أو المنتديات الإسلامية أو العربية.", "abbey" )
 		)
 	);
-	return $defaults;
+	return $defaults; // dont forget to return defaults in all filters //
 }
-add_filter( "abbey_theme_defaults", "abbey_theme_add_services" );
 
-
+/*
+* A filter to add contacts i.e. email, phone no, address etc
+* @return: array - Abbey defaults 
+*
+*
+*/
+add_filter( "abbey_theme_defaults", "abbey_theme_add_contacts", 30 );
 
 function abbey_theme_add_contacts($defaults){
-	$contacts = $defaults["contacts"];
+	$contacts = $defaults["contacts"]; // default contacts //
 	
 	$contacts["address"] = array(
 		"office" => __("8, Kadiri street, Alausa, Ikeja, Lagos State, Nigeria", "abbey"),
@@ -124,15 +164,30 @@ function abbey_theme_add_contacts($defaults){
 		"customer-service" => __("customers_service@rmodairy.com", "abbey")
 	);
 
-	$defaults["contacts"] = wp_parse_args( $contacts, $defaults["contacts"] );
-	return $defaults;
+	$defaults["contacts"] = wp_parse_args( $contacts, $defaults["contacts"] ); //overrirde default contacts with new ones  //
+	
+	return $defaults; // always return defaults for all filter
 }
 
-add_filter( "abbey_theme_defaults", "abbey_theme_add_contacts", 30 );
+/*
+* Filter for adding slide images, carousel, posts for the front page 
+* this filter works only on the frontpage 
+* @return: array - Abbey defaults 
+*
+*
+*/
+add_filter( "abbey_theme_defaults", "abbey_add_front_page_slides", 40 );
 
 function abbey_add_front_page_slides( $defaults ){
-	$front_page = $defaults["front-page"]; 
+	$front_page = $defaults["front-page"]; // default front-page key containing all front-page defaults //
 	$news =  get_post_type_object("news");
+	/*
+	* Adding a key for slides to front-page defaults
+	* this key is a multi-dimensional array with each array containing info for each slide 
+	* a slide can show a picture or query for a particular post_type e.g. news 
+	* contains a filter in case a user wants to add or remove some slides 
+	*
+	*/
 	$front_page[ "slides" ] = apply_filters( "abbey_front_page_slides", array(
 			array(
 				"image" => get_template_directory_uri()."/img/banner-1.jpg"
@@ -154,24 +209,31 @@ function abbey_add_front_page_slides( $defaults ){
 
 		)
 	);
-	$defaults[ "front-page" ] = wp_parse_args ( $front_page, $defaults["front-page"] );
-	return $defaults;
+	$defaults[ "front-page" ] = wp_parse_args ( $front_page, $defaults["front-page"] ); //override my default front-page with this one //
+	
+	return $defaults; // return the defaults as usual for all theme default filters //
 }
-add_filter( "abbey_theme_defaults", "abbey_add_front_page_slides", 40 );
 
-
+/*
+* A filter to add the administrator/owner info to Abbey theme 
+* these infos can be owner's email, photo and contacts 
+* @return: array - Abbey defaults 
+*
+*
+*/
 add_filter( "abbey_theme_defaults", "abbey_add_admin_info", 5 );
+
 function abbey_add_admin_info( $defaults ){
-	$admin = $defaults["admin"]; 
+	$admin = $defaults["admin"];  // get the default admin key //
 	$args = array(
 		"role" => "administrator", 
 		"number" => 1
 	);
-	$admin_user = get_users( $args );
+	$admin_user = get_users( $args ); // run a wordpress user query for administrator, only return one user //
 
 	if( !empty( $admin_user ) ){
 		foreach( $admin_user as $user ){
-			$admin["pics"] = get_avatar( $user->ID, "", "", "", array("class" => "img-circle" ) );
+			$admin["pics"] = get_avatar( $user->ID, "", "", "", array("class" => "img-circle" ) ); // get pics of the user //
 			$admin["name"] = $user->display_name;
 			$admin["info"] = $user;
 			$admin["roles"] = array();
@@ -179,7 +241,7 @@ function abbey_add_admin_info( $defaults ){
 		}
 	}
 
-	$defaults[ "admin" ] = wp_parse_args ( $admin, $defaults["admin"] );
+	$defaults[ "admin" ] = wp_parse_args ( $admin, $defaults["admin"] ); //override admin defaults with user details //
 
 	return $defaults; 
 }

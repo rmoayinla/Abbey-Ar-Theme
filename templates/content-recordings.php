@@ -19,6 +19,7 @@
 			</article>
 
 			<footer class="post-entry-footer"> 
+				<?php abbey_post_terms( get_the_ID() ) ?>
 				<?php abbey_post_nav( "تسجيل الإعلامية المقبل والسابق", "abbey" ); ?>
 				<?php abbey_post_author_info( __( "عرَف المؤلف", "abbey" ) ); ?>
 			</footer>

@@ -12,8 +12,10 @@ $thumbnail_url = $thumbnail_class = "";
  	$thumbnail_class = "has-thumbnail"; 
 }
 $page_background = !empty( abbey_custom_field( "page_background" ) ) ? abbey_custom_field( "page_background" ) : "";
-get_header(); ?>
 
+?>
+
+<?php get_header(); ?>
 <main id="<?php abbey_theme_page_id(); ?>" class="row site-content <?php if( $no_sidebar ){ echo "no-sidebar";}?>"
 	style="backgound-image:url(<?php echo $page_background; ?>)"> 
 	<?php if ( have_posts() ) : ?>
@@ -46,5 +48,5 @@ get_header(); ?>
 
 
 </main> <!--main #page closes -->	<?php 
-
+	global $authordata;  print_r( $authordata );
 get_footer();

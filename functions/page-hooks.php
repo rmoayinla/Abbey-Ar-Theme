@@ -2,19 +2,6 @@
 
 
 
-function abbey_post_title(){
-	$summary = get_the_excerpt();
-	$title = '<h1 class="page-title" itemprop="headline">' . get_the_title() . '</h1>
-		<summary class="post-excerpt" itemprop="summary">
-			<em>'.apply_filters( "abbey_post_summary", $summary, get_the_ID() ) . '</em>.
-		</summary>';
-	echo apply_filters( "abbey_theme_post_title", $title );
-}
-
-
-
-
-
 function abbey_latest_posts(){
 	echo '
 		<aside id="latest-posts" class="pad-medium col-md-6 text-center">
@@ -92,15 +79,16 @@ function abbey_theme_details(){
 		<?php
 }
 add_action ( "abbey_theme_footer_credits", "abbey_theme_details", 20 );
+
 function abbey_post_nav( $title = "" ){
 	$prev_post = get_previous_post(); // previous post//
 	$next_post = get_next_post(); // next post //
-	$html = "<div class='post-navigation md-50'>\n";
+	$html = "<div class='post-navigation entry-footer-info'>\n";
 	if( !empty( $title ) )
 		$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
 
 	if ( !empty( $prev_post ) ) {
-		$html .= "<div class='previous-post text-left'>\n";
+		$html .= "<div class='previous-post'>\n";
 		$html .= abbey_show_nav( $prev_post, "previous" ); // check core for function documentation //
 		$html .= "</div>";//close of previous-post class div//
 	}
@@ -120,7 +108,7 @@ function abbey_post_author_info( $title = "" ){
 	
 	$author_contacts = abbey_author_contacts( $author );
 
-	$html = "<div class='author-info'>";
+	$html = "<div class='author-info entry-footer-info'>";
 	if( !empty( $title ) )
 		$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
 	
@@ -141,7 +129,7 @@ function abbey_post_author_info( $title = "" ){
 	$html .= "<div class='author-description'>".esc_html( $author->description ). "</div>";
 	
 		if( !empty( $author_contacts )  ){
-			$html .= "<footer class='author-social-contacts col-md-5 h4 text-center'>";
+			$html .= "<footer class='social-contacts col-md-5 h4 text-center'>";
 			$html .= "<ul class='list-inline'>"; 
 			foreach( $author_contacts as $social => $contact ){
 				$html .= sprintf( '<li><a href="%1$s" title="%2$s" class="icon"><span class="fa fa-%3$s"></span></a></li>', 
@@ -166,7 +154,7 @@ function abbey_show_related_posts( $title = "" ){
 	$related_posts = abbey_get_posts( $args );
 	if( $related_posts->have_posts() ) : 
 		ob_start(); ?>
-		<div class="related-posts">	<?php
+		<div class="related-posts entry-footer-info">	<?php
 		if( !empty( $title ) )
 			echo sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) ); ?>
 			<div class="posts-slides" data-slick='{"rtl": true}'>
@@ -190,34 +178,8 @@ function abbey_show_related_posts( $title = "" ){
 
 }
 
-function abbey_post_categories(){
-	$notes = sprintf( '<p class="small cats-note">%s</p>',
-						__( "* You can learn more about this post by clicking on these links, 
-							each topic contains several posts that are related to this article", 
-							"abbey" )
-					);
-	$html = "<div class='row inner-pad-responsive outer-pad-medium' id='post-cats'>";
-	
-	if ( count( $categories = get_the_category() ) > 0 ){
-		$list = "<ul class='post-categories'>";
-		foreach( $categories as $category ){
-			$list .=  sprintf( '<li><a href="%1$s" rel="category">%2$s 
-						<span class="badge category-count">%3$s </span></a></li>',
-				esc_url( get_category_link( $category->term_id ) ), 
-				$category->name, 
-				$category->count
-				);
-		}
-		$list .= "</ul>\n"; 
 
-		$html .= abbey_cats_or_tags( $list, __( "Topics", "abbey" ), "fa-folder-o", $notes );
-	}
 
-	$html .= "</div>";
-
-	echo $html;
-}
-add_action ( "abbey_theme_post_footer", "abbey_post_categories", 5 );
 
 /* 
 

@@ -1,8 +1,21 @@
 <?php
+/*
+*
+* Core functions for Abbey theme 
+* these functions are mostly written from scratch either to implement/supplement some wordpress functions 
+* or to add a new functionality that is not provided by wordpress 
+*
+*
+*/
 
-function abbey_numerize($string){
+/*
+* Remove alphabets from a string and return the digit numbers only 
+*
+*
+*/
+function abbey_numerize( $string ){
 	$result = preg_replace("/[^0-9.]/", '', $string); //use regex to remove non digit characters //
-	return $result;
+	return $result; // return the processed string i.e. those with digits only //
 }
 
 /*
@@ -22,14 +35,10 @@ function abbey_nav_menu( $args = array() ){
 	            );
 	$args = wp_parse_args( $args, $defaults ); //replace the default arguments with the user arguments if set //
 
-	wp_nav_menu( $args ); //call the wordpress menu function //
+	wp_nav_menu( $args ); //call the native wordpress menu function //
 
 }
 
-/*
-* wrapper function for wordpress register_sidebar
-*
-*/
 
 /*
 * function to generate font-awesome classes for social icons
@@ -37,7 +46,7 @@ function abbey_nav_menu( $args = array() ){
 * @return: string 
 *
 */
-function abbey_contact_icon($contact){
+function abbey_contact_icon( $contact ){
 	$contact = esc_attr($contact);
 	switch ( $contact ){
 		case "address" : 
@@ -93,13 +102,26 @@ function abbey_contact_icon($contact){
 		case "posts":
 			$icon = "fa-newspaper-o";
 			break;
+		case "category":
+		case "categories":
+			$icon = "fa-folder-open";
+			break;
+		case "tags":
+		case "post_tag":
+			$icon = "fa-tag";
+			break;
 		default:
 			$icon = "fa-list"; // default icon if icon is not set nor found //
 
 	}
-	return $icon;
+	return apply_filters( "abbey_font_icon", $icon, $contact ); //add a filter in case you want to add additional icons to return //
 }
 
+/*
+* function to style and generate contacts html  
+* This function those not get the contact details, the contact to display is passed to this function through the params
+*
+*/
 function abbey_display_contact( $contact, $heading ){
 	$html = "";
 	
@@ -113,31 +135,52 @@ function abbey_display_contact( $contact, $heading ){
 		$contacts = $contact;
 		foreach ( $contacts as $contact_heading => $contact ){
 			$contact_heading = $contact_heading." ".$heading;
-			$html .= abbey_display_contact($contact, $contact_heading); // recursive function //
+			$html .= abbey_display_contact( $contact, $contact_heading ); // recursive function //
 		}
 	}
 
 	return $html;
 }
 
+/*
+* Function to return/get contact details stored in Theme defaults
+* This function can get a particular contact e.g. phone no, email or return all contacts depending on the $key param
+* @retun: string or array 
+*
+*/
 function abbey_get_contact( $type, $key = "" ){
 	global $abbey_defaults; // theme default values set in theme_setup.php //
-	if( isset( $abbey_defaults["contacts"] ) ){
+
+	if( isset( $abbey_defaults["contacts"] ) ){ //if contacts key is found in defaults //
 		$contacts = $abbey_defaults["contacts"];
 		$contact_type = ( isset ( $contacts[ $type ] ) ) ? $contacts[$type] : "";
-		if (! empty ( $contact_type ) ) {
-			$contact = ( !empty($key) && isset($contact_type[$key]) ) ? $contact_type[$key] : $contact_type;
+		if ( !empty ( $contact_type ) ) {
+			$contact = ( !empty( $key ) && isset( $contact_type[$key] ) ) ? $contact_type[$key] : $contact_type;
 		}
 		
 	}
 	return $contact;
 }
+
+/*
+* Generate an id attribute for theme template pages 
+* @return: string 
+*
+*/
 function abbey_theme_page_id( $id= "" ){
 	if ( empty($id) ) {
-		if( is_front_page() ){ $id = "front-page"; }
-		elseif ( is_page() ) { $id = "site-page"; }
-		elseif( is_404() ) { $id = "error-404-page"; }
-		elseif( is_search() ) { $id = "search-page"; }
+		if( is_front_page() ){ 
+			$id = "front-page"; 
+		}
+		elseif ( is_page() ) { 
+			$id = "site-page"; 
+		}
+		elseif( is_404() ) { 
+			$id = "error-404-page"; 
+		}
+		elseif( is_search() ) { 
+			$id = "search-page"; 
+		}
 		elseif ( is_single() ) {
 			$id = ( ! has_post_format() ) ? "post-page" : get_post_format()."-post-page"; 
 		}
@@ -149,40 +192,49 @@ function abbey_theme_page_id( $id= "" ){
 		}
 
 	} 
-	echo esc_attr( apply_filters( "abbey_theme_page_id", $id ) );
+	echo esc_attr( apply_filters( "abbey_theme_page_id", $id ) );//filter to enable other id to be generated //
 
 }
 
+/*
+* Function to show services stored in theme defaults 
+* this function display the services i.e. generate the html 
+*
+*/
 function abbey_theme_show_services(){
-	global $abbey_defaults;
+	global $abbey_defaults; // abbey theme defaults //
 	$services = ( !empty( $abbey_defaults["services"]["lists"] ) ) ? $abbey_defaults["services"]["lists"] : "";
-	if( count($services) > 0 ){
+	if( count( $services ) > 0 ){ //if there are services //
 			$html = "";
-		foreach( $services as $service ){
+		foreach( $services as $service ){ //loop through the services //
 			$html .= "<div class='col-md-4 col-sm-6 col-xs-6 service-icons'><div class='service-wrapper'>";
-			if( !empty($service["icon"]) ){$html .= "<div class='service-icon'><span class='fa ".esc_attr($service["icon"])." fa-3x' > </span></div>"; }
-			if( !empty($service["header-text"]) ){$html .= "<div class='service-heading text-capitalize'><h4>".esc_html($service["header-text"]). "</h4></div>"; }
-			if( !empty($service["body-text"]) ){
+			if( !empty( $service["icon"] ) ){
+				$html .= "<div class='service-icon'><span class='fa ".esc_attr($service["icon"])." fa-3x' > </span></div>"; 
+			}
+			if( !empty( $service["header-text"] ) ){
+				$html .= "<div class='service-heading text-capitalize'><h4>".esc_html($service["header-text"]). "</h4></div>"; 
+			}
+			if( !empty( $service["body-text"] ) ){
 				$html .= "<div class='service-body'>";
-				$html .= esc_html($service["body-text"]);
+				$html .= esc_html( $service["body-text"] );
 				$html .= "</div>";
 			 }
 			$html .= "</div></div>";
 
-		}
-	}
+		} //end foreach loop //
+	}//enf if count services //
 	echo $html;
 }
 
 /*
 * a wrapper function to get the uploaded logo 
-*
+* this function return the uploaded image i.e. the html //
 */
 
 function abbey_custom_logo( $class = "" ){
 	$class = ( !empty($class) ) ? esc_attr( $class ) : "";
-	$title = get_bloginfo("name");
-	if( has_custom_logo() ){
+	$title = get_bloginfo("name"); // get the site name //
+	if( has_custom_logo() ){ // if a custom  logo has been uploaded in customizer //
 		$logo = get_theme_mod("custom_logo");
 		$logo_attachment = wp_get_attachment_image_src( $logo, "full" );
 		$logo_url = $logo_attachment[0]; 
@@ -195,6 +247,12 @@ function abbey_custom_logo( $class = "" ){
 	}
 }
 
+/*
+* Function to show logo with sitename 
+* Might later be deprecated in my theme in the future 
+*
+*
+*/
 function abbey_show_logo ( $prefix_id = "", $logo_class = "", $show_site_name = true ){
 	$prefix_id = ( !empty( $prefix_id ) ) ? esc_attr( $prefix_id."-" ) : "";
 
@@ -205,13 +263,12 @@ function abbey_show_logo ( $prefix_id = "", $logo_class = "", $show_site_name = 
 	echo $html; 
 	
 }
-function abbey_class ( $prefix ) {
-	global $wp_query;
-	$class = "";
-	if( $wp_query->is_page() ){ $class = "page"; }
-	esc_attr_e ( $prefix."-".$class );
-}
 
+/*
+* Function to display bootstrap mobile menu 
+*
+*
+*/
 function abbey_nav_toggle () { ?>
 	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 	    <span class="sr-only">Toggle navigation</span>
@@ -239,10 +296,10 @@ function abbey_primary_menu(){
 	               	 	)
 	);
 	if ( has_nav_menu( 'primary' ) ):
-    	abbey_nav_menu ( $args ); //this function is a wrapper function for wp_nav_menu
+    	abbey_nav_menu ( $args ); //this function is a wrapper function for wp_nav_menu, can be found in functions/core.php //
     endif;
 }
-add_action( "abbey_theme_primary_menu", "abbey_primary_menu" ); 
+add_action( "abbey_theme_primary_menu", "abbey_primary_menu" ); // this action hook can be found in header.php
 
 /*
 * display the theme set secondary menu
@@ -275,7 +332,7 @@ function abbey_social_menu(){
 								'depth' => 1, 
 								'container' => 'ul', 
 								'menu_class' => 'nav', 
-								'walker' => new Abbey_Social_Nav_Walker() // custom walker for social menu//
+								'walker' => new Abbey_Social_Nav_Walker() // custom walker object for social menu, this class can be found in libs/abbey_social_navwalker.php //
 							) 
 	);
 	if (! has_nav_menu("social") ) 
@@ -289,27 +346,55 @@ function abbey_social_menu(){
 *
 */
 function abbey_post_class ( $class = "" ){
-	if ( !is_array( $class ) ) { $class .= " entry-content"; }
-	else { $class[] = "entry-content"; }
-	post_class( apply_filters( "abbey_post_classes", $class ) );
+	if ( !is_array( $class ) )  //if the $class param is not an array, just show it //
+		$class .= " entry-content"; 
+	else 
+		$class[] = "entry-content"; //if its an array, add this to the array //
+
+	post_class( apply_filters( "abbey_post_classes", $class ) ); //use native wordpress function to show the class//
 }
 
 /*
-* 
+* Function to generate author details e.g. name, description, bio etc
+*
+*/
+function abbey_post_author( $key = "" ){
+	global $authordata, $post; //wordpress global containing author data and post data //
+	
+	$values = array(); 
+	$values["display_name"] = $authordata->display_name; // the author display name//
+	$values["post_count"] = get_the_author_posts(); // the author post count //
+	$values["description"] = $authordata->description;
+	
+	if ( !empty( $key ) && array_key_exists( $key, $values ) )
+		return $values[$key];
+
+	return $authordata;
+	
+}
+
+/*
+* function to display registered sidebars in template files
+* this function checks if the passed sidebar is registered, if its not a normal message is dispalyed 
+*
 *
 */
 function abbey_display_sidebar ( $sidebar_id ){
-	if ( is_active_sidebar( $sidebar_id ) ){ // check if a sidebar is registered with this id //
+	if ( is_active_sidebar( $sidebar_id ) ) // check if a sidebar is registered with this id //
 		dynamic_sidebar( $sidebar_id );
-	} else {
+	else 
 		echo __( "Sorry, there is no sidebar widget registered with {$sidebar_id}", "abbey" );
-	}
+	
 }
 
-
-
+/*
+* Function to generate and filter comment fields 
+* this filter customize my comment fields with custom classes and attributes 
+* @return : array - $args to be used when displaying the comment form in comment.php
+*
+*/
 function abbey_comments_args(){
-	$commenter = wp_get_current_commenter();
+	$commenter = wp_get_current_commenter(); //get current commenter details 
 	$fields = array(
 	'author' => sprintf( '<div class="comment-form-author form-group">
 						<label for="author">%1$s<span class="required">*</span></label>
@@ -339,16 +424,20 @@ function abbey_comments_args(){
 							), 
 		'submit_button' => '<button name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-block btn-primary">%4$s</button>',
 		'submit_field'  => '<div class="form-submit form-group">%1$s %2$s</div>'
-
-
-
 	); 
 
 	return $args;
 }
 
+/*
+* Function to retreive some details from wordpress query results 
+* the retreive details e.g. author, post_found e.t.c are then stored in a custom variable 
+* this can be used to group or sort posts according to authors or categories 
+*
+*
+*/
 function abbey_setup_query(){
-	global $wp_query, $abbey_query; 
+	global $wp_query, $abbey_query; //wordpress wp_query containing query result and my custom variable to save some details from wp_query//
 	if ( count( $wp_query->posts ) > 0 ){
 		foreach( $wp_query->posts as $post ){
 			$abbey_query[] = array(
@@ -370,25 +459,37 @@ function abbey_setup_query(){
 			);
 		}
 
-		$abbey_query = apply_filters( "abbey_theme_query", $abbey_query );
+		$abbey_query = apply_filters( "abbey_theme_query", $abbey_query ); //filter to add additional details to abbey_query //
 	}
 
 
 }
 
+/*
+* Function to group posts based on post_types 
+* the posts are passed by reference
+* ( might need some tweaking )
+*/
 function abbey_group_posts( &$custom_posts ){
-	$post_types = get_post_types( array( 'public' =>  true ), 'object' );
+	$post_types = get_post_types( array( 'public' =>  true ), 'object' );//get all post types registered //
 	$custom_posts = array();
 	if( !empty( $post_types ) ){
-		foreach( $post_types as $post_type ){
-			$custom_posts[$post_type->name]["posts"] = array();
-			
+		foreach( $post_types as $post_type ){ //loop through the registered post types //
+			$custom_posts[ $post_type->name ][ "posts" ] = array();
 			if( !empty( $post_type->labels ) )
 				$custom_posts[$post_type->name]["labels"] = $post_type->labels;
 		}
 	}
 
 }
+
+/*
+* This function must be called only after abbey_group_posts and must be called in the loop 
+* this function add posts to grouped posts 
+* the custom_posts param is passed by reference
+* ( might need some rewriting )
+*
+*/
 function abbey_add_posts( &$custom_posts ){
 	$post_type = get_post_type();
 	if( array_key_exists( $post_type, $custom_posts ) ){
@@ -403,13 +504,25 @@ function abbey_add_posts( &$custom_posts ){
 
 	}
 }
+
+/*
+* Function get gallery images from a gallery post format 
+* Useful when gallery post format is enabled - it is enabled in this theme by default 
+*
+*
+*/
 function abbey_gallery_images(){
 	global $post; 
 	
-	$galleries = get_post_galleries_images( $post );
+	$galleries = get_post_galleries_images( $post ); // get the gallery images for this post //
 
-	$slide_images = $galleries;
-
+	$slide_images = $galleries; // clone the images //
+	/*
+	* Based on how get_post_galleries_images retrun the gallery images we have to do a double loop 
+	* first we check if the galleries is not empty, then because the galleries is a multi-dimensional array
+	* We loop through each index i.e. galleries[0], then loop through the index to get the image 
+	*
+	*/
 	if( count( $galleries ) > 0 )
 		$slide_images = array();
 		for( $i = 0; $i < count( $galleries ); $i++ ){
@@ -419,13 +532,13 @@ function abbey_gallery_images(){
 				}
 			}
 		}
-		$slide_images[ "galleries" ] = $galleries;
+		$slide_images[ "galleries" ] = $galleries; // save the entire galleries again in our slide //
 
 	return $slide_images; 
 }
 
 /*
-* a wp filter to add icons to nav_menu
+* a wp filter to add icons or form or anything  to nav_menu
 *
 */
 function abbey_add_to_primary_menu ( $items, $args ) {
@@ -442,8 +555,14 @@ function abbey_add_to_primary_menu ( $items, $args ) {
 	}
 	return $items;
 }
-add_filter( 'wp_nav_menu_items','abbey_add_to_primary_menu',10,2 );//wp filter to add to nav menus //
+add_filter( 'wp_nav_menu_items','abbey_add_to_primary_menu',10,2 );//wp filter to add to nav menus, found in header.php //
 
+/*
+* A wrapper function for wordpress WP_Query class 
+* this function is used to query posts 
+* @return: Wp query object 
+*
+*/
 function abbey_get_posts( $args = array() ){
 	$defaults = array(
 		'posts_per_page'   => 5,
@@ -453,30 +572,40 @@ function abbey_get_posts( $args = array() ){
 		'post_status'      => 'publish',
 		'no_found_rows'		=> true
 	);
-	$args = wp_parse_args( $args, $defaults ); 
+	$args = wp_parse_args( $args, $defaults ); //override passed args with my default values if present //
 
-	$posts = new WP_Query( $args ); 
+	$posts = new WP_Query( $args ); //call the WP_Query class //
 
 	return $posts;
 }
 
+/*
+* Function to wrap wordpress native pagainate_links function
+* this function generate a nice Bootstrap pagination style and html 
+*
+*/
 function abbey_posts_pagination( $args = array() ){
 	$defaults = array( "type" => "array", "mid_size" => 1 ); 
 	$args = wp_parse_args( $defaults, $args );
 	$navigation = "";
 	if( $GLOBALS['wp_query']->max_num_pages > 1 ){
 		$links = paginate_links( $args ); 
-		$navigation .= "<ul class='pagination'>";
+		$navigation .= "<ul class='pagination'>";//start the pagination list//
 
 		foreach( $links as $link ){
 			$navigation .= "<li>".$link."</li>\n";
 		}
-		$navigation .= "</ul>\n";
+		$navigation .= "</ul>\n";//close the pagination  list //
 	}
 	echo $navigation; 
 
 }
 
+/*
+* Wrapper function getting registered custom metabox fields 
+* this function checks if the metabox plugin is installed, then get the meta value else return empty 
+*
+*/
 function abbey_custom_field( $value, $echo = false ){
 	if ( !function_exists( "get_field" ) )
 		return; 

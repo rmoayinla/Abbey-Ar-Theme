@@ -31,7 +31,7 @@ global $count;
 				</div>
 			
 			<footer class="post-panel-footer">
-				<ul class="list-inline no-list-style">
+				<ul class="list-inline no-list-style post-panel-info">
 					<li><?php echo abbey_cats_or_tags( "categories", "", "fa-folder-o" ); ?></li>
 					<li><?php echo abbey_cats_or_tags( "tags", "", "fa-tags" );  ?></li>
 				</ul>
