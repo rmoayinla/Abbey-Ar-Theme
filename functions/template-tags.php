@@ -145,7 +145,8 @@ function abbey_post_pagination( $args = array() ){
 }
 
 /*
-* function to show links to previous and next post 
+* function to show links to previous and next post
+* this function can only show either previous or next noth both of them at once  
 * this function only generate the html, the post object is passed by param 
 */
 function abbey_show_nav( $post, $nav = "previous" ){
@@ -257,6 +258,11 @@ function abbey_post_terms( $post_id ){
 
 }
 
+/*
+* display post categories for a post, this function behaves similarly to abbey_post_terms
+* the difference is just that this function only displays the categories 
+*
+*/
 function abbey_post_categories(){
 	$notes = sprintf( '<p class="small cats-note">%s</p>',
 						__( "* You can learn more about this post by clicking on these links, 
@@ -285,31 +291,27 @@ function abbey_post_categories(){
 	echo $html;
 }
 
+/* 
+* display post date
+*
+*/
 function abbey_post_date( $echo = true, $post_id = "", $icon = "" ){
-	
 	$date = sprintf( '<time datetime="%3$s"><span class="sr-only">%2$s</span><span>%1$s </span></time>',
 						get_the_time( get_option( 'date_format' ).' \@ '.get_option( 'time_format' ), $post_id ), 
 						__( "Posted on:", "abbey" ), 
 						get_the_time('Y-md-d', $post_id)
 					); 
-	if( !empty( $icon ) )
+	if( !empty( $icon ) ) //if $icon param is not empty //
 		$date =  $icon.$date;
 	if( ! $echo )
 		return $date;
 	echo $date;
-
 }
 
-function abbey_list_comments( $args = array() ){
-	wp_list_comments( array(
-		'style'      => 'ol',
-		'short_ping' => true,
-		'avatar_size'=> 60,	
-		'callback'	=> 'html5_comment'			
-		) 
-	);
-}
-
+/*
+* wrapper function for wordpress post_type to show posts type
+*
+*/
 function abbey_show_post_type(){
 	$post_type = get_post_type(); 
 	$post = "";
@@ -329,23 +331,29 @@ function abbey_show_post_type(){
 	echo apply_filters( "abbey_post_type", $post );
 }
 
-
-
+/*
+* wrapper function for displaying post thumbnails 
+* if the post thumbnail is found, the thumbnail is returned, else a custom thumbnail is displayed 
+*
+*/
 function abbey_page_media( $size = "medium", $page_id = "", $echo = true ){
 	$icon = "";
+	$page_id = empty( $page_id ) ? get_the_ID() : $page_id;
 
-	if ( has_post_thumbnail() )
-		$icon = ( $echo ) ? the_post_thumbnail( $size ) : get_the_post_thumbnail( $size );
-	else 
-		$icon =  apply_filters( "abbey_theme_page_media", $icon, $page_id );
+	$icon = ( has_post_thumbnail() ) ? get_the_post_thumbnail( $page_id, $size ) : apply_filters( "abbey_theme_page_media", $icon, $page_id ); //wp thumbnail or custom thumbnail//
 	
 	if( !$echo )
 		return $icon;
 	echo $icon;
 }
 
+/*
+* wrapper function for showing some cutom excerpt length 
+* this is mostly useful, because with this different excerpt lenght can be displayed for different posts 
+*
+*/
 function abbey_excerpt( $length = "", $more = "", $echo = false ){
-	$length = empty( $length ) ? 55 : $length;
+	$length = empty( $length ) ? 55 : $length; //excerpt characters max lenght //
 	$more_text = empty( $more ) ? abbey_excerpt_more() : "...";
 	if( !$echo )
 		return wp_trim_words( get_the_excerpt(), $length, $more_text );
@@ -353,3 +361,20 @@ function abbey_excerpt( $length = "", $more = "", $echo = false ){
 	echo wp_trim_words( get_the_content(), $length, $more_text );
 	//the_excerpt();
 }
+
+/* 
+* wrapper function for wp get_media_embedded_in_content
+* this function grabs the first video found in a post 
+* this function returns an html styled content 
+*
+*/
+function abbey_recording_video( $echo = true ){
+	$content = get_the_content();
+	$embeds = get_media_embedded_in_content( $content );
+
+	if( ! $echo  )
+		return $embeds[0];
+
+	echo $embeds[0];
+}
+

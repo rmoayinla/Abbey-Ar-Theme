@@ -97,6 +97,7 @@ a.btn-default:hover,
 #custom-page #page-sidebar .widget_abbey-contact-form,
 #post-page .single-post-panel,
 #post-page .social-contacts a,
+#post-page .related-posts .post-panel,
 #quote-post-page #post-content-header,
 #quote-post-page .entry-content,
 #gallery-post-page .entry-content .gallery-item:hover,
@@ -223,6 +224,7 @@ a.btn-default,
 #front-page #carousel .posts-slides .slide-title,
 #custom-page #inner-content,
 #custom-page #page-sidebar .widget,
+#post-page .related-posts .post-panel .post-panel-body,
 #gallery-post-page .gallery-widgets,
 #floating-video.affix .post-panel-body,
 #site-page .sidebar .widget,
@@ -1089,6 +1091,12 @@ a.btn-default,
 .navigation:before {
   content: "  ";
 }
+.dropdown-menu {
+  padding-right: 0px;
+}
+.dropdown-menu a {
+  width: 100% !important;
+}
 /*
 * header styles 
 *
@@ -1417,8 +1425,18 @@ a.btn-default,
   top: 30px;
   border-bottom: 3px solid #b34700;
 }
+#post-page .related-posts {
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+}
+#post-page .related-posts .post-panel {
+  margin: 0px 5px;
+}
 #post-page .related-posts .slick-list {
-  padding-bottom: 120px;
+  overflow: unset;
+}
+#post-page .related-posts .slick-next::before {
+  font-size: 36px !important;
 }
 #quote-post-page .breadcrumb li + li:before {
   content: "";
@@ -1475,6 +1493,7 @@ a.btn-default,
 #custom-page .entry-content figure.alignleft,
 #custom-page #page-content-header,
 #post-page .single-post-panel,
+#post-page .related-posts .post-panel,
 #quote-post-page .entry-content,
 #floating-video.affix,
 #sidebar-404 #latest-posts,
@@ -1905,6 +1924,12 @@ a.btn-default:hover {
 .icons-footer .dropdown-menu {
   right: 0px;
   left: 100%;
+}
+.slick-next::before {
+  color: #FF6600 !important;
+}
+.slick-next:hover::before {
+  color: #b34700 !important;
 }
 /*
 *

@@ -27,7 +27,9 @@ body, #content,
   	font-weight: 600;
 }
 
-.entry-content{
+.entry-content, .entry-footer p, 
+.post-entry-footer p, 
+.author-title{
 	text-align: right;
 }
 .author-info, #site-footer, 
@@ -51,6 +53,10 @@ ul.pagination{
 	}
 }
 
+div.dropdown .dropdown-menu{
+	right: 0px;
+	left: unset;
+}
 /* reponsive design for devices larger than 1027px */
 @media(min-width: @screen-lg){
 	#post-page #content, 

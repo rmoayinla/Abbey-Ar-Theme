@@ -260,8 +260,20 @@
 	}
 	.related-posts{
 		&:extend(.bg-light);
+		padding-left:30px !important;
+		padding-right: 30px !important;
+		.post-panel {
+			&:extend(.bg-white, #box-shadow .box-shadow-small);
+			margin: 0px 5px;
+			.post-panel-body{
+				&:extend( .pad-small );
+			}
+		}
 		.slick-list{
-			padding-bottom: 120px;
+			overflow: unset;
+		}
+		.slick-next::before{
+			font-size: 36px !important;
 		}
 	}
 

@@ -13,7 +13,10 @@ body,
   font-size: 130%;
   font-weight: 600;
 }
-.entry-content {
+.entry-content,
+.entry-footer p,
+.post-entry-footer p,
+.author-title {
   text-align: right;
 }
 .author-info,
@@ -36,6 +39,10 @@ ul.pagination li:first-child span,
 ul.pagination li:last-child a,
 ul.pagination li:last-child span {
   border-radius: 0px;
+}
+div.dropdown .dropdown-menu {
+  right: 0px;
+  left: unset;
 }
 /* reponsive design for devices larger than 1027px */
 @media (min-width: 1027px) {

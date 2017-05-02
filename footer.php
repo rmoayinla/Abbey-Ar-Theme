@@ -46,10 +46,7 @@ $site_about = ( !empty( abbey_get_defaults( "about" ) ) ) ? abbey_get_defaults( 
 			</section>
 				
 				<div id="footer-bottom" class="row">
-					
-					<div class="">
-						<?php do_action( "abbey_theme_footer_credits" ); ?>
-					</div>
+					<div><?php do_action( "abbey_theme_footer_credits" ); ?></div>
 				</div>
 			
 

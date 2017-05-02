@@ -234,6 +234,7 @@ function abbey_theme_show_services(){
 function abbey_custom_logo( $class = "" ){
 	$class = ( !empty($class) ) ? esc_attr( $class ) : "";
 	$title = get_bloginfo("name"); // get the site name //
+	
 	if( has_custom_logo() ){ // if a custom  logo has been uploaded in customizer //
 		$logo = get_theme_mod("custom_logo");
 		$logo_attachment = wp_get_attachment_image_src( $logo, "full" );
@@ -278,28 +279,7 @@ function abbey_nav_toggle () { ?>
 	</button>	<?php
 }
 
-/*
-* display the theme set primary menu 
-*
-*/
-function abbey_primary_menu(){
-    $args = apply_filters( "abbey_primary_menu_args", array(
-	                	'menu'              => 'primary',
-	                	'theme_location'    => 'primary',
-	              		'depth'             => 2,
-	                	'container'         => 'div',
-	                	'container_class'   => 'collapse navbar-collapse',
-	        			'container_id'      => 'bs-example-navbar-collapse-1',
-	                	'menu_class'        => 'nav navbar-nav',
-	                	'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-	                	'walker'            => new wp_bootstrap_navwalker()
-	               	 	)
-	);
-	if ( has_nav_menu( 'primary' ) ):
-    	abbey_nav_menu ( $args ); //this function is a wrapper function for wp_nav_menu, can be found in functions/core.php //
-    endif;
-}
-add_action( "abbey_theme_primary_menu", "abbey_primary_menu" ); // this action hook can be found in header.php
+
 
 /*
 * display the theme set secondary menu
@@ -427,6 +407,21 @@ function abbey_comments_args(){
 	); 
 
 	return $args;
+}
+
+/*
+* wrapper function for wordpress list_comments 
+* this function set the avatar size and the callback to be used 
+*
+*/
+function abbey_list_comments( $args = array() ){
+	wp_list_comments( array(
+		'style'      => 'ol',
+		'short_ping' => true,
+		'avatar_size'=> 60,	
+		'callback'	=> 'html5_comment'//this function can be found in libs/abbey_bootstrap_comments.php //		
+		) 
+	);
 }
 
 /*

@@ -6,7 +6,7 @@ require trailingslashit( get_template_directory () )."libs/abbey_bootstrap_comme
 
 require trailingslashit( get_template_directory () )."functions/theme_setup.php";
 require trailingslashit( get_template_directory () )."functions/front-page-hooks.php";
-require trailingslashit( get_template_directory () )."functions/page-hooks.php";
+require trailingslashit( get_template_directory () )."functions/hooks.php";
 require trailingslashit( get_template_directory () )."functions/post-hooks.php";
 require trailingslashit( get_template_directory () )."functions/core.php";
 require trailingslashit( get_template_directory () )."functions/template-tags.php";
