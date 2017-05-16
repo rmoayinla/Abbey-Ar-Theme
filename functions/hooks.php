@@ -94,39 +94,42 @@ function abbey_footer_menu(){
 *
 */
 add_action ( "abbey_theme_footer_credits", "abbey_theme_details", 20 );//found in footer.php //
-function abbey_theme_details(){
-	$current_theme = wp_get_theme();
-	?>
-	<ul class="list-inline list-right">
-		<li> 
-			<?php echo sprintf( '<a href="www.wordpress.org" target="_blank" data-toggle="tooltip" title="%1$s">%2$s</a>',
-								__( "Powered by:", "abbey" ),
-								__( "Wordpress", "abbey" )
-							); ?>
-		</li>
-		<li> 
-			<?php echo sprintf( '<a href="%1$s" target="_blank" data-toggle="tooltip" title="%2$s">%3$s </a>',
-								 esc_url( $current_theme->get( "ThemeURI" ) ), 
-								 esc_attr( __( "Built on:", "abbey" ) ),
-								 esc_html( $current_theme->get( "Name" ) ) 
+if( !function_exists( "abbey_theme_details" ) ) : 
+	function abbey_theme_details(){
+		$current_theme = wp_get_theme();
+		?>
+		<ul class="list-inline list-right">
+			<li> 
+				<?php echo sprintf( '<a href="www.wordpress.org" target="_blank" data-toggle="tooltip" title="%1$s">%2$s</a>',
+									__( "Powered by:", "abbey" ),
+									__( "Wordpress", "abbey" )
 								); ?>
-		</li>
-		<li> 
-			<?php echo sprintf( '<a href="#" data-toggle="tooltip" title="%1$s">%2$s</a>',
-									__( "Theme version:", "abbey" ),
-									$current_theme->get( "Version" )
-							); ?> 
-		</li>
-		<li> 
-			<?php echo sprintf( '<a href="%1$s" target="_blank" data-toggle="tooltip" title="%2$s">%3$s </a>',
-								 esc_url( $current_theme->get( "AuthorURI" ) ), 
-								 __( "Theme design:", "abbey" ),
-								 esc_html( $current_theme->get( "Author" ) ) 
-								); ?>
-		</li>
-	</ul>
-		<?php
-}
+			</li>
+			<li> 
+				<?php echo sprintf( '<a href="%1$s" target="_blank" data-toggle="tooltip" title="%2$s">%3$s </a>',
+									 esc_url( $current_theme->get( "ThemeURI" ) ), 
+									 esc_attr( __( "Built on:", "abbey" ) ),
+									 esc_html( $current_theme->get( "Name" ) ) 
+									); ?>
+			</li>
+			<li> 
+				<?php echo sprintf( '<a href="#" data-toggle="tooltip" title="%1$s">%2$s</a>',
+										__( "Theme version:", "abbey" ),
+										$current_theme->get( "Version" )
+								); ?> 
+			</li>
+			<li> 
+				<?php echo sprintf( '<a href="%1$s" target="_blank" data-toggle="tooltip" title="%2$s">%3$s </a>',
+									 esc_url( $current_theme->get( "AuthorURI" ) ), 
+									 __( "Theme design:", "abbey" ),
+									 esc_html( $current_theme->get( "Author" ) ) 
+									); ?>
+			</li>
+		</ul>
+			<?php
+	} //end function abbey_theme_details //
+
+endif; //endif function_exist abbey_theme_details 
 
 /* 
 * display and generate html for showing next and previous posts 
@@ -134,26 +137,30 @@ function abbey_theme_details(){
 * this function displays both the previous and next at once 
 *
 */
-function abbey_post_nav( $title = "" ){
-	$prev_post = get_previous_post(); // previous post//
-	$next_post = get_next_post(); // next post //
-	$html = "<div class='post-navigation entry-footer-info'>\n";//start of .post-navigation //
-	if( !empty( $title ) )
-		$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
+if( !function_exists( "abbey_post_nav" ) ) :
+	function abbey_post_nav( $title = "" ){
+		$prev_post = get_previous_post(); // previous post//
+		$next_post = get_next_post(); // next post //
+		$html = "<div class='post-navigation entry-footer-info'>\n";//start of .post-navigation //
+		if( !empty( $title ) )
+			$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
 
-	if ( !empty( $prev_post ) ) {
-		$html .= "<div class='previous-post'>\n";
-		$html .= abbey_show_nav( $prev_post, "previous" ); // check functions/template-tags.php //
-		$html .= "</div>";//close of previous-post class div//
-	}
-	if ( !empty( $next_post ) ){
-		$html .= "<div class='next-post text-right'>\n";
-		$html .= abbey_show_nav( $next_post, "next" );
-		$html .= "</div>"; // close of next-post div //
-	}
-	$html .= "</div>"; // close of post-navigation class div //
-	echo $html;
-}
+		if ( !empty( $prev_post ) ) {
+			$html .= "<div class='previous-post'>\n";
+			$html .= abbey_show_nav( $prev_post, "previous" ); // check functions/template-tags.php //
+			$html .= "</div>";//close of previous-post class div//
+		}
+		if ( !empty( $next_post ) ){
+			$html .= "<div class='next-post text-right'>\n";
+			$html .= abbey_show_nav( $next_post, "next" );
+			$html .= "</div>"; // close of next-post div //
+		}
+		$html .= "</div>"; // close of post-navigation class div //
+		echo $html;
+
+	} //end function abbey_post_nav
+
+endif; //endif function exists abbey_post_nav //
 
 
 /*
@@ -161,47 +168,52 @@ function abbey_post_nav( $title = "" ){
 * this function uses abbey_post_author and abbey_author_contacts
 *
 */
-function abbey_post_author_info( $title = "" ){
-	$author = abbey_post_author(); //check functions/template-tags.php //
-	
-	$html = "<div class='author-info entry-footer-info'>"; //start html .author-info //
-	if( !empty( $title ) )
-		$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
-	
-	$html .= "<div class='author-photo heading-icon'>".abbey_author_photo( $author->ID, 120, "img-circle" ). "</div>";
-	$html .= "<div class='author-details heading-content'>";//start .author-details //
-	$html .= sprintf( '<div class="author-title">
-						<div class="author-name"><h4 class="no-top-margin no-bottom-margin"><a href="%4$s"> %1$s </a> </h4></div>
-						<div class="author-rate"> <em> %2$s </em> <span class="author-post-count"> %3$s </span></div>
-						</div>',
-						$author->display_name, 
-						__( "Published posts:", "abbey" ),
-						get_the_author_posts(), 
-						get_author_posts_url( $author->ID )
-					);
+if ( !function_exists( "abbey_post_author_info" ) ) : 
 
-	$html .= sprintf( '<div class="author-description"><p>%s</p></div>', esc_html( $author->description ) );
-	
-	/* display author social contacts */
-	$author_contacts = abbey_author_contacts( $author ); //check functions/template-tags.php //
-	if( !empty( $author_contacts )  ){
-		$html .= "<footer class='social-contacts col-md-5 h4 text-center'>";
-		$html .= "<ul class='list-inline'>"; 
-		foreach( $author_contacts as $social => $contact ){ //start loop //
-			$html .= sprintf( '<li><a href="%1$s" title="%2$s" class="icon"><span class="fa fa-%3$s"></span></a></li>', 
-								esc_url( $contact ), 
-								__( "Visit author's facebook", "abbey" ), 
-								esc_attr( $social )
+	function abbey_post_author_info( $title = "" ){
+		$author = abbey_post_author(); //check functions/template-tags.php //
+		
+		$html = "<div class='author-info entry-footer-info'>"; //start html .author-info //
+		if( !empty( $title ) )
+			$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
+		
+		$html .= "<div class='author-photo heading-icon'>".abbey_author_photo( $author->ID, 120, "img-circle" ). "</div>";
+		$html .= "<div class='author-details heading-content'>";//start .author-details //
+		$html .= sprintf( '<div class="author-title">
+							<div class="author-name"><h4 class="no-top-margin no-bottom-margin"><a href="%4$s"> %1$s </a> </h4></div>
+							<div class="author-rate"> <em> %2$s </em> <span class="author-post-count"> %3$s </span></div>
+							</div>',
+							$author->display_name, 
+							__( "Published posts:", "abbey" ),
+							get_the_author_posts(), 
+							get_author_posts_url( $author->ID )
 						);
-		}//end foreach //
-		$html .= "</footer>";
-	}//end if $author_contacts //
-			
-	$html .= "</div>"; //.author-details //
-	$html .= "</div>\n"; //.author-info //
 
-	echo $html; 
-}
+		$html .= sprintf( '<div class="author-description"><p>%s</p></div>', esc_html( $author->description ) );
+		
+		/* display author social contacts */
+		$author_contacts = abbey_author_contacts( $author ); //check functions/template-tags.php //
+		if( !empty( $author_contacts )  ){
+			$html .= "<footer class='social-contacts col-md-5 h4 text-center'>";
+			$html .= "<ul class='list-inline'>"; 
+			foreach( $author_contacts as $social => $contact ){ //start loop //
+				$html .= sprintf( '<li><a href="%1$s" title="%2$s" class="icon"><span class="fa fa-%3$s"></span></a></li>', 
+									esc_url( $contact ), 
+									__( "Visit author's facebook", "abbey" ), 
+									esc_attr( $social )
+							);
+			}//end foreach //
+			$html .= "</footer>";
+		}//end if $author_contacts //
+				
+		$html .= "</div>"; //.author-details //
+		$html .= "</div>\n"; //.author-info //
+
+		echo $html; 
+
+	}//end function abbey_post_author_info//
+
+endif; //endif function_exists abbey_post_author_info //
 
 /*
 * function to show related posts in a slide i.e carousel 
@@ -209,41 +221,44 @@ function abbey_post_author_info( $title = "" ){
 * depends on abbey_query_post, abbey_excerpt, abbey_page_media  
 *
 */
-function abbey_show_related_posts( $title = "" ){
-	$args =  array(
-		'post_type' => get_post_type(), 
-		'posts_per_page' => 3, 
-		'post__not_in' => array( get_the_ID() ) //exclude the current post id from query //
-	);
-	$related_posts = abbey_get_posts( $args ); // check functions/core.php //
-	if( $related_posts->have_posts() ) : ob_start(); ?>
-		<div class="related-posts entry-footer-info">	
-			<?php
-			if( !empty( $title ) ){
-				echo sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html( $title ) );
-			} 
-			?>
-			<!--start putting the post in a slide-->
-			<div class="posts-slides" data-slick='{"rtl": true, "slidesToShow" : 1, "centerMode" : true, "centerPadding" : "40px", "arrows" : true }'>
-				<?php while( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
-					<!-- start of each post panel -->
-					<aside class="post-panel">
-						<figure class="post-panel-thumbnail"><?php abbey_page_media(); ?></figure>
-						<div class="post-panel-body">
-							<h4 class="post-panel-heading">
-								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-							</h4>
-							<div class="post-panel-excerpt text-justify"><?php abbey_excerpt( 25, "", true ); ?> </div>
-						</div>
-					</aside>
-				<?php endwhile; wp_reset_postdata(); ?>
+if ( !function_exists( "abbey_show_related_posts" ) ) :
+	function abbey_show_related_posts( $title = "" ){
+		$args =  array(
+			'post_type' => get_post_type(), 
+			'posts_per_page' => 3, 
+			'post__not_in' => array( get_the_ID() ) //exclude the current post id from query //
+		);
+		$related_posts = abbey_get_posts( $args ); // check functions/core.php //
+		if( $related_posts->have_posts() ) : ob_start(); ?>
+			<div class="related-posts entry-footer-info">	
+				<?php
+				if( !empty( $title ) ){
+					echo sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html( $title ) );
+				} 
+				?>
+				<!--start putting the post in a slide-->
+				<div class="posts-slides" data-slick='{"rtl": true, "slidesToShow" : 1, "centerMode" : true, "centerPadding" : "40px", "arrows" : true }'>
+					<?php while( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
+						<!-- start of each post panel -->
+						<aside class="post-panel">
+							<figure class="post-panel-thumbnail"><?php abbey_page_media(); ?></figure>
+							<div class="post-panel-body">
+								<h4 class="post-panel-heading">
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								</h4>
+								<div class="post-panel-excerpt text-justify"><?php abbey_excerpt( 25, "", true ); ?> </div>
+							</div>
+						</aside>
+					<?php endwhile; wp_reset_postdata(); ?>
+				</div>
 			</div>
-		</div>
-	<?php endif; //end if have_posts() //
-		
-	echo ob_get_clean();
+		<?php endif; //end if have_posts() //
+			
+		echo ob_get_clean();
 
-}
+	}//end function abbey_show_related_posts //
+
+endif; //endif function exists abbey_show_related_posts //
 
 /*
 * Search page action hook 
@@ -279,28 +294,31 @@ function abbey_search_summary( $abbey ){
 * @param: WP_Object - this can instance of a wordpress user, post_type or term object depending on the queried object
 */
 add_action( "abbey_archive_page_heading", "abbey_archive_heading" ); //found in archive.php, category.php, author.php //
-function abbey_archive_heading( $queried_object ){	
-	$title = $icon = "";
-	if( $queried_object instanceof WP_User ){
-		$title = $queried_object->display_name; 
-		$icon = abbey_author_photo( $queried_object->ID, 120, "img-circle" );
-	}
-	elseif( $queried_object instanceof WP_Post_Type ){
-		$title = $queried_object->labels->archives;
-	}
-	elseif( $queried_object instanceof WP_Term ){
-		$title = $queried_object->name;
-	}
-	 ?>
-	 <?php if( !empty( $icon ) ) : ?>
-	 	<div class='heading-icon'><?php echo $icon; ?> </div>
-	 <?php endif; ?>
-	 <div class='heading-content'>
-		<h1 class="page-title"><?php echo esc_html( $title ); ?> </h1>
-		<summary class="archive-description"><?php echo $queried_object->description; ?> </summary>
-	</div>
-	<?php
-}
+if( !function_exists( "abbey_archive_heading" ) ) : 
+	function abbey_archive_heading( $queried_object ){	
+		$title = $icon = "";
+		if( $queried_object instanceof WP_User ){
+			$title = $queried_object->display_name; 
+			$icon = abbey_author_photo( $queried_object->ID, 120, "img-circle" );
+		}
+		elseif( $queried_object instanceof WP_Post_Type ){
+			$title = $queried_object->labels->archives;
+		}
+		elseif( $queried_object instanceof WP_Term ){
+			$title = $queried_object->name;
+		}
+		 ?>
+		 <?php if( !empty( $icon ) ) : ?>
+		 	<div class='heading-icon'><?php echo $icon; ?> </div>
+		 <?php endif; ?>
+		 <div class='heading-content'>
+			<h1 class="page-title"><?php echo esc_html( $title ); ?> </h1>
+			<summary class="archive-description"><?php echo $queried_object->description; ?> </summary>
+		</div>
+		<?php
+	}//end function abbey_archive_heading 
+	
+endif; //endif function exist abbey_archive_heading //
 
 /*
 * Template function filter for thumbnail - abbey_page_media function 

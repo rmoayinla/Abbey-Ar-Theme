@@ -176,43 +176,48 @@ function abbey_theme_add_contacts($defaults){
 *
 *
 */
-add_filter( "abbey_theme_defaults", "abbey_add_front_page_slides", 40 );
+add_filter( "abbey_theme_defaults", "abbey_add_front_page_slides", 40 );//filter to extend front page slides and slide images //
+if( !function_exists( "abbey_add_front_page_slides" ) ) :
 
-function abbey_add_front_page_slides( $defaults ){
-	$front_page = $defaults["front-page"]; // default front-page key containing all front-page defaults //
-	$news =  get_post_type_object("news");
-	/*
-	* Adding a key for slides to front-page defaults
-	* this key is a multi-dimensional array with each array containing info for each slide 
-	* a slide can show a picture or query for a particular post_type e.g. news 
-	* contains a filter in case a user wants to add or remove some slides 
-	*
-	*/
-	$front_page[ "slides" ] = apply_filters( "abbey_front_page_slides", array(
-			array(
-				"image" => get_template_directory_uri()."/img/banner-1.jpg"
-			), 	
-			array(
-				"image" => get_template_directory_uri()."/img/banner-2.jpg", 
-				"caption" => array(
-					"title" => $news->labels->archives,
-					"description" => $news->description,
-					"url" =>  get_post_type_archive_link( "news" ),
-					"query" => array(
-						"post_type" => "news", "posts_per_page" => 2
+	function abbey_add_front_page_slides( $defaults ){
+
+		$front_page = $defaults["front-page"]; // default front-page key containing all front-page defaults //
+		$news =  get_post_type_object("news");
+		/*
+		* Adding a key for slides to front-page defaults
+		* this key is a multi-dimensional array with each array containing info for each slide 
+		* a slide can show a picture or query for a particular post_type e.g. news 
+		* contains a filter in case a user wants to add or remove some slides 
+		*
+		*/
+		$front_page[ "slides" ] = apply_filters( "abbey_front_page_slides", array(
+				array(
+					"image" => get_template_directory_uri()."/img/banner-1.jpg"
+				), 	
+				array(
+					"image" => get_template_directory_uri()."/img/banner-2.jpg", 
+					"caption" => array(
+						"title" => $news->labels->archives,
+						"description" => $news->description,
+						"url" =>  get_post_type_archive_link( "news" ),
+						"query" => array(
+							"post_type" => "news", "posts_per_page" => 2
+						)
 					)
-				)
-			 ),
-			array(
-				"image" => get_template_directory_uri()."/img/banner-3.jpg"
-			 )
+				 ),
+				array(
+					"image" => get_template_directory_uri()."/img/banner-3.jpg"
+				 )
 
-		)
-	);
-	$defaults[ "front-page" ] = wp_parse_args ( $front_page, $defaults["front-page"] ); //override my default front-page with this one //
-	
-	return $defaults; // return the defaults as usual for all theme default filters //
-}
+			)
+		);
+		$defaults[ "front-page" ] = wp_parse_args ( $front_page, $defaults["front-page"] ); //override my default front-page with this one //
+		
+		return $defaults; // return the defaults as usual for all theme default filters //
+
+	} //end function abbey_add_front_page_slides
+
+endif; //endif function_exist abbey_add_front_page_slides //
 
 /*
 * A filter to add the administrator/owner info to Abbey theme 

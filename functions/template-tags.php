@@ -57,70 +57,74 @@ function abbey_author_contacts( $author, $key = "" ){
 * function to show some little post info e.g. post date, author, category 
 *
 */
-function abbey_post_info( $echo = true, $keys = array() ){
-	$info = array();
-	$cats = get_the_category(); // $cats[0]->name->categroy_count
-	/* author info */
-	$info["author"] = sprintf ( '<span class="sr-only"> %1$s </span> %2$s',
-								__( "Posted by:", "abbey" ), 
-								abbey_show_author( false ) // check functions/template-tags.php //
-								);
-	/* date info */ 
-	$info["date"] = sprintf( '<time datetime="%3$s"><span class="sr-only">%2$s</span><span>%1$s </span></time>',
-							get_the_time( get_option( 'date_format' ).' \@ '.get_option( 'time_format' ) ), 
-							__( "Posted on:", "abbey" ), 
-							get_the_time('Y-md-d')
-						); 
-	/*
-	* post category info, only the first category info is displayed 
-	* the first category name and link is displayed 
-	*
-	*/ 
-	if( !empty ( $cats[0] ) ){
-		$cat_link = ( isset( $cats[0] ) ) ? get_category_link( $cats[0]->cat_ID ) : "";
-		$info["more"] = sprintf( '<a href="%1$s" title="%2$s" role="button" class="">%3$s </a>', 
-	 				esc_url( $cat_link ), 
-	 				__( "Click to read more posts", "abbey" ), 
-	 				sprintf( __( "اقرأ من المقالات الأخرى من %s", "abbey" ), esc_html( $cats[0]->name ) )
-	 				);
-	}
-
-	$post_infos = apply_filters( "abbey_post_info", $info );//filter to add more post info //
-
-	$html = $icon = $heading = $class = "";
-	/*
-	* before the post info is displayed, we check if a key param is passed throught this function
-	* this key param which must be an array is to set which of the infos to be displayed and which to be excluded 
-	*
-	*/
-	if( !empty( $post_infos ) ) {
-		foreach ( $post_infos as $title => $post_info ){ //loop through the infos 
-			/* 
-			* check if $key param is empty, if $key is not empty, then 
-			* 1. check if the title is in keys or 
-			* 2. if the title exist in keys array, 
-			* if not then exclude this info */
-			if( !empty( $keys ) && !( in_array( $title, $keys ) || array_key_exists( $title, $keys ) )  )
-				continue;
-			/*
-			* if keys is not empty and the current title is found in keys, and this title index is an array 
-			* generate an icon and a heading 
-			*/
-			if( !empty( $keys[$title] ) && is_array( $keys[$title] ) )
-				$icon = ( !empty( $keys[$title]["icon"] ) ) ? 
-						"<span class='fa ".esc_attr( $keys[$title]["icon"] )."'></span>" : "";
-
-				$heading = ( !empty( $keys[$title]["title"] ) ) ? 
-							"<span class='$title-heading'>".esc_html( $keys[$title]["title"] )."</span>" : "";
-
-			$class = esc_attr( $title );
-			$html .= "<li class='$class'>$icon $heading $post_info</li>\n";//the list of each post info //
+if( !function_exists( "abbey_post_info" ) ) : 
+	function abbey_post_info( $echo = true, $keys = array() ){
+		$info = array();
+		$cats = get_the_category(); // $cats[0]->name->categroy_count
+		/* author info */
+		$info["author"] = sprintf ( '<span class="sr-only"> %1$s </span> %2$s',
+									__( "Posted by:", "abbey" ), 
+									abbey_show_author( false ) // check functions/template-tags.php //
+									);
+		/* date info */ 
+		$info["date"] = sprintf( '<time datetime="%3$s"><span class="sr-only">%2$s</span><span>%1$s </span></time>',
+								get_the_time( get_option( 'date_format' ).' \@ '.get_option( 'time_format' ) ), 
+								__( "Posted on:", "abbey" ), 
+								get_the_time('Y-md-d')
+							); 
+		/*
+		* post category info, only the first category info is displayed 
+		* the first category name and link is displayed 
+		*
+		*/ 
+		if( !empty ( $cats[0] ) ){
+			$cat_link = ( isset( $cats[0] ) ) ? get_category_link( $cats[0]->cat_ID ) : "";
+			$info["more"] = sprintf( '<a href="%1$s" title="%2$s" role="button" class="">%3$s </a>', 
+		 				esc_url( $cat_link ), 
+		 				__( "Click to read more posts", "abbey" ), 
+		 				sprintf( __( "اقرأ من المقالات الأخرى من %s", "abbey" ), esc_html( $cats[0]->name ) )
+		 				);
 		}
-	} //end if $post_infos //
-	if ( $echo )
-		echo $html; 
-	return $html;
-}
+
+		$post_infos = apply_filters( "abbey_post_info", $info );//filter to add more post info //
+
+		$html = $icon = $heading = $class = "";
+		/*
+		* before the post info is displayed, we check if a key param is passed throught this function
+		* this key param which must be an array is to set which of the infos to be displayed and which to be excluded 
+		*
+		*/
+		if( !empty( $post_infos ) ) {
+			foreach ( $post_infos as $title => $post_info ){ //loop through the infos 
+				/* 
+				* check if $key param is empty, if $key is not empty, then 
+				* 1. check if the title is in keys or 
+				* 2. if the title exist in keys array, 
+				* if not then exclude this info */
+				if( !empty( $keys ) && !( in_array( $title, $keys ) || array_key_exists( $title, $keys ) )  )
+					continue;
+				/*
+				* if keys is not empty and the current title is found in keys, and this title index is an array 
+				* generate an icon and a heading 
+				*/
+				if( !empty( $keys[$title] ) && is_array( $keys[$title] ) )
+					$icon = ( !empty( $keys[$title]["icon"] ) ) ? 
+							"<span class='fa ".esc_attr( $keys[$title]["icon"] )."'></span>" : "";
+
+					$heading = ( !empty( $keys[$title]["title"] ) ) ? 
+								"<span class='$title-heading'>".esc_html( $keys[$title]["title"] )."</span>" : "";
+
+				$class = esc_attr( $title );
+				$html .= "<li class='$class'>$icon $heading $post_info</li>\n";//the list of each post info //
+			}
+		} //end if $post_infos //
+		if ( $echo )
+			echo $html; 
+		return $html;
+
+	} //end of function abbey_post_info //
+
+endif; //endif function exists abbey_post_info //
 
 /* 
 * Wrapper function for wordpress link pages 
@@ -312,24 +316,27 @@ function abbey_post_date( $echo = true, $post_id = "", $icon = "" ){
 * wrapper function for wordpress post_type to show posts type
 *
 */
-function abbey_show_post_type(){
-	$post_type = get_post_type(); 
-	$post = "";
-	switch ( $post_type ){
-		case "post":
-			$post = __( "مقالة", "abbey" );
-			break; 
-		case "page":
-			$post = __( "Page", "abbey" ); 
-			break; 
-		case "news":
-			$post = __( "أخبار", "abbey" );
-		
-		default: 
-			$post = ucwords( $post_type ); 
+if( !function_exists( "abbey_show_post_type" ) ) : 
+	function abbey_show_post_type(){
+		$post_type = get_post_type(); 
+		$post = "";
+		switch ( $post_type ){
+			case "post":
+				$post = __( "مقالة", "abbey" );
+				break; 
+			case "page":
+				$post = __( "Page", "abbey" ); 
+				break; 
+			case "news":
+				$post = __( "أخبار", "abbey" );
+			
+			default: 
+				$post = ucwords( $post_type ); 
+		}
+		echo apply_filters( "abbey_post_type", $post );
 	}
-	echo apply_filters( "abbey_post_type", $post );
-}
+
+endif; //endif function exist abbey_show_post_type //
 
 /*
 * wrapper function for displaying post thumbnails 
