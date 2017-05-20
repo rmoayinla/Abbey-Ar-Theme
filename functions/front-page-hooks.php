@@ -1,11 +1,15 @@
 <?php
-/*
-	* the functions here are added to actions or filters 
-	* Check each function to know the exact action or filter attached to 
-	* @theme: Abbey
-	* @package: wordpress
-	* @version: 0.1 
-*/
+/**
+ * Short Description (no period for file headers)
+ *
+ * Long Description.
+ *
+ * @link URL
+ * @since x.x.x (if available)
+ *
+ * @package WordPress
+ * @subpackage Component
+ */
 
 
 add_action( "abbey_theme_footer_contacts", "abbey_show_address" );//hook to show contact address; check footer.php or header.php //
@@ -18,14 +22,15 @@ if( function_exists( "abbey_show_address" ) ) :
 					<div class="col-md-1 col-sm-1 col-xs-1 lead"> <i class="fa fa-map-marker"></i> </div>
 					<div class="col-md-10 col-sm-10 col-xs-10">
 						<p class="no-bottom-margin strong"> Visit me: </p>
-						<p>'.esc_html(abbey_get_contact( "address", "office" ) ).'</p>
+						<p>'.esc_html( abbey_get_contact( "address", "office" ) ).'</p>
 					</div>
 					
 					
 				</div>
 			</div>
 		';
-	}
+	}//end function abbey_show_address 
+
 endif; //endif function exist abbey_show_address //
 
 add_action( "abbey_theme_footer_contacts", "abbey_show_telephone", 20 );//check footer.php or header.php //
@@ -45,14 +50,42 @@ if( function_exists( "abbey_show_telephone" ) ) :
 	}
 endif; //endif function exist abbey_show_telephone //
 
-//add_action( "abbey_theme_footer_widgets", "abbey_header_social_icons", 30 );
+add_action( "abbey_theme_footer_widgets", "abbey_show_social_icons", 30 );
 if( !function_exists( "abbey_show_social_icons" ) ) :
-	function abbey_show_social_icons( $contact ){
-		echo '<div class="header-contacts" id="header-social-icons">';
-		abbey_social_menu();
-		echo '</div>';
+	function abbey_show_social_icons(){	?>
+		<aside class="footer-widgets col-md-3" id="footer-social-icons">
+			<h4><?php _e( "Connect with us on social media", "abbey"); ?> </h4>
+			<?php abbey_social_menu(); ?>
+		</aside>		<?php 
 	}
+
 endif; 
+
+add_action( "abbey_theme_footer_widgets", "abbey_show_footer_widget_a", 20 );
+function abbey_show_footer_widget_a(){	?>
+	<aside class="footer-widgets col-md-3" id="footer-widget-a">
+	</aside>		<?php 
+}
+
+add_action( "abbey_theme_footer_widgets", "abbey_show_site_info", 10 );
+if( !function_exists( "abbey_show_site_info" ) ) :
+	function abbey_show_site_info(){		?>
+		<aside class="col-md-3 footer-widgets" id="footer-site-info">
+			<div class="text-center">
+				<?php abbey_show_logo( "", "", false ); ?> 
+				<p class="small description"> <?php bloginfo( "description" ); ?> </p>
+			</div>
+			<address> 
+				<span class="text-capitalize"><?php _e( "Visit us:", "abbey" ); ?> </span>
+				<?php echo esc_html( abbey_get_contact( "address", "office" ) ) ; ?>. <br />
+				<span class="text-capitalize"><?php _e( "or Call:", "abbey" ); ?></span>
+				<?php echo esc_html( implode( abbey_get_contact( "tel" ), " , " ) ); ?>. <br/>
+				<span class="text-capitalize"><?php _e( "Email:", "abbey" ); ?></span>
+				<?php echo esc_html( implode( abbey_get_contact( "email" ), " , " ) ); ?>.
+			</address>
+		</aside>		<?php 
+	}
+endif; //endif function_exist abbey_show_site_info //
 
 if( !function_exists( "abbey_slide_default_caption" ) ) : 
 	function abbey_slide_default_caption () {
@@ -119,7 +152,9 @@ if( !function_exists( "abbey_slide_caption" ) ) :
 		<?php endif; ?>	
 		
 			<?php return ob_get_clean(); 
-	}
+
+	}//end function abbey_slide_caption //
+
 endif; //endif function exist abbey_slide_caption //
 
 add_action ( "abbey_theme_front_page_banner", "abbey_front_page_slides" );//action hook for front-page banner, check front-page.php //
@@ -173,11 +208,12 @@ if( !function_exists( "abbey_front_page_slides" ) ) :
 	  		$html .= "</div>\n"; //.carousel slide closes //
 		}
 		echo $html;
-	}
+	} //end function abbey_front_page_slides //
+
 endif; //endif function exists abbey_front_page_slides //
 
 
-add_action( "abbey_theme_more_services", "abbey_service_lists" );
+add_action( "abbey_theme_more_services", "abbey_service_lists" );//action hook to show services, see front-page.php //
 function abbey_service_lists(){
 	global $abbey_defaults;
 	$services = $abbey_defaults["services"]["extras"];
@@ -206,7 +242,7 @@ function abbey_service_lists(){
 	
 }
 
-add_action("abbey_theme_front_page_contact_form", "abbey_theme_contact_form");
+add_action("abbey_theme_front_page_contact_form", "abbey_theme_contact_form");//action hook to display contact form, see templates/content-front-page.php //
 function abbey_theme_contact_form(){
 	ob_start(); ?>
 		<form role="form" id="contact-form" method="post">
@@ -270,8 +306,8 @@ if( !function_exists( "abbey_show_social_contacts" ) ):
 			$html .= "<div class='social-icons' id='social-contacts'><ul class='nav'>";
 			foreach ( $social_contacts as $social => $contact ){
 				if( empty($contact) ) continue;
-				$html .= "<li class='inline'><a href='".esc_url($contact)."' class='' target='_blank' >";
-				$html .= "<span class='fa fa-fw fa-2x ". abbey_contact_icon($social)."'> </span>"; 
+				$html .= "<li class='inline'><a href='".esc_url( $contact )."' class='' target='_blank' >";
+				$html .= "<span class='fa fa-fw fa-2x ". abbey_contact_icon( $social )."'> </span>"; 
 				$html .= "</a></li>";
 			}
 
