@@ -1,8 +1,5 @@
 <?php
-	
-	global $abbey_defaults;
-	$page_description = ( !empty( $abbey_defaults["page"]["description"] ) ) ?
-						 esc_html( $abbey_defaults["page"]["description"] ) : "";
+
 ?>
 <section  id="content" class="page-content col-md-6 col-md-offset-2">
 
