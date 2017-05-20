@@ -267,7 +267,6 @@ a.btn-default,
 .pad-medium,
 .entry-content,
 .entry-content .gallery-columns-1,
-#site-page #page-content-header .page-title-wrap,
 #site-page .entry-content blockquote,
 #custom-page #page-content-header,
 #post-page #content,
@@ -336,6 +335,7 @@ a.btn-default,
 }
 .outer-pad-medium,
 #sitehead #admin-info,
+#site-page #page-content-header .page-title-wrap,
 #site-page .inner-content,
 #post-page .post-taxonomies,
 #post-page .entry-footer-info,
@@ -612,7 +612,7 @@ a.btn-default,
 .margin-top-xs,
 .entry-content .gallery-columns-3 .gallery-item,
 .entry-content div[class*="columns-4"] .gallery-item,
-#site-footer #site-info .description,
+#site-footer #footer-site-info .description,
 #comments .media .media-left p {
   margin-top: 5px;
 }
@@ -715,7 +715,7 @@ a.btn-default,
 #post-page .post-excerpt,
 #gallery-post-page .entry-content .gallery-item:hover figcaption,
 #link .primary:visited,
-#site-footer #site-info .description,
+#site-footer #footer-site-info .description,
 .archives .post-panel-footer .fa-fw,
 #search-page .post-panel-footer .fa-fw,
 #content a:not(.btn):visited,
@@ -895,6 +895,7 @@ a.btn-default,
 .container-fluid,
 .container,
 .entry-content .gallery-item,
+#site-page #page-media,
 #custom-page .entry-content,
 #post-page .post-thumbnail,
 #gallery-post-page .entry-content .gallery-item,
@@ -976,7 +977,7 @@ a.btn-default,
 #post-page .post-excerpt,
 #post-page .post-thumbnail-caption,
 #site-footer #inner-footer #site-about,
-#site-footer #site-info address,
+#site-footer #footer-site-info address,
 #site-footer .disclaimer,
 #comments .media .media-body time,
 #comments .media .media-heading .secondary,
@@ -1230,11 +1231,17 @@ a.btn-default,
 }
 #site-page #page-media .wp-post-image {
   width: 100%;
-  height: 240px;
-  transition: height 800ms ease-in;
+  height: 320px;
+  transition: all 2s ease-in-out 1s;
+  -webkit-transition: all 2s ease-in-out 1s;
+  -o-transition: all 2s ease-in-out 1s;
+  -moz-transition: all 2s ease-in-out 1s;
 }
 #site-page #page-media .wp-post-image:hover {
-  height: auto;
+  transform: scale(1.5, 1.5);
+  -webkit-transform: scale(1.5, 1.5);
+  -o-transform: scale(1.5, 1.5);
+  -moz-transform: scale(1.5, 1.5);
 }
 #site-page .entry-content blockquote:before,
 #site-page .entry-content blockquote:after {
@@ -1249,9 +1256,6 @@ a.btn-default,
   content: "\f10e";
   bottom: 10px;
   right: 3px;
-}
-.no-sidebar .page-title-wrap {
-  border-bottom: 0px !important;
 }
 #error-404-page .entry-content .page-header {
   font-size: 8em;
@@ -1426,6 +1430,7 @@ a.btn-default,
   border-bottom: 3px solid #b34700;
 }
 #post-page .related-posts {
+  overflow: visible;
   padding-left: 30px !important;
   padding-right: 30px !important;
 }
@@ -1435,17 +1440,16 @@ a.btn-default,
 #post-page .related-posts .slick-list {
   overflow: unset;
 }
-#post-page .related-posts .slick-next::before {
+#post-page .related-posts .slick-next::before,
+#post-page .related-posts .slick-prev::before {
   font-size: 36px !important;
+}
+#post-page .related-posts .slick-prev {
+  z-index: 999;
+  right: -5px;
 }
 #quote-post-page .breadcrumb li + li:before {
   content: "";
-}
-#gallery-post-page .entry-content .gallery-item {
-  transition: all 2s linear 0s;
-  -webkit-transition: all 2s linear 0s;
-  -o-transition: all 2s linear 0s;
-  -moz-transition: all 2s linear 0s;
 }
 #gallery-post-page .entry-content .gallery-item img {
   transition: all 2s ease-in-out 1s;
@@ -1734,16 +1738,16 @@ a.btn-default:hover {
 #site-footer #inner-footer .fa-2x {
   font-size: 20px;
 }
-#site-footer #site-info .custom-logo {
+#site-footer #footer-site-info .custom-logo {
   width: 240px;
   height: auto;
 }
-#site-footer #site-info #site-name {
+#site-footer #footer-site-info #site-name {
   font-size: 32px;
   margin-left: 10px;
   vertical-align: middle;
 }
-#site-footer #site-info address {
+#site-footer #footer-site-info address {
   line-height: 1.5em;
 }
 #site-footer .line-divider {
@@ -1925,10 +1929,12 @@ a.btn-default:hover {
   right: 0px;
   left: 100%;
 }
-.slick-next::before {
+.slick-next::before,
+.slick-prev::before {
   color: #FF6600 !important;
 }
-.slick-next:hover::before {
+.slick-next:hover::before,
+.slick-prev:hover::before {
   color: #b34700 !important;
 }
 /*
