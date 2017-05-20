@@ -4,6 +4,8 @@ require trailingslashit( get_template_directory () )."libs/wp_bootstrap_navwalke
 require trailingslashit( get_template_directory () )."libs/abbey_social_navwalker.php";
 require trailingslashit( get_template_directory () )."libs/abbey_bootstrap_comments.php";
 
+require trailingslashit( get_template_directory () )."assets/abbey_enqueue_class.php";
+
 require trailingslashit( get_template_directory () )."functions/theme_setup.php";
 require trailingslashit( get_template_directory () )."functions/front-page-hooks.php";
 require trailingslashit( get_template_directory () )."functions/hooks.php";
@@ -141,70 +143,80 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) :
 	
 	function abbey_theme_enque_styles () {
 
-		$theme_dir = get_template_directory_uri();
+		$theme_dir = Abbey_Enqueue::get_theme_uri();
 
-		wp_enqueue_script( "abbey-script", $theme_dir."/js/script.js", array( "jquery" ), 1.0, true );
+		
 
 		/*
 		* enqueueu bootstrap js 
 		*
 		*/
 		$bootstrap_js_cdn = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
-		wp_enqueue_script( "abbey-bootstrap-js", esc_url( $bootstrap_js_cdn ), array( "jquery" ), "", true );
+		Abbey_Enqueue::add_script( "abbey-bootstrap-js", esc_url( $bootstrap_js_cdn ), array( "jquery" ), "", true );
 		
 		/*
 		* enqueue bootstrap css
 		*
 		*/
 		$bootstrap_cdn = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
-		wp_enqueue_style( 'abbey-bootstrap', esc_url($bootstrap_cdn), array(), null );
+		Abbey_Enqueue::add_style( 'abbey-bootstrap', esc_url($bootstrap_cdn), array(), null );
 
 
-		/* If using a child theme, auto-load the parent theme style. */
-    	if ( is_child_theme() ) {
-       	 	wp_enqueue_style( 'abbey-parent-style', trailingslashit( $theme_dir ) . 'style.css' );
-    	}
+		
     	
 		// enqueue theme style.css//
-		wp_enqueue_style ( "abbey-style", get_stylesheet_uri() );
-
+		//wp_enqueue_style ( "abbey-style", get_stylesheet_uri() ); //
+		
 		
 		/*
 		* enque font-awesome 
 		*
 		*/
-		wp_enqueue_style( "abbey-fontawesome", $theme_dir."/css/font-awesome.min.css" ); 
+		Abbey_Enqueue::add_style( "abbey-fontawesome", $theme_dir."/css/font-awesome.min.css" ); 
 
+		/**
+		 * Enqueue default wordpress script for comment reply 
+		 *
+		 */
 		if ( !is_admin() && is_singular() && comments_open() && get_option('thread_comments') )
-  			wp_enqueue_script( 'comment-reply' );
+  			Abbey_Enqueue::add_script( 'comment-reply' );
 
 		/*
 		* Slick Jquery plugin 
 		* style and javascript for sliders
 		*
 		*/
-		wp_enqueue_script( "abbey-slick-js", $theme_dir."/libs/slick/slick.min.js", array( "jquery" ), "", true );
+		Abbey_Enqueue::add_script( "abbey-slick-js", $theme_dir."/libs/slick/slick.min.js", array( "jquery" ), "", true );
 
-		wp_enqueue_style("abbey-slick", $theme_dir."/libs/slick/slick.css" ); 
+		Abbey_Enqueue::add_style("abbey-slick", $theme_dir."/libs/slick/slick.css" ); 
 
-		wp_enqueue_style("abbey-slick-theme", $theme_dir."/libs/slick/slick-theme.css" );
+		Abbey_Enqueue::add_style("abbey-slick-theme", $theme_dir."/libs/slick/slick-theme.css" );
 
 		/*
 		* Magnific popup 
 		* style and javascript for popup 
 		*
 		*/
-		wp_enqueue_script( "abbey-magnific-js", $theme_dir."/libs/magnific popup/jquery.magnific-popup.min.js", array( "jquery" ), "", true );
-		wp_enqueue_style( "abbey-magnific-css", $theme_dir."/libs/magnific popup/magnific-popup.css" );
+		Abbey_Enqueue::add_script( "abbey-magnific-js", $theme_dir."/libs/magnific popup/jquery.magnific-popup.min.js", array( "jquery" ), "", true );
+		Abbey_Enqueue::add_style( "abbey-magnific-css", $theme_dir."/libs/magnific popup/magnific-popup.css" );
 
-		/*
-		* action hook for other enqueueus 
-		*
+		/**
+		 * action hook for other enqueueus 
+		 *
+		 */
+
+		do_action( "abbey_theme_enqueues" ); 
+
+		/**
+		* Enqueue all added styles and scripts 
+		* cehck the Abbey_Enqueue class in assets/abbey-enqueueu-class.php 
 		*/
-		do_action( "abbey_theme_enqueues", $theme_dir ); 
+
+		Abbey_Enqueue::enqueue();
+		
 
 
-	}
+	} //end function abbey_theme_enque_styles //
 
 endif; //endif of function exist abbey_theme_enque_styles//
 
@@ -281,4 +293,6 @@ function abbey_init_defaults(){
 	global $abbey_defaults;
 
     $abbey_defaults = abbey_theme_defaults();
+
+    Abbey_Enqueue::init(); 
 }
