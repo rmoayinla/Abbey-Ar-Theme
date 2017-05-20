@@ -1,4 +1,5 @@
 <?php
+
 get_header(); 
 global $more; ?>
 
@@ -6,7 +7,7 @@ global $more; ?>
 		<?php if ( have_posts() ) : ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php $more = 0; ?>
-			<header id="site-content-header"><?php do_action( "abbey_theme_before_post_content" ); ?></header>
+			<header id="site-content-header" class="before-content"><?php do_action( "abbey_theme_before_content" ); ?></header>
 			
 			<!-- set of conditions on which template file should be selected to display the post
 				 all template files are found in templates folder 
@@ -17,10 +18,10 @@ global $more; ?>
 			<?php if( ! has_post_format() ) : ?>
 				
 				<?php 
-				if( locate_template( "templates/content-".get_post_type().".php" ) ) 
-					get_template_part("templates/content", get_post_type() ); 
-				else
-					get_template_part(  "templates/content", "post" ); 
+					if( locate_template( "templates/content-".get_post_type().".php" ) ) 
+						get_template_part("templates/content", get_post_type() ); 
+					else
+						get_template_part(  "templates/content", "post" ); 
 				?>
 
 			<?php else: ?>
