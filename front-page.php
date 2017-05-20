@@ -15,7 +15,7 @@ get_header();  ?>
 				<?php do_action( "abbey_theme_front_page_banner" ); ?>
 			</div><!--end of jumbotron/#site-banner --> <?php 
 			
-			get_template_part("templates/content", "front-page");//include the front-page content layout //
+			get_template_part( "templates/content", "front-page" );//include the front-page content layout //
 
 		
 

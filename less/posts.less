@@ -260,6 +260,7 @@
 	}
 	.related-posts{
 		&:extend(.bg-light);
+		overflow: visible;
 		padding-left:30px !important;
 		padding-right: 30px !important;
 		.post-panel {
@@ -272,8 +273,12 @@
 		.slick-list{
 			overflow: unset;
 		}
-		.slick-next::before{
+		.slick-next::before, .slick-prev::before{
 			font-size: 36px !important;
+		}
+		.slick-prev{
+			z-index: 999;
+			right: -5px;
 		}
 	}
 
@@ -329,7 +334,6 @@
 		.gallery-item{
 			&:extend(.inline, .half-largescreen, #custom-page .entry-content figure.alignleft, 
 			.margin-right-xs, .float-left, .no-overflow);
-			.transition(all,2s);
 			img{
 				.transition(all,2s,ease-in-out,1s);
 				&:hover{

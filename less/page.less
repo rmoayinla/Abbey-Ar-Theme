@@ -8,10 +8,10 @@
 		&:extend(.border-radius-md, .border, .no-padding, .bg-white);
 	}
 	#page-content-header{
-		.page-title-wrap{
-				&:extend(.pad-medium);
-		}
 		&:extend(.bg-light);
+		.page-title-wrap{
+			&:extend(.outer-pad-medium);
+		}
 	}
 	.inner-content{
 		background-size: cover;
@@ -20,13 +20,15 @@
 	}
 	#page-media{
 		border-radius: 10px 10px 0px 0px;
+		&:extend(.no-overflow);
 		.wp-post-image{
 			width: 100%;
-			height: 240px;
-			transition: height 800ms ease-in;
+			height: 320px;
+			.transition(all,2s,ease-in-out,1s);
 			&:hover{
-				height: auto;
+				.scale(1.5,1.5); 
 			}
+
 		}
 
 	}
@@ -56,7 +58,6 @@
 
 .no-sidebar{
 	.page-title-wrap{
-		border-bottom: 0px !important;
 		&:extend(.text-center);
 	}
 }
