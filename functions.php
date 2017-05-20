@@ -14,8 +14,7 @@ require trailingslashit( get_template_directory () )."functions/plugins.php";
 
 $content_width = $abbey_defaults = ""; 
 
-if( !function_exists( "abbey_theme_setup" ) ) {
-	
+if( !function_exists( "abbey_theme_setup" ) ) : 
 	function abbey_theme_setup () {
 
 		// add theme support for post formats //
@@ -97,13 +96,15 @@ if( !function_exists( "abbey_theme_setup" ) ) {
 	 	* Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
 		 */
-		add_theme_support( 'html5', array(
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-		) );
+		add_theme_support( 'html5', 
+							array(
+								'search-form',
+								'comment-form',
+								'comment-list',
+								'gallery',
+								'caption'
+							) 
+		);
 
    	 	/**
     	 * register custom navigation menus.
@@ -130,13 +131,13 @@ if( !function_exists( "abbey_theme_setup" ) ) {
 
 		do_action( "abbey_theme_after_setup" );
 
-	}
+	} //end of function exist abbey_theme_setup //
 
-} //end of function exist abbey_theme_setup //
+endif; //endif function exists abbey_theme_setup //
 
 add_action ( "after_setup_theme", "abbey_theme_setup" );
 
-if( !function_exists( "abbey_theme_enque_styles" ) ) {
+if( !function_exists( "abbey_theme_enque_styles" ) ) :
 	
 	function abbey_theme_enque_styles () {
 
@@ -150,6 +151,7 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) {
 		*/
 		$bootstrap_js_cdn = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
 		wp_enqueue_script( "abbey-bootstrap-js", esc_url( $bootstrap_js_cdn ), array( "jquery" ), "", true );
+		
 		/*
 		* enqueue bootstrap css
 		*
@@ -158,6 +160,11 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) {
 		wp_enqueue_style( 'abbey-bootstrap', esc_url($bootstrap_cdn), array(), null );
 
 
+		/* If using a child theme, auto-load the parent theme style. */
+    	if ( is_child_theme() ) {
+       	 	wp_enqueue_style( 'abbey-parent-style', trailingslashit( $theme_dir ) . 'style.css' );
+    	}
+    	
 		// enqueue theme style.css//
 		wp_enqueue_style ( "abbey-style", get_stylesheet_uri() );
 
@@ -166,7 +173,7 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) {
 		* enque font-awesome 
 		*
 		*/
-		wp_enqueue_style("abbey-fontawesome", $theme_dir."/css/font-awesome.min.css" ); 
+		wp_enqueue_style( "abbey-fontawesome", $theme_dir."/css/font-awesome.min.css" ); 
 
 		if ( !is_admin() && is_singular() && comments_open() && get_option('thread_comments') )
   			wp_enqueue_script( 'comment-reply' );
@@ -188,7 +195,7 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) {
 		*
 		*/
 		wp_enqueue_script( "abbey-magnific-js", $theme_dir."/libs/magnific popup/jquery.magnific-popup.min.js", array( "jquery" ), "", true );
-		wp_enqueue_style("abbey-magnific-css", $theme_dir."/libs/magnific popup/magnific-popup.css" );
+		wp_enqueue_style( "abbey-magnific-css", $theme_dir."/libs/magnific popup/magnific-popup.css" );
 
 		/*
 		* action hook for other enqueueus 
@@ -199,35 +206,55 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) {
 
 	}
 
-}//end of function exist abbey_theme_enque_styles//
+endif; //endif of function exist abbey_theme_enque_styles//
 
 add_action( "wp_enqueue_scripts", "abbey_theme_enque_styles" );
 
 function abbey_theme_register_sidebars() {
+	/*
+	* default template format for displaying sidebar widget
+	*
+	*/
 	$defaults = array (
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>'
 	);
+	/*
+	* A simple and single sidebar, this sidebar comes with Abbey theme
+	*
+	*/
 	$args = array(
-		"name" => __( "Main Sidebar", "abbey" ), 
-		"id" => "sidebar-main", 
-		"description" => __( "This sidebar will show in all page and posts", "abbey" ), 
+		"name" => 			__( "Main Sidebar", "abbey" ), 
+		"id" => 			"sidebar-main", 
+		"description" => 	__( "This sidebar will show in all page and posts", "abbey" )
 	); 
-	$sidebars[] = $args; 
-	$extras = apply_filters( "abbey_theme_sidebars", array() ); 
+	
+	/*
+	* Sidebar array/container containing all sidebars
+	*/
+	$sidebars[] = $args; //include the default sidebar in the sidebars array //
+	$extras = apply_filters( "abbey_theme_sidebars", array() ); //option/filter for adding additional sidebars //
+	
+	/*
+	* If a sidebar has been added through the filter, loop through and add it to the Sidebar container 
+	*/
 	if ( count( $extras ) > 0 ){
 		foreach ( $extras as $k => $v ){
-			$sidebars[] = $v;
+			$sidebars[] = $v; //add to sidebar container //
 		}
-	}
+	} //end if count extras //
+
+	/*
+	* if there are sidebars in the sidebar container 
+	*/
 	if ( count ( $sidebars ) > 0 ) {
-		foreach ( $sidebars as $count => $sidebar ){
-			$args = wp_parse_args( $sidebar, $defaults );
-			register_sidebar( $args );
+		foreach ( $sidebars as $count => $sidebar ){ //loop through each sidebar in the container //
+			$args = wp_parse_args( $sidebar, $defaults ); //replace the current sidebar widget format with the default//
+			register_sidebar( $args ); //register the sidebar //
 		}
-	}
+	} //end if count sidebars //
 }
 add_action( "widgets_init", "abbey_theme_register_sidebars" );
 
