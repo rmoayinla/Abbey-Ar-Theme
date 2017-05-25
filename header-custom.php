@@ -7,6 +7,7 @@
 */
 global $abbey_defaults; 
 ?>
+<?php do_action( "abbey_theme_before_html" ); ?>
 <!DOCTYPE html>
 	<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 	<!--[if lt IE 7]> <html class="no-js ie6 oldie" <?php language_attributes(); ?>> <![endif]-->
@@ -28,7 +29,7 @@ global $abbey_defaults;
 
 			<?php wp_head(); ?>
 		</head> 
-		<body <?php body_class(); ?>itemscope itemtype="http://schema.org/WebPage">
+		<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 			<div class="container-fluid" id="site-wrapper">
 				<header id="custom-header" class="row" role="header">
 					<div id="header-top"> <?php do_action( "abbey_theme_before_header" ); ?></div>
@@ -36,7 +37,7 @@ global $abbey_defaults;
 					
 					<div id="skip-link">
 						<a class="sr-only" href="#content" title="<?php esc_attr_e("Skip to content", "abbey"); ?>">
-							<?php _e( 'Skip to content', 'abbey' ); ?></a>
+							<?php esc_html_e( 'Skip to content', 'abbey' ); ?></a>
 					</div><!--#skip link closes -->
 
 					<div id="main-header">
@@ -55,10 +56,12 @@ global $abbey_defaults;
 	      					</div>
 
 						</div><!--#header-contact closes -->
+
 						<nav class="navbar navbar-default" role="navigation">
 							<?php do_action("abbey_theme_primary_menu"); ?>
 						</nav>
 					</div><!--#main-header closes-->
+
 				</header><!--#custom-header closes -->
 
 
