@@ -63,8 +63,8 @@ class Abbey_Enqueue {
 
 	/**
 	 * method to return all added styles in the class, note: styles returned may not be enqueued yet 
-	 * @return: array $styles 
-	 * @since: 0.1 
+	 *@return: array $styles 
+	 *@since: 0.1 
 	 */
 	public static function get_styles (  ){
 		return self::$styles; 
@@ -72,8 +72,8 @@ class Abbey_Enqueue {
 
 	/**
 	 * method to return all added scripts in the class, note: scripts returned may not be enqueued yet 
-	 * @return: array $scripts 
-	 * @since: 0.1 
+	 *@return: array $scripts 
+	 *@since: 0.1 
 	 */
 	public static function get_scripts(  ){
 		return self::$scripts; 
@@ -82,7 +82,7 @@ class Abbey_Enqueue {
 	/**
 	* method to return theme uri used for loading assets
 	* the theme uri can be the child uri, the parent theme uri or current theme uri 
-	* @return: string $theme_uri 
+	*@return: string $theme_uri 
 	*/
 	public static function get_theme_uri(){
 		return self::$theme_uri; 
@@ -90,7 +90,7 @@ class Abbey_Enqueue {
 
 	/**
 	* method to perform the actual enqueueing, this method can enqueue only styles or only scripts or both
-	* @param: string $type 
+	*@param: string $type 
 	*/
 	public static function enqueue( $type = "all" ){
 		if( !property_exists( "Abbey_Enqueue", $type ) && $type !== "all" )
