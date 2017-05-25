@@ -19,15 +19,16 @@ $abbey_query = array();
 
 	<main id="<?php abbey_theme_page_id(); ?>" class="row archives">
 		
-		<header id="-archive-header" class="text-center archive-header">
+		<header id="blog-archive-header" class="text-center archive-header">
 			<div class="md-50"><?php  ?></div>
 		</header>
 
 		<section id="content" class="row archive-content">
+
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
 				
 				<div class="col-md-3 archive-posts-summary" id=">-archive-summary">
-						<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
+					<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
 				</div>
 
 				<div id="-archive-posts" class="col-md-6 col-md-offset-1 archive-posts">
@@ -38,7 +39,9 @@ $abbey_query = array();
 
 					<?php endwhile; ?>
 
-					<div><?php the_posts_pagination();?></div>
+					<div class="clearfix"></div>
+					
+					<div><?php abbey_posts_pagination();?></div>
 				</div>
 
 		
@@ -49,7 +52,6 @@ $abbey_query = array();
 	<?php endif; ?>
 		
 
-	</main>		<div style="direction: ltr;"> <?php
-				print_r( get_queried_object() ); ?></div><?php
+	</main>		<?php
 
 get_footer();
