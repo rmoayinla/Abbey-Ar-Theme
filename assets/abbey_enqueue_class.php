@@ -95,6 +95,7 @@ class Abbey_Enqueue {
 	public static function enqueue( $type = "all" ){
 		if( !property_exists( "Abbey_Enqueue", $type ) && $type !== "all" )
 			return; 
+		
 		switch ( $type ){
 			case "all" :
 			default :
