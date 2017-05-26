@@ -5,6 +5,9 @@ require trailingslashit( get_template_directory () )."libs/abbey_social_navwalke
 require trailingslashit( get_template_directory () )."libs/abbey_bootstrap_comments.php";
 
 require trailingslashit( get_template_directory () )."assets/abbey_enqueue_class.php";
+require trailingslashit( get_template_directory () )."assets/abbey_theme_settings_class.php";
+
+require trailingslashit( get_template_directory () )."customizer/customizer-library.php";
 
 require trailingslashit( get_template_directory () )."functions/theme_setup.php";
 require trailingslashit( get_template_directory () )."functions/front-page-hooks.php";
