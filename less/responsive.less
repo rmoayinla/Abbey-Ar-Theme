@@ -252,6 +252,9 @@
 	.text-center-mobile{
 		text-align: center;
 	}
+	.text-left-mobile{
+		text-aling: left;
+	}
 
 	.block-mobile{
 		display: block !important;
@@ -334,6 +337,9 @@
 		font-size: 36px;
 	}
 
+	.hidden-mobile{
+		display: none;
+	}
 	
 	.half-mobile{
 		width: 46%;
@@ -343,12 +349,12 @@
 	}
 	#custom-page .entry-content,
 	#custom-page #page-sidebar, 
-	#search-page #search-results,
-	#post page #comments
+	#search-page #search-results
 	{
 	 	&:extend(.no-inner-padding-mobile);
 	}
-	#post-page , #content,
+
+	#content, 
 	.post-panel-heading .top-post-info
 	{
 		padding-left: 5px !important;
@@ -366,7 +372,7 @@
 			margin-top: 15px;
 	}
 	
-	.post-panel{
+	#post-page {
 		.post-panel-heading,.post-excerpts, .post-panel-footer{
 			&:extend(.inner-padding-mobile);
 		} 
@@ -386,6 +392,11 @@
 	#floating-video.affix{
 		top: unset;
 		bottom: 10px;
+	}
+	.related-posts{
+		.post-panel-thumbnail img{
+			height: 180px !important;
+		}
 	}
 
 }
