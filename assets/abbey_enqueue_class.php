@@ -22,7 +22,7 @@ class Abbey_Enqueue {
 							trailingslashit ( get_stylesheet_uri() ) : 
 							trailingslashit( get_template_directory_uri() );
 
-		self::add_style( "abbey-style", get_stylesheet_uri()  ); 
+		self::add_style( "abbey-style", get_stylesheet_uri(), array( "abbey-bootstrap" )  ); 
 		self::add_script( "abbey-script", self::$theme_uri."js/script.js", array( "jquery" ), 1.0, true );
 		
 		/* If using a child theme, auto-load the parent theme style. */
