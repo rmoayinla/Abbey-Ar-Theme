@@ -1437,6 +1437,9 @@ a.btn-default,
 #post-page .related-posts .post-panel {
   margin: 0px 5px;
 }
+#post-page .related-posts .post-panel .post-panel-heading {
+  padding: 0px !important;
+}
 #post-page .related-posts .slick-list {
   overflow: unset;
 }
@@ -2189,8 +2192,7 @@ a.btn-default:hover {
   #primary-menu .navbar-collapse,
   #custom-page .entry-content,
   #custom-page #page-sidebar,
-  #search-page #search-results,
-  #post page #comments {
+  #search-page #search-results {
     padding-left: 0px;
     padding-right: 0px;
   }
@@ -2209,9 +2211,9 @@ a.btn-default:hover {
   .inner-padding-mobile,
   #primary-menu .navbar-nav .menu-item,
   #search-page #content,
-  .post-panel .post-panel-heading,
-  .post-panel .post-excerpts,
-  .post-panel .post-panel-footer,
+  #post-page .post-panel-heading,
+  #post-page .post-excerpts,
+  #post-page .post-panel-footer,
   .sidebar,
   .mini-popup .popup-body,
   .full-popup .popup-body {
@@ -2228,6 +2230,9 @@ a.btn-default:hover {
   #site-footer #footer-bottom .list-left,
   #site-footer #footer-bottom .list-right {
     text-align: center;
+  }
+  .text-left-mobile {
+    text-aling: left;
   }
   .block-mobile,
   #post-page .categories-list,
@@ -2305,6 +2310,9 @@ a.btn-default:hover {
   .post-title {
     font-size: 36px;
   }
+  .hidden-mobile {
+    display: none;
+  }
   .half-mobile,
   .entry-content .gallery-columns-3 .gallery-item,
   .entry-content div[class*="columns-4"] .gallery-item {
@@ -2314,7 +2322,6 @@ a.btn-default:hover {
   .heading-icon + .heading-content {
     width: 100%;
   }
-  #post-page,
   #content,
   .post-panel-heading .top-post-info {
     padding-left: 5px !important;
@@ -2338,5 +2345,8 @@ a.btn-default:hover {
   #floating-video.affix {
     top: unset;
     bottom: 10px;
+  }
+  .related-posts .post-panel-thumbnail img {
+    height: 180px !important;
   }
 }
