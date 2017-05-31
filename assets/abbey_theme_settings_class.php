@@ -10,15 +10,23 @@ class Abbey_Theme_Settings{
 
 	public static $option_key = "";
 
+	/**
+	 * Initialize my option containers here
+	 * calls set_options method to populate options with their respective values 
+	 *@since: 0.1
+	 *@sub-package: Abbey theme 
+	 */
 	public static function init(){
-		self::$stored_options = ;
-		
-		self::$default_options =  
-		
-		self::$theme_options = 
-		self::$theme_options = 
+		self::set_options();
 	}
 
+	/**
+	 * Getter function to get the default theme settings 
+	 *@param: string|null $value
+	 *@return: mixed $default_options 
+	 *@since: 0.1
+	 *@sub-package: Abbey theme
+	 */
 	public static function get_default_options( $value = NULL ) {
 
 		if( empty( $value ) )
@@ -27,12 +35,29 @@ class Abbey_Theme_Settings{
 		return !empty( self::$default_options[ $value ] ) ?: array();
 	}
 
+	/**
+	 * Getter function to get the stored theme settings 
+	 * These stored settings are handled by wordpress customizer API 
+	 *@param: string|null $value
+	 *@return: mixed $stored_options 
+	 *@since: 0.1
+	 *@sub-package: ABbey theme 
+	 */
 	public static function get_stored_options( $value = NULL ){
 		if( empty( $value ) )
 			return self::$stored_options; 
 
 		return !empty( self::$stored_options[ $value ] ) ?: array();
 	}
+
+	/**
+	 * Getter function to get theme options 
+	 * These theme options is a combination of the defaults and the stored settings 
+	 *@param: string|null $value 
+	 *@return: mixed $theme_options
+	 *@since: 0.1
+	 *@sub-package: Abbey theme 
+	 */
 	public static function get_theme_options( $value = NULL ) {
 
 		if ( !empty( $value ) && isset( self::$theme_options[ $value ] ) ) 
@@ -85,7 +110,7 @@ class Abbey_Theme_Settings{
 				return;
 			}
 			self::$theme_options = wp_parse_args( self::get_default_options(), self::get_stored_options()  );
-			self::$theme_options = array_intersect_key( self::$theme_$options, self::$default_options );
+			self::$theme_options = array_intersect_key( self::$theme_options, self::$default_options );
 			$options = wp_cache_add( self::$option_key."_options", self::$theme_options, self::$option_key );
 
 			if( empty( $option ) )
