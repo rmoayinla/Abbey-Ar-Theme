@@ -237,7 +237,7 @@ if ( !function_exists( "abbey_show_related_posts" ) ) :
 				} 
 				?>
 				<!--start putting the post in a slide-->
-				<div class="posts-slides" data-slick='{"rtl": true, "slidesToShow" : 1, "centerMode" : true, "centerPadding" : "40px", "arrows" : true }'>
+				<div class="posts-slides" data-slick='{"rtl": true, "slidesToShow" : 1, "centerMode" : true, "centerPadding" : "40px", "arrows" : true, "autoplay" : false }'>
 					<?php while( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
 						<!-- start of each post panel -->
 						<aside class="post-panel">
