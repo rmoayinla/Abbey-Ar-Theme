@@ -4,10 +4,14 @@ require trailingslashit( get_template_directory () )."libs/wp_bootstrap_navwalke
 require trailingslashit( get_template_directory () )."libs/abbey_social_navwalker.php";
 require trailingslashit( get_template_directory () )."libs/abbey_bootstrap_comments.php";
 
+
+
+
 require trailingslashit( get_template_directory () )."assets/abbey_enqueue_class.php";
 require trailingslashit( get_template_directory () )."assets/abbey_theme_settings_class.php";
 
-require trailingslashit( get_template_directory () )."customizer/customizer-library.php";
+
+
 
 require trailingslashit( get_template_directory () )."functions/theme_setup.php";
 require trailingslashit( get_template_directory () )."functions/front-page-hooks.php";
@@ -160,7 +164,7 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) :
 		*
 		*/
 		$bootstrap_js_cdn = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
-		Abbey_Enqueue::add_script( "abbey-bootstrap-js", esc_url( $bootstrap_js_cdn ), array( "jquery" ), "", true );
+		Abbey_Enqueue::add_script( "abbey-bootstrap", esc_url( $bootstrap_js_cdn ), array( "jquery" ), "", true );
 		
 		/*
 		* enqueue bootstrap css
@@ -303,4 +307,7 @@ function abbey_init_defaults(){
     $abbey_defaults = abbey_theme_defaults();
 
     Abbey_Enqueue::init(); 
+
+    
 }
+
