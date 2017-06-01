@@ -10,7 +10,16 @@
 class Abbey_Enqueue {
 	protected static $styles; 
 	protected static $scripts; 
-	protected static $theme_uri; 
+	protected static $theme_uri;
+	protected static $instance;  
+
+	
+	public static function get_instance(){
+		if( empty( self::$instance ) ){
+			self::$instance = new self; 
+		}
+		return self::$instance;
+	}
 
 	/**
 	 * method to initialize and enqueue default styles and script for theme
@@ -33,17 +42,17 @@ class Abbey_Enqueue {
 
 	/**
 	 * method to add style to the class, this method is used publicly 
-	 * @params: string $handle, string $src, array $deps, bool|string $ver, string $media
+	 *@params: string $handle, string $src, array $deps, bool|string $ver, string $media
 	 *@since: 0.1 
 	 */
 	public static function add_style( $handle, $src = "", $deps = array(), $ver = false, $media = "all" ){
-		self::$styles[] = array( 	"handle" => $handle, 
-									"src" => $src, 
-									"deps" => $deps, 
-									"ver" =>$ver, 
-									"media" => $media 
-
-								); 
+		self::$styles[ $handle ] = array( 	
+											"handle" => $handle, 
+											"src" => $src, 
+											"deps" => $deps, 
+											"ver" =>$ver, 
+											"media" => $media 
+									); 
 	}
 
 	/**
@@ -88,6 +97,37 @@ class Abbey_Enqueue {
 		return self::$theme_uri; 
 	}
 
+	/**
+	 * public method to remove added styles from being enqueued 
+	 * depending on when this method is called, the style removed might still be enqueued 
+	 * Usage: 
+	 * Abbey_Enqueue::remove_style( 'bootstrap' )
+	 *@param: string $style 
+	 *@since: 0.1 
+	 */
+	public static function remove_style( $style ){
+		self::remove( $style, "styles" );
+	}
+
+	protected static function remove( $key, $type ){
+		if( !property_exists( "Abbey_Enqueue", $type ) )
+			return;
+		$asset_type = self::$$type;
+		if( array_key_exists( $key, $asset_type ) ){
+			unset( $asset_type );
+			self::$$type = $asset_type;
+			return;
+		}
+		$pattern = '/'.$key.'/i';
+		foreach( $asset_type as $index => $asset ){
+			if( preg_match( $pattern, $index ) ){
+				unset( $asset_type[ $index ] );
+				self::$$type = $asset_type;
+				return;
+			}
+		}
+		
+	}
 	/**
 	* method to perform the actual enqueueing, this method can enqueue only styles or only scripts or both
 	*@param: string $type 
