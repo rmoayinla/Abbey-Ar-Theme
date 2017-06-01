@@ -214,10 +214,11 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) :
 
 		/**
 		 * action hook for other enqueueus 
+		 * styles and scripts can be added or removed here
 		 *
 		 */
 
-		do_action( "abbey_theme_enqueues" ); 
+		do_action( "abbey_theme_enqueues", Abbey_Enqueue::get_instance() ); 
 
 		/**
 		* Enqueue all added styles and scripts 
