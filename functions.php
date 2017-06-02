@@ -3,13 +3,13 @@
 require trailingslashit( get_template_directory () )."libs/wp_bootstrap_navwalker.php";
 require trailingslashit( get_template_directory () )."libs/abbey_social_navwalker.php";
 require trailingslashit( get_template_directory () )."libs/abbey_bootstrap_comments.php";
-
+require trailingslashit( get_template_directory () )."libs/include-kirki.php";
 
 
 
 require trailingslashit( get_template_directory () )."assets/abbey_enqueue_class.php";
 require trailingslashit( get_template_directory () )."assets/abbey_theme_settings_class.php";
-
+require trailingslashit( get_template_directory () )."assets/customizer_options.php";
 
 
 
