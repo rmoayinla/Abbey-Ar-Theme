@@ -85,7 +85,9 @@ function abbey_theme_defaults(){
 				"contacts" => true, 
 				"social-icons" => true, 
 				"credits" => ""
-			)
+			), 
+
+			"colors"	=> array()
 		)
 	);
 
@@ -226,13 +228,14 @@ endif; //endif function_exist abbey_add_front_page_slides //
 *
 *
 */
-add_filter( "abbey_theme_defaults", "abbey_add_admin_info", 5 );
+add_filter( "abbey_theme_defaults", "abbey_add_admin_info", 50 );
 
 function abbey_add_admin_info( $defaults ){
 	$admin = $defaults["admin"];  // get the default admin key //
 	$args = array(
 		"role" => "administrator", 
-		"number" => 1
+		"number" => 1, 
+		"fields" => array( "ID", "display_name" )
 	);
 	$admin_user = get_users( $args ); // run a wordpress user query for administrator, only return one user //
 
@@ -259,12 +262,11 @@ function abbey_add_colors( $defaults ){
 		"light_theme_color"	=> "",
 		"background_color"	=> "", 
 		"dark_theme_color"	=> "",
-		"gray_color"		=> ""
+		"gray_color"		=> "#eee"
 	);
 
 	$colors = apply_filters( "abbey_theme_default_colors", $colors );
-	$defaults[ "colors" ] = wp_parse_args( $colors, $defaults );
+	$defaults[ "colors" ] = wp_parse_args( $colors, $defaults[ "colors" ] );
 
 	return $defaults;
 }
-//add_action( 'customize_controls_enqueue_scripts', 'themedemo_customizer_style');
