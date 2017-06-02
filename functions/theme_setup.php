@@ -251,5 +251,20 @@ function abbey_add_admin_info( $defaults ){
 	return $defaults; 
 }
 
+add_filter( "abbey_theme_defaults", "abbey_add_colors", 55 );
+function abbey_add_colors( $defaults ){
+	$colors = array(
+		"primary_color" => "", 
+		"secondary_color" => "", 
+		"light_theme_color"	=> "",
+		"background_color"	=> "", 
+		"dark_theme_color"	=> "",
+		"gray_color"		=> ""
+	);
 
+	$colors = apply_filters( "abbey_theme_default_colors", $colors );
+	$defaults[ "colors" ] = wp_parse_args( $colors, $defaults );
+
+	return $defaults;
+}
 //add_action( 'customize_controls_enqueue_scripts', 'themedemo_customizer_style');
