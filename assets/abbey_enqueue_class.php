@@ -109,6 +109,15 @@ class Abbey_Enqueue {
 		self::remove( $style, "styles" );
 	}
 
+	/**
+	 * Private method to remove assets that have been added 
+	 * this method can remove either a script or a style or anyother asset in this class
+	 * @since: 0.1
+	 * @category: assets
+	 * @param: string $key, string $type 
+	 * Usage: 
+	 * Abbey_Enqueue::remove( "bootstrap", "styles" )
+	 */
 	protected static function remove( $key, $type ){
 		if( !property_exists( "Abbey_Enqueue", $type ) )
 			return;
