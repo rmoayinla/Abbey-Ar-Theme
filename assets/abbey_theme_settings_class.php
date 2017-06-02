@@ -27,12 +27,13 @@ class Abbey_Theme_Settings{
 	 *@since: 0.1
 	 *@sub-package: Abbey theme
 	 */
-	public static function get_default_options( $value = NULL ) {
+	public static function get_default_options( $value = NULL, $key =  NULL ) {
 
 		if( empty( $value ) )
 			return self::$default_options; 
 
-		return !empty( self::$default_options[ $value ] ) ?: array();
+		return self::get( $value, $key, self::$default_options );
+
 	}
 
 	/**
@@ -69,7 +70,7 @@ class Abbey_Theme_Settings{
 	/**
 	 * Populate and initialize theme settings and cache the options 
 	 * settings can either be default, stored or options (theme)
-	 * Usage: 
+	 * @Usage: 
 	 * set_options( $option = "stored|default|theme|null" )
 	 * uses wordpress wp_cache_add and wp_cache_get to save theme settings in cache 
 	 *@param: string|null $option
@@ -78,6 +79,7 @@ class Abbey_Theme_Settings{
 	 *
 	 */
 	private static function set_options( $option = NULL ){
+		// dummmy containers for the options that will be set //
 		$default = $stored = $options = "";
 		
 		if( $option === "default" || empty( $option ) ){
@@ -119,6 +121,60 @@ class Abbey_Theme_Settings{
 		
 		
 
+	}
+
+	/**
+	 * private method to get options form theme settings 
+	 * options can be default, stored or theme options 
+	 * @params: 	string 		$value 		contains the value being searched for 
+	 * 				string 		$key 		contains the index key of the value in the options 
+	 *				array 		$options 	the option where value and key reside in 
+	 * @return:		string|array 	
+	 * @since:		0.1 
+	 * @category: 	assets 
+	 * @Usage: 		Abbey_theme_settings::get( "color", "gray_color", "default_options" )
+	 */
+	private static function get( $value, $key, $options ){
+
+		/* if the key is empty, just check if the value exist in options or return an empty array */
+		if( empty( $key ) )
+			return !empty( $options[ $value ] ) ? $options[ $value ]: array();
+		
+		/**
+		 * perform a multi check
+		 * first check if the $value key exist in $options
+		 * secondly, check if the $key exist in $options 
+		 */
+		if( isset( $options[ $value ] ) ){
+			$default_value = $options[ $value ];
+		}
+		elseif( isset( $options[ $key ] ) ){
+			$default_value = $options[ $key ];
+		}
+
+		// if the default value is not empty //
+		if( !empty( $default_value ) ){
+
+			// if somehow the default value is not an array, maybe a string or int, just return it //
+			if( !is_array( $default_value ) )
+				return $default_value;
+			
+			/**
+			 * double check the indexes, if $value or $key exist as an index in our default_value 
+			 */
+			if( array_key_exists( $key, $default_value ) )
+				return $default_value[ $key ];
+
+			if( array_key_exists( $value , $default_value ) )
+				return $default_value[ $value ];
+
+			return $default_value;
+		}
+
+	}
+
+	private function flush(  ){
+		wp_cache_delete( self::$option_key."_default", self::$option_key );
 	}
 
 }
