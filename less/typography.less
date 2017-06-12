@@ -1,0 +1,28 @@
+.entry-content{
+	line-height: 24px;
+	&:extend(.pad-medium);
+	
+	table{
+		width: 100% !important;
+		height: auto !important;
+		border-collapse: collapse;
+		&:extend(.float-none, .margin-top-sm, .margin-bottom-sm); 
+		th, td{
+			&:extend(.padding-top-sm, .padding-bottom-sm, .pad-xs, .bottom-border);
+			vertical-align: top;
+		}
+		th{
+			border-width: 2px;
+			&:extend(.text-uppercase, .dark, .bg-light);
+		}
+		tr:last-child td{
+			&:extend(.no-bottom-border);
+		}
+		tr:hover{
+			&:extend(.bg-light, .strong);
+		}
+		
+		td{
+		}
+	}
+}
