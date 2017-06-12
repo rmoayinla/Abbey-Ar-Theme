@@ -170,7 +170,7 @@ if( !function_exists( "abbey_theme_enque_styles" ) ) :
 		* enqueue bootstrap css
 		*
 		*/
-		$bootstrap_cdn = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+		$bootstrap_cdn = $theme_dir."css/bootstrap/css/bootstrap.min.css";
 		Abbey_Enqueue::add_style( 'abbey-bootstrap', esc_url($bootstrap_cdn), array(), null );
 
 
