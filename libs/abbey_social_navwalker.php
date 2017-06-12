@@ -28,7 +28,7 @@ class Abbey_Social_Nav_Walker extends Walker_Nav_Menu {
 
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
-		$classes[] = 'inline';
+		$classes[] = 'inline-block';
 		$class_names = join( ' ', apply_filters( 'abbey_social_nav_css_class', array_filter( $classes ), $item, $args ) );
 		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 
