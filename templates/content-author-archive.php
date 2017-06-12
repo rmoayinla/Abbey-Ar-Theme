@@ -10,10 +10,10 @@ $post_types = get_post_types( array( 'public' =>  true ), 'names' );
 				<header class="page-heading collapse-heading clickable">
 					<h2><?php echo ucwords( $abbey_author_posts[$post_type]["labels"]->archives ); ?></h2>
 				</header>
-				<div class="<?php echo $post_type;?>-posts collapse-item panel-post">
+				<div class="<?php echo $post_type;?>-posts collapse-item panel-post collapse in">
 					<?php foreach( $abbey_author_posts[ $post_type ]["posts"] as $author_posts  ) : $post_count++?>
 					
-						<article class="post-panel <?php echo "post-count-".$post_count; ?>">
+						<article class="post-panel <?php echo "post-count-".$post_count; ?> float-right-rtl-responsive">
 							<?php if( !empty( $author_posts["thumbnail"] ) ) : ?>
 								<div class="post-thumbnail"><?php echo $author_posts["thumbnail"]; ?>
 							<?php endif;?>
