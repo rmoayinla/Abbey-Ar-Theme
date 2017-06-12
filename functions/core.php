@@ -257,9 +257,9 @@ function abbey_custom_logo( $class = "" ){
 function abbey_show_logo ( $prefix_id = "", $logo_class = "", $show_site_name = true ){
 	$prefix_id = ( !empty( $prefix_id ) ) ? esc_attr( $prefix_id."-" ) : "";
 
-	$html = '<div id="'.$prefix_id.'site-logo" class="inline">'.abbey_custom_logo( $logo_class ).'</div>';
+	$html = '<div id="'.$prefix_id.'site-logo" class="inline-block">'.abbey_custom_logo( $logo_class ).'</div>';
 	if ( $show_site_name )
-		$html .= '<div id="'.$prefix_id.'site-name" class="inline">'.get_bloginfo('name'). '</div>';
+		$html .= '<div id="'.$prefix_id.'site-name" class="inline-block">'.get_bloginfo('name'). '</div>';
 	
 	echo $html; 
 	
