@@ -306,7 +306,7 @@ if( !function_exists( "abbey_show_social_contacts" ) ):
 			$html .= "<div class='social-icons' id='social-contacts'><ul class='nav'>";
 			foreach ( $social_contacts as $social => $contact ){
 				if( empty($contact) ) continue;
-				$html .= "<li class='inline'><a href='".esc_url( $contact )."' class='' target='_blank' >";
+				$html .= "<li><a href='".esc_url( $contact )."' class='' target='_blank' >";
 				$html .= "<span class='fa fa-fw fa-2x ". abbey_contact_icon( $social )."'> </span>"; 
 				$html .= "</a></li>";
 			}
