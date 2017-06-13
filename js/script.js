@@ -30,7 +30,7 @@
 			dots: false
 		});
 
-		$(function(){
+		$( function(){
 			$( ".collapse-heading" ).each( function(){
 				var _this = $( this );
 				_this.prepend( '<a href="#" class="toggle-icon"><i class="fa fa-chevron-circle-up fa-lg"></i></a>' );
@@ -40,16 +40,16 @@
 				var _this;
 				e.preventDefault();
 				_this = $( this );
-				_this.next( ".collapse-item" ).collapse( "toggle" );
+				_this.next( ".collapse-item" ).collapse( 'toggle' );
 			});
 
 			$(".collapse-item").on('show.bs.collapse', function(){
-	        	$( this ).slideDown( "slow" );
+	        	$( this ).addClass( "collapse-show" ).removeClass( "collapse-hide" );
 	        	$(this).prev( ".collapse-heading" ).find( ".toggle-icon" ).html( '<i class="fa fa-chevron-circle-up fa-lg"></i>' );
 	    	});
 
 	    	 $(".collapse-item").on('hide.bs.collapse', function(){
-	       		$(this).slideUp( "slow" );
+	       		$(this).addClass( "collapse-hide" ).removeClass( "collapse-show" );
 	       		$(this).prev( ".collapse-heading" ).find( ".toggle-icon" ).html( '<i class="fa fa-chevron-circle-down fa-lg"></i>' );
 	   		 });
 		});
@@ -63,7 +63,7 @@
 
 
 		
-			var $animation_elements = $('.scroll-animate');
+			var $animation_elements = $('.scroll-animate, .frontpage-sections');
 			var $window = $(window);
 
 			function check_if_in_view() {
@@ -76,17 +76,21 @@
 			    var element_height = $element.outerHeight(true);
 			    var element_top_position = $element.offset().top;
 			    var element_bottom_position = (element_top_position + element_height);
-			 
+			 	var animate_class = $animation_elements.data( "animate" );
+			 	
+			 	if( animate_class !== undefined ){
+			 		$element.addClass( animate_class );
+			 	}
 			    //check to see if this current container is within viewport
-			    if ((element_bottom_position >= window_top_position) &&
-        			(element_top_position <= window_bottom_position)
+			    if ( (element_bottom_position >= window_top_position) &&
+        			 (element_top_position <= window_bottom_position)
 			    	){
-
-			     	 $element.addClass('in-view');
-			    } 
+			    		
+			     	 	$element.addClass( "in-view" );
+			    	} 
 			    else {
-			      $element.removeClass('in-view');
-			    }
+			      		$element.removeClass( "in-view" );
+			    	}
 
 			  });
 			}
