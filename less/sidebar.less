@@ -43,14 +43,71 @@
 
 #site-page .sidebar{
 		
-		.widget{
-			.widget-title{
-				&:extend(.font-medium, .text-center);
-			}
-			&:extend(.bg-white, .border-radius-md, .pad-small, #box-shadow .box-shadow-small, .border, .margin-bottom-sm, .no-top-padding);
-			border-bottom-width: 20px;
-		}
+	.widget{
+		&:extend(.bg-white, .border-radius-md, .pad-small, #box-shadow .box-shadow-small, .border, 
+		.margin-bottom-sm, .no-top-padding);
+		border-bottom-width: 20px;
 
+		.widget-title{
+			&:extend(.font-medium, .text-center);
+		}
+		
+	}
+
+}
+
+#custom-page {
+	.widget{
+		&:extend(.pad-small, .relative);
+		.box-shadow(0px, 5px, 5px, 0px lighten(@gray-color, 2%));
+		&:after{
+			content: "";
+			&:extend(.absolute); 
+			border-width: 60px;
+			border-style: solid;
+			border-color: @bg-color @bg-color transparent transparent;
+			top: -30px; 
+			right: 0px;
+			z-index: 10;
+		}
+	}
+	.widget_abbey-contact-form{
+		&:extend(.bg-white);
+	}
+}
+
+#gallery-sidebar{
+	&:extend(.border-radius-md, .border, .no-padding, .relative);
+}
+.gallery-widgets{
+	&:extend(.pad-small, .bottom-border, .relative, .no-overflow); 
+	&:after{
+		&:extend(.float-none);
+	}
+}
+.gallery-widgets:last-of-type{
+	&:extend(.no-border, .bg-white);
+}
+.gallery-widgets:nth-child(even):not(:last-of-type){
+	&:extend(.bg-light);
+}
+.widget-icon, .widget-text{
+	&:extend(.table-cell, .middle);
+}
+.widget-icon{
+	&:extend(.font-medium, .padding-right-sm);
+}
+.gallery-pictures-widget{
+	.widget-content{
+		a{
+			&:extend( .inline-block, #gallery-post-page .gallery-image, .float-left, 
+			.margin-right-xs, .margin-bottom-sm );
+			width: 46%;
+		}
+		img{
+			&:extend(#gallery-post-page .gallery-image img);
+		}
+	}
 }
 
 .sidebar{

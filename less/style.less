@@ -13,17 +13,27 @@ Text Domain: abbey
 
 @import "variables.less";
 
+@import "structure.less";
 
 @import "mixins.less";
 
+@import "form.less";
+
+@import "typography.less";
+
+@import "lists.less";
 
 
-@import "structure.less";
+
 @import "header.less";
+
 @import "navigation.less";
+
 @import "images.less";
 
+@import "color.less";
 
+@import "misc.less";
 
 /*
 * front-page styles 
@@ -35,7 +45,7 @@ Text Domain: abbey
 
 @import "posts.less";
 
-@import "misc.less";
+
 
 @import "sidebar.less";
 
@@ -48,9 +58,13 @@ Text Domain: abbey
 @import "widgets.less";
 
 @import "plugins.less";
-/*
-*
-* media queries for responsive design 
-*
-*/
+
+@import "transition.less";
+
+/**
+ * media queries/styles for responsive design, these css rules are what makes the theme responsive
+ * styles for mobile devices, desktop and tablets
+ * some styles here override some declaration above
+ */
+
 @import "responsive.less";

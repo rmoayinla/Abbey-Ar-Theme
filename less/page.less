@@ -22,7 +22,6 @@
 		border-radius: 10px 10px 0px 0px;
 		&:extend(.no-overflow);
 		.wp-post-image{
-			width: 100%;
 			height: 320px;
 			.transition(all,2s,ease-in-out,1s);
 			&:hover{
@@ -70,7 +69,6 @@
 		.page-header{
 			&:extend(.dark, #text-shadow .text-shadow-md, .no-border);
 			font-size: 8em;
-			
 		}
 	}
 	
@@ -85,11 +83,10 @@
 		&:extend(.pad-small, .inner-auto-margin);
 		.post-thumbnail{
 			img { 
-				&:extend(.full-width-image);
 				max-height: 480px;
 			}
 			.post-thumbnail-caption{
-				&:extend(#custom-page .entry-content figure.alignleft .wp-caption-text, .text-capitalize, .text-right, .pad-xs);
+				&:extend(.text-capitalize, .text-center, .pad-xs);
 			}
 		}
 	}
@@ -102,9 +99,6 @@
 			figure.alignleft{
 				&:extend(.border, #box-shadow .box-shadow-small);
 				border-color: #eee;
-				.wp-caption-text{
-					&:extend(.font-small);
-				}
 				a img{
 					&:extend(.full-width-image);
 				}
@@ -120,42 +114,21 @@
 				border-color: @dark-primary-color;
 			}
 	}
-	#page-sidebar{
-			&:extend(.inner-pad-small, .padding-bottom-sm);
-	}
+
 
 	#page-content-header{
 		&:extend(.pad-medium,.bg-light, .top-border, #box-shadow .box-shadow-small);
+		
 		#page-title-wrap{
 			&:extend(.outer-pad-lg);
 		}
 		
 	}
 	.post-summary{
-			&:extend(.font-small, .oblique);
+		&:extend(.font-small, .oblique);
 	}
-	.breadcrumb{
-		&:extend(#post-page .breadcrumb);
+	.post-info{
+		&:extend(#post-page .post-info);
 	}
 
-	#page-sidebar{
-		&:extend(.outer-pad-lg);
-		.widget{
-			&:extend(.pad-small, .relative);
-			.box-shadow(0px, 5px, 5px, 0px lighten(@gray-color, 2%));
-			&:after{
-				content: "";
-				&:extend(.absolute); 
-				border-width: 60px;
-    			border-style: solid;
-    			border-color: @bg-color @bg-color transparent transparent;
-    			top: -30px; 
-    			right: 0px;
-    			z-index: 10;
-			}
-		}
-		.widget_abbey-contact-form{
-			&:extend(.bg-white);
-		}
-	}
 }

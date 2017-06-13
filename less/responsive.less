@@ -64,6 +64,7 @@
 	}
 	.one-third-largescreen{
 		width: 31%;
+		margin-right: 7px;
 	}
 
 	.two-third-largescreen{
@@ -80,6 +81,10 @@
 
 	#floating-video.affix{
 		left: 15px;
+	}
+
+	#primary-menu .navbar-form{
+		padding-top: 8px;
 	}
 }
 
@@ -220,6 +225,16 @@
 		&:extend(.float-none-xs);
 		width: 100%; 
 		margin: auto;
+		display: block;
+	}
+	.inner-margin-none-mobile{
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+
+	.outer-margin-none-mobile{
+		margin-left: 0px;
+		margin-right: 0px;
 	}
 
 	.float-right-responsive{
@@ -235,8 +250,8 @@
 		padding-right: 30px;
 	}
 	.inner-padding-mobile{
-		padding-left: 15px !important;
-		padding-right: 15px !important;
+		padding-left: 15px;
+		padding-right: 15px;
 	}
 
 	.responsive-width(){
@@ -253,27 +268,40 @@
 		text-align: center;
 	}
 	.text-left-mobile{
-		text-aling: left;
+		text-align: left;
 	}
 
 	.block-mobile{
-		display: block !important;
+		display: block;
 	}
 	.responsive-right-border{
 		border-bottom: 1px solid;
 	}
+
+	.hidden-mobile{
+		display: none;
+	}
+	
+	.half-mobile{
+		width: 46%;
+	}
+	.full-width-mobile{
+		width: 100%;
+	}
 	
 	.service-icons {
-		min-height: 300px !important;
+		min-height: 300px;
 	}
 	.more-service-icons{
-		min-height: 200px !important;
+		min-height: 200px;
 	}
+
 	#main-header #header-contact{
 		padding: 5px 15px 5px 15px;
 	}
-	.float-none-xs{
+	.float-none-xs, .float-none-mobile{
 		float: none;
+		clear: both;
 	}
 
 	#primary-menu{
@@ -305,12 +333,12 @@
 
 	}
 	.navbar-collapse.in{
-		overflow-y: unset !important;
+		overflow-y: unset;
 	}
 	.navbar-nav, 
 	.navbar-form{
-		margin-top: 0px !important;
-		margin-bottom: 0px !important;
+		margin-top: 0px;
+		margin-bottom: 0px;
 	}
 	.navbar-nav .menu-item, 
 	#header-social-icons, 
@@ -337,16 +365,7 @@
 		font-size: 36px;
 	}
 
-	.hidden-mobile{
-		display: none;
-	}
 	
-	.half-mobile{
-		width: 46%;
-	}
-	.full-width-mobile{
-		width: 100%;
-	}
 	#custom-page .entry-content,
 	#custom-page #page-sidebar, 
 	#search-page #search-results
@@ -386,7 +405,6 @@
 	}
 	.mini-popup, .full-popup{
 		left: 5%;
-
 	}
 	
 	#floating-video.affix{
@@ -395,7 +413,7 @@
 	}
 	.related-posts{
 		.post-panel-thumbnail img{
-			height: 180px !important;
+			height: 180px;
 		}
 	}
 

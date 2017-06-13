@@ -2,6 +2,21 @@
 	.frontpage-sections{
 		&:extend(.pad-large);
 	}
+	.frontpage-sections .inner-wrapper{
+		.opacity(0);
+		.scale(0,0);
+		.transition(all, 800ms, ease-in-out, 2s);
+	}
+	.frontpage-sections.slide-up{
+		transition-delay: 500ms;
+		moz-transition-delay: 500ms;
+		-webkit-transition-delay: 500ms;
+		-o-transition-delay: 500ms;
+	}
+	.frontpage-sections.in-view .inner-wrapper{
+		.opacity(1);
+		.scale(1,1);
+	}
 	#site-banner{
 		&:extend(.relative);
 	}
