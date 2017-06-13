@@ -15,10 +15,141 @@
 }
 
 .avatar{
-	transition: all 0.8s ease-in-out;
+	.transition(all; 0.8s; ease-in-out);
 }
 
 .avatar:hover{
-	transform: scale( 1.5, 1.5 );
+	.scale( 1.5, 1.5 );
 	border: 3px solid @gray-color;
+}
+
+a > img, 
+iframe, 
+a > iframe{
+	outline: 0px; 
+	&:extend(.no-border, .inline-block);
+	&:hover{
+		outline: 0px;
+	}
+}
+
+img.wp-post-image{
+	&:extend(.full-width-image);
+}
+.post-thumbnail{
+	&:extend(.no-overflow);
+}
+
+.post-thumbnail{
+	img{
+		&:extend(.full-width-image);
+		width: 100% !important;
+	}
+	iframe{
+		&:extend(.full-width);
+	}
+}
+
+img[class*="align"],
+img[class*="wp-image-"] {
+	&:extend(.auto-height) ;
+}
+img.size-full, 
+img.size-large {
+	&:extend(.max-full-width);
+	width: auto; 
+}
+
+figure{
+	&:extend(.margin-bottom-sm);
+}
+
+figcaption.wp-caption-text{
+	&:extend(.oblique, .pad-small, .font-small);
+}
+
+figure.alignnone {
+	&:extend(.auto-height, .text-center, .float-none);
+	width: 100% !important;
+	img{
+		&:extend(.max-full-width);
+	}
+}
+
+figure.alignleft, figure.alignright {
+	&:extend(.margin-right-xs);
+	max-width: 48% !important;
+}
+
+figure.alignleft{
+	&:extend(.float-left);
+}
+
+figure.alignright{
+	&:extend(.float-right);
+}
+
+figure.alignleft + :not(.alignleft){
+	&:extend(.float-none);
+}
+
+iframe[src *= "youtube"], iframe{
+	&:extend(.max-full-width);
+}
+.gallery{
+	&:extend(.margin-top-sm, .margin-bottom-sm, .max-full-width);
+}
+.gallery-item{
+	&:extend(.relative, .no-overflow, .no-border);
+	img{
+		&:extend(.full-width-image);
+	}
+}
+.gallery-columns-2{
+	&:extend(.margin-right-xs);
+}
+.gallery-columns-1{
+	&:extend(.pad-medium);
+	.gallery-item{
+		&:extend(.block, .margin-top-sm, .full-width);
+	}
+}
+.gallery-columns-3, 
+div[class*="columns-4"]{
+	.gallery-item{
+		&:extend(.inline-block, .margin-right-xs, .margin-top-xs, .one-third-largescreen, .half-mobile, .half-tablets);
+	vertical-align: top;
+	}
+}
+
+.gallery-item figcaption{
+	.opacity(0);
+	.translate3d( 0px, -10px, 0px );
+	.transition(all; 800ms; ease-in-out);
+}
+.gallery-item:hover figcaption{
+	.opacity(1);
+	.translate3d( 0px, 0px, 0px );
+	background-color: @dark-primary-color;
+	color: #fff;
+}
+	
+.gallery-columns-2{
+	.gallery-item{
+		&:extend(.inline-block, .pad-xs, .half-largescreen);
+		vertical-align: top;	
+	}
+}
+
+.gallery-image{
+	&:extend(.no-overflow);
+	img{
+		&:extend(.full-width-image);
+	}
+}
+
+figure:hover{
+	a{
+		&:extend(.zoom-cursor);
+	}
 }
