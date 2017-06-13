@@ -28,7 +28,7 @@ $queried_name = "author";
 			<?php if ( have_posts() ) : abbey_group_posts( $abbey_author_posts ); ?>
 				
 				<div id="<?php echo $queried_name; ?>-archive-posts" 
-					class="col-md-8 col-md-offset-2 archive-posts" >
+					class="col-md-12 archive-posts" >
 					
 					<?php while ( have_posts() ) : the_post(); 
 							abbey_add_posts( $abbey_author_posts ); 
@@ -48,7 +48,7 @@ $queried_name = "author";
 	<?php endif; ?>
 		
 
-	</main>		<div style="direction: ltr;"> <?php print_r( get_queried_object() );
+	</main>		<div style="direction: ltr;"> <?php 
 				 ?></div><?php
 
 get_footer();
