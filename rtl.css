@@ -16,7 +16,8 @@ body,
 .entry-content,
 .entry-footer p,
 .post-entry-footer p,
-.author-title {
+.author-title,
+.text-right-rtl {
   text-align: right;
 }
 .author-info,
@@ -27,8 +28,12 @@ button,
 #news-archive .top-post-info li,
 #carousel,
 .mfp-wrap,
-form {
+form,
+.dir-ltr {
   direction: ltr;
+}
+.float-right-rtl-responsive {
+  float: right !important;
 }
 .archive-description,
 .small {
@@ -44,6 +49,17 @@ div.dropdown .dropdown-menu {
   right: 0px;
   left: unset;
 }
+
+.post-info li{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.top-post-info li, 
+.margin-left-rtl{
+  margin-left: 15px;
+  margin-right: 0px;
+}
 /* reponsive design for devices larger than 1027px */
 @media (min-width: 1027px) {
   #post-page #content,
@@ -55,5 +71,9 @@ div.dropdown .dropdown-menu {
 @media (max-width: 468px) {
   #news-archive .top-post-info li {
     float: right !important;
+  }
+
+  .float-right-rtl-responsive{
+    float: none !important;
   }
 }
