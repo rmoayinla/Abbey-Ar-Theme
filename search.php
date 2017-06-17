@@ -13,7 +13,7 @@ $count = ( $current_page > 1 ) ? ( ( $current_page - 1) * (int) get_option( 'pos
 $abbey_query = array();
 ?>
 
-	<main id="<?php abbey_theme_page_id(); ?>" class="row">
+	<main id="<?php abbey_theme_page_id(); ?>" class="row archives">
 		
 		<header id="site-content-header" class="text-center archive-header">
 			<h2 class="page-header no-margin"> 
