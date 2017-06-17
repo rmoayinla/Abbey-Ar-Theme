@@ -21,8 +21,8 @@ $contact_section = $front_page_defaults["contact"];
 			
 			<div class="md-50 margin-top-md">
 				<a href="" role="button" class="btn btn-default btn-lg btn-block"> <?php esc_html_e("View all articles", "abbey" ); ?></a>
-			</div><!--.inner-wrapper closes -->
-		</div>
+			</div>
+		</div><!--.inner-wrapper closes -->
 	</section><!-- #latest-posts section closes -->
 
 	<section id="services" class="bg-light text-center row frontpage-sections">
