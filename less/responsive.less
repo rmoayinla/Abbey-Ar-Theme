@@ -244,14 +244,18 @@
 		padding-left: 0px;
 		padding-right: 0px;
 	}
-	.inner-pad-responsive, 
-	.navbar-form{
+	.inner-pad-responsive{
 		padding-left: 30px;
 		padding-right: 30px;
 	}
 	.inner-padding-mobile{
 		padding-left: 15px;
 		padding-right: 15px;
+	}
+
+	.outer-padding-mobile{
+		padding-top: 15px;
+		padding-bottom: 15px;
 	}
 
 	.responsive-width(){
@@ -414,6 +418,28 @@
 	.related-posts{
 		.post-panel-thumbnail img{
 			height: 180px;
+		}
+	}
+
+	.navbar-collapse .navbar-form{
+		padding: 15px 20px 0px 20px;
+		background-color: @gray-color;
+		input[type='search']{
+			width: 240px;
+			background-color: transparent;
+			&:hover, &:focus{
+				width:100vw;
+			}
+		}
+		.search-submit{
+			left: unset;
+			right: -10px;
+			&:extend(.inner-padding-mobile, .outer-padding-mobile);
+			background-color:@light-primary-color;
+			top: -15px;
+		}
+		input, button{
+			
 		}
 	}
 
