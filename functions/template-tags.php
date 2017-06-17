@@ -96,6 +96,7 @@ if( !function_exists( "abbey_post_info" ) ) :
 		*/
 		if( !empty( $post_infos ) ) {
 			foreach ( $post_infos as $title => $post_info ){ //loop through the infos 
+				
 				/* 
 				* check if $key param is empty, if $key is not empty, then 
 				* 1. check if the title is in keys or 
