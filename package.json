@@ -1,0 +1,20 @@
+{
+  "name": "Abbey",
+  "version": "1.0.0",
+  "description": "A wordpress theme and Parent theme for organisations and personal blogs, bundled with templates and can be extended with hooks or filters.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url" : "https://github.com/rmoayinla/Abbey-Ar-Theme.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC", 
+  "homepage" : "",
+  "bugs": ""
+}
