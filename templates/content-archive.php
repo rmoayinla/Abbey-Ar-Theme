@@ -18,7 +18,7 @@ global $count;
 									__( "Read this article", "abbey" ), 
 									get_the_title()
 								); ?>
-				<ul class="breadcrumb"><?php abbey_post_info( true, array( "author", "date" )); ?></ul>
+				<ul class="breadcrumb post-info"><?php abbey_post_info( true, array( "author", "date" )); ?></ul>
 			</header>
 			<?php if( $count > 1 ) :  ?>
 				<div class="post-thumbnail">
