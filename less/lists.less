@@ -5,9 +5,9 @@
 	}
 }
 
-.categories-list, .tag-list, .tags-list, .post-info{
+.categories-list, .tag-list, .tags-list{
 	li{
-		&:extend(.inline-block, .margin-right-sm);
+		&:extend(.inline-block, .margin-left-sm);
 	}
 }
 .categories-list{
@@ -17,7 +17,7 @@
 
 
 .categories-list, .terms-list{
-	&:extend(.half-largescreen, .inline-block, .block-mobile);
+	&:extend(.inline-block, .block-mobile);
 	.cats-note{
 		&:extend(.oblique, .gray);
 	}
@@ -76,7 +76,12 @@
 	&:extend(.no-right-padding, .no-left-padding);
 }
 
-
+.top-post-info{
+	&:extend(.dark, .no-margin, .inner-pad-small );
+	li{
+		&:extend(.float-left, body.rtl .float-rtl, .margin-right-sm);
+	}
+}
 
 .list-left{
 	&:extend(.float-left, .float-none-xs, .text-center-mobile);
