@@ -362,7 +362,7 @@ function abbey_page_media( $size = "medium", $page_id = "", $echo = true ){
 */
 function abbey_excerpt( $length = "", $more = "", $echo = false ){
 	$length = empty( $length ) ? 55 : $length; //excerpt characters max lenght //
-	$more_text = empty( $more ) ? abbey_excerpt_more() : "...";
+	$more_text = empty( $more ) ? abbey_excerpt_more() : $more;
 	if( !$echo )
 		return wp_trim_words( get_the_excerpt(), $length, $more_text );
 
