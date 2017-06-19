@@ -58,6 +58,23 @@
   -o-transform-origin: bottom left;
 }
 
+.hover-card{
+  &:extend(.absolute, .fade-out, .no-bg);
+  .translate3d(0px, 50px, 0px);
+  .transition(all,600ms, ease-in-out);
+
+}
+
+.hover-card.in{
+  .translate3d(0px, 0px, 0px);
+  transform-origin: bottom left;
+  .opacity(1);
+  bottom: 10px;
+  left: 20px;
+  right: 20px;
+  &:extend(.bg-white, .pad-medium);
+}
+
 .fade-out{
   .opacity(0);
 }
