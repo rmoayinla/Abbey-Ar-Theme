@@ -32,6 +32,13 @@
 		-webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.3), 0px 2px 4px rgba(0,0,0,0.1);
 		-moz-box-shadow: 0px 2px 2px rgba(0,0,0,0.3), 0px 2px 4px rgba(0,0,0,0.1);
 	}
+
+	.no-shadow{
+		box-shadow: none;
+		-webkit-box-shadow: none;
+		-o-box-shadow: none;
+		-moz-box-shadow: none;
+	}
 }
 
 #text-shadow{
@@ -84,6 +91,10 @@
 .more-link{
 	.box-shadow(0px, 4px, 4px, @light-primary-color);
 	&:extend( .margin-top-sm );
+}
+
+.excerpt-link{
+	&:extend(.inline-block, .margin-left-sm, .margin-right-sm);
 }
 
 
