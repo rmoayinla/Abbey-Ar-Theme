@@ -104,6 +104,7 @@
 			gallery = $( ".gallery" );
 			clone_gallery = gallery.clone();
 			clone_gallery.addClass( "gallery-nav-main" );
+
 			clone_gallery.find( ".gallery-item" ).each( function( index ){
 				var _this = $( this );
 				_this.find( ".gallery-caption" ).remove();
@@ -208,7 +209,35 @@
 
 	});//end of fucntion 
 	
-	 $('[data-toggle="tooltip"]').tooltip(); 
+	$('[data-toggle="tooltip"]').tooltip(); 
+
+	$(function(){
+		var postCard, hoverCard;
+		postCard = $(".post-panel:not(.post-count-1)");
+		
+		postCard.each(function(){
+			var _this, postExcerpt;
+			_this = $(this);
+			postExcerpt = _this.find( ".post-excerpts" ).html();
+			_this.append("<div class='hover-card'></div>");
+			_this.children(".hover-card").html(postExcerpt);
+		})//end .each //
+
+
+		$(document).on({
+			 mouseenter: function(){
+			 	$(this).children(".hover-card").addClass("in");
+			 }, 
+			 mouseleave: function(){
+			 	$(this).children(".hover-card").removeClass("in");
+			 }
+		},".post-panel:not(.post-count-1)" 
+		);
+		
+
+	})//end function //
+
+
 		
 	$(function(){
 		$("#floating-video").affix({
