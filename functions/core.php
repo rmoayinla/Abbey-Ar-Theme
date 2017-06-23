@@ -1,27 +1,34 @@
 <?php
-/*
-*
-* Core functions for Abbey theme 
-* these functions are mostly written from scratch either to implement/supplement some wordpress functions 
-* or to add a new functionality that is not provided by wordpress 
-*
-*
-*/
+/**
+ * Core functions for Abbey theme 
+ * these functions are mostly written from scratch either to implement/supplement some wordpress functions 
+ * or to add a new functionality that is not provided by wordpress 
+ *@since: 0.1 
+ *@author: Rabiu Mustapha 
+ *@package: Abbey theme 
+ *@category: functions 
+ *@version: 0.1 
+ *
+ */
 
-/*
-* Remove alphabets from a string and return the digit numbers only 
-*
-*
-*/
+/**
+ * Remove alphabets from a string and return the digit numbers only 
+ * this function is a sanitizer for numerics and digits
+ *@since: 0.1 
+ *@param: 	mixed 		$string 	a string to be sanitized 
+ */
 function abbey_numerize( $string ){
 	$result = preg_replace("/[^0-9.]/", '', $string); //use regex to remove non digit characters //
 	return $result; // return the processed string i.e. those with digits only //
 }
 
-/*
-* wrapper function for wp_nav_menu 
-* instead of calling wp_nav_menu, I am using my own custom wrapper for the wordpress built in function
-*/
+/**
+ * wrapper function for wp_nav_menu 
+ * instead of calling wp_nav_menu, I am using my own custom wrapper for the wordpress built in function
+ *@param: 	array 		$args 		arguments for the outputting menu 
+ *@uses: wp_nav_menu()
+ *@usage: abbey_nav_menu(['menu' => 'primary', 'theme_location'=> 'primary', 'menu_class'=>'navbar_menu'])
+ */
 function abbey_nav_menu( $args = array() ){
 	$defaults = array(	'menu'              => '',
 	                	'theme_location'    => '',
@@ -40,12 +47,14 @@ function abbey_nav_menu( $args = array() ){
 }
 
 
-/*
-* function to generate font-awesome classes for social icons
-* this function will only work properly when you have font-awesome enqueued in your theme
-* @return: string 
-*
-*/
+/**
+ * Function to generate font-awesome classes for social or general icons
+ * @warning: this function will only work properly when you have font-awesome enqueued in your theme
+ * @param:  	string 		$contact 	the item to generate an icon for 
+ * @return: 	string 		the corresponding icon of the contact  being passed 
+ * @since: v0.1 
+ *
+ */
 function abbey_contact_icon( $contact ){
 	$contact = esc_attr($contact);
 	switch ( $contact ){
@@ -117,11 +126,15 @@ function abbey_contact_icon( $contact ){
 	return apply_filters( "abbey_font_icon", $icon, $contact ); //add a filter in case you want to add additional icons to return //
 }
 
-/*
-* function to style and generate contacts html  
-* This function those not get the contact details, the contact to display is passed to this function through the params
-*
-*/
+/**
+ * function to style and generate contacts html  
+ * This function does not get the contact details, the contact to display is passed to this function through the params
+ * this function is recursive as multiple level contacts are flattened 
+ * @param: 	array|string 	$contact 		string or array containing stored contacts to generate 
+ * 			string 			$heading  		title for the contacts 
+ * @return: string 			$html 			a nicely formatted contact, flattened out with headings
+ *
+ */
 function abbey_display_contact( $contact, $heading ){
 	$html = "";
 	
@@ -142,31 +155,35 @@ function abbey_display_contact( $contact, $heading ){
 	return $html;
 }
 
-/*
-* Function to return/get contact details stored in Theme defaults
-* This function can get a particular contact e.g. phone no, email or return all contacts depending on the $key param
-* @retun: string or array 
-*
-*/
+/**
+ * Function to return/get contact details stored in Theme defaults
+ * This function can get a particular contact e.g. phone no, email or return all contacts depending on the $key param
+ * @return: string|array 	$contact 		depending on the $type param, a single contact or multiple (array) of contacts
+ * @param: 	string 			$type 			the contact type as stored in theme options 
+ * 			string 			$key 			a specific key in the contact type 
+ * @usage: abbey_get_contact( "tel", "customer-service" )
+ *
+ */
 function abbey_get_contact( $type, $key = "" ){
 	global $abbey_defaults; // theme default values set in theme_setup.php //
 
-	if( isset( $abbey_defaults["contacts"] ) ){ //if contacts key is found in defaults //
-		$contacts = $abbey_defaults["contacts"];
-		$contact_type = ( isset ( $contacts[ $type ] ) ) ? $contacts[$type] : "";
-		if ( !empty ( $contact_type ) ) {
-			$contact = ( !empty( $key ) && isset( $contact_type[$key] ) ) ? $contact_type[$key] : $contact_type;
-		}
-		
+	if( empty( $abbey_defaults["contacts"] ) ) //if contacts key is not found in defaults //
+		return;  //bail early //
+
+	$contacts = $abbey_defaults["contacts"];
+	$contact_type = ( isset ( $contacts[ $type ] ) ) ? $contacts[$type] : "";
+	if ( !empty ( $contact_type ) ) {
+		$contact = ( !empty( $key ) && isset( $contact_type[$key] ) ) ? $contact_type[ $key ] : $contact_type;
 	}
+		
 	return $contact;
 }
 
-/*
-* Generate an id attribute for theme template pages 
-* @return: string 
-*
-*/
+/**
+ * Generate an id attribute for theme template pages 
+ * @return: string 
+ * @since: v0.1 
+ */
 function abbey_theme_page_id( $id= "" ){
 	if ( empty($id) ) {
 		if( is_front_page() ){ 
@@ -196,50 +213,54 @@ function abbey_theme_page_id( $id= "" ){
 
 }
 
-/*
-* Function to show services stored in theme defaults 
-* this function display the services i.e. generate the html 
-*
-*/
+/**
+ * Function to show services stored in theme defaults 
+ * this function display the services i.e. generate the html 
+ * the services being displayed here are gotten from theme settings i.e abbey_defaults 
+ */
 function abbey_theme_show_services(){
 	global $abbey_defaults; // abbey theme defaults //
-	$services = ( !empty( $abbey_defaults["services"]["lists"] ) ) ? $abbey_defaults["services"]["lists"] : "";
-	if( count( $services ) > 0 ){ //if there are services //
-			$html = "";
-		foreach( $services as $service ){ //loop through the services //
-			$html .= "<div class='col-md-4 col-sm-6 col-xs-6 service-icons'><div class='service-wrapper'>";
-			if( !empty( $service["icon"] ) ){
-				$html .= "<div class='service-icon'><span class='fa ".esc_attr($service["icon"])." fa-3x' > </span></div>"; 
-			}
-			if( !empty( $service["header-text"] ) ){
-				$html .= "<div class='service-heading text-capitalize'><h4>".esc_html($service["header-text"]). "</h4></div>"; 
-			}
-			if( !empty( $service["body-text"] ) ){
-				$html .= "<div class='service-body'>";
-				$html .= esc_html( $service["body-text"] );
-				$html .= "</div>";
-			 }
-			$html .= "</div></div>";
+	$services = $abbey_defaults["services"]["lists" ];
+	if( empty( $services ) ) //if there are no services //
+		return; //bail early //
+	$html = "";
+	foreach( $services as $service ){ //loop through the services //
+		$html .= "<div class='col-md-4 col-sm-6 col-xs-6 service-icons'><div class='service-wrapper'>";
+		if( !empty( $service["icon"] ) ){
+			$html .= "<div class='service-icon'><span class='fa ".esc_attr($service["icon"])." fa-3x' > </span></div>"; 
+		}
+		if( !empty( $service["header-text"] ) ){
+			$html .= "<div class='service-heading text-capitalize'><h4>".esc_html($service["header-text"]). "</h4></div>"; 
+		}
+		if( !empty( $service["body-text"] ) ){
+			$html .= "<div class='service-body'>";
+			$html .= esc_html( $service["body-text"] );
+			$html .= "</div>";
+		 }
+		$html .= "</div></div>";
 
-		} //end foreach loop //
-	}//enf if count services //
+	} //end foreach loop //
+	
 	echo $html;
 }
 
-/*
-* a wrapper function to get the uploaded logo 
-* this function return the uploaded image i.e. the html //
-*/
+/**
+ * A wrapper function to get the uploaded logo 
+ * this function return the uploaded image i.e. the html //
+ *@since: v0.1 
+ *@param: 	string 		$class 		additional class attribute for the generated img tag 
+ *@return: 	string 		$image 		the generated html or site name 
+ */
 
 function abbey_custom_logo( $class = "" ){
 	$class = ( !empty($class) ) ? esc_attr( $class ) : "";
 	$title = get_bloginfo("name"); // get the site name //
 	
 	if( has_custom_logo() ){ // if a custom  logo has been uploaded in customizer //
-		$logo = get_theme_mod("custom_logo");
+		$logo = get_theme_mod( "custom_logo" );
 		$logo_attachment = wp_get_attachment_image_src( $logo, "full" );
 		$logo_url = $logo_attachment[0]; 
-		$image = "<img src='".esc_url($logo_url)."' class='custom-logo {$class}' alt ='{$title}' ";
+		$image = "<img src='".esc_url( $logo_url )."' class='custom-logo {$class}' alt ='{$title}' ";
 		$image .= " /> ";
 		return $image;
 	}
@@ -248,60 +269,73 @@ function abbey_custom_logo( $class = "" ){
 	}
 }
 
-/*
-* Function to show logo with sitename 
-* Might later be deprecated in my theme in the future 
-*
-*
-*/
-function abbey_show_logo ( $prefix_id = "", $logo_class = "", $show_site_name = true ){
-	$prefix_id = ( !empty( $prefix_id ) ) ? esc_attr( $prefix_id."-" ) : "";
+/**
+ * Function to show logo with sitename 
+ * might later be deprecated in my theme in the future 
+ *@since: 0.1
+ *@param: 	string 		$prefix_id		id attribute for the wrapper div 
+ *			string 		$logo_class		class for the logo img tag 
+ *			bool 		$show_site_name show the logo with site name or not 
+ *@return: 	string 		$html 			logo html 
+ */
+if( !function_exists( "abbey_show_logo" ) ) : 
+	function abbey_show_logo ( $prefix_id = "", $logo_class = "", $show_site_name = true ){
+		$prefix_id = ( !empty( $prefix_id ) ) ? esc_attr( $prefix_id."-" ) : "";
 
-	$html = '<div id="'.$prefix_id.'site-logo" class="inline-block">'.abbey_custom_logo( $logo_class ).'</div>';
-	if ( $show_site_name )
-		$html .= '<div id="'.$prefix_id.'site-name" class="inline-block">'.get_bloginfo('name'). '</div>';
-	
-	echo $html; 
-	
-}
+		$html = '<div id="'.$prefix_id.'site-logo" class="inline-block">'.abbey_custom_logo( $logo_class ).'</div>';
+		if ( $show_site_name )
+			$html .= '<div id="'.$prefix_id.'site-name" class="inline-block">'.get_bloginfo('name'). '</div>';
+		
+		echo $html; 
+		
+	}
 
-/*
-* Function to display bootstrap mobile menu 
-*
-*
-*/
-function abbey_nav_toggle () { ?>
-	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	    <span class="sr-only">Toggle navigation</span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	</button>	<?php
-}
+endif;
+
+/**
+ * Function to display bootstrap mobile menu 
+ * in case you dont want to use boostrap's mobile icon, this function can be overriden in a child theme
+ *@since: 0.1 
+ *
+ */
+if( !function_exists( "abbey_nav_toggle" ) ) : 
+	function abbey_nav_toggle () { ?>
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		    <span class="sr-only">Toggle navigation</span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		</button>	<?php
+	}
+endif;
 
 
 
-/*
-* display the theme set secondary menu
-*
-*/
+/**
+ * display the theme set secondary menu
+ * this function rely on abbey_nav_menu - see functions/core.php 
+ *@param:	array 		$args 		an array of settings of how the menu will be displayed 
+ *@since: v0.1 
+ */
 function abbey_secondary_menu( $args = array() ){
-	$defaults = apply_filters( "abbey_theme_secondary_menu_args", array(
-	                		'menu'              => 'secondary',
-	                		'theme_location'    => 'secondary',
-	                		'depth'             => 1,
-	                		'container'         => 'ul',
-	                		'menu_class'   		=> 'nav nav-pills',
-	                	)
-    );
+	if( !has_nav_menu( "secondary" ) ) //if secondary menu is not registered or empty //
+		return;  //bail early //
+	
+	$defaults = array(
+	        		'menu'              => 'secondary',
+	        		'theme_location'    => 'secondary',
+	        		'depth'             => 1,
+	        		'container'         => 'ul',
+	        		'menu_class'   		=> 'nav nav-pills',
+	            ); 
+
     $args = ( count( $args ) > 0 ) ? wp_parse_args( $args, $defaults ) : $defaults;
-	if( has_nav_menu("secondary") ) :
-		abbey_nav_menu( $args ); // this function is a wrapper function for wp_nav_menu
-	endif;
+	
+	abbey_nav_menu( apply_filters( "abbey_theme_secondary_menu_args", $args ) ); // this function is a wrapper function for wp_nav_menu
 	
 }
 
-/*
+/**
 * display the theme set social menu 
 *
 */
@@ -596,11 +630,14 @@ function abbey_posts_pagination( $args = array() ){
 
 }
 
-/*
-* Wrapper function getting registered custom metabox fields 
-* this function checks if the metabox plugin is installed, then get the meta value else return empty 
-*
-*/
+/**
+ * Wrapper function getting registered custom metabox fields 
+ * this function checks if the metabox plugin is installed, then get the meta value else return empty 
+ *@since: 0.1
+ *@param: 	string 		$value 		the custom field value to look for 
+ * 			bool 		$echo 		echo or return custom field value 
+ *@return: 	string|array 	value of the custom field stored in wp meta table 
+ */
 function abbey_custom_field( $value, $echo = false ){
 	if ( !function_exists( "get_field" ) )
 		return; 
