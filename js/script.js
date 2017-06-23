@@ -219,8 +219,8 @@
 			var _this, postExcerpt;
 			_this = $(this);
 			postExcerpt = _this.find( ".post-excerpts" ).html();
-			_this.append("<div class='hover-card'></div>");
-			_this.children(".hover-card").html(postExcerpt);
+			_this.append("<div class='hover-card'><span class='close-icon'>&times;</span></div>");
+			_this.children(".hover-card").append(postExcerpt);
 		})//end .each //
 
 
@@ -232,7 +232,18 @@
 			 	$(this).children(".hover-card").removeClass("in");
 			 }
 		},".post-panel:not(.post-count-1)" 
-		);
+		); //end of on mousenter and mouseleave //
+
+		$(document).on("click", ".close-icon", function(ev){
+			ev.preventDefault(); 
+			var target, _this;
+			_this = $(this);
+			if( _this.data("target") ){
+				_this.parents(_this.data("target")).fadeOut("slow");//hide the parent element passed throught the data attribute //
+			} else{
+				_this.parent().fadeOut("slow"); //hide only the direct parent element of the close-icon //
+			}
+		});
 		
 
 	})//end function //
