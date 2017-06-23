@@ -72,7 +72,7 @@ class Abbey_Theme_Settings{
 	 * settings can either be default, stored or options (theme)
 	 * @Usage: 
 	 * set_options( $option = "stored|default|theme|null" )
-	 * uses wordpress wp_cache_add and wp_cache_get to save theme settings in cache 
+	 * @uses: wordpress wp_cache_add and wp_cache_get to save theme settings in cache 
 	 *@param: string|null $option
 	 *@sub-package: Abbey theme 
 	 *@since: 0.1
