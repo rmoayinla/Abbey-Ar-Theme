@@ -339,11 +339,15 @@ if( !function_exists( "abbey_show_post_type" ) ) :
 
 endif; //endif function exist abbey_show_post_type //
 
-/*
-* wrapper function for displaying post thumbnails 
-* if the post thumbnail is found, the thumbnail is returned, else a custom thumbnail is displayed 
-*
-*/
+/**
+ * Wrapper function for displaying post thumbnails 
+ *if the post thumbnail is found, the thumbnail is returned, else a custom thumbnail is displayed 
+ *@since: 0.1
+ *@param: 	string 		$size 			thumbnail image size to return 
+ *			int 		$page_id 		image or media ID 
+ * 			bool 		$echo 			echo or return output 
+ *
+ */
 function abbey_page_media( $size = "medium", $page_id = "", $echo = true ){
 	$icon = "";
 	$page_id = empty( $page_id ) ? get_the_ID() : $page_id;
