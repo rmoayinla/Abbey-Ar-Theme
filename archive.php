@@ -30,17 +30,18 @@ $queried_name = $queried_object->name;
 						<?php //do_action( "abbey_archive_page_summary", $abbey_query ); ?>
 				</div>
 
-				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-2 archive-posts">
+				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-2 archive-posts-wrapper">
 					
-					<?php while ( have_posts() ) : the_post(); $count++; ?>
+					<div class="archive-posts">
+						<?php while ( have_posts() ) : the_post(); $count++; ?>
 					
-						<?php get_template_part("templates/content", "archive"); ?>
+							<?php get_template_part("templates/content", "archive"); ?>
 
-					<?php endwhile; ?>
-
-					<div class="clearfix"></div>
+						<?php endwhile; ?>
+					</div>
 					
-					<div class="text-center"><?php abbey_posts_pagination();?></div>
+					<div class="text-center navigation" role="navigation"><?php abbey_posts_pagination();?></div>
+					
 				</div>
 
 		
@@ -51,7 +52,7 @@ $queried_name = $queried_object->name;
 	<?php endif; ?>
 		
 
-	</main>		<div style="direction: ltr;"> <?php print_r( get_queried_object() );
+	</main>		<div style="direction: ltr;"> <?php global $wp_query; 
 				?></div><?php
 
 get_footer();
