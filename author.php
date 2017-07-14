@@ -48,7 +48,7 @@ $queried_name = "author";
 	<?php endif; ?>
 		
 
-	</main>		<div style="direction: ltr;"> <?php 
+	</main>		<div style="direction: ltr;"> <?php print_r( $wp_query->query );
 				 ?></div><?php
 
 get_footer();

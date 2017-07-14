@@ -27,17 +27,19 @@ $queried_name = $queried_object->slug;
 		<section id="content" class="row archive-content">
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
 				
-				<div class="col-md-3 archive-posts-summary" id="<?php echo $queried_name; ?>-archive-summary">
-						<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
+				<div class="col-md-3 archive-summary" id="<?php echo $queried_name; ?>-archive-summary">
+					<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
 				</div>
 
-				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-1 category-archive-posts">
+				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-1 archive-posts-wrapper">
 					
-					<?php while ( have_posts() ) : the_post(); $count++; ?>
-					
-						<?php get_template_part("templates/content", "archive"); ?>
+					<div class="category-archive-posts archive-posts">
+						<?php while ( have_posts() ) : the_post(); $count++; ?>
+						
+							<?php get_template_part("templates/content", "archive"); ?>
 
-					<?php endwhile; ?>
+						<?php endwhile; ?>
+					</div>
 
 					<div class="navigation" role="navigation"><?php abbey_posts_pagination();?></div>
 				</div>
