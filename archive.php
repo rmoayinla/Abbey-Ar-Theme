@@ -1,11 +1,8 @@
 <?php
+
 get_header();
 
-global $count;
-
-global $wp_query;
-
-global $abbey_query;
+global $count, $wp_query, $abbey_query, $abbey_defaults;
 
 $current_page = (int) get_query_var( 'paged' );
 $count = ( $current_page > 1 ) ? ( ( $current_page - 1) * (int) get_option( 'posts_per_page' ) ) : 0;
@@ -40,7 +37,9 @@ $queried_name = $queried_object->name;
 						<?php endwhile; ?>
 					</div>
 					
-					<div class="text-center navigation" role="navigation"><?php abbey_posts_pagination();?></div>
+					<div class="text-center navigation" role="navigation">
+						<?php abbey_posts_pagination();?>
+					</div>
 					
 				</div>
 
