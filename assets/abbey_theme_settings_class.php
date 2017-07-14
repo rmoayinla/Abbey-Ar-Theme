@@ -83,10 +83,10 @@ class Abbey_Theme_Settings{
 		$default = $stored = $options = "";
 		
 		if( $option === "default" || empty( $option ) ){
-			if( $default = wp_cache_get( self::$option_key."_default", self::$option_key ) ){
+			/*if( $default = wp_cache_get( self::$option_key."_default", self::$option_key ) ){
 				self::$default_options = $default;
-				return;
-			}
+				if( !empty( $option ) return;
+			}*/
 
 			self::$default_options =  abbey_theme_defaults();
 			$default = wp_cache_add( self::$option_key."_default", self::$default_options, self::$option_key );
@@ -102,7 +102,7 @@ class Abbey_Theme_Settings{
 			self::$stored_options = get_option( self::$option_key );
 			$stored = wp_cache_add( self::$option_key."_stored", self::$stored_options, self::$option_key );
 
-			if( empty( $option ) )
+			if( !empty( $option ) )
 				return;
 		}
 
@@ -115,7 +115,7 @@ class Abbey_Theme_Settings{
 			self::$theme_options = array_intersect_key( self::$theme_options, self::$default_options );
 			$options = wp_cache_add( self::$option_key."_options", self::$theme_options, self::$option_key );
 
-			if( empty( $option ) )
+			if( !empty( $option ) )
 				return;
 		}
 		
