@@ -1,11 +1,14 @@
 <?php
-/*
-* Abbey theme defaults
-* the functions and filters are default values for some of Abbey theme infos e.g. author name, 
-* address, phone no, logo, author avatar e.t.c. 
-*
-*
-*/
+/**
+ * Abbey theme defaults
+ * the functions and filters are default values for some of Abbey theme infos e.g. author name, 
+ * address, phone no, logo, author avatar e.t.c. 
+ * @author: Rabiu Mustapha
+ * @version: 0.1 
+ * @package: Abbey theme 
+ * @category: functions 
+ *
+ */
 
 /*
 * Main function containing the Abbey theme filter 
@@ -268,5 +271,16 @@ function abbey_add_colors( $defaults ){
 	$colors = apply_filters( "abbey_theme_default_colors", $colors );
 	$defaults[ "colors" ] = wp_parse_args( $colors, $defaults[ "colors" ] );
 
+	return $defaults;
+}
+
+add_filter( "abbey_theme_defaults", "abbey_archive_defaults", 65 );
+function abbey_archive_defaults( $defaults ){
+
+	$defaults[ "archive" ] = array(
+		"posts_per_page" => get_option( "posts_per_page" ), 
+		"sidebar" => 0,
+		"ajax_load_posts" => 1
+	);
 	return $defaults;
 }
