@@ -549,9 +549,6 @@ figure.alignleft,
 .gallery-pictures-widget .widget-content a,
 #comments .comment-form-author,
 #comments .comment-form-email,
-.category-archive-posts .post-panel:not(.post-count-1),
-#news-archive-posts .post-panel:not(.post-count-1),
-#recordings-archive-posts .post-panel:not(.post-count-1),
 #author-archive-posts .post-panel,
 #search-page #search-results .post-panel {
   float: left;
@@ -1814,6 +1811,7 @@ figure:hover a {
 .category-archive-posts .post-panel:not(.post-count-1),
 #news-archive-posts .post-panel:not(.post-count-1),
 #recordings-archive-posts .post-panel:not(.post-count-1) {
+  vertical-align: top;
   transition: all 800ms ease-in-out 0s;
   -webkit-transition: all 800ms ease-in-out 0s;
   -o-transition: all 800ms ease-in-out 0s;
@@ -2308,7 +2306,7 @@ transform: translate(0px, 0px);
   #news-archive-posts .post-panel:not(.post-count-1),
   #recordings-archive-posts .post-panel:not(.post-count-1),
   #search-page #search-results .post-panel.post-count-1 {
-    width: 49%;
+    width: 46%;
     margin-right: 5px;
   }
   .one-third-largescreen,
