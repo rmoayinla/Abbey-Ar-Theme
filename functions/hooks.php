@@ -244,7 +244,9 @@ if ( !function_exists( "abbey_show_related_posts" ) ) :
 							<figure class="post-panel-thumbnail"><?php abbey_page_media(); ?></figure>
 							<div class="post-panel-body">
 								<h4 class="post-panel-heading">
-									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+									<a href="<?php the_permalink(); ?>" title="<?php esc_attr_e( "Read full post", "abbey" ); ?>" >
+										<?php the_title(); ?>
+									</a>
 								</h4>
 								<div class="post-panel-excerpt text-justify"><?php abbey_excerpt( 25, "", true ); ?> </div>
 							</div>
