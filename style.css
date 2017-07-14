@@ -36,7 +36,8 @@ a:hover {
 #sitehead #header-top .alert-dismissable,
 .social-contacts,
 .post-thumbnail iframe,
-.gallery-columns-1 .gallery-item {
+.gallery-columns-1 .gallery-item,
+.load-more-btn {
   width: 100%;
   border-radius: 0px;
   border: 0px;
@@ -61,10 +62,9 @@ figcaption.wp-caption-text,
 .archives .post-panel-heading,
 .archives .post-panel-footer,
 .archives .post-panel-title,
-#author-archive-posts .panel-post,
+.panel-post,
 .mini-popup .popup-body,
 .full-popup .popup-body,
-.mini-popup,
 #quote-post-page #quote-content,
 #quote-post-page .entry-content footer,
 #gallery-post-page #quote-content,
@@ -98,6 +98,7 @@ figcaption.wp-caption-text,
 #sidebar-404 #latest-posts,
 #comments,
 .archives .post-panel.post-count-1 .post-panel-heading,
+.hover-card.in,
 #quote-post-page #post-content-header,
 #gallery-post-page #post-content-header {
   padding: 30px;
@@ -106,12 +107,16 @@ figcaption.wp-caption-text,
 .no-inner-padding,
 .pagination,
 .navigation,
-.archives .archive-posts-summary .list-group {
+.archives .post-panel-footer,
+.archives .archive-posts-summary .list-group,
+#quote-post-page .entry-content footer {
   padding-right: 0px !important;
 }
 .no-padding-left,
 .no-inner-padding,
-.archives .archive-posts-summary .list-group {
+.archives .post-panel-footer,
+.archives .archive-posts-summary .list-group,
+#quote-post-page .entry-content footer {
   padding-left: 0px !important;
 }
 .pad-large,
@@ -156,7 +161,8 @@ figcaption.wp-caption-text,
 }
 .outer-pad-small,
 #site-footer #footer-bottom,
-#site-footer #before-footer {
+#site-footer #before-footer,
+.load-more-btn {
   padding-top: 15px;
   padding-bottom: 15px;
 }
@@ -180,8 +186,7 @@ figcaption.wp-caption-text,
 .entry-content table th,
 .entry-content table td,
 #post-page .entry-footer-info .entry-footer-heading,
-#post-page .sidebar .widget,
-#author-archive-posts .post-excerpts {
+#post-page .sidebar .widget {
   padding-bottom: 15px;
 }
 .padding-top-sm,
@@ -251,6 +256,11 @@ a > iframe,
 #error-404-page .entry-content .page-header,
 .gallery-widgets:last-of-type,
 .archives .post-panel,
+.category-archive-posts .post-panel:not(.post-count-1),
+#news-archive-posts .post-panel:not(.post-count-1),
+#recordings-archive-posts .post-panel:not(.post-count-1),
+#author-archive-posts .post-panel,
+#search-page #search-results .post-panel:not(.post-count-1),
 .thumbnail-post {
   border: 0px;
   border-radius: 0px;
@@ -375,6 +385,7 @@ figure,
 #site-page .entry-content,
 #post-page .entry-content .gallery,
 #site-footer,
+.archives .post-panel.post-count-1 .post-excerpts,
 .archives .post-panel-footer,
 #quote-post-page .entry-content footer {
   margin-top: 30px;
@@ -389,11 +400,12 @@ figure,
 #post-page .sidebar .widget-title,
 #comments .media,
 .archives .post-panel.post-count-1,
-#author-archive-posts .panel-posts {
+.post-panel {
   margin-bottom: 30px;
 }
 .margin-right-sm,
 .top-post-info li,
+.excerpt-link,
 #post-page .categories-list li {
   margin-right: 15px;
 }
@@ -426,6 +438,7 @@ div[class*="columns-4"] .gallery-item,
 .categories-list li,
 .tag-list li,
 .tags-list li,
+.excerpt-link,
 #site-page .entry-content blockquote,
 #post-page .post-author-name,
 .heading-icon + .heading-content {
@@ -600,11 +613,11 @@ figure.alignleft + :not(.alignleft),
 .gallery-widgets,
 #site-footer #inner-footer,
 #comments .media .media-body,
-.archives .post-panel,
 .archives .post-panel-heading,
 .archives .post-panel-footer,
 .archives .post-panel-title,
-#author-archive-posts .panel-posts,
+.post-panel,
+.panel-post,
 .mini-popup,
 .full-popup,
 .full-popup,
@@ -617,7 +630,7 @@ figure.alignleft + :not(.alignleft),
 }
 .absolute,
 .navbar-form .search-submit,
-.more-icon,
+.close-icon,
 .video-popup,
 #site-page .entry-content blockquote:before,
 #site-page .entry-content blockquote:after,
@@ -627,7 +640,8 @@ figure.alignleft + :not(.alignleft),
 #post-page .post-navigation .next-post .next-button .glyphicon,
 #post-page .entry-footer-info .entry-footer-heading:after,
 #custom-page .widget:after,
-.collapse-heading .toggle-icon {
+.collapse-heading .toggle-icon,
+.hover-card {
   position: absolute;
 }
 .fixed {
@@ -655,7 +669,8 @@ figure.alignleft + :not(.alignleft),
 .category-archive-posts .post-panel:not(.post-count-1) .post-excerpts,
 #news-archive-posts .post-panel:not(.post-count-1) .post-excerpts,
 #recordings-archive-posts .post-panel:not(.post-count-1) .post-excerpts,
-#author-archive-posts .post-excerpts {
+#author-archive-posts .post-excerpts,
+#search-page #search-results .post-panel:not(.post-count-1) .post-excerpts {
   display: none;
 }
 .icon-large {
@@ -664,7 +679,7 @@ figure.alignleft + :not(.alignleft),
 .clearfix,
 .pagination:before,
 .navigation:before,
-#author-archive-posts .panel-post:after {
+.panel-post:after {
   clear: both;
   display: table;
 }
@@ -677,6 +692,7 @@ figure.alignnone,
 #custom-page #inner-content .post-thumbnail .post-thumbnail-caption,
 #post-page .entry-footer-info .entry-footer-heading,
 #site-page .sidebar .widget .widget-title,
+.load-more-btn,
 #menu-social li a,
 #social-contacts li a {
   text-align: center;
@@ -772,7 +788,8 @@ iframe,
 #sitehead #header-top .alert-dismissable,
 .social-contacts,
 .post-thumbnail iframe,
-.gallery-columns-1 .gallery-item {
+.gallery-columns-1 .gallery-item,
+.load-more-btn {
   width: 100%;
 }
 .dropdown-menu {
@@ -803,6 +820,7 @@ a > iframe,
 .gallery-columns-3 .gallery-item,
 div[class*="columns-4"] .gallery-item,
 .gallery-columns-2 .gallery-item,
+.excerpt-link,
 #link .primary,
 #post-page .categories-list li,
 #gallery-post-page .entry-content .gallery-item,
@@ -810,6 +828,8 @@ div[class*="columns-4"] .gallery-item,
 #comments .media .media-body .list-inline .collapse.in,
 .archives .post-panel-footer .categories-list .fa,
 .archives .post-panel-footer .categories-list .post-categories,
+.archives .post-panel-footer .tags-list .tags-icon,
+.archives .post-panel-footer .tag-list,
 .category-archive-posts .post-panel:not(.post-count-1),
 #news-archive-posts .post-panel:not(.post-count-1),
 #recordings-archive-posts .post-panel:not(.post-count-1),
@@ -1171,6 +1191,8 @@ a.btn-default,
 .archives .post-panel,
 .mini-popup,
 .full-popup,
+.load-more-btn,
+.hover-card.in,
 .categories-list a[rel='category'],
 .terms-list a[rel='category'],
 .pagination li > a,
@@ -1191,7 +1213,8 @@ a.btn-default,
 .post-info,
 .top-post-info,
 #social-contacts li a:hover,
-#social-contacts li a:visited {
+#social-contacts li a:visited,
+.hover-card {
   background-color: transparent;
 }
 .white,
@@ -1281,6 +1304,10 @@ a.btn-default,
 #sidebar-404 #latest-posts,
 #sidebar-404 #quotes,
 #site-page .sidebar .widget,
+.category-archive-posts .post-panel:not(.post-count-1),
+#news-archive-posts .post-panel:not(.post-count-1),
+#recordings-archive-posts .post-panel:not(.post-count-1),
+#author-archive-posts .post-panel,
 .thumbnail-post,
 #quote-post-page #post-content-header,
 #gallery-post-page .entry-content .gallery-item,
@@ -1297,6 +1324,15 @@ a.btn-default,
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3), 0px 2px 4px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3), 0px 2px 4px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3), 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+#box-shadow .no-shadow,
+.category-archive-posts .post-panel:hover:not(.post-count-1),
+#news-archive-posts .post-panel:hover:not(.post-count-1),
+#recordings-archive-posts .post-panel:hover:not(.post-count-1) {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  -moz-box-shadow: none;
 }
 #text-shadow .text-shadow-md,
 #error-404-page .entry-content .page-header {
@@ -1391,9 +1427,10 @@ figure:hover a {
   margin: 0;
   padding: 0;
 }
-.more-icon {
-  right: 10px;
-  top: 10px;
+.close-icon {
+  left: 10px;
+  top: 5px;
+  font-size: 1.5em;
 }
 @keyframes slideintop {
   0% {
@@ -1428,7 +1465,9 @@ figure:hover a {
   top: 15px;
   z-index: 50;
 }
-.clickable {
+.clickable,
+.close-icon,
+.load-more-btn {
   cursor: pointer;
 }
 .video-popup {
@@ -1767,9 +1806,6 @@ figure:hover a {
   -o-transition: opacity 0.8s ease-in-out 0s;
   -moz-transition: opacity 0.8s ease-in-out 0s;
 }
-.archives .post-panel {
-  line-height: 1.5em;
-}
 .archives .post-panel-footer .fa-fw,
 #quote-post-page .tags-icon,
 #quote-post-page .categories-icon {
@@ -1783,6 +1819,12 @@ figure:hover a {
   -o-transition: all 800ms ease-in-out 0s;
   -moz-transition: all 800ms ease-in-out 0s;
 }
+.category-archive-posts .post-panel:hover:not(.post-count-1),
+#news-archive-posts .post-panel:hover:not(.post-count-1),
+#recordings-archive-posts .post-panel:hover:not(.post-count-1) {
+  border: 1px solid #ddd;
+  border-right: 4px solid #FF6600;
+}
 #author-archive-posts {
   margin-top: 60px;
 }
@@ -1795,18 +1837,14 @@ figure:hover a {
 #author-archive-posts .page-heading h2 {
   font-size: 48px;
 }
-#author-archive-posts .panel-post:after {
-  content: " ";
-}
 .heading-icon + .heading-content {
   width: 75%;
 }
-#search-page #search-results .post-panel:not(.post-count-1) {
-  height: 320px;
-  transition: all 2s ease-in-out;
+.post-panel {
+  line-height: 1.5em;
 }
-#search-page #search-results .post-panel:hover {
-  height: auto;
+.panel-post:after {
+  content: " ";
 }
 .widget_abbey_recent_posts {
   padding-bottom: 30px !important;
@@ -1818,8 +1856,13 @@ figure:hover a {
 }
 .mini-popup {
   max-width: 85%;
-  left: 45%;
-  width: 500px;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  -webkit-transform: translate3d(-50%, 0, 0);
+  -o-transform: translate3d(-50%, 0, 0);
+  -moz-transform: translate3d(-50%, 0, 0);
+  width: 300px;
+  max-height: 300px;
 }
 .rtl .mini-popup,
 .rtl .full-popup {
@@ -1863,8 +1906,31 @@ figure:hover a {
 .mfp-content > .success {
   border-color: #0e702e;
 }
-.mfp-bg {
-  background-color: rgba(179, 71, 0, 0.3) !important;
+body .mfp-bg {
+  background-color: transparent;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  /* For IE8 and earlier */
+  width: 0%;
+  transition: all 500ms ease-in-out;
+}
+body .mfp-bg.mfp-ready {
+  background-color: rgba(179, 71, 0, 0.2);
+  opacity: 0.8;
+  filter: alpha(opacity=0.8);
+  /* For IE8 and earlier */
+  width: 100%;
+}
+.mfp-bg + .mfp-wrap {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  /* For IE8 and earlier */
+  transition: all .3s linear 1s;
+}
+.mfp-bg.mfp-ready + .mfp-wrap {
+  opacity: 1;
+  filter: alpha(opacity=1);
+  /* For IE8 and earlier */
 }
 /* Bootstrap collapse */
 .collapse-heading .toggle-icon {
@@ -1910,6 +1976,10 @@ figure:hover a {
   right: 0px;
   left: 100%;
 }
+/*
+ * slick js 
+ * css styles for slick slider
+ */
 .slick-next::before,
 .slick-prev::before {
   color: #FF6600 !important;
@@ -1917,6 +1987,20 @@ figure:hover a {
 .slick-next:hover::before,
 .slick-prev:hover::before {
   color: #b34700 !important;
+}
+/*
+ * css styles for Abbey ajax load more 
+ *
+ */
+.load-more-btn {
+  transition: .3s;
+}
+.load-more-btn:hover {
+  box-shadow: 0px 2px 16px 0px #FF6600, 0px 2px 16px 0px #b34700;
+  transform: translate3d(0px, -5px, 0px);
+  -webkit-transform: translate3d(0px, -5px, 0px);
+  -o-transform: translate3d(0px, -5px, 0px);
+  -moz-transform: translate3d(0px, -5px, 0px);
 }
 .collapse-show,
 .collapse-hide {
@@ -1990,11 +2074,38 @@ figure:hover a {
   -webkit-transform-origin: bottom left;
   -o-transform-origin: bottom left;
 }
+.hover-card {
+  top: 0px;
+  left: 0px;
+  transform: translate3d(0px, 5px, 0px);
+  -webkit-transform: translate3d(0px, 5px, 0px);
+  -o-transform: translate3d(0px, 5px, 0px);
+  -moz-transform: translate3d(0px, 5px, 0px);
+  transition: all 600ms ease 0s;
+  -webkit-transition: all 600ms ease 0s;
+  -o-transition: all 600ms ease 0s;
+  -moz-transition: all 600ms ease 0s;
+}
+.hover-card.in {
+  transform: translate3d(0px, 0px, 0px);
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -o-transform: translate3d(0px, 0px, 0px);
+  -moz-transform: translate3d(0px, 0px, 0px);
+  transform-origin: bottom left;
+  opacity: 1;
+  filter: alpha(opacity=1);
+  /* For IE8 and earlier */
+  bottom: 10px;
+  top: unset;
+  left: 20px;
+  right: 20px;
+}
 .fade-out,
 .collapse-show.collapsing,
 .collapse-hide.collapsed,
 .slide-left,
-.slide-up {
+.slide-up,
+.hover-card {
   opacity: 0;
   filter: alpha(opacity=0);
   /* For IE8 and earlier */
@@ -2152,7 +2263,6 @@ transform: translate(0px, 0px);
   #site-footer #footer-bottom,
   #site-footer #before-footer,
   .archives .archive-header,
-  .mini-popup,
   .collapse-heading {
     padding-left: 80px;
     padding-right: 80px;
@@ -2239,7 +2349,6 @@ transform: translate(0px, 0px);
   #site-footer #footer-bottom,
   #site-footer #before-footer,
   .archives .archive-header,
-  .mini-popup,
   .collapse-heading {
     padding-left: 50px;
     padding-right: 50px;
@@ -2289,7 +2398,6 @@ transform: translate(0px, 0px);
   #site-footer #footer-bottom,
   #site-footer #before-footer,
   .archives .archive-header,
-  .mini-popup,
   .collapse-heading {
     padding-left: 45px;
     padding-right: 45px;
@@ -2373,7 +2481,7 @@ transform: translate(0px, 0px);
   .full-width-xs,
   #comments .comment-form-author,
   #comments .comment-form-email,
-  #author-archive-posts .post-panel {
+  .archives .archive-content {
     width: 100%;
     margin: auto;
     display: block;
@@ -2401,7 +2509,6 @@ transform: translate(0px, 0px);
   #site-footer #footer-bottom,
   #site-footer #before-footer,
   .archives .archive-header,
-  .mini-popup,
   .collapse-heading {
     padding-left: 30px;
     padding-right: 30px;
@@ -2413,6 +2520,7 @@ transform: translate(0px, 0px);
   #post-page .post-excerpts,
   #post-page .post-panel-footer,
   .navbar-collapse .navbar-form .search-submit,
+  .top-post-info,
   .sidebar,
   .mini-popup .popup-body,
   .full-popup .popup-body {
@@ -2442,6 +2550,10 @@ transform: translate(0px, 0px);
   .block-mobile,
   .categories-list,
   .terms-list,
+  .category-archive-posts .post-panel:not(.post-count-1),
+  #news-archive-posts .post-panel:not(.post-count-1),
+  #recordings-archive-posts .post-panel:not(.post-count-1),
+  #author-archive-posts .post-panel,
   .heading-icon {
     display: block;
   }
@@ -2486,7 +2598,7 @@ transform: translate(0px, 0px);
   #search-page #search-results .post-panel,
   #comments .comment-form-author,
   #comments .comment-form-email,
-  #author-archive-posts .post-panel {
+  .archives .archive-content {
     float: none;
     clear: both;
   }
@@ -2530,8 +2642,7 @@ transform: translate(0px, 0px);
   .post-title {
     font-size: 36px;
   }
-  #content,
-  .post-panel-heading .top-post-info {
+  #content {
     padding-left: 5px !important;
     padding-right: 5px !important;
   }

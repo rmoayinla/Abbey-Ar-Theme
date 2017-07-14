@@ -50,6 +50,11 @@ div.dropdown .dropdown-menu {
   left: unset;
 }
 
+.close-icon{
+  right: 10px;
+  left: unset;
+}
+
 .post-info li{
   margin-left: 0px;
   margin-right: 0px;

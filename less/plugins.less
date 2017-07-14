@@ -11,10 +11,13 @@
 }
 .mini-popup{
 	max-width: 85%;
-	left: 45%;
-	width: 500px;
-	&:extend(.inner-pad-responsive, .pad-small);
+	left: 50%;
+	.translate3d(-50%, 0, 0);
+	width: 300px;
+	max-height: 300px;
 }
+
+
 
 .rtl .mini-popup, .rtl .full-popup{
 	direction: rtl;
@@ -53,9 +56,26 @@
 	 border-color: #0e702e;
 }
 
-.mfp-bg{
-	background-color: rgba(179,71,0, 0.3) !important;
+body .mfp-bg{
+	background-color: transparent; 
+	.opacity(0);
+	width: 0%;
+	transition: all 500ms ease-in-out;
 }
+body .mfp-bg.mfp-ready{
+	background-color: rgba(179,71,0, 0.2);
+	.opacity(0.8);
+	width: 100%;
+}
+
+.mfp-bg + .mfp-wrap{
+	.opacity(0);
+	transition: all .3s linear 1s;
+}
+.mfp-bg.mfp-ready + .mfp-wrap{
+	.opacity(1);
+}
+
 
 //===============end of maginific popup =============== //
 
@@ -114,10 +134,26 @@
 	}
 }
 
-
+/*
+ * slick js 
+ * css styles for slick slider
+ */
 .slick-next::before, .slick-prev::before{
 	color: @primary-color !important;
 }
 .slick-next:hover::before, .slick-prev:hover::before{
 	color: @dark-primary-color !important;
+}
+
+/*
+ * css styles for Abbey ajax load more 
+ *
+ */
+.load-more-btn{
+	&:extend(.text-center, .full-width, .bg-white, .clickable, .outer-pad-small);
+	transition: .3s;
+	&:hover{
+		box-shadow: 0px 2px 16px 0px @primary-color, 0px 2px 16px 0px @dark-primary-color;
+		.translate3d(0px, -5px, 0px);
+	}
 }
