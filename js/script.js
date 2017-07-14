@@ -2,70 +2,141 @@
 (function($) {
 	$( document ).ready( function() {
 
+		/**
+		 * Show gallery in a Slick carousel 
+		 * this depends on the Slick Library as the carousel is created in the jQuery plugin 
+		 *@requires: Slick Slider 
+		 */
 		$(".gallery-slides").slick({
-			autoplay: true, 
-			autoplaySpeed: 2000, 
-			arrows: false, 
-			slidesToShow: 3,
-			responsive: [
+			autoplay: true, //autoplay the slide //
+			autoplaySpeed: 2000, //speed in ms //
+			arrows: false, //dont show a slider arrow //
+			slidesToShow: 3, // show 3 slides at once //
+			responsive: [ //slide responsive settings //
 				{
-					breakpoint: 480,
+					breakpoint: 480, //on screen with max-width 480 i.e. mobile device //
 					settings: {
-						slidesToShow: 2
+						slidesToShow: 2 //show only to slides //
 					}
 				}
 			]
-		});
+		}); //end .gallery-slides //
 
+		/**
+		 * Show '.photo-carousel' in a Slick slide 
+		 *@requires: Slick Slider 
+		 */
 		$(".photo-carousel").slick({
 			autoplay: true, 
 			autoplaySpeed: 3000, 
-			arrows: false, 
-			dots: true
-		});
+			arrows: false, //dont show arrows //
+			dots: true //show carousel dots indicators //
+		});//end .photo-carousel //
 
+		/**
+		 * Show posts in slides i.e. carousel 
+		 * the settings here can be overriden by setting a data-slide attribut on the child of '.posts-slides' element
+		 *@requires: Slick Slider 
+		 */
 		$(".posts-slides").slick({
-			autoplay: true, 
-			arrows: true,
-			dots: false
+			autoplay: true, //autoplay the slide on page load //
+			arrows: true, //show arrows //
+			dots: false // hide carousel indicators //
 		});
 
+		
+		/**
+		 * Settings for Bootstrap collapse module/plugin 
+		 * Bind some functions to run before the collapse element is shown or hidden 
+		 * @requires: Bootstrap.js
+		 */
 		$( function(){
+
+			/**
+			 * Loop through the '.collapse-heading' element and add a collapse indicator 
+			 * this indicator is a simple Fontawesome icon showing if the collapse is hidden or shown 
+			 */
 			$( ".collapse-heading" ).each( function(){
 				var _this = $( this );
+				//add the collpase indicator icon //
 				_this.prepend( '<a href="#" class="toggle-icon"><i class="fa fa-chevron-circle-up fa-lg"></i></a>' );
 			});
 
+			/**
+			 * Attach a collapse event to '.collapse-heading' 
+			 * @require: Bootstrap.js 
+			 */
 			$( document ).on( "click", ".collapse-heading", function(e){
 				var _this;
+				//prevent the default action for this element //
 				e.preventDefault();
-				_this = $( this );
-				_this.next( ".collapse-item" ).collapse( 'toggle' );
-			});
 
+				//copy the jQuery $this object //
+				_this = $( this );
+
+				//find the next element which has '.collapse-item' and collapse it (hide|show)//
+				_this.next( ".collapse-item" ).collapse( 'toggle' );
+
+			});//end '.collpase-heading' click event //
+
+			/** 
+			 * Bind an event to run before the '.collpase-item' element is shown 
+			 * Here we will add some class for transitioning and change the indicator icon 
+			 */
 			$(".collapse-item").on('show.bs.collapse', function(){
+	        	
+	        	// add '.collapse-show' class to the element and remove '.collapse-hide' class //
 	        	$( this ).addClass( "collapse-show" ).removeClass( "collapse-hide" );
+
+	        	//find the icon and replace with an arrow facing up //
 	        	$(this).prev( ".collapse-heading" ).find( ".toggle-icon" ).html( '<i class="fa fa-chevron-circle-up fa-lg"></i>' );
 	    	});
 
-	    	 $(".collapse-item").on('hide.bs.collapse', function(){
+	    	/**
+	    	 * Bind an event to run before the '.collapse-item' is hidden 
+	    	 * Here we will add some class for transitioning and change the icon 
+	    	 */
+	    	$(".collapse-item").on('hide.bs.collapse', function(){
 	       		$(this).addClass( "collapse-hide" ).removeClass( "collapse-show" );
 	       		$(this).prev( ".collapse-heading" ).find( ".toggle-icon" ).html( '<i class="fa fa-chevron-circle-down fa-lg"></i>' );
-	   		 });
-		});
+	   		});
 
+		}); //end bootstrap collapse events //
+
+		/**
+		 * Attach an event to '.more-button' link/button in single pages/posts
+		 * this button will show the remainder of the current post that was hidden 
+		 */
 		$(document).on("click", ".entry-content .more-button", function(event){
+			//declare variables //
 			var _this, nextElements;
+
+			//copy the jQuery $this object //
 			_this = $(this);
+
+			/**
+			 * Get the next element with id "more-content" and display/hide it 
+			 */
 			nextElements = _this.next("#more-content");
 			nextElements.toggleClass("hidden in");
 		}); //.more-button
 
 
-		
+		/**
+		 * A simple module for animating elements on scroll 
+		 * The animations and transitions are done with CSS, so classes are added/removed on scroll 
+		 * The elements are animated when in view e.g. zoom in, slide in, slide up, slide down, zoom out etc
+		 */
+			//target elements to be animated, they can be selected through class/data attribute //
 			var $animation_elements = $('.scroll-animate, .frontpage-sections');
+
+			// clone the jQuery window object to a variable //
 			var $window = $(window);
 
+			/**
+			 * Check if the targeted elements are being in view and add appropriate transtion class 
+			 * An element is in view when the scroll bar position is equal to the element top offset position 
+			 */
 			function check_if_in_view() {
 			  var window_height = $window.height();
 			  var window_top_position = $window.scrollTop();
@@ -169,7 +240,7 @@
 		  }
 		});
 
-		iframe_video = $( "iframe[src*='youtube'], iframe[src*='vimeo'], iframe[src*='google']" ); 
+		iframe_video = $( ".entry-content iframe[src*='youtube'], .entry-content iframe[src*='vimeo'], .entry-content iframe[src*='google']" ); 
 		iframe_video.each( function(){
 			var _this = $(this);
 			var src = _this.attr( "src" ).replace( /(.+)\/embed\/(.+)/, "$1/watch/?v=$2" );
@@ -213,7 +284,7 @@
 
 	$(function(){
 		var postCard, hoverCard;
-		postCard = $(".post-panel:not(.post-count-1)");
+		postCard = $(".archive-posts .post-panel:not(.post-count-1)");
 		
 		postCard.each(function(){
 			var _this, postExcerpt;

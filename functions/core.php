@@ -645,3 +645,4 @@ function abbey_custom_field( $value, $echo = false ){
 		return get_field( $value );
 	echo get_field( $value );
 }
+
