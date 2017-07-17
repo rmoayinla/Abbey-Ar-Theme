@@ -1,11 +1,7 @@
 <?php
 get_header();
 
-global $count;
-
-global $wp_query;
-
-global $abbey_author_posts;
+global $count, $wp_query, $abbey_author_posts;
 
 
 $current_page = (int) get_query_var( 'paged' );
