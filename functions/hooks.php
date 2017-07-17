@@ -327,10 +327,10 @@ endif; //endif function exist abbey_archive_heading //
 * function to show uploaded video as thumbnail for recordings 
 *
 */
-add_filter( "abbey_theme_page_media", "abbey_video_thumbnail", 20 );//abbey_page_media function, check functions/template-tags.php 
-function abbey_video_thumbnail( $thumbnail ){
-	if( get_post_type() === "recordings" )
-		$thumbnail = abbey_recording_video( false );
+add_filter( "abbey_theme_page_media", "abbey_video_thumbnail", 20, 2 );//abbey_page_media function, check functions/template-tags.php 
+function abbey_video_thumbnail( $thumbnail, $page_id ){
+	if( get_post_type( $page_id ) === "recordings" )
+		$thumbnail = abbey_recording_video( false, $page_id );
 	
 	return $thumbnail;
 }
@@ -340,9 +340,12 @@ function abbey_video_thumbnail( $thumbnail ){
 * function to show first category thumbnail image if post thumbanial is not found 
 *
 */
-add_filter( "abbey_theme_page_media", "abbey_category_thumbnail", 10 );//abbey_page_media function, check functions/template-tags.php 
-function abbey_category_thumbnail( $thumbnail ){
-	if( $categories = get_the_category() ){
+add_filter( "abbey_theme_page_media", "abbey_category_thumbnail", 10, 2 );//abbey_page_media function, check functions/template-tags.php 
+function abbey_category_thumbnail( $thumbnail, $page_id ){
+	if( !empty( $thumbnail ) )
+		return $thumbnail;
+
+	if( $categories = get_the_category( $page_id ) ){
 		$cat_thumbnail = get_term_meta( $categories[0]->term_id, "thumbnail", true ); 
 		if( !empty( $cat_thumbnail ) )
 			$thumbnail = sprintf('<img class="wp-post-image" src="%s" />', $cat_thumbnail ); 
