@@ -302,13 +302,23 @@ add_filter( "abbey_theme_sidebars", function ( $sidebars ){
 } );
 
 add_action( "init", "abbey_init_defaults", 50 );
+/**
+ * Initialize theme settings here
+ * this function is hook to wp "init" hook 
+ * Vital theme classes are started here
+ * @since: 0.1 
+ */
 function abbey_init_defaults(){
+	
 	global $abbey_defaults;
 
-    $abbey_defaults = abbey_theme_defaults();
-
+    //initialize the class responsible for enqueing styles and scripts //
     Abbey_Enqueue::init(); 
 
+    //initialize the class handling theme settings //
+    Abbey_Theme_Settings::init();
+
+	$abbey_defaults = Abbey_Theme_Settings::get_default_options();
     
 }
 
