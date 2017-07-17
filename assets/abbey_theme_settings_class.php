@@ -82,11 +82,24 @@ class Abbey_Theme_Settings{
 		// dummmy containers for the options that will be set //
 		$default = $stored = $options = "";
 		
+		/**
+		 * Default options for the class is set/initialized here 
+		 * We first check if the default is already in cache, if its in cache we merge with our normal defaults
+		 */
 		if( $option === "default" || empty( $option ) ){
-			/*if( $default = wp_cache_get( self::$option_key."_default", self::$option_key ) ){
-				self::$default_options = $default;
-				if( !empty( $option ) return;
-			}*/
+
+			//check if default option is cached already //
+			if( $default = wp_cache_get( self::$option_key."_default", self::$option_key ) ){
+				
+				// run a filter to access the default theme settings //
+				add_filter( "abbey_theme_defaults", function( $defaults ) use( $default ){
+					self::$default_options = array_merge( $default, $defaults );
+					// return the normal defaults //
+					return $defaults;
+				}, 999 );
+				
+				if( !empty( $option ) ) return;
+			}
 
 			self::$default_options =  abbey_theme_defaults();
 			$default = wp_cache_add( self::$option_key."_default", self::$default_options, self::$option_key );
