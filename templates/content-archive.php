@@ -9,6 +9,7 @@ $more_link = sprintf( '<a href="%1$s" title="%2$s" class="excerpt-link">%3$s</a>
 		<article class="post-panel post-count-<?php echo $count; ?>" >
 			<?php if ( $count === 1 ) : ?>
 				<div class="post-thumbnail"><?php abbey_page_media( "large" ); ?></div>
+				<div class="post-body">
 			<?php endif;  ?>
 
 			<header class="post-panel-heading">
@@ -31,6 +32,9 @@ $more_link = sprintf( '<a href="%1$s" title="%2$s" class="excerpt-link">%3$s</a>
 			<?php if( $count > 1 ) :  ?>
 				<div class="post-thumbnail"><?php abbey_page_media( "large" ); ?></div>
 			<?php endif; ?>
+
+			
+
 				
 			<div class="post-excerpts"><?php abbey_excerpt( "", $more_link, true ); ?></div>
 			
@@ -43,6 +47,8 @@ $more_link = sprintf( '<a href="%1$s" title="%2$s" class="excerpt-link">%3$s</a>
 
 			
 			<div class="post-panel-metas"><?php do_action( "abbey_archives_post_panel_metas", $count ); ?></div>
+
+			<?php if( $count === 1 ) echo '</div>'; ?>
 			
 		</article><!--.post-panel closes-->
 
