@@ -646,3 +646,13 @@ function abbey_custom_field( $value, $echo = false ){
 	echo get_field( $value );
 }
 
+function abbey_page_class(){
+	$class = $archive_options ="";
+	global $abbey_defaults;
+	if( is_archive() ){
+		$archive_options = $abbey_defaults[ "archive" ];
+		if( empty( (bool) $archive_options[ "sidebar" ] ) )
+			$class .= "no-sidebar";
+	}
+	echo esc_attr( $class );
+}
