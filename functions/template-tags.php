@@ -350,9 +350,9 @@ endif; //endif function exist abbey_show_post_type //
  */
 function abbey_page_media( $size = "medium", $page_id = "", $echo = true ){
 	$icon = "";
-	$page_id = empty( $page_id ) ? get_the_ID() : $page_id;
+	$page_id = ( empty( $page_id ) ) ? get_the_ID() : $page_id;
 
-	$icon = ( has_post_thumbnail() ) ? get_the_post_thumbnail( $page_id, $size ) : apply_filters( "abbey_theme_page_media", $icon, $page_id ); //wp thumbnail or custom thumbnail//
+	$icon = ( has_post_thumbnail( $page_id ) ) ? get_the_post_thumbnail( $page_id, $size ) : apply_filters( "abbey_theme_page_media", $icon, $page_id ); //wp thumbnail or custom thumbnail//
 	
 	if( !$echo )
 		return $icon;
@@ -380,8 +380,8 @@ function abbey_excerpt( $length = "", $more = "", $echo = false ){
 * this function returns an html styled content 
 *
 */
-function abbey_recording_video( $echo = true ){
-	$content = get_the_content();
+function abbey_recording_video( $echo = true, $page_id = "" ){
+	$content = get_the_content( $page_id );
 	$embeds = get_media_embedded_in_content( $content );
 
 	if( ! $echo  )
