@@ -16,7 +16,6 @@ require trailingslashit( get_template_directory () )."assets/customizer_options.
 require trailingslashit( get_template_directory () )."functions/theme_setup.php";
 require trailingslashit( get_template_directory () )."functions/front-page-hooks.php";
 require trailingslashit( get_template_directory () )."functions/hooks.php";
-require trailingslashit( get_template_directory () )."functions/post-hooks.php";
 require trailingslashit( get_template_directory () )."functions/core.php";
 require trailingslashit( get_template_directory () )."functions/template-tags.php";
 require trailingslashit( get_template_directory () )."functions/plugins.php";
