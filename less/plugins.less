@@ -157,3 +157,19 @@ body .mfp-bg.mfp-ready{
 		.translate3d(0px, -5px, 0px);
 	}
 }
+
+/*
+* Post slider in Archive
+*/
+.archive-post-slide{
+	&:extend(.bg-white, .auto-height-mobile);
+	figure img, figure iframe{
+		height: 240px;
+	}
+	.post-slide-body{
+		&:extend(.pad-medium);
+	}
+}
+.archive-post-slide.slick-slide{
+	height: 240px;
+}
