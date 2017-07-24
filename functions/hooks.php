@@ -322,59 +322,71 @@ if( !function_exists( "abbey_archive_heading" ) ) :
 	
 endif; //endif function exist abbey_archive_heading //
 
-/*
-* Template function filter for thumbnail - abbey_page_media function 
-* function to show uploaded video as thumbnail for recordings 
-*
-*/
+/**
+ * Template function filter for thumbnail - abbey_page_media function 
+ * function to show uploaded video as thumbnail for recordings 
+ *
+ */
 add_filter( "abbey_theme_page_media", "abbey_video_thumbnail", 20, 2 );//abbey_page_media function, check functions/template-tags.php 
 function abbey_video_thumbnail( $thumbnail, $page_id ){
+
+	// check if there is a thumbnail already for the post //
+	if( !empty( $thumbnail ) )
+		return $thumbnail; //bail early //
+
 	if( get_post_type( $page_id ) === "recordings" )
-		$thumbnail = abbey_recording_video( false, $page_id );
+		$thumbnail = abbey_recording_video( false, $page_id ); //@see functions/template-tags.php //
 	
 	return $thumbnail;
 }
 
-/* 
-* Template filter for thumbnail - abbey_page_media function 
-* function to show first category thumbnail image if post thumbanial is not found 
-*
-*/
+/**
+ * Template filter for thumbnail - abbey_page_media function 
+ * function to show first category thumbnail image if post thumbanial is not found 
+ * @edited: added an 'alt' attribute for the thumbnail
+ */
 add_filter( "abbey_theme_page_media", "abbey_category_thumbnail", 10, 2 );//abbey_page_media function, check functions/template-tags.php 
 function abbey_category_thumbnail( $thumbnail, $page_id ){
+	
+	//bail early if there is a thumbnail for the post already //
 	if( !empty( $thumbnail ) )
 		return $thumbnail;
 
 	if( $categories = get_the_category( $page_id ) ){
 		$cat_thumbnail = get_term_meta( $categories[0]->term_id, "thumbnail", true ); 
 		if( !empty( $cat_thumbnail ) )
-			$thumbnail = sprintf('<img class="wp-post-image" src="%s" />', $cat_thumbnail ); 
+			$thumbnail = sprintf('<img class="wp-post-image" src="%1$s" alt="%2$s"/>', esc_url( $cat_thumbnail ), esc_attr( $categories[0]->term_name ) ); 
 	}
 	return $thumbnail;
 	
 }
 
-add_action( "abbey_theme_before_post_content", "abbey_post_tags", 90 ); 
+/**
+ * An action hook that fires before showing the main post content
+ * Show the post tags of the current post 
+ * @edited: bail early if there is no tag 
+ */
+add_action( "abbey_theme_before_post_content", "abbey_post_tags", 90 );//found in single.php // 
 function abbey_post_tags(){
-	if( has_post_format() )
-		return;
 	
+	if( !empty ( get_the_tags() ) ) return ; //bail early if there is no tag with this post //
+
 	$html = "<div class='post-tags'>";//start .post-tags //
-	if( !empty ( get_the_tags() ) ){
-		$html .= abbey_cats_or_tags( "tags", __( "Tagged in:", "abbey" ), "fa-tags" );//chech functions/template-tags.php//
-	}
+	
+	$html .= abbey_cats_or_tags( "tags", __( "Tagged in:", "abbey" ), "fa-tags" );//check functions/template-tags.php//
 
 	$html .= "</div>";//end .post-tags //
 
 	echo $html;
 }
 
-/*
-* Gallery Post type action hook
-* this function displays gallery images uploaded for the current post in a slick carousel 
-* uses wordpress native get_post_gallery function to get the embed galleries 
-*
-*/
+/**
+ * Gallery Post format action hook
+ * this function displays gallery images uploaded for the current post in a slick carousel 
+ * uses wordpress native get_post_gallery function to get the embed galleries 
+ * @return: string 		$html 		a nicely formated HTML gallery list 
+ * @since: 0.1
+ */
 add_action( "abbey_theme_after_page_header", "abbey_post_gallery_slides" );//found in templates/content-gallery.php //
 function abbey_post_gallery_slides(){
 	$gallery = get_post_gallery( get_the_ID(), false ); //get the embed galleries, note these are not the images //
@@ -385,7 +397,7 @@ function abbey_post_gallery_slides(){
 	$gallery_id = explode( ",", $gallery["ids"] ); //extract the gallery ids into an array //
 
 	$html = "<ul class='list-inline'>";// start of html list //
-	$gallery = get_post_gallery( get_the_ID(), false ); 
+
 	foreach( $gallery["src"] as $key => $src ){
 		$html .= sprintf( '<li><a href="%1$s" data-full-image="%3$s"><img src="%2$s"></a></li>', 
 							get_attachment_link( (int) $gallery_id[$key] ),
@@ -401,10 +413,10 @@ function abbey_post_gallery_slides(){
 
 }
 
-/*
-* Quote post format action hook 
-* Display a link to quote post type archive 
-*/
+/**
+ * Quote post format action hook 
+ * Display a link to quote post type archive 
+ */
 add_action( "abbey_theme_quote_post_footer", "abbey_show_quote_archive", 10 ); //check templates/content-quote.php //
 function abbey_show_quote_archive(){
 	$html = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', 

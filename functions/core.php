@@ -14,8 +14,8 @@
 /**
  * Remove alphabets from a string and return the digit numbers only 
  * this function is a sanitizer for numerics and digits
- *@since: 0.1 
- *@param: 	mixed 		$string 	a string to be sanitized 
+ * @since: 0.1 
+ * @param: 	mixed 		$string 	a string to be sanitized 
  */
 function abbey_numerize( $string ){
 	$result = preg_replace("/[^0-9.]/", '', $string); //use regex to remove non digit characters //
@@ -25,9 +25,10 @@ function abbey_numerize( $string ){
 /**
  * wrapper function for wp_nav_menu 
  * instead of calling wp_nav_menu, I am using my own custom wrapper for the wordpress built in function
- *@param: 	array 		$args 		arguments for the outputting menu 
- *@uses: wp_nav_menu()
- *@usage: abbey_nav_menu(['menu' => 'primary', 'theme_location'=> 'primary', 'menu_class'=>'navbar_menu'])
+ * @since: 0.1
+ * @param: 	array 		$args 		arguments for the outputting menu 
+ * @uses: wp_nav_menu()
+ * @usage: abbey_nav_menu(['menu' => 'primary', 'theme_location'=> 'primary', 'menu_class'=>'navbar_menu'])
  */
 function abbey_nav_menu( $args = array() ){
 	$defaults = array(	'menu'              => '',
@@ -48,11 +49,11 @@ function abbey_nav_menu( $args = array() ){
 
 
 /**
- * Function to generate font-awesome classes for social or general icons
+ * Generate font-awesome classes for social or general icons
  * @warning: this function will only work properly when you have font-awesome enqueued in your theme
  * @param:  	string 		$contact 	the item to generate an icon for 
  * @return: 	string 		the corresponding icon of the contact  being passed 
- * @since: v0.1 
+ * @since: 0.1 
  *
  */
 function abbey_contact_icon( $contact ){
@@ -127,7 +128,7 @@ function abbey_contact_icon( $contact ){
 }
 
 /**
- * function to style and generate contacts html  
+ * Style and generate contacts html  
  * This function does not get the contact details, the contact to display is passed to this function through the params
  * this function is recursive as multiple level contacts are flattened 
  * @param: 	array|string 	$contact 		string or array containing stored contacts to generate 
@@ -458,69 +459,88 @@ function abbey_list_comments( $args = array() ){
 	);
 }
 
-/*
-* Function to retreive some details from wordpress query results 
-* the retreive details e.g. author, post_found e.t.c are then stored in a custom variable 
-* this can be used to group or sort posts according to authors or categories 
-*
-*
-*/
+/**
+ * Populate a dummy container with query details from wordpress query results 
+ * the retreive details e.g. author, post_found e.t.c are then stored in a custom variable 
+ * this can be used to group or sort posts according to authors or categories 
+ * @since: 0.1
+ * @usage: author.php to see how its implemented
+ *
+ */
 function abbey_setup_query(){
-	global $wp_query, $abbey_query; //wordpress wp_query containing query result and my custom variable to save some details from wp_query//
-	if ( count( $wp_query->posts ) > 0 ){
-		foreach( $wp_query->posts as $post ){
-			$abbey_query[] = array(
-				"ID" => $post->ID, 
-				"post_type" => $post->post_type, 
-				"post_author" => $post->post_author, 
-				"comment_count" => $post->comment_count
-			); 
-		}
-		$abbey_query["summary"][ "found_posts" ] = array( 
-			"key" => $wp_query->found_posts, "icon" => "", "title" => __( "Total posts found", "abbey" )
-		);
-		$abbey_query["summary"][ "num_pages" ] = array(
-			"key" => $wp_query->max_num_pages, "icon" => "", "title" => __( "Number of page", "abbey" )
+	
+	//wordpress wp_query containing query result and my custom variable to save some details from wp_query//
+	global $wp_query, $abbey_query; 
+	
+	if ( empty( $wp_query->posts ) ) return; //bail if no posts
+	
+	/** Ok, we have posts in this query, lets start filtering .. */
+	foreach( $wp_query->posts as $post ){
+		$abbey_query[] = array(
+			"ID" => $post->ID, 
+			"post_type" => $post->post_type, 
+			"post_author" => $post->post_author, 
+			"comment_count" => $post->comment_count
 		); 
-		if( is_search() ){
-			$abbey_query["summary"][ "keyword" ] = array(
-			"key" => get_search_query(), "icon" => "fa-search", "title" => __( "Searched keyword", "abbey" )
-			);
-		}
-
-		$abbey_query = apply_filters( "abbey_theme_query", $abbey_query ); //filter to add additional details to abbey_query //
 	}
+	$abbey_query["summary"][ "found_posts" ] = array( 
+		"key" => $wp_query->found_posts, "icon" => "", "title" => __( "Total posts found", "abbey" )
+	);
+	$abbey_query["summary"][ "num_pages" ] = array(
+		"key" => $wp_query->max_num_pages, "icon" => "", "title" => __( "Number of page", "abbey" )
+	); 
+	if( is_search() ){
+		$abbey_query["summary"][ "keyword" ] = array(
+		"key" => get_search_query(), "icon" => "fa-search", "title" => __( "Searched keyword", "abbey" )
+		);
+	}
+
+	$abbey_query = apply_filters( "abbey_theme_query", $abbey_query ); //filter to add additional details to abbey_query //
+	
 
 
 }
 
-/*
-* Function to group posts based on post_types 
-* the posts are passed by reference
-* ( might need some tweaking )
-*/
+/**
+ * Group posts based on post_types 
+ * the posts are passed by reference so this function works directly on the post 
+ * ( might need some tweaking )
+ * @since: 0.1 
+ * @param: array 		$custom_posts	an empty post list that will be populated with this function
+ */
 function abbey_group_posts( &$custom_posts ){
 	$post_types = get_post_types( array( 'public' =>  true ), 'object' );//get all post types registered //
+	
+	if( empty( $post_types ) ) return; // bail if there is no post type //
+
 	$custom_posts = array();
-	if( !empty( $post_types ) ){
-		foreach( $post_types as $post_type ){ //loop through the registered post types //
-			$custom_posts[ $post_type->name ][ "posts" ] = array();
-			if( !empty( $post_type->labels ) )
-				$custom_posts[$post_type->name]["labels"] = $post_type->labels;
-		}
+	
+	/**
+	 * Loop through the post and create an index/key with each post type in the custom_posts
+	 */
+	foreach( $post_types as $post_type ){ //loop through the registered post types //
+		$custom_posts[ $post_type->name ][ "posts" ] = array();
+		if( !empty( $post_type->labels ) )
+			$custom_posts[$post_type->name]["labels"] = $post_type->labels;
 	}
+	
 
 }
 
-/*
-* This function must be called only after abbey_group_posts and must be called in the loop 
-* this function add posts to grouped posts 
-* the custom_posts param is passed by reference
-* ( might need some rewriting )
-*
+/**
+ * Add posts to grouped posts 
+ * This function must be called only after abbey_group_posts and must be called in the loop 
+ * the custom_posts param is passed by reference, so the function access the custom_posts directly
+ * ( might need some rewriting )
+ * @since: 0.1 
+ * @param:	array 		$custom-posts	an array containing indexes that will be filled with posts 
 */
 function abbey_add_posts( &$custom_posts ){
+	
 	$post_type = get_post_type();
+
+	if( empty( $post_type ) ) return; //bail early if there is no registered post type //
+
 	if( array_key_exists( $post_type, $custom_posts ) ){
 		$custom_posts[$post_type]["posts"][] = array(
 			"ID" => get_the_ID(), 
@@ -530,68 +550,78 @@ function abbey_add_posts( &$custom_posts ){
 			"title" => get_the_title()
 		);
 
-
 	}
 }
 
-/*
-* Function get gallery images from a gallery post format 
-* Useful when gallery post format is enabled - it is enabled in this theme by default 
-*
-*
-*/
+/**
+ * Get gallery images from a gallery post format 
+ * Useful when gallery post format is enabled - it is enabled in this theme by default 
+ * @since: 0.1
+ * @return: 	array 	$slide_images 		array of gallery images in current post 
+ */
 function abbey_gallery_images(){
 	global $post; 
 	
 	$galleries = get_post_galleries_images( $post ); // get the gallery images for this post //
 
+	if( empty( $galleries ) ) return; //bail if there is no gallery image //
+
 	$slide_images = $galleries; // clone the images //
-	/*
-	* Based on how get_post_galleries_images retrun the gallery images we have to do a double loop 
-	* first we check if the galleries is not empty, then because the galleries is a multi-dimensional array
-	* We loop through each index i.e. galleries[0], then loop through the index to get the image 
-	*
-	*/
-	if( count( $galleries ) > 0 )
-		$slide_images = array();
-		for( $i = 0; $i < count( $galleries ); $i++ ){
-			if( is_array( $galleries[$i] ) && !empty( $galleries[$i] ) ){
-				foreach( $galleries[$i] as $gallery ){
-					$slide_images[] = $gallery;
-				}
+	
+	/**
+	 * Based on how get_post_galleries_images retrun the gallery images we have to do a double loop 
+	 * first we check if the galleries is not empty, then because the galleries is a multi-dimensional array
+	 * Then we loop through each index i.e. galleries[0], then loop through the index to get the image 
+	 * sounds hectic? do a print_r($galleries) to have a clue 
+	 */
+	$slide_images = array();
+	for( $i = 0; $i < count( $galleries ); $i++ ){
+		if( is_array( $galleries[$i] ) && !empty( $galleries[$i] ) ){
+			foreach( $galleries[$i] as $gallery ){
+				$slide_images[] = $gallery;
 			}
 		}
-		$slide_images[ "galleries" ] = $galleries; // save the entire galleries again in our slide //
+	}
+	$slide_images[ "galleries" ] = $galleries; // save the entire galleries again in our slide //
 
 	return $slide_images; 
 }
 
-/*
-* a wp filter to add icons or form or anything  to nav_menu
-*
+/**
+ * A wp core filter to add icons or form or anything  to nav_menu
+ * Here I am adding a search form to the primary nav menu 
+ * @since: 0.1
+ * @param:	string 		$items 		the HTML menu that has been generated by wp, this is were we add the search form
+ *			object 		$args 		an object containing infos about the current nav item
+ *
 */
 function abbey_add_to_primary_menu ( $items, $args ) {
-	if( 'primary' === $args->theme_location ) {
-		$items .= '</ul>';
-		$items .= sprintf( '<form class="navbar-form navbar-left" action="%1$s/" method="get">
-		        				<div class="form-group relative">
-		          					<input type="search" class="form-control" placeholder="Click on the search icon to search" name="s" />
-		          					<button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
-		        				</div>
-	        				</form>', 
-      						esc_url( home_url() )
-      					);
-	}
+	
+	if( 'primary' !== $args->theme_location ) return $items; //just return the $items if the current menu is not primary //
+	
+	/** Ok, We are currently in the primary menu, so lets get started .. */
+	$items .= '</ul>'; //close the items list //
+
+	$items .= sprintf( '<form class="navbar-form navbar-left" action="%1$s/" method="get">
+	        				<div class="form-group relative">
+	          					<input type="search" class="form-control" placeholder="Click on the search icon to search" name="s" />
+	          					<button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+	        				</div>
+        				</form>', 
+  						esc_url( home_url() )
+  					);
+	
 	return $items;
 }
-add_filter( 'wp_nav_menu_items','abbey_add_to_primary_menu',10,2 );//wp filter to add to nav menus, found in header.php //
+add_filter( 'wp_nav_menu_items','abbey_add_to_primary_menu', 10, 2 );//wp filter to add to nav menus, found in header.php //
 
-/*
-* A wrapper function for wordpress WP_Query class 
-* this function is used to query posts 
-* @return: Wp query object 
-*
-*/
+/**
+ * A wrapper function for wordpress WP_Query class 
+ * this function is used to run query posts throughout my theme
+ * @return: Wp query object 
+ * @param: array 		$args 		Array of arguments to pass to WP_Query to load a particular post 
+ *
+ */
 function abbey_get_posts( $args = array() ){
 	$defaults = array(
 		'posts_per_page'   => 5,
@@ -608,24 +638,32 @@ function abbey_get_posts( $args = array() ){
 	return $posts;
 }
 
-/*
-* Function to wrap wordpress native pagainate_links function
-* this function generate a nice Bootstrap pagination style and html 
-*
-*/
+/**
+ * Wrapper function for wordpress native pagainate_links function
+ * this function generate a nice Bootstrap pagination style and html 
+ * @since: 0.1
+ * @param:	array 		$args 		an array of options to pass to wp paginate_links
+ *
+ */
 function abbey_posts_pagination( $args = array() ){
-	$defaults = array( "type" => "array", "mid_size" => 1 ); 
-	$args = wp_parse_args( $defaults, $args );
-	$navigation = "";
-	if( $GLOBALS['wp_query']->max_num_pages > 1 ){
-		$links = paginate_links( $args ); 
-		$navigation .= "<ul class='pagination'>";//start the pagination list//
 
-		foreach( $links as $link ){
-			$navigation .= "<li>".$link."</li>\n";
-		}
-		$navigation .= "</ul>\n";//close the pagination  list //
+	if( $GLOBALS['wp_query']->max_num_pages < 2 ) return; //bail in single archive pages //
+
+	$defaults = array( "type" => "array", "mid_size" => 1 ); // default options //
+
+	//override $default options with passed options in $args // 
+	$args = wp_parse_args( $args, $defaults );
+
+	$navigation = $links = ""; // declare variables  //
+
+	$links = paginate_links( $args ); 
+	$navigation .= "<ul class='pagination'>\n";//start the pagination list//
+
+	foreach( $links as $link ){
+		$navigation .= "<li>".$link."</li>\n";
 	}
+	$navigation .= "</ul>\n";//close the pagination  list //
+	
 	echo $navigation; 
 
 }
@@ -633,10 +671,10 @@ function abbey_posts_pagination( $args = array() ){
 /**
  * Wrapper function getting registered custom metabox fields 
  * this function checks if the metabox plugin is installed, then get the meta value else return empty 
- *@since: 0.1
- *@param: 	string 		$value 		the custom field value to look for 
+ * @since: 0.1
+ * @param: 	string 		$value 		the custom field value to look for 
  * 			bool 		$echo 		echo or return custom field value 
- *@return: 	string|array 	value of the custom field stored in wp meta table 
+ * @return: 	string|array 	value of the custom field stored in wp meta table 
  */
 function abbey_custom_field( $value, $echo = false ){
 	if ( !function_exists( "get_field" ) )
@@ -646,13 +684,21 @@ function abbey_custom_field( $value, $echo = false ){
 	echo get_field( $value );
 }
 
+/**
+ * Generate simple page classes for my templates main element 
+ * This classes are used to style pages and posts per different configuration
+ * Unique classes can be added if a page has background, no sidebar, full width, grid layout etc
+ * @return:		string 		$class 		a simple class name 
+ * @since: 0.11 
+ */
 function abbey_page_class(){
-	$class = $archive_options ="";
-	global $abbey_defaults;
+	$class = $options ="";
+	global $abbey_defaults; //theme default configurations //
+	
 	if( is_archive() ){
-		$archive_options = $abbey_defaults[ "archive" ];
-		if( empty( (bool) $archive_options[ "sidebar" ] ) )
+		$options = $abbey_defaults[ "archive" ];
+		if( empty( (bool) $options[ "sidebar" ] ) )
 			$class .= "no-sidebar";
 	}
-	echo esc_attr( $class );
+	echo esc_attr( $class ); //output the class //
 }
