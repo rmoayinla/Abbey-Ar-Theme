@@ -5,20 +5,20 @@
 *
 */
 
-/*
-* function to show author or user avatar 
-* uses the native get_avatar
-*
-*/
+/**
+ * Show author or user avatar 
+ * @uses: the native wordpress get_avatar() function
+ * @since: 0.1
+ */
 function abbey_author_photo( $id, $size = 32, $class = "" ){
 	return get_avatar( $id, $size, "user_upload", "", array("class" => $class ) );
 }
 
-/*
-* Wrapper function for abbey_post_author 
-* to generate html to show author info 
-*
-*/
+/**
+ * Wrapper function for abbey_post_author 
+ * to generate html to show author info 
+ * @since: 0.1
+ */
 function abbey_show_author( $echo = true ){
 	$author = abbey_post_author(); // check functions/core.php //
 	$html = sprintf( '<span class="post-author-image">%1$s</span>
@@ -35,28 +35,36 @@ function abbey_show_author( $echo = true ){
 	return $html;
 }
 
-/*
-* function to show author social contacts 
-* this depends if the author social meta is enabled 
-* @return: array() - author_contacts 
-*
-*/
+/**
+ * function to show author social contacts 
+ * this depends if the author social meta is enabled 
+ * @since: 0.1
+ * @edited: the social contact are now being set/get from the global default settings.
+ * @return: array() - author_contacts 
+ *
+ */
 function abbey_author_contacts( $author, $key = "" ){
-	$social_contacts = apply_filters( "abbey_author_social_contacts", array( "facebook", "twitter", "google-plus", "linkedin", "github" ) );
+	global $abbey_defaults;
+	$social_contacts = ( !empty( $abbey_defaults[ "authors" ][ "social_contacts" ] ) ) ? $abbey_defaults[ "authors" ][ "social_contacts" ] : array();
 	$author_contacts = array();
-	if( !empty( $social_contacts ) ){
-		foreach( $social_contacts as $contact ){
-			if( $author_contact = get_the_author_meta( $contact, $author->ID ) )
-				$author_contacts[ $contact ] = $author_contact;
-		}
-	}//end if social_contacts //
+	
+	//bail if there is no author social contact //
+	if( empty( $social_contacts ) ) return; 
+	
+	foreach( $social_contacts as $contact ){
+		if( $author_contact = get_the_author_meta( $contact, $author->ID ) )
+			$author_contacts[ $contact ] = $author_contact;
+	}
+	
 	return $author_contacts;
 }
 
-/*
-* function to show some little post info e.g. post date, author, category 
-*
-*/
+/**
+ * Show some little post info e.g. post date, author, category 
+ * this function is pluggable and overridable, simply create a function with the same name in your child theme
+ * @since: 0.1
+ * @return: 	string 		HTML formatted post info 
+ */
 if( !function_exists( "abbey_post_info" ) ) : 
 	function abbey_post_info( $echo = true, $keys = array() ){
 		$info = array();
@@ -88,50 +96,53 @@ if( !function_exists( "abbey_post_info" ) ) :
 
 		$post_infos = apply_filters( "abbey_post_info", $info );//filter to add more post info //
 
+		if( empty( $post_infos ) ) return; //bail early if no post_info //
+
 		$html = $icon = $heading = $class = "";
-		/*
+		
+		/**
 		* before the post info is displayed, we check if a key param is passed throught this function
-		* this key param which must be an array is to set which of the infos to be displayed and which to be excluded 
-		*
+		* this key param which must be an array is to set which of the infos to be displayed and which to be excluded
 		*/
-		if( !empty( $post_infos ) ) {
-			foreach ( $post_infos as $title => $post_info ){ //loop through the infos 
-				
-				/* 
-				* check if $key param is empty, if $key is not empty, then 
-				* 1. check if the title is in keys or 
-				* 2. if the title exist in keys array, 
-				* if not then exclude this info */
-				if( !empty( $keys ) && !( in_array( $title, $keys ) || array_key_exists( $title, $keys ) )  )
-					continue;
-				/*
-				* if keys is not empty and the current title is found in keys, and this title index is an array 
-				* generate an icon and a heading 
-				*/
-				if( !empty( $keys[$title] ) && is_array( $keys[$title] ) )
-					$icon = ( !empty( $keys[$title]["icon"] ) ) ? 
-							"<span class='fa ".esc_attr( $keys[$title]["icon"] )."'></span>" : "";
+		foreach ( $post_infos as $title => $post_info ){ //loop through the infos 
+			
+			/** 
+			 * check if $key param is empty, if $key is not empty, then 
+			 * 1. check if the title is in keys or 
+			 * 2. if the title exist in keys array, 
+			 * if not then exclude this info */
+			if( !empty( $keys ) && !( in_array( $title, $keys ) || array_key_exists( $title, $keys ) )  )
+				continue;
+			/*
+			 * if keys is not empty and the current title is found in keys, and this title index is an array 
+			 * generate an icon and a heading 
+			*/
+			if( !empty( $keys[$title] ) && is_array( $keys[$title] ) ){
+				$icon = ( !empty( $keys[$title]["icon"] ) ) ? 
+						"<span class='fa ".esc_attr( $keys[$title]["icon"] )."'></span>" : "";
 
-					$heading = ( !empty( $keys[$title]["title"] ) ) ? 
-								"<span class='$title-heading'>".esc_html( $keys[$title]["title"] )."</span>" : "";
-
-				$class = esc_attr( $title );
-				$html .= "<li class='$class'>$icon $heading $post_info</li>\n";//the list of each post info //
+				$heading = ( !empty( $keys[$title]["title"] ) ) ? 
+							"<span class='$title-heading'>".esc_html( $keys[$title]["title"] )."</span>" : "";
 			}
-		} //end if $post_infos //
-		if ( $echo )
-			echo $html; 
-		return $html;
+
+			$class = esc_attr( $title );
+			$html .= "<li class='$class'>$icon $heading $post_info</li>\n";//the list of each post info //
+		}
+		
+		if ( !$echo ) return $html; //$echo is false, dont output just return //
+		
+		echo $html; 
 
 	} //end of function abbey_post_info //
 
 endif; //endif function exists abbey_post_info //
 
-/* 
-* Wrapper function for wordpress link pages 
-* this function is different from page_pagination because this function is for linking posts through the --next-page shortcode
-* this function shows pagination within published posts or pages i.e. a multipaged post or article 
-*
+/**
+ * Wrapper function for wordpress link pages 
+ * this function is different from page_pagination because this function is for linking posts through the --next-page shortcode
+ * this function shows pagination within published posts or pages i.e. a multipaged post or article 
+ * @since: 0.1
+ * @return:		string|array 	a HTML formatted list containing links to next or prev page or an array 
 */
 function abbey_post_pagination( $args = array() ){
 	$defaults = array(
