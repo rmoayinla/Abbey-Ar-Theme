@@ -4,7 +4,7 @@ Theme URI: https://rmodiary.com/abbey
 Author: Rabiu Mustapha
 Author URI: https://rmodiary.com
 Description: Abbey is my first wordpress theme.
-Version: 0.1
+Version: 0.11
 Tags: black, blue, gray, red, white, yellow, dark, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
 Text Domain: abbey
 
@@ -37,6 +37,7 @@ a:hover {
 .social-contacts,
 .post-thumbnail iframe,
 .gallery-columns-1 .gallery-item,
+.archives.no-sidebar .archive-posts-wrapper,
 .load-more-btn {
   width: 100%;
   border-radius: 0px;
@@ -98,6 +99,7 @@ figcaption.wp-caption-text,
 #sidebar-404 #latest-posts,
 #comments,
 .archives .post-panel.post-count-1 .post-panel-heading,
+.archive-post-slide .post-slide-body,
 .hover-card.in,
 #quote-post-page #post-content-header,
 #gallery-post-page #post-content-header {
@@ -256,11 +258,12 @@ a > iframe,
 #error-404-page .entry-content .page-header,
 .gallery-widgets:last-of-type,
 .archives .post-panel,
-.category-archive-posts .post-panel:not(.post-count-1),
-#news-archive-posts .post-panel:not(.post-count-1),
-#recordings-archive-posts .post-panel:not(.post-count-1),
+.category-archive-posts .post-panel,
+#news-archive-posts .post-panel,
+#recordings-archive-posts .post-panel,
 #author-archive-posts .post-panel,
-#search-page #search-results .post-panel:not(.post-count-1),
+.no-sidebar .archive-content .post-panel:not(.post-count-1),
+#search-results .post-panel:not(.post-count-1),
 .thumbnail-post {
   border: 0px;
   border-radius: 0px;
@@ -315,8 +318,7 @@ a.btn-default,
 #quote-post-page .post-entry,
 #post-page .sidebar .widget,
 #site-page .sidebar .widget,
-#gallery-sidebar,
-.archives .post-panel.post-count-1 {
+#gallery-sidebar {
   border-radius: 10px;
 }
 .no-bottom-border,
@@ -454,6 +456,8 @@ div[class*="columns-4"] .gallery-item,
 #custom-page #inner-content,
 #gallery-post-page #quote-content,
 .archives #content,
+.archives .archive-post-slides,
+.archives.no-sidebar .archive-posts-wrapper,
 #quote-post-page #quote-content,
 #gallery-post-page #quote-content,
 .archives #content {
@@ -548,9 +552,7 @@ figure.alignleft,
 #gallery-post-page .entry-content .gallery-item,
 .gallery-pictures-widget .widget-content a,
 #comments .comment-form-author,
-#comments .comment-form-email,
-#author-archive-posts .post-panel,
-#search-page #search-results .post-panel {
+#comments .comment-form-email {
   float: left;
 }
 .float-none,
@@ -559,7 +561,8 @@ figure.alignleft,
 .top-post-info:after,
 figure.alignnone,
 figure.alignleft + :not(.alignleft),
-.gallery-widgets:after {
+.gallery-widgets:after,
+.archives.no-sidebar .archive-posts-wrapper {
   clear: both;
   display: block;
 }
@@ -658,7 +661,8 @@ figure.alignleft + :not(.alignleft),
 #gallery-post-page .entry-content .gallery-icon,
 #post-page .sidebar .widget,
 .gallery-widgets,
-#search-page #search-results .post-panel:not(.post-count-1) {
+.no-sidebar .archive-content .post-panel:not(.post-count-1),
+#search-results .post-panel:not(.post-count-1) {
   overflow: hidden;
 }
 .no-display,
@@ -667,7 +671,8 @@ figure.alignleft + :not(.alignleft),
 #news-archive-posts .post-panel:not(.post-count-1) .post-excerpts,
 #recordings-archive-posts .post-panel:not(.post-count-1) .post-excerpts,
 #author-archive-posts .post-excerpts,
-#search-page #search-results .post-panel:not(.post-count-1) .post-excerpts {
+.no-sidebar .archive-content .post-panel:not(.post-count-1) .post-excerpts,
+#search-results .post-panel:not(.post-count-1) .post-excerpts {
   display: none;
 }
 .icon-large {
@@ -786,6 +791,7 @@ iframe,
 .social-contacts,
 .post-thumbnail iframe,
 .gallery-columns-1 .gallery-item,
+.archives.no-sidebar .archive-posts-wrapper,
 .load-more-btn {
   width: 100%;
 }
@@ -827,13 +833,14 @@ div[class*="columns-4"] .gallery-item,
 .archives .post-panel-footer .categories-list .post-categories,
 .archives .post-panel-footer .tags-list .tags-icon,
 .archives .post-panel-footer .tag-list,
-.category-archive-posts .post-panel:not(.post-count-1),
-#news-archive-posts .post-panel:not(.post-count-1),
-#recordings-archive-posts .post-panel:not(.post-count-1),
+.category-archive-posts .post-panel,
+#news-archive-posts .post-panel,
+#recordings-archive-posts .post-panel,
 #author-archive-posts .post-panel,
 .heading-icon,
 .heading-icon + .heading-content,
-#search-page #search-results .post-panel,
+.no-sidebar .archive-content .post-panel,
+#search-results .post-panel,
 #post-page .entry-content a:not(.btn) {
   display: inline-block;
 }
@@ -1189,6 +1196,7 @@ a.btn-default,
 .mini-popup,
 .full-popup,
 .load-more-btn,
+.archive-post-slide,
 .hover-card.in,
 .categories-list a[rel='category'],
 .terms-list a[rel='category'],
@@ -1301,9 +1309,9 @@ a.btn-default,
 #sidebar-404 #latest-posts,
 #sidebar-404 #quotes,
 #site-page .sidebar .widget,
-.category-archive-posts .post-panel:not(.post-count-1),
-#news-archive-posts .post-panel:not(.post-count-1),
-#recordings-archive-posts .post-panel:not(.post-count-1),
+.category-archive-posts .post-panel,
+#news-archive-posts .post-panel,
+#recordings-archive-posts .post-panel,
 #author-archive-posts .post-panel,
 .thumbnail-post,
 #quote-post-page #post-content-header,
@@ -1803,15 +1811,22 @@ figure:hover a {
   -o-transition: opacity 0.8s ease-in-out 0s;
   -moz-transition: opacity 0.8s ease-in-out 0s;
 }
+.archives .archive-post-slides {
+  width: 70%;
+}
 .archives .post-panel-footer .fa-fw,
 #quote-post-page .tags-icon,
 #quote-post-page .categories-icon {
   font-size: 20px;
 }
+.category-archive-posts .post-panel,
+#news-archive-posts .post-panel,
+#recordings-archive-posts .post-panel {
+  vertical-align: top;
+}
 .category-archive-posts .post-panel:not(.post-count-1),
 #news-archive-posts .post-panel:not(.post-count-1),
 #recordings-archive-posts .post-panel:not(.post-count-1) {
-  vertical-align: top;
   transition: all 800ms ease-in-out 0s;
   -webkit-transition: all 800ms ease-in-out 0s;
   -o-transition: all 800ms ease-in-out 0s;
@@ -1843,6 +1858,10 @@ figure:hover a {
 }
 .panel-post:after {
   content: " ";
+}
+.no-sidebar .archive-content .post-panel,
+#search-results .post-panel {
+  vertical-align: top;
 }
 .widget_abbey_recent_posts {
   padding-bottom: 30px !important;
@@ -1999,6 +2018,16 @@ body .mfp-bg.mfp-ready {
   -webkit-transform: translate3d(0px, -5px, 0px);
   -o-transform: translate3d(0px, -5px, 0px);
   -moz-transform: translate3d(0px, -5px, 0px);
+}
+/*
+* Post slider in Archive
+*/
+.archive-post-slide figure img,
+.archive-post-slide figure iframe {
+  height: 240px;
+}
+.archive-post-slide.slick-slide {
+  height: 240px;
 }
 .collapse-show,
 .collapse-hide {
@@ -2302,11 +2331,12 @@ transform: translate(0px, 0px);
   .half-largescreen,
   .gallery-columns-2 .gallery-item,
   #gallery-post-page .entry-content .gallery-item,
-  .category-archive-posts .post-panel:not(.post-count-1),
-  #news-archive-posts .post-panel:not(.post-count-1),
-  #recordings-archive-posts .post-panel:not(.post-count-1),
-  #search-page #search-results .post-panel.post-count-1 {
-    width: 46%;
+  .category-archive-posts .post-panel,
+  #news-archive-posts .post-panel,
+  #recordings-archive-posts .post-panel,
+  .no-sidebar .archive-content .post-panel.post-count-1,
+  #search-results .post-panel.post-count-1 {
+    width: 48%;
     margin-right: 5px;
   }
   .one-third-largescreen,
@@ -2314,7 +2344,8 @@ transform: translate(0px, 0px);
   div[class*="columns-4"] .gallery-item,
   #post-page .sidebar,
   #author-archive-posts .post-panel,
-  #search-page #search-results .post-panel:not(.post-count-1) {
+  .no-sidebar .archive-content .post-panel:not(.post-count-1),
+  #search-results .post-panel:not(.post-count-1) {
     width: 31%;
     margin-right: 7px;
   }
@@ -2370,10 +2401,11 @@ transform: translate(0px, 0px);
   .half-largescreen,
   .gallery-columns-2 .gallery-item,
   #gallery-post-page .entry-content .gallery-item,
-  .category-archive-posts .post-panel:not(.post-count-1),
-  #news-archive-posts .post-panel:not(.post-count-1),
-  #recordings-archive-posts .post-panel:not(.post-count-1),
-  #search-page #search-results .post-panel.post-count-1 {
+  .category-archive-posts .post-panel,
+  #news-archive-posts .post-panel,
+  #recordings-archive-posts .post-panel,
+  .no-sidebar .archive-content .post-panel.post-count-1,
+  #search-results .post-panel.post-count-1 {
     width: 48%;
   }
 }
@@ -2489,15 +2521,21 @@ transform: translate(0px, 0px);
     margin-top: 0px;
     margin-bottom: 0px;
   }
-  .outer-margin-none-mobile {
+  .outer-margin-none-mobile,
+  .archives .archive-posts-wrapper {
     margin-left: 0px;
     margin-right: 0px;
+  }
+  .auto-height-mobile,
+  .archive-post-slide {
+    height: auto;
   }
   .no-inner-padding-mobile,
   #primary-menu .navbar-collapse,
   #custom-page .entry-content,
   #custom-page #page-sidebar,
   #search-page #search-results,
+  .archives .archive-posts-wrapper,
   #author-archive-posts {
     padding-left: 0px;
     padding-right: 0px;
@@ -2548,9 +2586,9 @@ transform: translate(0px, 0px);
   .block-mobile,
   .categories-list,
   .terms-list,
-  .category-archive-posts .post-panel:not(.post-count-1),
-  #news-archive-posts .post-panel:not(.post-count-1),
-  #recordings-archive-posts .post-panel:not(.post-count-1),
+  .category-archive-posts .post-panel,
+  #news-archive-posts .post-panel,
+  #recordings-archive-posts .post-panel,
   #author-archive-posts .post-panel,
   .heading-icon {
     display: block;
@@ -2568,6 +2606,8 @@ transform: translate(0px, 0px);
     width: 46%;
   }
   .full-width-mobile,
+  .archives .archive-post-slides,
+  .archives .archive-posts-wrapper,
   .heading-icon + .heading-content {
     width: 100%;
   }
@@ -2589,11 +2629,12 @@ transform: translate(0px, 0px);
   .list-left,
   .list-right,
   #primary-menu .navbar-collapse,
-  .category-archive-posts .post-panel:not(.post-count-1),
-  #news-archive-posts .post-panel:not(.post-count-1),
-  #recordings-archive-posts .post-panel:not(.post-count-1),
+  .category-archive-posts .post-panel,
+  #news-archive-posts .post-panel,
+  #recordings-archive-posts .post-panel,
   #author-archive-posts .post-panel,
-  #search-page #search-results .post-panel,
+  .no-sidebar .archive-content .post-panel,
+  #search-results .post-panel,
   #comments .comment-form-author,
   #comments .comment-form-email,
   .archives .archive-content {
