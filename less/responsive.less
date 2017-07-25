@@ -73,9 +73,7 @@
 
 	.post-panel.post-count-1{
 		.post-panel-heading{
-			position: absolute;
-			top: 10%;
-			text-shadow: 2px 1px 2px #fff;
+			
 		}
 	}
 
@@ -87,8 +85,23 @@
 		left: 15px;
 	}
 
-	#primary-menu .navbar-form{
-		padding-top: 8px;
+	#primary-menu {
+		height: 60px;
+		overflow-y: hidden;
+		.navbar-collapse{
+			&:extend(.no-padding-right-lg-screen);
+		}
+		li a{
+			height: 60px;
+		}
+		.navbar-form {
+			box-shadow: 0px 3px 3px #eee;
+			padding-right: 15px;
+			input[type='search'], .search-submit{
+				min-height: 60px;
+			}
+		}
+		
 	}
 }
 

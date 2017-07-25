@@ -31,6 +31,11 @@
 		&:extend(.float-right,.float-none-sm, .float-none-xs);
 		li > a{
 			padding-top: 24px;
+
+		}
+		li.active a{
+			border-top: 3px solid @dark-primary-color;
+			&:extend(.bg-white);
 		}
 		.menu-item a{
 			&:extend(.primary);
@@ -41,9 +46,7 @@
 			&:hover{
 				&:extend(.bg-dark);
 			}
-			.active{
-				&:extend(.bg-primary);
-			}
+			
 		}
 		#navbar-search-box.in{
 			&:extend(.inline-block);

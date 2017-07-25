@@ -1,8 +1,9 @@
 .navbar-form{
+	&:extend(.no-margin, .no-padding);
 	.search-submit{
 		&:extend(.absolute, .no-border, .bg-white, .primary);
-		left: 85%;
-		top: 5px;
+		left: 88%;
+		top: 0px;
 		.transition(all;800ms;linear);
 		.fa{
 			font-size: 20px;
@@ -34,12 +35,13 @@
 		-webkit-transform: translateX(-5px);
 		-moz-transform: translateX(-5px);
 		-o-transform: translateX(-5px);
+		background-color: #eee;
 		width: 60px;
-		transition: width 800ms ease-in, border-bottom 500ms linear, transform 800ms ease-in-out;
+		.transition(all,800ms,ease-in-out);
 		&:hover, &:focus{
 			width: 240px;
 			transform: translateX(0px);
-			border-bottom: 2px inset @dark-primary-color;
+			background-color: #fff;
 		}
 	}
 }
