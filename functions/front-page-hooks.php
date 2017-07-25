@@ -53,7 +53,7 @@ endif; //endif function exist abbey_show_telephone //
 add_action( "abbey_theme_footer_widgets", "abbey_show_social_icons", 30 );
 if( !function_exists( "abbey_show_social_icons" ) ) :
 	function abbey_show_social_icons(){	?>
-		<aside class="footer-widgets col-md-3" id="footer-social-icons">
+		<aside class="footer-widgets col-md-3 col-sm-6" id="footer-social-icons">
 			<h4><?php _e( "Connect with us on social media", "abbey"); ?> </h4>
 			<?php abbey_social_menu(); ?>
 		</aside>		<?php 
@@ -63,14 +63,14 @@ endif;
 
 add_action( "abbey_theme_footer_widgets", "abbey_show_footer_widget_a", 20 );
 function abbey_show_footer_widget_a(){	?>
-	<aside class="footer-widgets col-md-3" id="footer-widget-a">
+	<aside class="footer-widgets col-md-3 col-sm-6" id="footer-widget-a">
 	</aside>		<?php 
 }
 
 add_action( "abbey_theme_footer_widgets", "abbey_show_site_info", 10 );
 if( !function_exists( "abbey_show_site_info" ) ) :
 	function abbey_show_site_info(){		?>
-		<aside class="col-md-3 footer-widgets" id="footer-site-info">
+		<aside class="col-md-3 footer-widgets col-sm-6" id="footer-site-info">
 			<div class="text-center">
 				<?php abbey_show_logo( "", "", false ); ?> 
 				<p class="small description"> <?php bloginfo( "description" ); ?> </p>
