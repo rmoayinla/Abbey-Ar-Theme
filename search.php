@@ -7,8 +7,7 @@ global $wp_query;
 
 global $abbey_query;
 
-$current_page = (int) get_query_var( 'paged' );
-$count = ( $current_page > 1 ) ? ( ( $current_page - 1) * (int) get_option( 'posts_per_page' ) ) : 0;
+$count = abbey_posts_count();
 
 $abbey_query = array();
 ?>
@@ -26,6 +25,7 @@ $abbey_query = array();
 		</header>
 
 		<section id="content" class="row">
+
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
 				
 				<div class="" id="search-results-summary">
@@ -35,22 +35,19 @@ $abbey_query = array();
 				<div id="search-results" class="">
 					
 					<?php while ( have_posts() ) : the_post(); $count++; ?>
-					
 						<?php get_template_part("templates/content", "archive"); ?>
-
 					<?php endwhile; ?> 
 					
-					<div class="navigation" role="navigation"><?php abbey_posts_pagination();?></div>
+					<div class="navigation" role="navigation">
+						<?php abbey_posts_pagination();?>
+					</div>
 				</div>
 
-		
-				<?php else : get_template_part("templates/content", "archive-none"); ?>
+			<?php else : get_template_part("templates/content", "archive-none"); ?>
 
 			<?php endif; ?>	
+			
 		</section>
-
-
-	
 		
 
 	</main>		<?php
