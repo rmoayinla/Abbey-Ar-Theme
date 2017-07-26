@@ -19,7 +19,7 @@ $abbey_query = array();
 
 	<main id="<?php abbey_theme_page_id(); ?>" class="row archives">
 		
-		<header id="blog-archive-header" class="text-center archive-header">
+		<header id="blog-archive-header" class="archive-header content-header">
 			<div class="md-50"><?php  ?></div>
 		</header>
 
