@@ -28,16 +28,12 @@ $page_background = !empty( abbey_custom_field( "page_background" ) ) ? abbey_cus
 		<?php while ( have_posts() ) : the_post(); ?>
 		
 			<?php global $more; $more = 0; ?>
-			<header id="site-content-header" class="before-content">
-				<?php do_action( "abbey_theme_before_content" ); ?>
-			</header>
+			<header id="site-content-header" class="before-content"><?php do_action( "abbey_theme_before_content" ); ?></header>
 			
 			<header id="page-content-header" class="content-header">
 				<div class="page-title-wrap md-50">		
 					<h1 class="page-title no-top-margin" itemprop="headline"><?php the_title(); ?></h1>
-					
 					<h4><?php abbey_custom_field( "sub_title", true ); ?> </h4>
-					
 					<summary class="description" itemprop="summary"><?php the_excerpt(); ?></summary>
 				</div>
 
