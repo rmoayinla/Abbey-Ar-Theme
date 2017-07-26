@@ -3,16 +3,25 @@
 *
 */
 #site-footer{
-	box-shadow: 2px 0px 2px @dark-primary-color;
-	webkit-box-shadow: 2px 0px 2px @dark-primary-color;
-	&:extend(.margin-top-md, .bg-light);
-	
 
+	&:extend(.margin-top-md);
+	
 	#footer-bottom, #before-footer{
-		&:extend(.inner-pad-responsive, .outer-pad-small, .bg-dark);
+		&:extend(.inner-pad-responsive, .outer-pad-small);
+	}
+
+	#footer-bottom{
+		&:extend(.bg-dark);
+	}
+
+	#before-footer{
+		&:extend(.no-bg, .mini-height, #box-shadow .box-shadow-md);
+		border-top: 2px solid #eee;
+		
 	}
 	#inner-footer{
-		&:extend(.relative, .pad-large);
+		
+		&:extend(.relative, .pad-large, .bg-light);
 		#site-about{
 			&:extend(.pad-small, .oblique);
 		}
@@ -24,6 +33,7 @@
 		.custom-logo{
 			width: 240px;
 			height: auto;
+			max-width: 80%;
 		}
 		#site-name{
 			font-size: 32px;
