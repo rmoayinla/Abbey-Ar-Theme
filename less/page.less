@@ -5,10 +5,14 @@
 
 #site-page{
 	.page-content{
-		&:extend(.border-radius-md, .border, .no-padding, .bg-white);
+		&:extend(.no-padding, .bg-white);
+	}
+	.entry-header{
+		&:extend(.mini-height, .pad-small, #box-shadow .box-shadow-small);
+		border-top: 6px solid @dark-primary-color;
 	}
 	#page-content-header{
-		&:extend(.bg-light);
+		&:extend(.bg-dark);
 		.page-title-wrap{
 			&:extend(.outer-pad-medium);
 		}
@@ -19,17 +23,15 @@
 		&:extend(.outer-pad-medium);
 	}
 	#page-media{
-		border-radius: 10px 10px 0px 0px;
 		&:extend(.no-overflow);
-		.wp-post-image{
-			height: 320px;
-			.transition(all,2s,ease-in-out,1s);
-			&:hover{
-				.scale(1.5,1.5); 
-			}
-
+	}
+	.wp-post-image{
+		max-height: 240px;
+		.transition(all,2500ms,ease-in-out,0s);
+		&:hover{
+			.scale(1.2,1.2); 
+			max-height: 360px;
 		}
-
 	}
 	.entry-content{
 		&:extend(.margin-top-md);
@@ -60,10 +62,10 @@
 		&:extend(.text-center);
 	}
 }
+
 #error-404-page{
 	.page-content{
 		&:extend(.margin-bottom-md);
-
 	}
 	.entry-content{
 		.page-header{
