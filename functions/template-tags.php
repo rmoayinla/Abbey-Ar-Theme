@@ -315,7 +315,7 @@ function abbey_post_date( $echo = true, $post_id = "", $icon = "" ){
 	$date = sprintf( '<time datetime="%3$s"><span class="sr-only">%2$s</span><span>%1$s </span></time>',
 						get_the_time( get_option( 'date_format' ).' \@ '.get_option( 'time_format' ), $post_id ), 
 						__( "Posted on:", "abbey" ), 
-						get_the_time('Y-md-d', $post_id)
+						get_the_time('Y-md-d', $post_id )
 					); 
 	if( !empty( $icon ) ) //if $icon param is not empty //
 		$date =  $icon.$date;
@@ -382,7 +382,7 @@ function abbey_excerpt( $length = "", $more = "", $echo = false ){
 		return wp_trim_words( get_the_excerpt(), $length, $more_text );
 
 	echo wp_trim_words( get_the_content(), $length, $more_text );
-	//the_excerpt();
+	
 }
 
 /* 
