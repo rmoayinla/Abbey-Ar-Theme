@@ -3,7 +3,7 @@
 get_header(); 
 global $more; ?>
 
-	<main id="<?php abbey_theme_page_id(); ?>" class="row">
+	<main id="<?php abbey_theme_page_id(); ?>" class="row site-content">
 		<?php if ( have_posts() ) : ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php $more = 0; ?>
