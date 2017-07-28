@@ -7,7 +7,10 @@
 
 .categories-list, .tag-list, .tags-list{
 	li{
-		&:extend(.inline-block, .margin-left-sm);
+		&:extend(.inline-block);
+	}
+	li + li {
+		&:extend(.margin-left-sm);
 	}
 }
 .categories-list{
