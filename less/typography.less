@@ -1,7 +1,20 @@
 .entry-content{
 	line-height: 24px;
 	&:extend(.pad-medium);
+	h2{
+		font-size: 4em;
+	}
 	
+	h2, h1, h3, h4, h5, h6 {	
+		&:extend(.padding-bottom-sm, .relative);
+		&:after{
+			content: "";
+			&:extend(.block,.absolute);
+			width: 60px;
+			border-bottom: 4px solid @dark-primary-color;
+
+		}
+	}
 	table{
 		width: 100% !important;
 		height: auto !important;
@@ -25,4 +38,12 @@
 		td{
 		}
 	}
+	p{
+		font-size: 1em;
+	}
 }
+
+.nav{
+	font-size: 1.25em;
+}
+
