@@ -2,6 +2,7 @@
 	&:extend(.no-list-style);
 	li{
 		&:extend(.inline-block, .margin-left-xs);
+		vertical-align: top;
 	}
 }
 
@@ -77,6 +78,14 @@
 
 .post-info{
 	&:extend(.no-right-padding, .no-left-padding);
+	li > a, li > .post-info-list, li > time{
+		&:extend(.bg-gray, .block, .pad-xs, .border-radius-md);
+	}
+	li + li{
+		&:before{
+			content: "";
+		}
+	}
 }
 
 .top-post-info{
