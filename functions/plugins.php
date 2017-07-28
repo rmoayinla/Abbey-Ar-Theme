@@ -52,8 +52,9 @@ add_filter( 'avatar_defaults', 'new_default_avatar' );
 
 function new_default_avatar ( $avatar_defaults ) {
     global $abbey_defaults;
-        //Set the URL where the image file for your avatar is located
-        $new_avatar_url = site_url()."/img/author.jpg";
+    $new_avatar_url = $abbey_defaults[ "authors" ][ "default_photo" ];
+    if( empty( $new_avatar_url ) ) return $avatar_defaults;
+        
         //Set the text that will appear to the right of your avatar in Settings>>Discussion
         $avatar_defaults[$new_avatar_url] = 'Custom Avatar';
         return $avatar_defaults;
