@@ -137,6 +137,7 @@ endif; //endif function_exist abbey_theme_details
 * this function displays both the previous and next at once 
 *
 */
+add_action( "abbey_theme_post_entry_footer", "abbey_post_nav", 5 );
 if( !function_exists( "abbey_post_nav" ) ) :
 	function abbey_post_nav( $title = "" ){
 		$prev_post = get_previous_post(); // previous post//
@@ -163,11 +164,12 @@ if( !function_exists( "abbey_post_nav" ) ) :
 endif; //endif function exists abbey_post_nav //
 
 
-/*
+/**
 * function to display author bio after the post 
 * this function uses abbey_post_author and abbey_author_contacts
 *
 */
+add_action( "abbey_theme_post_entry_footer", "abbey_post_author_info", 20 );
 if ( !function_exists( "abbey_post_author_info" ) ) : 
 
 	function abbey_post_author_info( $title = "" ){
@@ -221,6 +223,7 @@ endif; //endif function_exists abbey_post_author_info //
 * depends on abbey_query_post, abbey_excerpt, abbey_page_media  
 *
 */
+add_action( "abbey_theme_post_entry_footer", "abbey_show_related_posts", 30 );
 if ( !function_exists( "abbey_show_related_posts" ) ) :
 	function abbey_show_related_posts( $title = "" ){
 		$args =  array(
