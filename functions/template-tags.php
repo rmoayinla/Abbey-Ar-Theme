@@ -11,7 +11,7 @@
  * @since: 0.1
  */
 function abbey_author_photo( $id, $size = 32, $class = "" ){
-	return get_avatar( $id, $size, "user_upload", "", array("class" => $class ) );
+	return get_avatar( $id, $size, "", "", array("class" => $class ) );
 }
 
 /**
@@ -70,7 +70,7 @@ if( !function_exists( "abbey_post_info" ) ) :
 		$info = array();
 		$cats = get_the_category(); // $cats[0]->name->categroy_count
 		/* author info */
-		$info["author"] = sprintf ( '<span class="sr-only"> %1$s </span> %2$s',
+		$info["author"] = sprintf ( '<div class="post-info-list"><span class="sr-only"> %1$s </span> %2$s</div>',
 									__( "Posted by:", "abbey" ), 
 									abbey_show_author( false ) // check functions/template-tags.php //
 									);
