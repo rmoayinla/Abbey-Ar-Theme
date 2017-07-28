@@ -1,7 +1,7 @@
 .navbar-form{
 	&:extend(.no-margin, .no-padding);
 	.search-submit{
-		&:extend(.absolute, .no-border, .bg-white, .primary);
+		&:extend(.absolute, .no-border, .bg-white, .primary, .mini-height);
 		left: 88%;
 		top: 0px;
 		.transition(all;800ms;linear);
@@ -29,19 +29,17 @@
 .navbar-collapse .navbar-form{
 	&:extend(.no-overflow);
 	input[type='search']{
-		&:extend(.no-border);
+		&:extend(.no-border, .mini-height);
 		box-shadow: none;
 		transform: translateX(-5px);
 		-webkit-transform: translateX(-5px);
 		-moz-transform: translateX(-5px);
 		-o-transform: translateX(-5px);
-		background-color: #eee;
 		width: 60px;
 		.transition(all,800ms,ease-in-out);
 		&:hover, &:focus{
 			width: 240px;
 			transform: translateX(0px);
-			background-color: #fff;
 		}
 	}
 }
