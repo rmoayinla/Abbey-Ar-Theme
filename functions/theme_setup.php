@@ -316,7 +316,7 @@ function abbey_author_defaults( $defaults ){
 
 	$defaults[ "authors" ] = array(
 		"social_contacts" => apply_filters( "abbey_authors_social_contacts", array( "facebook", "twitter", "google-plus", "linkedin", "github" ) ), 
-		"default_photo" => "", 
+		"default_photo" => get_template_directory_uri()."/img/author.jpg", 
 		);
 	return $defaults;
 }
