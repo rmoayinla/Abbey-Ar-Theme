@@ -1,10 +1,6 @@
-html{
-	font-size: 100%;
-}
 body{
 	margin:0px;
 	background-color: @bg-color;
-	
 }
 .container-fluid, 
 .container{
@@ -16,8 +12,6 @@ body{
 	&:extend(.no-bottom-margin);
 }
 
-
-
 .container-fluid .jumbotron{
 	.no-border-radius();
 	width: inherit; 
@@ -25,7 +19,7 @@ body{
 }
 
 #content {
-	&:extend(.relative, .pad-medium );
+	&:extend(.relative, .pad-medium, .no-top-padding );
 }
 .site-content{
 	min-height: 500px;
@@ -241,25 +235,7 @@ a{
 	margin-top: -15px;
 }
 
-.font-small{
-	font-size: 16px;
-	font-size: 0.8525em;
-	
-	
-}
 
-time{
-	&:extend(.font-small);
-}
-.font-large{
-	font-size: 60px;
-}
-.font-medium{
-	font-size: 24px;
-}
-.strong{
-	font-weight: 600;
-}
 
 .float-right{
 	float: right;
