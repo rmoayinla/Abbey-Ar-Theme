@@ -23,6 +23,9 @@
 @bg-color-dark : darken(@bg-color, 30%);
 
 @font-size-small: 13px;
-@base-font-size: 10px;
-@body-font-size: 1.3rem;
+@rem-base-size: 10px;
+@rem-base-percentage: percentage(( unit(@rem-base-size) / 16)); // 10/16*100 = 62.5% //
+@body-font-size-px: 13px;
+@body-font-size-rem: (@body-font-size-px / @rem-base-size); //  //
+
 
