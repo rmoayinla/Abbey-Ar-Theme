@@ -53,11 +53,30 @@ add_filter( 'avatar_defaults', 'new_default_avatar' );
 function new_default_avatar ( $avatar_defaults ) {
     global $abbey_defaults;
     $new_avatar_url = $abbey_defaults[ "authors" ][ "default_photo" ];
+    
     if( empty( $new_avatar_url ) ) return $avatar_defaults;
         
-        //Set the text that will appear to the right of your avatar in Settings>>Discussion
-        $avatar_defaults[$new_avatar_url] = 'Custom Avatar';
-        return $avatar_defaults;
+    //Set the text that will appear to the right of your avatar in Settings>>Discussion
+    $avatar_defaults[$new_avatar_url] = 'Custom Avatar';
+    return $avatar_defaults;
+}
+
+add_filter( "cupp_avatar_src", "abbey_avatar_default_photo", 10, 2 ); 
+function abbey_avatar_default_photo( $custom_photo, $avatar ){
+    global $abbey_defaults;
+    if( !empty( $custom_photo ) ) return $custom_photo; 
+
+    if ( empty( $abbey_defaults["authors"] ) ) return $custom_photo;
+
+    $authors = $abbey_defaults["authors"];
+
+    return esc_url( $authors[ "default_photo" ] );
+
+    /*$new_avatar_url = $abbey_defaults[ "authors" ]["default_photo"];
+    
+    if( empty( $new_avatar_url ) ) return $custom_photo;
+
+    return esc_url( $new_avatar_url );*/
 }
 
 add_filter( 'comment_class', 'abbey_custom_comment_class', 10, 5 );
