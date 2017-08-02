@@ -114,3 +114,11 @@
 	-o-transform: translate(@x,@y);
 	-moz-transform: translate(@x,@y);
 }
+
+.size-px-to-rem( @size ){
+	font-size:unit((@size / @rem-base-size),rem);
+}
+
+.size-px-to-em(@size, @base:@body-font-size-rem){
+	font-size: unit(((@size / @base) / @rem-base-size ),em);
+}
