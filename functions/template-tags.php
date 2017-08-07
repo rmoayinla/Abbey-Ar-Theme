@@ -75,7 +75,7 @@ if( !function_exists( "abbey_post_info" ) ) :
 									abbey_show_author( false ) // check functions/template-tags.php //
 									);
 		/* date info */ 
-		$info["date"] = sprintf( '<time datetime="%3$s"><span class="sr-only">%2$s</span><span>%1$s </span></time>',
+		$info["date"] = sprintf( '<time datetime="%3$s" class="post-info-list"><span class="sr-only">%2$s</span><span>%1$s </span></time>',
 								get_the_time( get_option( 'date_format' ).' \@ '.get_option( 'time_format' ) ), 
 								__( "Posted on:", "abbey" ), 
 								get_the_time('Y-md-d')
@@ -87,7 +87,7 @@ if( !function_exists( "abbey_post_info" ) ) :
 		*/ 
 		if( !empty ( $cats[0] ) ){
 			$cat_link = ( isset( $cats[0] ) ) ? get_category_link( $cats[0]->cat_ID ) : "";
-			$info["more"] = sprintf( '<a href="%1$s" title="%2$s" role="button" class="">%3$s </a>', 
+			$info["more"] = sprintf( '<a href="%1$s" title="%2$s" role="button" class="post-info-list">%3$s </a>', 
 		 				esc_url( $cat_link ), 
 		 				__( "Click to read more posts", "abbey" ), 
 		 				sprintf( __( "اقرأ من المقالات الأخرى من %s", "abbey" ), esc_html( $cats[0]->name ) )
@@ -118,11 +118,11 @@ if( !function_exists( "abbey_post_info" ) ) :
 			 * generate an icon and a heading 
 			*/
 			if( !empty( $keys[$title] ) && is_array( $keys[$title] ) ){
-				$icon = ( !empty( $keys[$title]["icon"] ) ) ? 
-						"<span class='fa ".esc_attr( $keys[$title]["icon"] )."'></span>" : "";
+				if ( !empty( $keys[$title]["icon"] ) )  
+						"<span class='fa ".esc_attr( $keys[$title]["icon"] )." post-info-list-icon'></span>";
 
-				$heading = ( !empty( $keys[$title]["title"] ) ) ? 
-							"<span class='$title-heading'>".esc_html( $keys[$title]["title"] )."</span>" : "";
+				if ( !empty( $keys[$title]["title"] ) )
+					"<span class='post-info-list-heading'>".esc_html( $keys[$title]["title"] )."</span>";
 			}
 
 			$class = esc_attr( $title );
