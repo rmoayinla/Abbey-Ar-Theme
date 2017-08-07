@@ -340,11 +340,15 @@ a{
 
 .page-title, 
 .post-title{
-	&:extend(#text-shadow .text-shadow-small);
+	&:extend(#text-shadow .text-shadow-small, .no-top-margin);
 }
 #content > .row, 
 #post-page .post-navigation{
 	&:extend(.no-left-padding, .no-right-padding, .no-left-margin, .no-right-margin);
+}
+
+.entry-content{
+	&:extend(.pad-medium);
 }
 
 
