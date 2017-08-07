@@ -31,7 +31,7 @@ function html5_comment( $comment, $args, $depth ) {
 		<?php if ( 0 != $args['avatar_size'] ): ?>
 			<div class="media-left text-center">
 				<a href="<?php echo get_comment_author_url(); ?>" class="media-object" itemprop="Author">
-					<?php echo get_avatar( $comment, $args['avatar_size'], $user_pics, "", array( "class" => "img-circle" ) ); ?>
+					<?php echo abbey_author_photo( $comment, $args['avatar_size'], array( "class" => "img-circle" ) ); ?>
 				</a>
 
 				<?php if ( $comment->user_id === $post->post_author ) : ?>
