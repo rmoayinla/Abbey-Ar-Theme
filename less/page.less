@@ -7,9 +7,14 @@
 	.page-content{
 		&:extend(.no-padding, .bg-white);
 	}
-	.entry-header{
+	.entry-header, .entry-footer{
 		&:extend(.mini-height, .pad-small, #box-shadow .box-shadow-small);
+	}
+	.entry-header{
 		border-top: 6px solid @dark-primary-color;
+	}
+	.entry-footer{
+		border-bottom: 6px solid @dark-primary-color;
 	}
 	#page-content-header{
 		&:extend(.bg-dark);
