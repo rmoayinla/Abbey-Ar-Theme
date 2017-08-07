@@ -168,13 +168,13 @@ function abbey_post_pagination( $args = array() ){
 function abbey_show_nav( $post, $nav = "previous" ){
 	$class = ( $nav === "previous" ) ? "previous-button" : "next-button";
 	$icon = ( $nav === "previous" ) ? "glyphicon-chevron-left" : "glyphicon glyphicon-chevron-right";
-	$title = ( !get_post_format( $post->ID ) ) ? "" : sprintf( '%s:', ucwords( get_post_format( $post->ID ) ) );
+	$title = ( !get_post_format( $post->ID ) ) ? sprintf( '%s post:', ucwords( $nav ) ) : sprintf( '%s:', ucwords( get_post_format( $post->ID ) ) );
 	$nav_text = sprintf( '%s post', ucwords( $nav ) );
 
 	
 	return sprintf( '<a href="%1$s" class="%2$s-button" title="%3$s">
 					<span class="glyphicon %4$s"></span>
-		 			<h4 class="%2$s-post-title"><em>%5$s</em> %6$s </h4>
+		 			<em>%5$s</em><h4 class="%2$s-post-title"> %6$s </h4>
 		 	   		</a>',
 					get_permalink( $post->ID ),
 					esc_attr( $nav ),
