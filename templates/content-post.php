@@ -9,8 +9,8 @@
 		<div class="row"><?php do_action( "abbey_theme_before_post_panel" ); ?></div>
 
 		<header id="post-content-header" class="entry-header">
-			<h1 class="post-title" itemprop="headline"><?php the_title(); ?></h1>
 			<ul class="breadcrumb post-info"><?php abbey_post_info(); ?></ul>
+			<h1 class="post-title" itemprop="headline"><?php the_title(); ?></h1>
 		</header><!-- #page-content-header closes -->
 
 		<section class="post-entry row">
