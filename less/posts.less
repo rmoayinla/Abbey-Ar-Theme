@@ -1,11 +1,14 @@
 #post-page{
 
+	.before-content{
+		&:extend(.mini-height);
+	}
 	.post-tags{
 		&:extend(.padding-left-sm, .padding-top-sm);
 	}
 
 	.post-author-name{
-		&:extend(.margin-left-sm, .middle);
+		&:extend(.middle);
 	}
 
 	.post-info{ 
@@ -15,9 +18,8 @@
 		&:extend(.relative);
 	}
 	.single-post-panel{
-		&:extend(.bg-white, 
-			#box-shadow .box-shadow-small, .border, .relative, .no-overflow);
-			border-color: #ddd;
+		&:extend(.bg-white, .border, .relative, .no-overflow);
+		border-color: #ddd;
 	}
 	.entry-header{
 		&:extend(.inner-pad-small, .bottom-border);
@@ -121,23 +123,12 @@
 	}
 
 	.post-excerpt{
-		&:extend(.font-medium, .pad-xs, .strong, .oblique, .margin-bottom-md);
+		&:extend(.font-small, .pad-xs, .oblique, .margin-bottom-md, .dark, .inner-pad-small);
+		border-left: 3px solid @dark-primary-color;
 	}
 	
 	.post-thumbnail-caption{
 		&:extend(.pad-xs, .oblique, .font-small, .gray, .inner-pad-small);
-	}
-
-	
-	.tag-list, .post-categories, .post-taxonomies{
-		
-	}
-
-	.categories-list{
-		&:extend(.margin-top-sm, .margin-bottom-sm);
-		li {
-			&:extend(.inline-block, .margin-right-sm);
-		}
 	}
 
 	.tag-list{
