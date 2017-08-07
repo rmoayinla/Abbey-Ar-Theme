@@ -173,3 +173,18 @@ body .mfp-bg.mfp-ready{
 .archive-post-slide.slick-slide{
 	height: 240px;
 }
+
+
+/**
+* First Letter Avatar 
+*/
+.cupp-first-letter-avatar{
+	&:extend(.bg-dark);
+	.transition(all; 0.8s; ease-in-out);
+	&:hover{
+		.scale( 1.5, 1.5 );
+		h4, h3{
+			line-height: 0px;
+		}
+	}
+}
