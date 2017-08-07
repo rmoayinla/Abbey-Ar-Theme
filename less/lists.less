@@ -78,9 +78,14 @@
 
 .post-info{
 	&:extend(.no-right-padding, .no-left-padding);
-	li > a, li > .post-info-list, li > time{
-		&:extend(.bg-gray, .block, .pad-xs, .border-radius-md);
+	li {
+		&:extend(.pad-xs,.strong, .no-overflow, .relative);
+		max-width: 180px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
 	}
+	
 	li + li{
 		&:before{
 			content: "";
