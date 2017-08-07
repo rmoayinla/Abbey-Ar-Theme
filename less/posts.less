@@ -95,10 +95,10 @@
 
 	.author-info{
 		&:extend(.bg-gray);
-		.author-photo, .author-details{
-			img{
-				width: 90px;
-				height: 90px;
+		.author-photo{
+			.avatar{
+				width: 120px;
+				height: 120px;
 			}
 		}
 		.author-details{
@@ -139,7 +139,7 @@
 	}
 
 	.entry-footer-info{
-		&:extend(.inner-pad-responsive, .relative, .outer-pad-medium);
+		&:extend(.inner-pad-small, .relative, .outer-pad-medium);
 		.entry-footer-heading{
 			&:extend(.margin-top-sm, .margin-bottom-md, .text-center, .relative, .padding-bottom-sm);
 			&:after{
