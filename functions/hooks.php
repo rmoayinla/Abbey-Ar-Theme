@@ -143,19 +143,22 @@ if( !function_exists( "abbey_post_nav" ) ) :
 		$prev_post = get_previous_post(); // previous post//
 		$next_post = get_next_post(); // next post //
 		$html = "<div class='post-navigation entry-footer-info'>\n";//start of .post-navigation //
+		$html .= "<div class='row inner-wrap'>";
 		if( !empty( $title ) )
 			$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
 
 		if ( !empty( $prev_post ) ) {
-			$html .= "<div class='previous-post'>\n";
+			$html .= "<div class='previous-post col-md-6'>\n";
 			$html .= abbey_show_nav( $prev_post, "previous" ); // check functions/template-tags.php //
 			$html .= "</div>";//close of previous-post class div//
 		}
 		if ( !empty( $next_post ) ){
-			$html .= "<div class='next-post text-right'>\n";
+			$html .= "<div class='next-post text-right col-md-6'>\n";
 			$html .= abbey_show_nav( $next_post, "next" );
 			$html .= "</div>"; // close of next-post div //
 		}
+		
+		$html .= "</div>"; //.row //
 		$html .= "</div>"; // close of post-navigation class div //
 		echo $html;
 
@@ -211,6 +214,7 @@ if ( !function_exists( "abbey_post_author_info" ) ) :
 		}//end if $author_contacts //
 				
 		$html .= "</div>"; //.author-details //
+		$html .= "</div>";//.row closes //
 		$html .= "</div>\n"; //.author-info //
 
 		echo $html; 
@@ -369,23 +373,10 @@ function abbey_category_thumbnail( $thumbnail, $page_id ){
 	
 }
 
-/**
- * An action hook that fires before showing the main post content
- * Show the post tags of the current post 
- * @edited: bail early if there is no tag 
- */
-add_action( "abbey_theme_before_post_content", "abbey_post_tags", 90 );//found in single.php // 
-function abbey_post_tags(){
-	
-	if( !empty ( get_the_tags() ) ) return ; //bail early if there is no tag with this post //
-
-	$html = "<div class='post-tags'>";//start .post-tags //
-	
-	$html .= abbey_cats_or_tags( "tags", __( "Tagged in:", "abbey" ), "fa-tags" );//check functions/template-tags.php//
-
-	$html .= "</div>";//end .post-tags //
-
-	echo $html;
+add_filter( "abbey_theme_page_media", "abbey_default_thumbnail", 100, 1 );
+function abbey_default_thumbnail( $thumbnail ){
+	global $abbey_default;
+	if( !empty( $thumbnail ) ) return $thumbnail;
 }
 
 /**
