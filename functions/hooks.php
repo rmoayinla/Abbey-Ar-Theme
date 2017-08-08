@@ -163,12 +163,13 @@ if( !function_exists( "abbey_post_nav" ) ) :
 
 endif; //endif function exists abbey_post_nav //
 
+add_action( "abbey_theme_post_entry_footer", "abbey_post_terms", 5 );
 
 /**
-* function to display author bio after the post 
-* this function uses abbey_post_author and abbey_author_contacts
-*
-*/
+ * Display author bio after the post 
+ * this function uses abbey_post_author and abbey_author_contacts
+ *
+ */
 add_action( "abbey_theme_post_entry_footer", "abbey_post_author_info", 20 );
 if ( !function_exists( "abbey_post_author_info" ) ) : 
 
