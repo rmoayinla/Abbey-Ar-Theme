@@ -230,55 +230,93 @@ function abbey_cats_or_tags( $cats, $title = "", $icon = "", $notes = "", $post_
 	return $html;
 }
 
-/*
-* function for showing terms with their post count 
-* all terms related to the present post are displayed automatically unlike abbey_cat_or_tag that shows a single term
-*
-*/
-function abbey_post_terms( $post_id ){
-	$taxonomies  = get_object_taxonomies( get_post_type( $post_id ), 'names' ); //get all taxonomies related to this post//
-	$list = $html = "";
-	$icon = ""; 
-	if( $taxonomies ){
-		$html .= "<div class='post-taxonomies'>\n"; //start html .post-taxonomies //
-		$html.= sprintf( '<p class="md-50 dark text-center">%s</p>', __( "Read more or all posts related to this article", "abbey" ) );
+/**
+ * Showing terms for posts with their post count 
+ * all terms related to the present post are displayed including terms from custom taxonomies 
+ * unlike abbey_cat_or_tag function that shows only terms from category or tags 
+ * @uses: get_object_taxonomies, _make_cat_compat, get_the_terms, get_term_link, abbey_cat_or_tag
+ * @since: 0.12
+ * 
+ */
+function abbey_post_terms( $title = "" ){
+	
+	//post ID of the current post //
+	$post_id = get_the_ID();
+
+	/** 
+	 * get all taxonomies related to this post i.e. categories, post_tag and any custom taxonomy 
+	 * this does not return the actual terms, but only return an array of taxonomies related to the current post 
+	 */
+	$taxonomies  = get_object_taxonomies( get_post_type( $post_id ), 'names' ); 
+
+	if( empty( $taxonomies ) ) return; //bail if there is no associated taxonomy //
+
+	// declare variables for the markup //
+	$list = $html = $icon = "";
+	
+	/**
+	 * Start generating the markup, the terms will be displayed in an unordered list format
+	 * each taxonomy and its term list will be wrapped in an unordered list
+	 * the list for the terms will be generated with abbey_cat_or_tag function 
+	 * @see: abbey_cat_or_tag in functions/template-tags.php (the next function)
+	 */
+	$html .= "<div class='post-taxonomies'>\n"; //start html .post-taxonomies i.e. main wrapper //
+	
+	foreach( $taxonomies as $taxonomy ){ //loop through the taxonomies //
 		
-		foreach( $taxonomies as $taxonomy ){ //loop through the taxonomies //
-			$icon = abbey_contact_icon( $taxonomy ); //get taxonomy icon //
-			$terms = get_the_terms( $post_id, $taxonomy ); //get the terms i.e. categories related to this post //
-			
-			if ( !empty( $terms ) ){ // if the terms i.e. categories are not empty //
-				$terms = array_values( $terms );
-				foreach ( array_keys( $terms ) as $key ) {
-	        		_make_cat_compat( $terms[$key] );
-	   			}
-   				$list = "<ul class='post-{$taxonomy} post-terms list-inline'>";//start of terms list //
-				foreach( $terms as $term ){
-					$list .=  sprintf( '<li><a href="%1$s" rel="category">%2$s 
-										<span class="badge category-count">%3$s </span></a></li>',
-										esc_url( get_term_link( $term, $terms ) ), 
-										$term->name, 
-										$term->count
-								);
-				}
-				$list .= "</ul>\n"; //end of terms list list //
-				$icon = apply_filters( "abbey_terms_icon", $icon, $taxonomy );
-				$html .= abbey_cats_or_tags( $list, "", $icon, "" ); // check functions/template-tags.php //
+		/**
+		 * The actual terms for the post are being queried here 
+		 * @example: $taxonmy: category, all the categories attached to the current post will be gotten here e.g. projects
+		 */
+		$terms = get_the_terms( $post_id, $taxonomy ); //get the terms i.e. categories related to this post //
+		
+		if ( empty( $terms ) ) continue; // skip if the terms i.e. categories  is  empty //
 
-	   		}// end if !empty terms //
+		$icon = abbey_contact_icon( $taxonomy ); //get taxonomy icon //
 
+		// I dont know what these are for but wordpress does this too internally so . . . //
+		$terms = array_values( $terms );
+		foreach ( array_keys( $terms ) as $key ) {
+    		_make_cat_compat( $terms[$key] );
 		}
-		$html .= "</div>"; // end html .post-taxonomies //
-	} //end if taxonomies //
+
+		// start generating html markup for individual terms //
+		$list = "<ul class='post-{$taxonomy} post-terms list-inline'>";//start of terms list //
+		foreach( $terms as $term ){ // loop through the terms //
+			
+			/** 
+			 * Show the term name and the post count and a link to the term archive page 
+			 */
+			$list .=  sprintf( '<li><a href="%1$s" rel="category">%2$s 
+								<span class="badge category-count">%3$s </span></a></li>',
+								esc_url( get_term_link( $term, $terms ) ), 
+								$term->name, 
+								$term->count
+						);
+		}
+		$list .= "</ul>\n"; //end of terms list list //
+
+		$icon = apply_filters( "abbey_terms_icon", $icon, $taxonomy );
+
+		$html .= abbey_cats_or_tags( $list, "", $icon, "" ); // check functions/template-tags.php //
+
+   		
+
+	} // end of taxonomies loop //
+
+	$html .= "</div>"; // end html .post-taxonomies //
+	
 	echo $html;
 
 }
 
-/*
-* display post categories for a post, this function behaves similarly to abbey_post_terms
-* the difference is just that this function only displays the categories 
-*
-*/
+/**
+ * Display post categories for a post, this function behaves similarly to abbey_post_terms
+ * the difference is just that this function only displays the categories 
+ * @since: 0.1 
+ * @category: functions/template-tags  
+ *
+ */
 function abbey_post_categories(){
 	$notes = sprintf( '<p class="small cats-note">%s</p>',
 						__( "* You can learn more about this post by clicking on these links, 
@@ -307,11 +345,12 @@ function abbey_post_categories(){
 	echo $html;
 }
 
-/* 
-* display post date
-*
-*/
+/**
+ * Display post date
+ * @since: 0.11
+ */
 function abbey_post_date( $echo = true, $post_id = "", $icon = "" ){
+	if( empty( $post_id ) ) $post_id = get_the_ID();
 	$date = sprintf( '<time datetime="%3$s"><span class="sr-only">%2$s</span><span>%1$s </span></time>',
 						get_the_time( get_option( 'date_format' ).' \@ '.get_option( 'time_format' ), $post_id ), 
 						__( "Posted on:", "abbey" ), 
@@ -352,7 +391,7 @@ endif; //endif function exist abbey_show_post_type //
 
 /**
  * Wrapper function for displaying post thumbnails 
- *if the post thumbnail is found, the thumbnail is returned, else a custom thumbnail is displayed 
+ * if the post thumbnail is found, the thumbnail is returned, else a custom thumbnail is displayed 
  *@since: 0.1
  *@param: 	string 		$size 			thumbnail image size to return 
  *			int 		$page_id 		image or media ID 
@@ -371,17 +410,18 @@ function abbey_page_media( $size = "medium", $page_id = "", $echo = true ){
 }
 
 /*
-* wrapper function for showing some cutom excerpt length 
-* this is mostly useful, because with this different excerpt lenght can be displayed for different posts 
-*
-*/
+ * wrapper function for showing some cutom excerpt length 
+ * this is mostly useful, because with this different excerpt lenght can be displayed for different posts 
+ * and different excerpt length can be displayed for different pages 
+ */
 function abbey_excerpt( $length = "", $more = "", $echo = false ){
-	$length = empty( $length ) ? 55 : $length; //excerpt characters max lenght //
+	$length = empty( $length ) ? get_option( 'excerpt_length' ) : $length; //excerpt characters max lenght //
 	$more_text = empty( $more ) ? abbey_excerpt_more() : $more;
+	$more_text = wp_trim_words( get_the_excerpt(), $length, $more_text );
 	if( !$echo )
-		return wp_trim_words( get_the_excerpt(), $length, $more_text );
+		return $more_text;
 
-	echo wp_trim_words( get_the_content(), $length, $more_text );
+	echo $more_text;
 	
 }
 
