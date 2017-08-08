@@ -57,10 +57,14 @@ a{
 }
 
 .no-padding-right{
-	padding-right: 0px !important;
+	padding-right: 0px;
 }
 .no-padding-left{
-	padding-left: 0px !important;
+	padding-left: 0px;
+}
+.no-outer-padding{
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 .pad-large{
 	padding-top:80px;
@@ -211,6 +215,10 @@ a{
 	margin: 0px;
 }
 
+.no-inner-margin{
+	margin-left: 0px;
+	margin-right: 0px;
+}
 .margin-minus-left-md{
 	margin-left: -30px;
 }
@@ -235,7 +243,9 @@ a{
 	margin-top: -15px;
 }
 
-
+.inner-wrap{
+	&:extend(.no-inner-margin);
+}
 
 .float-right{
 	float: right;
@@ -343,7 +353,7 @@ a{
 	&:extend(#text-shadow .text-shadow-small, .no-top-margin);
 }
 #content > .row, 
-#post-page .post-navigation{
+{
 	&:extend(.no-left-padding, .no-right-padding, .no-left-margin, .no-right-margin);
 }
 
