@@ -177,11 +177,12 @@ if ( !function_exists( "abbey_post_author_info" ) ) :
 		$author = abbey_post_author(); //check functions/template-tags.php //
 		
 		$html = "<div class='author-info entry-footer-info'>"; //start html .author-info //
+		$html .= "<div class='row'>";
 		if( !empty( $title ) )
 			$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
 		
-		$html .= "<div class='author-photo heading-icon'>".abbey_author_photo( $author->ID, 120, "img-circle" ). "</div>";
-		$html .= "<div class='author-details heading-content'>";//start .author-details //
+		$html .= "<div class='author-photo col-md-3'>".abbey_author_photo( $author->ID, 100, "img-circle" ). "</div>";
+		$html .= "<div class='author-details col-md-6 no-inner-padding'>";//start .author-details //
 		$html .= sprintf( '<div class="author-title">
 							<div class="author-name"><h4 class="no-top-margin no-bottom-margin"><a href="%4$s"> %1$s </a> </h4></div>
 							<div class="author-rate"> <em> %2$s </em> <span class="author-post-count"> %3$s </span></div>
@@ -241,7 +242,10 @@ if ( !function_exists( "abbey_show_related_posts" ) ) :
 				} 
 				?>
 				<!--start putting the post in a slide-->
-				<div class="posts-slides" data-slick='{"rtl": true, "slidesToShow" : 1, "centerMode" : true, "centerPadding" : "40px", "arrows" : true, "autoplay" : false }'>
+				<div class="posts-slides" 
+					data-slick='{"slidesToShow" : 1, "centerMode" : true, "centerPadding" : "40px", "arrows" : true, 
+					"autoplay" : false<?php if( is_rtl() ) echo ',"rtl":true'; ?> }'
+				>
 					<?php while( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
 						<!-- start of each post panel -->
 						<aside class="post-panel">
