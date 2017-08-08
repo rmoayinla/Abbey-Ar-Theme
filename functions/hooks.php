@@ -351,7 +351,7 @@ function abbey_video_thumbnail( $thumbnail, $page_id ){
 add_filter( "abbey_theme_page_media", "abbey_category_thumbnail", 10, 2 );//abbey_page_media function, check functions/template-tags.php 
 function abbey_category_thumbnail( $thumbnail, $page_id ){
 	
-	//bail early if there is a thumbnail for the post already //
+	//bail early if there isnt a thumbnail for the post already //
 	if( !empty( $thumbnail ) )
 		return $thumbnail;
 
