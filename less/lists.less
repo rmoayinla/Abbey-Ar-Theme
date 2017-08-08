@@ -33,14 +33,10 @@
 		font-size: 24px;
 	}
 	a[rel='category']{
-		&:extend(#button .button-md);
-		&:hover{
-			&:extend(#button .button-md:hover);
-		}
+		
 	}
 	.list-inline{
-		padding-right: 0px;
-		&:extend(.inline-block);
+		&:extend(.inline-block, .no-left-padding,.no-right-padding);
 	}
 
 }//terms-list
