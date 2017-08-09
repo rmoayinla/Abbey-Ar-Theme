@@ -108,7 +108,7 @@ if( !function_exists( "abbey_theme_details" ) ) :
 			<li> 
 				<?php echo sprintf( '<a href="%1$s" target="_blank" data-toggle="tooltip" title="%2$s">%3$s </a>',
 									 esc_url( $current_theme->get( "ThemeURI" ) ), 
-									 esc_attr( __( "Built on:", "abbey" ) ),
+									 esc_attr__( "Built on:", "abbey" ),
 									 esc_html( $current_theme->get( "Name" ) ) 
 									); ?>
 			</li>
@@ -360,7 +360,7 @@ function abbey_video_thumbnail( $thumbnail, $page_id ){
 add_filter( "abbey_theme_page_media", "abbey_category_thumbnail", 10, 2 );//abbey_page_media function, check functions/template-tags.php 
 function abbey_category_thumbnail( $thumbnail, $page_id ){
 	
-	//bail early if there isnt a thumbnail for the post already //
+	//bail early if there is a thumbnail for the post already //
 	if( !empty( $thumbnail ) )
 		return $thumbnail;
 
@@ -373,10 +373,30 @@ function abbey_category_thumbnail( $thumbnail, $page_id ){
 	
 }
 
+/**
+ * Template filter for thumbnail - abbey_page_media function
+ * this particular filter is to display a default placeholder/dummy image as thumbnail 
+ * @since: 0.12
+ */
 add_filter( "abbey_theme_page_media", "abbey_default_thumbnail", 100, 1 );
 function abbey_default_thumbnail( $thumbnail ){
-	global $abbey_default;
-	if( !empty( $thumbnail ) ) return $thumbnail;
+	global $abbey_defaults; // global theme settings //
+	
+	/**
+	 * Bail eearly when we already have a thumbnail or we dont have a media setting in the theme global setting 
+	 */
+	if( !empty( $thumbnail ) || empty( $abbey_defaults[ "media" ] ) ) return $thumbnail;
+
+	$media_defaults = $abbey_defaults[ "media" ]; 
+
+	// bail again if the default thumbnail in the settings is empty //
+	if( empty( $media_defaults[ "thumbnail" ] ) ) return $thumbnail;
+
+	/** Return the default image and generate a markup */
+	return sprintf( '<img class="wp-post-image" src="%1$s" alt="%2$s" />', 
+					esc_url( $media_defaults[ "thumbnail" ] ), 
+					esc_attr__( "No Post thumbnail image", "abbey" )
+					 );
 }
 
 /**
