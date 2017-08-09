@@ -392,8 +392,8 @@ endif; //endif function exist abbey_show_post_type //
 /**
  * Wrapper function for displaying post thumbnails 
  * if the post thumbnail is found, the thumbnail is returned, else a custom thumbnail is displayed 
- *@since: 0.1
- *@param: 	string 		$size 			thumbnail image size to return 
+ * @since: 0.1
+ * @param: 	string 		$size 			thumbnail image size to return 
  *			int 		$page_id 		image or media ID 
  * 			bool 		$echo 			echo or return output 
  *
