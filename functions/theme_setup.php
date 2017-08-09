@@ -311,12 +311,36 @@ function abbey_archive_defaults( $defaults ){
  * @param: array 		$defaults 		the theme default settings 
  * @return: array 		$defaults 		the theme default settings that was passed 
  */
-add_filter( "abbey_theme_defaults", "abbey_author_defaults", 90 );
-function abbey_author_defaults( $defaults ){
+add_filter( "abbey_theme_defaults", "abbey_authors_defaults", 90 );
+function abbey_authors_defaults( $defaults ){
 
-	$defaults[ "authors" ] = array(
+	$author_defaults = array(
 		"social_contacts" => apply_filters( "abbey_authors_social_contacts", array( "facebook", "twitter", "google-plus", "linkedin", "github" ) ), 
 		"default_photo" => get_template_directory_uri()."/img/author.jpg", 
 	);
+
+	$defaults[ "authors" ] = wp_parse_args( $author_defaults, $defaults[ "authors" ] );
+	
+	return $defaults;
+}
+
+/**
+ * Add media settings key to the theme default settings 
+ * This media settings will handle settings for video, thumbnail, audio etc
+ * @since: 0.12
+ * @param: 	array 		$defaults 		the theme default settings 
+ * @return: array 		$defaults 		the edited and tweaked default settings 
+ */
+add_filter( "abbey_theme_defaults", "abbey_media_defaults", 100 );
+function abbey_media_defaults( $defaults ){
+	
+	// Add a media settings key to the defaults if its not present //
+	if( empty( $defaults[ "media" ] ) ) $defaults[ "media" ] = array();
+
+	// Add a placeholder image using a thumbnail key //
+	$media = array( "thumbnail" => get_template_directory_uri()."/img/thumbnail_placeholder.jpg" );
+
+	$defaults[ "media" ] = wp_parse_args( $media, $defaults[ "media" ] );
+	
 	return $defaults;
 }
