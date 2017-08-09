@@ -10,16 +10,18 @@
 	li{
 		&:extend(.inline-block);
 	}
-	li + li {
-		&:extend(.margin-left-sm);
-	}
 }
 .categories-list{
 	&:extend(.margin-top-sm, .margin-bottom-sm);
 }
 
 
-
+.post-taxonomies{
+	.categories-list{
+		&:extend(.one-third-largescreen,.float-right);
+		vertical-align: top;
+	}
+}
 .categories-list, .terms-list{
 	&:extend(.inline-block, .block-mobile);
 	.cats-note{
@@ -30,7 +32,6 @@
 	}
 	.categories-heading, .categories-icon{
 		&:extend(.strong); 
-		font-size: 24px;
 	}
 	a[rel='category']{
 		
