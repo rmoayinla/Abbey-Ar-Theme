@@ -252,7 +252,7 @@ function abbey_post_terms( $title = "" ){
 	if( empty( $taxonomies ) ) return; //bail if there is no associated taxonomy //
 
 	// declare variables for the markup //
-	$list = $html = $icon = "";
+	$list = $html = $tax_title = $icon = "";
 	
 	/**
 	 * Start generating the markup, the terms will be displayed in an unordered list format
@@ -261,6 +261,8 @@ function abbey_post_terms( $title = "" ){
 	 * @see: abbey_cat_or_tag in functions/template-tags.php (the next function)
 	 */
 	$html .= "<div class='post-taxonomies'>\n"; //start html .post-taxonomies i.e. main wrapper //
+
+	$html .= "<div class='row inner-wrap'>";
 	
 	foreach( $taxonomies as $taxonomy ){ //loop through the taxonomies //
 		
@@ -274,6 +276,9 @@ function abbey_post_terms( $title = "" ){
 
 		$icon = abbey_contact_icon( $taxonomy ); //get taxonomy icon //
 
+		$tax_title = ucwords( $taxonomy );
+		if( $taxonomy == "post_tag" ) $tax_title = __( "Tagged", "abbey" );
+
 		// I dont know what these are for but wordpress does this too internally so . . . //
 		$terms = array_values( $terms );
 		foreach ( array_keys( $terms ) as $key ) {
@@ -284,26 +289,26 @@ function abbey_post_terms( $title = "" ){
 		$list = "<ul class='post-{$taxonomy} post-terms list-inline'>";//start of terms list //
 		foreach( $terms as $term ){ // loop through the terms //
 			
-			/** 
-			 * Show the term name and the post count and a link to the term archive page 
-			 */
-			$list .=  sprintf( '<li><a href="%1$s" rel="category">%2$s 
+			/** Show the term name and the post count and a link to the term archive page */
+			$list .=  sprintf( '<li><a href="%1$s" rel="category" data-toggle="tooltip" title="%4$s: %2$s">%2$s 
 								<span class="badge category-count">%3$s </span></a></li>',
 								esc_url( get_term_link( $term, $terms ) ), 
 								$term->name, 
-								$term->count
+								$term->count, 
+								esc_attr( $tax_title )
 						);
 		}
 		$list .= "</ul>\n"; //end of terms list list //
 
 		$icon = apply_filters( "abbey_terms_icon", $icon, $taxonomy );
 
-		$html .= abbey_cats_or_tags( $list, "", $icon, "" ); // check functions/template-tags.php //
+		$html .= abbey_cats_or_tags( $list, $tax_title, $icon, "" ); // check functions/template-tags.php //
 
    		
 
 	} // end of taxonomies loop //
 
+	$html .= "</div>"; //.row closes //
 	$html .= "</div>"; // end html .post-taxonomies //
 	
 	echo $html;
