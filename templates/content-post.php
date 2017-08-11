@@ -14,7 +14,9 @@
 		</header><!-- #page-content-header closes -->
 
 		<figure class="post-thumbnail" itemprop="image"><?php abbey_page_media( "large" ); ?> </figure>
-		<figcaption class="post-thumbnail-caption"><?php if( $has_thumbnail ) the_post_thumbnail_caption(); ?></figcaption>
+		<?php if( $has_thumbnail ): ?>
+			<figcaption class="post-thumbnail-caption"><?php the_post_thumbnail_caption(); ?></figcaption>
+		<?php endif; ?>
 		
 		<summary class="post-excerpt"><?php the_excerpt(); ?></summary>
 		
