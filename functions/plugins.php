@@ -183,12 +183,14 @@ function abbey_add_post_type_description(){
 
 
 
-// Replaces the excerpt "Read More" text by a link
+/*
+ * Replaces the excerpt "Read More" text by a link
+ */
 function abbey_excerpt_more() {
     global $post;
 
-    $button = "<div class='dropdown'>";
-    $button .= sprintf( '<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">%s<span class="caret"></span></button>',
+    $button = "<div class='dropdown excerpt-more'>";
+    $button .= sprintf( '<button class="btn btn-link excerpt-btn dropdown-toggle" data-toggle="dropdown">%s<span class="caret"></span></button>',
                             __( 'Read more', "abbey" )
                     );
     $button .= "<ul class='dropdown-menu'>";
@@ -209,7 +211,7 @@ function abbey_excerpt_more() {
 
     
 }
-//add_filter('excerpt_more', 'abbey_excerpt_more');
+
 
 /**
  * Hook to add excerpt support for pages 
