@@ -37,6 +37,7 @@ a > iframe{
 
 img.wp-post-image{
 	&:extend(.full-width-image);
+	.transition(all,2500ms,ease-in-out,0s);
 }
 .post-thumbnail{
 	&:extend(.no-overflow);
@@ -160,5 +161,18 @@ img.wp-post-image{
 .author-info .author-photo{
 	.avatar{
 		&:extend(.logo-md);
+	}
+}
+
+.related-posts .post-panel{
+	.transition(all,1250ms,ease-in-out,0s);
+	.wp-post-image{
+		max-height: 180px;
+	}
+	&:hover{
+		.wp-post-image{
+			max-height: 240px;
+		}
+		
 	}
 }
