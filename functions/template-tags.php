@@ -357,6 +357,7 @@ function abbey_recording_video( $echo = true, $page_id = "" ){
 	$content = get_the_content( $page_id );
 	$embeds = get_media_embedded_in_content( $content );
 
+	if( empty( $embeds ) ) return;
 	if( ! $echo  )
 		return $embeds[0];
 
