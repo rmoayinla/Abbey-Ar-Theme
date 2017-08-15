@@ -87,7 +87,6 @@ a:hover {
 #social-contacts li a,
 .entry-content .gallery-columns-2 .gallery-item,
 #custom-page #inner-content .post-thumbnail .post-thumbnail-caption,
-#post-page .post-excerpt,
 #post-page .post-thumbnail-caption,
 #comments .comment-form-author,
 #comments .comment-form-email,
@@ -170,6 +169,7 @@ a:hover {
 #site-page #page-content-header .page-title-wrap,
 #site-page .inner-content,
 #post-page .post-taxonomies,
+#post-page .post-excerpt,
 #post-page .entry-footer-info,
 .archives .archive-header {
   padding-top: 40px;
@@ -544,12 +544,16 @@ a.btn-default,
   display: block;
 }
 .middle,
+.post-info li,
 #post-page .post-author-name,
 .widget-icon,
 .widget-text,
 .heading-icon,
 .heading-icon + .heading-content {
   vertical-align: middle;
+}
+.v-align-top {
+  vertical-align: top;
 }
 .block,
 .entry-content h2:after,
@@ -705,6 +709,7 @@ a.btn-default,
   text-align: justify;
 }
 .text-right,
+#post-page .post-taxonomies,
 .archives .post-panel-footer,
 #quote-post-page .entry-content footer {
   text-align: right;
@@ -821,6 +826,7 @@ img.wp-post-image,
 .terms-list .list-inline,
 .pagination li,
 .navigation li,
+.post-info li,
 #primary-menu .navbar-collapse #navbar-search-box.in,
 a > img,
 iframe,
@@ -975,7 +981,6 @@ time,
 #front-page #services .service-body,
 #custom-page .post-summary,
 #post-page .author-info .author-rate,
-#post-page .post-excerpt,
 #post-page .post-thumbnail-caption,
 #comments .media .media-body time,
 .archives .post-panel-footer,
@@ -1000,6 +1005,7 @@ time,
 .terms-list .categories-icon,
 .post-info li,
 #link .primary:visited,
+#post-page .post-excerpt,
 #gallery-post-page .entry-content .gallery-item:hover figcaption,
 #site-footer #footer-site-info .description,
 .archives .post-panel-footer .fa-fw,
@@ -1274,7 +1280,8 @@ a.btn-default:hover,
 }
 .bg-gray,
 #menu-social li a:visited,
-#post-page .author-info {
+#post-page .author-info,
+#post-page .post-excerpt {
   background-color: #ddd;
 }
 .bg-white,
@@ -1350,7 +1357,6 @@ a.btn-default:hover {
 #post-page .post-info,
 #post-page .entry-content .slick-prev:before,
 #post-page .entry-content .slick-next:before,
-#post-page .post-excerpt,
 #site-footer .disclaimer,
 #comments .media .media-body time,
 #search-page .archive-header .search-keyword,
@@ -1779,9 +1785,6 @@ a.btn-default:hover {
 #post-page .post-thumbnail {
   max-height: 360px;
 }
-#post-page .post-excerpt {
-  border-left: 3px solid #b34700;
-}
 #post-page .tag-list li + li:before,
 #quote-post-page .tag-list li + li:before,
 #quote-post-page .post-categories li + li:before,
@@ -1820,10 +1823,9 @@ a.btn-default:hover {
 }
 #post-page .related-posts .slick-prev {
   z-index: 99;
-  right: -5px;
 }
-#quote-post-page .post-info li + li:before {
-  content: "";
+#post-page .related-posts .slick-next {
+  right: -5px;
 }
 #gallery-post-page .entry-content .gallery-item img {
   transition: all 2s ease-in-out 1s;
