@@ -131,12 +131,12 @@ if( !function_exists( "abbey_theme_details" ) ) :
 
 endif; //endif function_exist abbey_theme_details 
 
-/* 
-* display and generate html for showing next and previous posts 
-* depends on abbey_show_nav function 
-* this function displays both the previous and next at once 
-*
-*/
+/**
+ * display and generate html for showing next and previous posts 
+ * depends on abbey_show_nav function 
+ * this function displays both the previous and next at once 
+ * @since: 0.1
+ */
 add_action( "abbey_theme_post_entry_footer", "abbey_post_nav", 5 );
 if( !function_exists( "abbey_post_nav" ) ) :
 	function abbey_post_nav( $title = "" ){
@@ -166,12 +166,96 @@ if( !function_exists( "abbey_post_nav" ) ) :
 
 endif; //endif function exists abbey_post_nav //
 
+/**
+ * Showing terms for posts with their post count 
+ * all terms related to the present post are displayed including terms from custom taxonomies 
+ * unlike abbey_cat_or_tag function that shows only terms from category or tags 
+ * @uses: get_object_taxonomies, _make_cat_compat, get_the_terms, get_term_link, abbey_cat_or_tag
+ * @since: 0.12
+ * 
+ */
 add_action( "abbey_theme_post_entry_footer", "abbey_post_terms", 5 );
+function abbey_post_terms( $title = "" ){
+	
+	//post ID of the current post //
+	$post_id = get_the_ID();
+
+	/** 
+	 * get all taxonomies related to this post i.e. categories, post_tag and any custom taxonomy 
+	 * this does not return the actual terms, but only return an array of taxonomies related to the current post 
+	 */
+	$taxonomies  = get_object_taxonomies( get_post_type( $post_id ), 'names' ); 
+
+	if( empty( $taxonomies ) ) return; //bail if there is no associated taxonomy //
+
+	// declare variables for the markup //
+	$list = $html = $tax_title = $icon = "";
+	
+	/**
+	 * Start generating the markup, the terms will be displayed in an unordered list format
+	 * each taxonomy and its term list will be wrapped in an unordered list
+	 * the list for the terms will be generated with abbey_cat_or_tag function 
+	 * @see: abbey_cat_or_tag in functions/template-tags.php (the next function)
+	 */
+	$html .= "<div class='post-taxonomies'>\n"; //start html .post-taxonomies i.e. main wrapper //
+
+	$html .= "<div class='row inner-wrap'>";
+	
+	foreach( $taxonomies as $taxonomy ){ //loop through the taxonomies //
+		
+		/**
+		 * The actual terms for the post are being queried here 
+		 * @example: $taxonmy: category, all the categories attached to the current post will be gotten here e.g. projects
+		 */
+		$terms = get_the_terms( $post_id, $taxonomy ); //get the terms i.e. categories related to this post //
+		
+		if ( empty( $terms ) ) continue; // skip if the terms i.e. categories  is  empty //
+
+		$icon = abbey_contact_icon( $taxonomy ); //get taxonomy icon //
+
+		$tax_title = ucwords( $taxonomy );
+		if( $taxonomy == "post_tag" ) $tax_title = __( "Tagged", "abbey" );
+
+		// I dont know what these are for but wordpress does this too internally so . . . //
+		$terms = array_values( $terms );
+		foreach ( array_keys( $terms ) as $key ) {
+    		_make_cat_compat( $terms[$key] );
+		}
+
+		// start generating html markup for individual terms //
+		$list = "<ul class='post-{$taxonomy} post-terms list-inline'>";//start of terms list //
+		foreach( $terms as $term ){ // loop through the terms //
+			
+			/** Show the term name and the post count and a link to the term archive page */
+			$list .=  sprintf( '<li><a href="%1$s" rel="category" data-toggle="tooltip" title="%4$s: %2$s">%2$s 
+								<span class="badge category-count">%3$s </span></a></li>',
+								esc_url( get_term_link( $term, $terms ) ), 
+								$term->name, 
+								$term->count, 
+								esc_attr( $tax_title )
+						);
+		}
+		$list .= "</ul>\n"; //end of terms list list //
+
+		$icon = apply_filters( "abbey_terms_icon", $icon, $taxonomy );
+
+		$html .= abbey_cats_or_tags( $list, $tax_title, $icon, "" ); // check functions/template-tags.php //
+
+   		
+
+	} // end of taxonomies loop //
+
+	$html .= "</div>"; //.row closes //
+	$html .= "</div>"; // end html .post-taxonomies //
+	
+	echo $html;
+
+}
 
 /**
  * Display author bio after the post 
  * this function uses abbey_post_author and abbey_author_contacts
- *
+ * @since: 0.1
  */
 add_action( "abbey_theme_post_entry_footer", "abbey_post_author_info", 20 );
 if ( !function_exists( "abbey_post_author_info" ) ) : 
@@ -224,11 +308,11 @@ if ( !function_exists( "abbey_post_author_info" ) ) :
 endif; //endif function_exists abbey_post_author_info //
 
 /*
-* function to show related posts in a slide i.e carousel 
-* this function queries related posts excluding the current post
-* depends on abbey_query_post, abbey_excerpt, abbey_page_media  
-*
-*/
+ * Show related posts in a slide i.e carousel 
+ * this function queries related posts excluding the current post
+ * @uses: abbey_query_post, abbey_excerpt, abbey_page_media  
+ *
+ */
 add_action( "abbey_theme_post_entry_footer", "abbey_show_related_posts", 30 );
 if ( !function_exists( "abbey_show_related_posts" ) ) :
 	function abbey_show_related_posts( $title = "" ){
@@ -383,7 +467,7 @@ function abbey_default_thumbnail( $thumbnail ){
 	global $abbey_defaults; // global theme settings //
 	
 	/**
-	 * Bail eearly when we already have a thumbnail or we dont have a media setting in the theme global setting 
+	 * Bail early when we already have a thumbnail or we dont have a media setting in the theme global setting 
 	 */
 	if( !empty( $thumbnail ) || empty( $abbey_defaults[ "media" ] ) ) return $thumbnail;
 
