@@ -188,3 +188,20 @@ body .mfp-bg.mfp-ready{
 		}
 	}
 }
+
+/**
+ * Excerpt Link 
+ */
+.excerpt-btn{
+	&:extend(a);
+	//border: 1px solid @primary-color;
+	//border-left: 3px solid @primary-color;
+}
+.excerpt-more{
+	&:extend(.text-right, .outer-pad-small);
+	.dropdown-menu{
+		right: 0px;
+		left: unset;
+		top: unset;
+	}
+}
