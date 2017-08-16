@@ -431,7 +431,8 @@ endif; //endif function exist abbey_archive_heading //
 /**
  * Template function filter for thumbnail - abbey_page_media function 
  * function to show uploaded video as thumbnail for recordings 
- *
+ * @since: 0.11
+ * @edited: Added a new check to know if the current post can use video as thumbnail
  */
 add_filter( "abbey_theme_page_media", "abbey_video_thumbnail", 20, 2 );//abbey_page_media function, check functions/template-tags.php 
 function abbey_video_thumbnail( $thumbnail, $page_id ){
@@ -439,7 +440,7 @@ function abbey_video_thumbnail( $thumbnail, $page_id ){
 	// check if there is a thumbnail already for the post //
 	if( !empty( $thumbnail ) ) return $thumbnail; //bail early //
 
-	if( get_post_type( $page_id ) === "recordings" )
+	if( get_post_type( $page_id ) === "recordings" || (bool)abbey_custom_field( 'use_video_as_thumbnail' ) )
 		$thumbnail = abbey_recording_video( false, $page_id ); //@see functions/template-tags.php //
 	
 	return $thumbnail;
