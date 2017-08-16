@@ -1,17 +1,26 @@
 <?php
-/*
-* Hooks i.e. filters and actions found in my theme 
-* All hooks here are NOT WORDPRESS HOOKS but custom hooks only found in Abbey theme 
-*
-*/
+/**
+ *
+ *
+ * Hooks i.e. filters and actions found in my theme 
+ * All hooks here are NOT WORDPRESS HOOKS but custom hooks only found in Abbey theme 
+ * I have tried as much as possible to provide documentation for each hook
+ * check the @see block in each hook to know the file the hook is found 
+ * @category: functions 
+ * @package: Abbey theme
+ * @author: Rabiu Mustapha
+ * @version: 0.12
+ *
+ *
+ */
 
 
 /*
-* 404 page action hook
-* display latest posts in 404 page 
-*
-*/
-add_action ( "abbey_theme_404_page_widgets", "abbey_latest_posts", 10);
+ * 404 page action hook
+ * display latest posts in 404 page 
+ *
+ */
+add_action ( "abbey_theme_404_page_widgets", "abbey_latest_posts", 10 );
 function abbey_latest_posts(){
 	echo '
 		<aside id="latest-posts" class="pad-medium col-md-6 text-center">
@@ -27,10 +36,10 @@ function abbey_latest_posts(){
 }
 
 /*
-* 404 page action hook 
-* display latest quotes in 404 page 
-* 
-*/
+ * 404 page action hook 
+ * display latest quotes in 404 page 
+ * @see: templates/content-none.php
+ */
 add_action ( "abbey_theme_404_page_widgets", "abbey_latest_quotes", 20 );
 function abbey_latest_quotes(){
 	echo '
@@ -170,6 +179,7 @@ endif; //endif function exists abbey_post_nav //
  * Showing terms for posts with their post count 
  * all terms related to the present post are displayed including terms from custom taxonomies 
  * unlike abbey_cat_or_tag function that shows only terms from category or tags 
+ * @see: templates/content-post.php
  * @uses: get_object_taxonomies, _make_cat_compat, get_the_terms, get_term_link, abbey_cat_or_tag
  * @since: 0.12
  * 
@@ -195,7 +205,7 @@ function abbey_post_terms( $title = "" ){
 	 * Start generating the markup, the terms will be displayed in an unordered list format
 	 * each taxonomy and its term list will be wrapped in an unordered list
 	 * the list for the terms will be generated with abbey_cat_or_tag function 
-	 * @see: abbey_cat_or_tag in functions/template-tags.php (the next function)
+	 * @see: abbey_cat_or_tag in functions/template-tags.php
 	 */
 	$html .= "<div class='post-taxonomies'>\n"; //start html .post-taxonomies i.e. main wrapper //
 
@@ -427,8 +437,7 @@ add_filter( "abbey_theme_page_media", "abbey_video_thumbnail", 20, 2 );//abbey_p
 function abbey_video_thumbnail( $thumbnail, $page_id ){
 
 	// check if there is a thumbnail already for the post //
-	if( !empty( $thumbnail ) )
-		return $thumbnail; //bail early //
+	if( !empty( $thumbnail ) ) return $thumbnail; //bail early //
 
 	if( get_post_type( $page_id ) === "recordings" )
 		$thumbnail = abbey_recording_video( false, $page_id ); //@see functions/template-tags.php //
@@ -457,6 +466,30 @@ function abbey_category_thumbnail( $thumbnail, $page_id ){
 	
 }
 
+/**
+ * Template filter for thumbnail - abbey_page_media function
+ * Use the first uploaded image in a post as the thumbnail 
+ * @see: abbey_page_media function in functions/template-tags.php 
+ * @since: 0.12
+ * @uses: abbey_post_medias function to retreive uploaded image in post - see functions/template-tags.php
+ */
+add_filter( "abbey_theme_page_media", "abbey_image_as_thumbnail", 30, 2 );
+function abbey_image_as_thumbnail( $thumbnail, $post_id ){
+
+	//bail early if the thumbnail is not empty //
+	if( !empty( $thumbnail ) ) return $thumbnail; 
+
+	// retreive only one image from the post //
+	$first_image = abbey_post_medias( 'image', $post_id, 'full', 1 );
+
+	//if there is no uploaded image in post, bail //
+	if( empty( $first_image ) ) return $thumbnail;
+
+	return sprintf( '<img src="%1$s" alt="%2$s" class="wp-post-image" />', 
+					esc_url( $first_image[0] ), 
+					esc_attr__( "First image in post", "abbey" ) 
+					);		
+}
 /**
  * Template filter for thumbnail - abbey_page_media function
  * this particular filter is to display a default placeholder/dummy image as thumbnail 
@@ -704,8 +737,7 @@ function abbey_gallery_slides( $galleries ){
 	if( !empty( $slide_images ) )
 		$html = "<div class='gallery-slides'>"; 
 		foreach( $slide_images as $key => $image ){
-			if( !is_int( $key ) )
-				continue;
+			if( !is_int( $key ) ) continue;
 			$html .= sprintf( '<div class="gallery-image" id="gallery-image-%1$s">
 								<img src="%2$s" alt="%3$s" />
 								</div>',
