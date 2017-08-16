@@ -20,6 +20,11 @@ body,
 .text-right-rtl {
   text-align: right;
 }
+
+.text-left-rtl, 
+.excerpt-more{
+  text-align: left;
+}
 .author-info,
 #site-footer,
 input,
