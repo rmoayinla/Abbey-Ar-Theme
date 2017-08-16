@@ -364,3 +364,43 @@ function abbey_recording_video( $echo = true, $page_id = "" ){
 	echo $embeds[0];
 }
 
+/**
+ * Retreive uploaded medias to posts 
+ * this media can be audio, an image or video 
+ * @param: 
+ 	* $type 	string 		the type of media to retreive e.g. image, audio or video 
+ 	* $post_id 	int 		the post ID of the post which media is to be retreived 
+ 	* $size 	string 		the size of the media i.e. full, small etc
+ 	* $all 		bool|int 	determine if all the retreived media should be returned or some 
+ * @return: $media 		array of medias 
+ * @since: 0.12
+ *
+ */
+function abbey_post_medias( $type = 'image', $post_id = "", $size = "full", $all = true ){
+
+	if( empty( $post_id ) ) $post_id = get_the_ID();
+
+	if( !in_array( $type, array( "image", "audio", "video" ) ) ) $type = 'image';
+	$post_id = (int) $post_id;
+
+	$medias = $media = $media_attachment = "";
+
+	$medias= get_attached_media( $type, $post_id );
+
+	if( empty( $medias ) ) return;
+
+	$media = array();
+	foreach( $medias as $media_object ){
+		$media_attachment = wp_get_attachment_image_src( $media_object->ID, $size );
+ 		$media[] = $media_attachment[0];
+	}
+
+	if( !is_int( $all ) ) return $media;
+
+	$all = (int) $all;
+
+	$media = array_slice( $media, 0, $all, true );
+
+	return $media;
+
+}
