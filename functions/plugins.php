@@ -222,3 +222,11 @@ function abbey_add_excerpts_to_pages() {
     add_post_type_support( 'page', 'excerpt' );
 }
 
+/**
+ * Filters the callback for killing WordPress execution for all non-Ajax, non-XML-RPC requests.
+ *
+ * @since 3.0.0
+ *
+ * @param callable $function Callback function name.
+ */
+ // $function = apply_filters( 'wp_die_handler', '_default_wp_die_handler' );
