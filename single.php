@@ -36,9 +36,11 @@ global $more; ?>
 
 	<?php endif; //end if have_posts() // ?>
 
-	<aside class="col-md-4 col-md-offset-1 sidebar" role="complimentary" id="primary-sidebar">
-		<?php abbey_display_sidebar( "sidebar-main" ); ?>
-	</aside>
+	<?php if( !has_post_format() ) : ?>
+		<aside class="col-md-4 col-md-offset-1 sidebar" role="complimentary" id="primary-sidebar">
+			<?php abbey_display_sidebar( "sidebar-main" ); ?>
+		</aside>
+	<?php endif; //end if has_post_format // ?>
 
 	</main>		<?php
 
