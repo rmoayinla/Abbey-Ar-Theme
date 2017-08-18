@@ -381,6 +381,7 @@ function abbey_post_medias( $type = 'image', $post_id = "", $size = "full", $all
 	if( empty( $post_id ) ) $post_id = get_the_ID();
 
 	if( !in_array( $type, array( "image", "audio", "video" ) ) ) $type = 'image';
+	
 	$post_id = (int) $post_id;
 
 	$medias = $media = $media_attachment = "";
