@@ -378,18 +378,28 @@ function abbey_recording_video( $echo = true, $page_id = "" ){
  */
 function abbey_post_medias( $type = 'image', $post_id = "", $size = "full", $all = true ){
 
+	// set the post ID if the passed ID is empty //
 	if( empty( $post_id ) ) $post_id = get_the_ID();
 
+	// check the $type param, if is not "image", "audio" or "video" set to 'image'
 	if( !in_array( $type, array( "image", "audio", "video" ) ) ) $type = 'image';
-	
+
 	$post_id = (int) $post_id;
 
+	//declare our variabe containers //
 	$medias = $media = $media_attachment = "";
 
+	// retreive the uploaded medias for the post //
 	$medias= get_attached_media( $type, $post_id );
 
+	//bail if we dont have any media //
 	if( empty( $medias ) ) return;
 
+	/**
+	 * If we have uploaded medias in the post, loop through the medias and store them in our $meda array 
+	 * We only need the src attribute of the images 
+	 * What about if the $type is an audio? seems I still have some digging to do here 
+	 */
 	$media = array();
 	foreach( $medias as $media_object ){
 		$media_attachment = wp_get_attachment_image_src( $media_object->ID, $size );
