@@ -35,15 +35,14 @@ a > iframe{
 	}
 }
 
-img.wp-post-image{
-	&:extend(.full-width-image);
+img.wp-post-image, .post-panel-thumbnail iframe{
 	.transition(all,2500ms,ease-in-out,0s);
 }
 .post-thumbnail{
 	&:extend(.no-overflow);
 }
 
-.post-thumbnail{
+.post-thumbnail, .post-panel-thumbnail{
 	img{
 		&:extend(.full-width-image);
 		width: 100% !important;
@@ -64,7 +63,7 @@ img.wp-post-image{
 		width: auto; 
 	}
 
-	figure{
+	figure, .iframe{
 		&:extend(.margin-bottom-sm);
 	}
 
@@ -98,7 +97,7 @@ img.wp-post-image{
 	}
 
 	iframe[src *= "youtube"], iframe{
-		&:extend(.max-full-width);
+		&:extend(.max-full-width, .margin-top-sm);
 	}
 	.gallery{
 		&:extend(.margin-top-sm, .margin-bottom-sm, .max-full-width);
@@ -166,12 +165,12 @@ img.wp-post-image{
 
 .related-posts .post-panel{
 	.transition(all,1250ms,ease-in-out,0s);
-	.wp-post-image{
-		max-height: 180px;
+	.wp-post-image, iframe{
+		height: 180px;
 	}
 	&:hover{
-		.wp-post-image{
-			max-height: 240px;
+		.wp-post-image, iframe{
+			height: 240px;
 		}
 		
 	}
