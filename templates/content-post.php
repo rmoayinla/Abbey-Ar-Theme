@@ -1,7 +1,19 @@
 <?php
-	$has_thumbnail = ( has_post_thumbnail() ) ? true : false;
-	$title = ""
+/** 
+ *
+ * Theme Template partial for single posts or single {post_type}
+ * this file is loaded when a sing post with no post format is queried 
+ * It only loads the content of the posts. Sidebars, headers, footers are loaded separately ie. get_header()
+ *
+ *@author: Rabiu Mustapha
+ *@package: Abbey theme
+ *@since: 0.1
+ *@category: Templates 
+ *
+ */
 ?>
+
+<?php $has_thumbnail = ( has_post_thumbnail() ) ? true : false; $title = ""; ?>
 <section  id="content" class="post-content col-md-7" itemscope itemtype="http://schema.org/Article">
 	
 	<div class="single-post-panel">
@@ -36,3 +48,4 @@
 	</div>
 	
 </section><!-- #content .page-content closes -->
+<?php
