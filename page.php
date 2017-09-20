@@ -1,19 +1,40 @@
 <?php
-/*
-* a wordpress template file for displaying pages 
-* you can copy this template, rename to a different file to display specific pages 
-* example copy the content here, create a file and name it page-contact.php to display contact page 
-* 
-*/
+/**
+ *
+ * A default wordpress template file for displaying pages 
+ *
+ * you can copy this template, rename to a different file to display specific pages 
+ * example copy the content here, create a file and name it page-contact.php to display contact page 
+ * 
+ *@author: Rabiu Mustapha
+ *@package: Abbey theme
+ *@version: 0.11
+ *
+ *
+ */
 
-$no_sidebar = ( abbey_custom_field( "no_sidebar" ) == 0 ) ? false  : true;
-$thumbnail_url = $thumbnail_class = "";
-if ( has_post_thumbnail() ) {
- 	$thumbnail_url = get_the_post_thumbnail_url();
- 	$thumbnail_class = "has-thumbnail"; 
-}
+	/**
+	 * Simple indicator to determine if the page should have a sidebar
+	 * this indicator is set by a custom field in the wordpress admin post page 
+	 * true: if there should not be a sidebar
+	 * false: if there should be a sidebar 
+	 */
+	$no_sidebar = ( abbey_custom_field( "no_sidebar" ) == 0 ) ? false  : true;
 
-$page_background = !empty( abbey_custom_field( "page_background" ) ) ? abbey_custom_field( "page_background" ) : "";
+	//containers for setting some html attributes if these page has a thumbnail image //
+	$thumbnail_url = $thumbnail_class = "";
+
+	if ( has_post_thumbnail() ) {
+ 		$thumbnail_url = get_the_post_thumbnail_url(); //the post thumbnail url //
+ 		$thumbnail_class = "has-thumbnail";  //a css class //
+	}
+
+	/**
+	 * Simple indicator to determine if the page has a background 
+	 * this indicator is set by a custom filed in the wordpress admin post page
+	 * the page background is added by using css background properties 
+	 */
+	$page_background = !empty( abbey_custom_field( "page_background" ) ) ? abbey_custom_field( "page_background" ) : "";
 
 ?>
 
@@ -28,6 +49,7 @@ $page_background = !empty( abbey_custom_field( "page_background" ) ) ? abbey_cus
 		<?php while ( have_posts() ) : the_post(); ?>
 		
 			<?php global $more; $more = 0; ?>
+			
 			<header id="site-content-header" class="before-content"><?php do_action( "abbey_theme_before_content" ); ?></header>
 			
 			<header id="page-content-header" class="content-header">
