@@ -194,8 +194,6 @@ body .mfp-bg.mfp-ready{
  */
 .excerpt-btn{
 	&:extend(a);
-	//border: 1px solid @primary-color;
-	//border-left: 3px solid @primary-color;
 }
 .excerpt-more{
 	&:extend(.text-right, .outer-pad-small);
@@ -203,5 +201,15 @@ body .mfp-bg.mfp-ready{
 		right: 0px;
 		left: unset;
 		top: unset;
+	}
+}
+
+/**
+ * Bootstrap dropdown 
+ */
+.dropdown-menu{
+	&:extend(.no-outer-padding);
+	li >a{
+		&:extend(.outer-pad-small);
 	}
 }
