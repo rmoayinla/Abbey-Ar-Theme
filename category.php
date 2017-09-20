@@ -66,6 +66,6 @@ $archive_options = ( !empty( $abbey_defaults[ "archive" ] ) ) ? $abbey_defaults[
 		</section>
 		
 
-	</main>		<div style="direction: ltr;"> <?php //print_r(); ?></div><?php
+	</main>		<div style="direction: ltr;"> <?php ?></div><?php
 
 get_footer();

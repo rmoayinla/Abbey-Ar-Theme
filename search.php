@@ -38,9 +38,7 @@ $abbey_query = array();
 						<?php get_template_part("templates/content", "archive"); ?>
 					<?php endwhile; ?> 
 					
-					<div class="navigation" role="navigation">
-						<?php abbey_posts_pagination();?>
-					</div>
+					<div class="navigation" role="navigation"><?php abbey_posts_pagination();?></div>
 				</div>
 
 			<?php else : get_template_part("templates/content", "archive-none"); ?>

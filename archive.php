@@ -51,7 +51,6 @@ $queried_name = $queried_object->name;
 	<?php endif; ?>
 		
 
-	</main>		<div style="direction: ltr;"> <?php global $wp_query; 
-				?></div><?php
+	</main>		<div style="direction: ltr;"> <?php ?></div><?php
 
 get_footer();
