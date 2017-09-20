@@ -300,16 +300,16 @@ add_filter( "abbey_theme_sidebars", function ( $sidebars ){
 	return $sidebars;
 } );
 
-add_action( "init", "abbey_init_defaults", 50 );
 /**
  * Initialize theme settings here
  * this function is hook to wp "init" hook 
  * Vital theme classes are started here
  * @since: 0.1 
  */
+add_action( "init", "abbey_init_defaults", 50 );
 function abbey_init_defaults(){
 	
-	global $abbey_defaults;
+	global $abbey_defaults, $abbey_logger;
 
     //initialize the class responsible for enqueing styles and scripts //
     Abbey_Enqueue::init(); 
@@ -318,6 +318,10 @@ function abbey_init_defaults(){
     Abbey_Theme_Settings::init();
 
 	$abbey_defaults = Abbey_Theme_Settings::get_default_options();
+
+	date_default_timezone_set( "Africa/Lagos" );
+
+	
     
 }
 
