@@ -294,6 +294,13 @@ function abbey_show_contacts(){
 	
 }
 
+/**
+ * Show social contacts for website i.e facebook page, instagram, whatsapp etc
+ * social contacts are fetched from abbey_defaults theme settings 
+ *@since: 0.1
+ *@hook: action 
+ *@see: footer.php
+ */
 add_action ( "abbey_theme_front_page_contacts", "abbey_show_social_contacts", 20 );
 if( !function_exists( "abbey_show_social_contacts" ) ):
 	function abbey_show_social_contacts( $heading = ""  ){
@@ -301,7 +308,7 @@ if( !function_exists( "abbey_show_social_contacts" ) ):
 		$social_contacts = ( !empty( $abbey_defaults["social-contacts"] ) ) ? $abbey_defaults["social-contacts"] : "";
 
 		if( count( $social_contacts ) > 0 ){
-			$html = "<footer id='social-contacts' class='row inner-pad-medium'>";
+			$html = "<footer id='social-contacts' class='row inner-pad-small'>";
 			$html .= "<div id='social-icons-header'><h4>".apply_filters( "abbey_theme_social_icons_header_text", $heading )."</h4></div>";
 			$html .= "<div class='social-icons' id='social-contacts'><ul class='nav'>";
 			foreach ( $social_contacts as $social => $contact ){
