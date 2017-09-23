@@ -344,3 +344,15 @@ function abbey_media_defaults( $defaults ){
 	
 	return $defaults;
 }
+
+add_filter( "abbey_theme_defaults", "abbey_date_defaults", 110 );
+function abbey_date_defaults( $defaults ){
+
+	if( empty( $defaults[ "date_time" ] ) ) $defaults[ "date_time" ] = [];
+
+	$date_time = array( "timezone" => "Africa/Lagos", "format" => "" );
+
+	$defaults[ "date_time" ] = wp_parse_args( $date_time, $defaults[ "date_time" ] );
+
+	return $defaults;
+}
