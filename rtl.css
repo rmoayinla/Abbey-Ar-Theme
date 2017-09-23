@@ -40,6 +40,11 @@ form,
 .float-right-rtl-responsive {
   float: right !important;
 }
+
+.top-post-info,
+.float-right-rtl{
+  float: right;
+}
 .archive-description,
 .small {
   font-size: 13px;
@@ -70,6 +75,7 @@ div.dropdown .dropdown-menu {
   margin-left: 15px;
   margin-right: 0px;
 }
+
 
 .related-posts .slick-prev{
   right: -5px;
