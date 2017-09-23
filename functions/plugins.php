@@ -137,6 +137,12 @@ function abbey_custom_edit_comment_link ( $link, $comment_ID, $text ){
     return $link;
 }
 
+/**
+ * Filters the time/date displayed by Wp human_time_diff
+ * add minor tweaks to make the time/date more logical
+ * a day difference will return "yesterday", less than 5mins difference will return "just now"
+ * @return: string  $since  the time difference 
+ */
 add_filter( 'human_time_diff', 'abbey_time_diff', 10, 4 ); 
 function abbey_time_diff( $since, $diff, $from, $to ){
     $mins = absint( round( $diff / MINUTE_IN_SECONDS ) );
