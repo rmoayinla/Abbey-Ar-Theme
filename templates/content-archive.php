@@ -1,4 +1,17 @@
 <?php
+/**
+ *
+ * Template partial for displaying archive content 
+ * 
+ * this file is only a partial and has to be included via wp get_template_part function 
+ * post title, thumbnail and excerpt with a read more link are displayed 
+ *
+ *@package: Abbey theme
+ *@author: Rabiu Mustapha
+ *
+ *
+ */
+
 global $count;
 $more_link = sprintf( '<a href="%1$s" title="%2$s" class="excerpt-link">%3$s</a>', 
 						get_permalink(), 
@@ -33,10 +46,8 @@ $more_link = sprintf( '<a href="%1$s" title="%2$s" class="excerpt-link">%3$s</a>
 				<div class="post-thumbnail"><?php abbey_page_media( "large" ); ?></div>
 			<?php endif; ?>
 
-			
-
-				
-			<div class="post-excerpts"><?php abbey_excerpt( "", $more_link, true ); ?></div>
+						
+			<div class="post-excerpts"><?php abbey_excerpt( "", "", true );?></div>
 			
 			<footer class="post-panel-footer">
 				<ul class="list-inline no-list-style post-panel-info">
