@@ -10,8 +10,6 @@ body,
 .post-slide {
   direction: rtl;
   unicode-bidi: embed;
-  font-size: 130%;
-  font-weight: 600;
 }
 .entry-content,
 .entry-footer p,
