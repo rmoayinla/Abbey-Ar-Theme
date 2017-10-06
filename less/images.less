@@ -35,9 +35,9 @@ a > iframe{
 	}
 }
 
-img.wp-post-image, .post-panel-thumbnail iframe{
-	.transition(all,2500ms,ease-in-out,0s);
-}
+/*img.wp-post-image, .post-panel-thumbnail iframe{
+	.transition(all,250ms,ease-in-out,0s);
+}*/
 .post-thumbnail{
 	&:extend(.no-overflow);
 }
@@ -60,7 +60,7 @@ img.wp-post-image, .post-panel-thumbnail iframe{
 	img.size-full, 
 	img.size-large {
 		&:extend(.max-full-width);
-		width: auto; 
+		
 	}
 
 	figure, .iframe{
@@ -165,7 +165,7 @@ img.wp-post-image, .post-panel-thumbnail iframe{
 
 .related-posts .post-panel{
 	.transition(all,1250ms,ease-in-out,0s);
-	.wp-post-image, iframe{
+	/*.wp-post-image, iframe{
 		height: 180px;
 	}
 	&:hover{
@@ -173,5 +173,5 @@ img.wp-post-image, .post-panel-thumbnail iframe{
 			height: 240px;
 		}
 		
-	}
+	}*/
 }
