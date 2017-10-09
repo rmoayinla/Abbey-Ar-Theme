@@ -22,7 +22,7 @@
 		border-color: #ddd;
 	}
 	.entry-header{
-		&:extend(.inner-pad-small, .bottom-border);
+		&:extend(.inner-pad-small, .bottom-border, .outer-pad-small);
 		border-bottom-color: @gray-color;
 	}
 	.entry-content{
@@ -67,7 +67,7 @@
 		.previous-post, .next-post{
 			.previous-button, .next-button{
 				&:extend(.block, .relative, .no-overflow);
-				height: 90px;
+				height: 150px;
 				.transition(all, 600ms, ease-in-out);
 				&:hover{
 					text-decoration: none;
@@ -134,11 +134,13 @@
 	}
 
 	.post-excerpt{
-		&:extend(.oblique, .margin-bottom-md, .inner-pad-small, .strong, .bg-gray, .outer-pad-medium);
+		&:extend(.oblique, .margin-bottom-md, .inner-pad-small, .strong, .no-bg, .outer-pad-medium);
+		border-top: 3px solid @gray-color;
+		border-bottom: 3px solid @gray-color;
 	}
 	
 	.post-thumbnail-caption{
-		&:extend(.pad-xs, .oblique, .font-small, .gray, .inner-pad-small);
+		&:extend(.pad-xs, .oblique, .font-small, .inner-pad-small, .outer-pad-small);
 	}
 
 	.tag-list{
@@ -164,9 +166,6 @@
 		}
 	}
 
-	.entry-footer-info.post-navigation{
-		&:extend(.no-outer-padding);
-	}
 	.related-posts{
 		&:extend(.bg-light);
 		overflow: visible;
