@@ -99,7 +99,8 @@ body .mfp-bg.mfp-ready{
 
 /* WP plugin Abbey_Recent_Posts */
 .thumbnail-post{
-	&:extend(.no-padding, .no-border, #box-shadow .box-shadow-small);
+	&:extend(.no-padding, .no-border);
+	height: 180px;
 	.transition(all,0.9s, ease-in-out);
 	background-color: #fff;
 	.post-thumbnail-image, .post-thumbnail-content, .row{
@@ -111,15 +112,21 @@ body .mfp-bg.mfp-ready{
 	}
 	.post-thumbnail-image{
 		.wp-post-image{
-			height: 120px !important;
+			height: 180px;
+			&:extend(.full-width);
 		}
 	}
+	.col-md-12, .col-md-8{
+		float: none;
+		&:extend(.inline-block);
+	}
 	&:hover{
-		background-color: @gray-color;
+		&:extend(#box-shadow .box-shadow-small);
 		.post-thumbnail-image{
 			&:extend(.pad-xs);
 			.wp-post-image{
 				border-radius: 100%;
+				height: 160px;
 			}
 		}
 	}
