@@ -54,8 +54,8 @@ ul.pagination li:last-child span {
   border-radius: 0px;
 }
 div.dropdown .dropdown-menu {
-  right: 0px;
-  left: unset;
+  left: 0px;
+  right: unset;
 }
 
 .close-icon{
@@ -78,6 +78,11 @@ div.dropdown .dropdown-menu {
 .related-posts .slick-prev{
   right: -5px;
 }
+.related-posts .slick-next{
+  right: auto !important;
+}
+
+
 /* reponsive design for devices larger than 1027px */
 @media (min-width: 1027px) {
   #post-page #content,
