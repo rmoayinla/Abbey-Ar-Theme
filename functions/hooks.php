@@ -279,7 +279,7 @@ if ( !function_exists( "abbey_post_author_info" ) ) :
 			$html.= sprintf( '<h3 class="entry-footer-heading">%s</h3>', esc_html($title) );
 		
 		$html .= "<div class='author-photo col-md-3'>".abbey_author_photo( $author->ID, 100, "img-circle" ). "</div>";
-		$html .= "<div class='author-details col-md-6 no-inner-padding'>";//start .author-details //
+		$html .= "<div class='author-details col-md-7 no-inner-padding'>";//start .author-details //
 		$html .= sprintf( '<div class="author-title">
 							<div class="author-name"><h4 class="no-top-margin no-bottom-margin"><a href="%4$s"> %1$s </a> </h4></div>
 							<div class="author-rate"> <em> %2$s </em> <span class="author-post-count"> %3$s </span></div>
