@@ -54,19 +54,20 @@ $archive_options = ( !empty( $abbey_defaults[ "archive" ] ) ) ? $abbey_defaults[
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
 
 				<header class="archive-post-slides posts-slides" 
-					data-slick='{"slidesToShow":1, "slidesToScroll":1,"autoplay":false,"arrows" : false, 
-					<?php if( is_rtl() ) echo '"rtl":true'; ?>, "dots": true, "infinite":true}'
+					data-slick='{"slidesToShow":1, "slidesToScroll":1,"autoplay":false,"arrows":false, 
+					<?php if( is_rtl() ) echo '"rtl":true'; ?>,"dots":true,"infinite":true}'
 				>
 					<?php do_action( "abbey_theme_archive_slide" ); ?> 
 				</header>
 				
 				<?php if( !empty( (bool) $archive_options[ "sidebar" ] ) ) : ?>
-					<div class="col-md-3 archive-summary" id="<?php echo $queried_name; ?>-archive-summary">
+					<aside class="col-md-3 archive-sidebar" id="<?php echo $queried_name; ?>-archive-summary">
 						<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
-					</div>
+					</aside>
+
 				<?php endif; ?>
 
-				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-1 archive-posts-wrapper">
+				<section id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-1 archive-posts-wrapper">
 					
 					<div class="category-archive-posts archive-posts">
 						<?php while ( have_posts() ) : the_post(); $count++; ?>
@@ -74,13 +75,9 @@ $archive_options = ( !empty( $abbey_defaults[ "archive" ] ) ) ? $abbey_defaults[
 						<?php endwhile; ?>
 					</div>
 					
-					<div class="navigation" role="navigation">
-						<?php if( empty( (bool) $archive_options[ "ajax_load_posts" ] ) ) : ?>
-							<?php abbey_posts_pagination();?>
-						<?php endif; ?>
-					</div>
+					<div class="navigation" role="navigation"><?php abbey_posts_pagination();?></div>
 
-				</div>
+				</section>
 
 		
 				<?php else : get_template_part("templates/content", "archive-none"); ?>
