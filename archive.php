@@ -1,5 +1,18 @@
 <?php
-
+/**
+ * Archive template file 
+ *
+ * This file displays the markup for all archive queried pages except archive for author and category
+ * archive template shows posts matching the current query with some info like title, excerpt, author, more link etc
+ * pagination links is shown if the returned query result multi-paged result per the posts_per_page settings
+ * if a pagination link is not shown, a load more button is also displayed to load older posts 
+ *
+ *@author: Rabiu Mustapha
+ *@package: Abbey 
+ *@sub-package: 
+ *@category: 
+ *
+ */
 
 //include header.php //
 get_header();
