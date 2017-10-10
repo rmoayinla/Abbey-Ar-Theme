@@ -649,6 +649,22 @@ function abbey_posts_pagination( $args = array() ){
 
 	if( $GLOBALS['wp_query']->max_num_pages < 2 ) return; //bail in single archive pages //
 
+	global $abbey_defaults;
+
+	$archive_options = null;
+	
+	/**
+	 * Check the global theme settings for archive settings 
+	 *if the load method for archive is through AJAX, display a load more button instead of pagination links
+	 */
+	if( !empty( $abbey_defaults[ "archive" ] ) ){
+		$archive_options = $abbey_defaults[ "archive" ];
+		if( !empty( (bool) $archive_options[ "ajax_load_posts" ] ) ){
+			echo sprintf( '<div class="load-more-btn">%s</div>', esc_html__( "Load more . . .", "abbey" ) );
+			return; 
+		}
+	}
+
 	$defaults = array( "type" => "array", "mid_size" => 1 ); // default options //
 
 	//override $default options with passed options in $args // 
