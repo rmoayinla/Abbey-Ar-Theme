@@ -1,56 +1,68 @@
 <?php
 
+
+//include header.php //
 get_header();
 
+//global variables needed for displaying the template //
 global $count, $wp_query, $abbey_query, $abbey_defaults;
 
-$current_page = (int) get_query_var( 'paged' );
-$count = ( $current_page > 1 ) ? ( ( $current_page - 1) * (int) get_option( 'posts_per_page' ) ) : 0;
+//local variables to store some query info //
+$current_page = $queried_object = $queried_name = $archive_options = "";
 
+//get the current page we currently are, the current page is added to page styles //
+$count = abbey_posts_count();
+
+//this global var stores some query info from wp_query//
 $abbey_query = array();
 
+//get the queried object, this is an instance of WP_Terms class //
 $queried_object = get_queried_object();
 
+//the name of the category being queried //
 $queried_name = $queried_object->name;
+
+//check if we have some archive settings in our theme global settings //
+$archive_options = ( !empty( $abbey_defaults[ "archive" ] ) ) ? $abbey_defaults[ "archive" ] : array();
 ?>
+	
+	<header id="<?php echo $queried_name; ?>-archive-header" class="archive-header row">
+		<div class="md-50"><?php do_action( "abbey_archive_page_heading", $queried_object ); ?></div>
+	</header>
 
-	<main id="<?php abbey_theme_page_id(); ?>" class="row archives">
+	<main id="<?php abbey_theme_page_id(); ?>" class="row archives <?php abbey_page_class(); ?>">
 		
-		<header id="<?php echo $queried_name; ?>-archive-header" class="text-center archive-header">
-			<div class="md-50"><?php do_action( "abbey_archive_page_heading", $queried_object ); ?></div>
-		</header>
-
 		<section id="content" class="row archive-content">
+
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
 				
-				<div class="archive-posts-summary" id="<?php echo $queried_name; ?>-archive-summary">
-						<?php //do_action( "abbey_archive_page_summary", $abbey_query ); ?>
-				</div>
+				<?php if( !empty( (bool) $archive_options[ "sidebar" ] ) ) : ?>
+					<div class="archive-sidebar col-md-3" id="<?php echo $queried_name; ?>-archive-sidebar">
+						<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
+					</div>
+				<?php endif; ?>
 
-				<div id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-2 archive-posts-wrapper">
+				<section id="<?php echo $queried_name; ?>-archive-posts" class="col-md-8 col-md-offset-1 archive-posts-wrapper">
 					
 					<div class="archive-posts">
 						<?php while ( have_posts() ) : the_post(); $count++; ?>
-					
 							<?php get_template_part("templates/content", "archive"); ?>
-
 						<?php endwhile; ?>
 					</div>
 					
-					<div class="text-center navigation" role="navigation">
-						<?php abbey_posts_pagination();?>
-					</div>
+					<!-- show the pagination links or a read/load more button for more/older posts -->
+					<div class="navigation" role="navigation"><?php abbey_posts_pagination(); ?></div>
 					
-				</div>
+				</section>
 
-		
 				<?php else : get_template_part("templates/content", "archive-none"); ?>
+
+			<?php endif; ?>	
+
 		</section>
-
-
-	<?php endif; ?>
 		
 
 	</main>		<div style="direction: ltr;"> <?php ?></div><?php
 
+//include footer.php for the template //
 get_footer();
