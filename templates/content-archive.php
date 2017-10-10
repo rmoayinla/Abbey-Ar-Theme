@@ -47,7 +47,7 @@ $more_link = sprintf( '<a href="%1$s" title="%2$s" class="excerpt-link">%3$s</a>
 			<?php endif; ?>
 
 						
-			<div class="post-excerpts"><?php abbey_excerpt( "", "", true );?></div>
+			<div class="post-excerpts"><?php abbey_excerpt( 55, "", true );?></div>
 			
 			<footer class="post-panel-footer">
 				<ul class="list-inline no-list-style post-panel-info">
