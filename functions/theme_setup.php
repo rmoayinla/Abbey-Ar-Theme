@@ -345,6 +345,9 @@ function abbey_media_defaults( $defaults ){
 	return $defaults;
 }
 
+/**
+ * Add date and time settings to theme default
+ */
 add_filter( "abbey_theme_defaults", "abbey_date_defaults", 110 );
 function abbey_date_defaults( $defaults ){
 
