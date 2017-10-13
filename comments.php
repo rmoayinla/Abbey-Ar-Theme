@@ -24,9 +24,7 @@ if ( post_password_required() ) {
 			
 			<h2 class="comments-title"> </h2>
 
-			<div class="comment-list">
-				<?php abbey_list_comments(); ?>
-			</div><!-- .comment-list -->
+			<div class="comment-list"><?php abbey_list_comments(); ?></div><!-- .comment-list -->
 
 		<?php endif; // have_comments() ?>
 
@@ -37,9 +35,7 @@ if ( post_password_required() ) {
 		<?php endif; ?>
 	</div>
 	
-	<div class="comments-form">
-	<?php $args = abbey_comments_args();	comment_form( $args ); ?>
-	</div>
+	<div class="comments-form"><?php $args = abbey_comments_args();	comment_form( $args ); ?></div>
 
 
 </div><!-- #comments -->
