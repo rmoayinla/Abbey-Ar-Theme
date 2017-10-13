@@ -326,8 +326,12 @@
 			var _this, wrapper,layoutClasses, layoutClass;
 			_this = $(this);
 			wrapper = $( ".archive-posts-wrapper" );
+			wrapper.addClass( "transitioning" );
 			layoutClasses = "layout-grid-column layout-grid-row";
 			wrapper.toggleClass( _this.data( "layoutClass" ) );
+			setTimeout(function() {
+       				wrapper.removeClass("transitioning");
+   			}, 800);
 
 		} );
 	});
