@@ -280,7 +280,7 @@
 
 	});//end of fucntion 
 	
-	$('[data-toggle="tooltip"]').tooltip(); 
+	if (typeof $.fn.popover == 'function') $('[data-toggle="tooltip"]').tooltip(); 
 
 	$(function(){
 		var postCard, hoverCard;
@@ -320,7 +320,17 @@
 	})//end function //
 
 
-		
+	$(function(){
+		$( ".layout-links" ).click( function(ev){
+			ev.preventDefault();
+			var _this, wrapper,layoutClasses, layoutClass;
+			_this = $(this);
+			wrapper = $( ".archive-posts-wrapper" );
+			layoutClasses = "layout-grid-column layout-grid-row";
+			wrapper.toggleClass( _this.data( "layoutClass" ) );
+
+		} );
+	});
 	$(function(){
 		$("#floating-video").affix({
   			offset: {
