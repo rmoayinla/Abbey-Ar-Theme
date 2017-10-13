@@ -660,7 +660,9 @@ function abbey_posts_pagination( $args = array() ){
 	if( !empty( $abbey_defaults[ "archive" ] ) ){
 		$archive_options = $abbey_defaults[ "archive" ];
 		if( !empty( (bool) $archive_options[ "ajax_load_posts" ] ) ){
-			echo sprintf( '<div class="load-more-btn">%s</div>', esc_html__( "Load more . . .", "abbey" ) );
+			echo sprintf( 	'<div class="load-more"><button class="load-more-btn btn btn-default">%s</button></div>',
+							 esc_html__( "Load more . . .", "abbey" )
+						 );
 			return; 
 		}
 	}
