@@ -59,7 +59,9 @@ $archive_options = ( !empty( $abbey_defaults[ "archive" ] ) ) ? $abbey_defaults[
 				>
 					<?php do_action( "abbey_theme_archive_slide" ); ?> 
 				</header>
-				
+
+				<div class="archive-layout"><?php abbey_archive_layouts(); ?> </div>
+
 				<?php if( !empty( (bool) $archive_options[ "sidebar" ] ) ) : ?>
 					<aside class="col-md-3 archive-sidebar" id="<?php echo $queried_name; ?>-archive-summary">
 						<?php do_action( "abbey_archive_page_summary", $abbey_query ); ?>
@@ -89,4 +91,5 @@ $archive_options = ( !empty( $abbey_defaults[ "archive" ] ) ) ? $abbey_defaults[
 
 	</main>		<div style="direction: ltr;"> <?php ?></div><?php
 
+//include the footer.php //
 get_footer();
