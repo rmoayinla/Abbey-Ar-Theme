@@ -322,16 +322,30 @@
 
 	$(function(){
 		$( ".layout-links" ).click( function(ev){
+			//prevent default action //
 			ev.preventDefault();
+
+			//initialize global variables //
 			var _this, wrapper, layoutClass;
+
+			//clone this link element  //
 			_this = $(this);
+
+			//the archive wrapper element //
 			wrapper = $( ".archive-posts-wrapper" );
-			wrapper.addClass( "transitioning" );
+
+			wrapper.addClass( "transitioning" );//add a .transitioning class for css transitions //
+
+			//clone and get the class to add to archive wrapper from data attribute //
 			layoutClass = _this.data( "layoutClass" );
+
+			//add and remove some class from the archive wrapper //
 			wrapper.addClass( layoutClass ).removeClass( _this.data( "layoutToggle" ) );
+
 			setTimeout(function() {
-       				wrapper.removeClass("transitioning");
+       			wrapper.removeClass("transitioning");
    			}, 800);
+
    			if( wrapper.hasClass( "layout-grid-row" ) ){
    				wrapper.find( ".post-panel:not(.post-count-1)" ).each( function( elem, index ){
    					var _this, postThumbnail; 
@@ -342,7 +356,8 @@
    			}
 
 		} );
-	});
+	}); //end closure for layout links //
+
 	$(function(){
 		$("#floating-video").affix({
   			offset: {
