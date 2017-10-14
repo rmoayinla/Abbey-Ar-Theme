@@ -68,9 +68,9 @@
 }
 
 .hover-card.in{
+  &:extend(.bg-white, .pad-medium);
   height: 100%;
   bottom: 0px;
-  &:extend(.bg-white, .pad-medium);
 }
 
 .fade-out{
@@ -78,6 +78,19 @@
 }
 .fade-in{
   .opacity(1);
+}
+
+.archive-posts-wrapper{
+  &:extend(.fade-in);
+  .translate3d( 0px, 0px, 0px );
+  transition: opacity 800ms ease-in-out, transform 500ms ease-in-out;
+  -webkit-transition: opacity 800ms ease-in-out, transform 500ms ease-in-out;
+  -o-transition: opacity 800ms ease-in-out, transform 500ms ease-in-out;
+}
+
+.archive-posts-wrapper.transitioning {
+    .translate3d( 50px, 0px, 0px );
+    .opacity(0.5);
 }
 
 /*
