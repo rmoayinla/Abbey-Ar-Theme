@@ -423,6 +423,7 @@ function abbey_archive_layouts(){
 		<ul class="list-inline">
 			<li><a href="#" class="layout-links" data-layout-class="layout-grid-column" data-layout-toggle="layout-grid-row"><span class="fa fa-columns"></span></a></li>
 			<li><a href="#" class="layout-links" data-layout-class="layout-grid-row" data-layout-toggle="layout-grid-column"><span class="fa fa-list"></span></a></li>
+			<li><a href="#" class="layout-links" data-layout-class="layout-grid-1" data-layout-toggle="layout-grid-3 layout-grid-2 layout-grid-4"><span class="fa fa-ellipsis-v"></span></a></li>
 			<li><a href="#" class="layout-links" data-layout-class="layout-grid-2" data-layout-toggle="layout-grid-3 layout-grid-1 layout-grid-4"><span class="fa fa-ellipsis-v"></span><span class="fa fa-ellipsis-v"></span></a></li>
 			<li><a href="#" class="layout-links" data-layout-class="layout-grid-3" data-layout-toggle="layout-grid-2 layout-grid-4 layout-grid-1"><span class="fa fa-ellipsis-v"></span><span class="fa fa-ellipsis-v"></span><span class="fa fa-ellipsis-v"></span></a></li>
 		</ul>
