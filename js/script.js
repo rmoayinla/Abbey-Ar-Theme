@@ -323,15 +323,23 @@
 	$(function(){
 		$( ".layout-links" ).click( function(ev){
 			ev.preventDefault();
-			var _this, wrapper,layoutClasses, layoutClass;
+			var _this, wrapper, layoutClass;
 			_this = $(this);
 			wrapper = $( ".archive-posts-wrapper" );
 			wrapper.addClass( "transitioning" );
-			layoutClasses = "layout-grid-column layout-grid-row";
-			wrapper.toggleClass( _this.data( "layoutClass" ) );
+			layoutClass = _this.data( "layoutClass" );
+			wrapper.addClass( layoutClass ).removeClass( _this.data( "layoutToggle" ) );
 			setTimeout(function() {
        				wrapper.removeClass("transitioning");
    			}, 800);
+   			if( wrapper.hasClass( "layout-grid-row" ) ){
+   				wrapper.find( ".post-panel:not(.post-count-1)" ).each( function( elem, index ){
+   					var _this, postThumbnail; 
+   					_this = $(this);
+   					postThumbnail = _this.find(".post-thumbnail");
+   					_this.prepend( postThumbnail );
+   				} );
+   			}
 
 		} );
 	});
