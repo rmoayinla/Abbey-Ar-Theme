@@ -321,7 +321,10 @@
 
 
 	$(function(){
-		$( ".layout-links" ).click( function(ev){
+
+		var links = $( ".layout-links" );
+
+		links.click( function(ev){
 			//prevent default action //
 			ev.preventDefault();
 
@@ -336,6 +339,14 @@
 
 			wrapper.addClass( "transitioning" );//add a .transitioning class for css transitions //
 
+			links.each( function( elem, index ){
+				var elem = $(this);
+				//if(!elem.hasClass( "active" )) continue;
+				elem.removeClass( "active" );
+			});
+
+			_this.addClass( "active" );
+
 			//clone and get the class to add to archive wrapper from data attribute //
 			layoutClass = _this.data( "layoutClass" );
 
@@ -348,14 +359,16 @@
 
    			if( wrapper.hasClass( "layout-grid-row" ) ){
    				wrapper.find( ".post-panel:not(.post-count-1)" ).each( function( elem, index ){
-   					var _this, postThumbnail; 
-   					_this = $(this);
-   					postThumbnail = _this.find(".post-thumbnail");
-   					_this.prepend( postThumbnail );
-   				} );
+   					var elem, postThumbnail; 
+   					elem = $(this);
+   					postThumbnail = elem.find(".post-thumbnail");
+   					elem.prepend( postThumbnail );
+   				});
    			}
 
-		} );
+		});
+		
+
 	}); //end closure for layout links //
 
 	$(function(){
