@@ -177,19 +177,40 @@
 			$window.trigger('scroll');
 
 
+		/**
+		 * Module to support showing wordpress galleries in a slick carousel
+		 * the photos are shown in a slick carousel with magnific popup lightbox support 
+		 * the photos will be in 2 carousel, one will serve as indicator for the other 
+		 */
 		$(function(){
+			//initialize variables //
 			var clone_gallery, gallery; 
-			gallery = $( ".gallery" );
+
+			//the gallery original element containing photos  //
+			gallery = $( ".entry-content .gallery" );
+
+			//clone the galleries here i.e copies the HTML markup of the gallery //
 			clone_gallery = gallery.clone();
+
+			//add a .gallery-nav-main to the cloned gallery //
 			clone_gallery.addClass( "gallery-nav-main" );
 
+			//remove the gallery captions from the cloned gallery //
 			clone_gallery.find( ".gallery-item" ).each( function( index ){
 				var _this = $( this );
 				_this.find( ".gallery-caption" ).remove();
 			});
+			//insert the cloned gallery before the main gallery//
 			gallery.before( clone_gallery );
+
+			// add a .gallery-nav-sub class to the main gallery //
 			gallery.addClass( "gallery-nav-sub" );
 			
+			/**
+			 * Initialize slick carousel on both galleries i.e. main and cloned 
+			 * its important to add the asNavFor setting to both gallery 
+			 * this will indicate that each carousel should navigate when the other one has been navigated 
+			 */
 			gallery.slick({
 				slidesToShow: 3,
 			  	slidesToScroll: 1,
@@ -222,11 +243,21 @@
 				fade: true, 
 				arrows: false
 			});
+
 		});//function ends //
 
+	/**
+	 * Module to add lightbox to wordpress galleries
+	 * this also adds lighbtox to media uploads i.e. youtube videos, google maps etc
+	 */
 	$( function(){
+		//initialize variables //
 		var gallery, image_link, iframe_video;
+
+		//get gallery items that doesnt have .slick-cloned class //
 		gallery = $('.entry-content .gallery-item:not(.slick-cloned)');
+
+		//add href and title attributes to each gallery item //
 		gallery.each(function(){
 			var _this, imgSrc, imgTitle;
 			_this = $( this );
@@ -238,23 +269,27 @@
 			});
 
 		});
+
+		/** Initialize magnific popup on the gallery */
 		gallery.magnificPopup({
 		  type: 'image',
-		  //delegate: '.gallery-item:not(.slick-cloned)',//
 		  gallery:{
 		    enabled: true, 
 		    tCounter: '<span class="mfp-counter">%curr% of %total%</span>'
 		  }
 		});
 
+		//get the uploaded videos from the entry-content //
 		iframe_video = $( ".entry-content iframe[src*='youtube'], .entry-content iframe[src*='vimeo'], .entry-content iframe[src*='google']" ); 
+		
+		/** loop through each video upload and add a view in popup button after each video */
 		iframe_video.each( function(){
 			var _this = $(this);
 			var src = _this.attr( "src" ).replace( /(.+)\/embed\/(.+)/, "$1/watch/?v=$2" );
 			_this.after( '<a href="'+src+'" class="btn btn-default video-popup" role="button">View in popup </a>' ).parent().addClass("video-iframe");
 		});
 
-		
+		//initialize magnific popup on the button //
 		$( ".video-popup" ).magnificPopup({
 			type: 'iframe', 
 			patterns: {
@@ -262,9 +297,6 @@
 			      index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
 
 			      id: 'v=', // String that splits URL in a two parts, second part should be %id%
-			      // Or null - full URL will be returned
-			      // Or a function that should return %id%, for example:
-			      // id: function(url) { return 'parsed id'; }
 
 			      src: 'https://www.youtube.com/embed/%id%?autoplay=1' // URL that will be set as a source for iframe.
 			    },
@@ -285,7 +317,7 @@
 		});
 
 
-	});//end of fucntion 
+	});//end of function i.e. magnific popup module for gallery and video 
 	
 	if (typeof $.fn.popover == 'function') $('[data-toggle="tooltip"]').tooltip(); 
 
