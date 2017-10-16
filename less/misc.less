@@ -171,9 +171,7 @@
 	iframe{
 		&:extend(.full-width-image);
 	}
-	.post-panel-body{
-		&:extend(.pad-small);
-	}
+	
 }
 
 
@@ -181,7 +179,12 @@
 	cursor: pointer;
 }
 
-
+.panel{
+	&:extend(.no-overflow);
+	.panel-body{
+		&:extend(.pad-small);
+	}
+}
 
 
 
