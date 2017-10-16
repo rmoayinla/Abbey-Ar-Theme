@@ -1,5 +1,6 @@
 // jquery-javascript //
 (function($) {
+
 	$( document ).ready( function() {
 
 		/**
@@ -35,7 +36,7 @@
 
 		/**
 		 * Show posts in slides i.e. carousel 
-		 * the settings here can be overriden by setting a data-slide attribut on the child of '.posts-slides' element
+		 * the settings here can be overriden by setting a data-slide attribute on the child of '.posts-slides' element
 		 *@requires: Slick Slider 
 		 */
 		$(".posts-slides").slick({
@@ -143,29 +144,35 @@
 			  var window_bottom_position = (window_top_position + window_height);
 			 
 			  $.each($animation_elements, function() {
-			    var $element = $(this);
-			    var element_height = $element.outerHeight(true);
-			    var element_top_position = $element.offset().top;
-			    var element_bottom_position = (element_top_position + element_height);
-			 	var animate_class = $animation_elements.data( "animate" );
+			    var $element, element_height, element_top_position, element_bottom_position, animate_class;
+			    $element = $(this);
+			    element_height = $element.outerHeight(true);
+			    element_top_position = $element.offset().top;
+			    element_bottom_position = (element_top_position + element_height);
+			 	animate_class = $animation_elements.data( "animate" );
 			 	
-			 	if( animate_class !== undefined ){
-			 		$element.addClass( animate_class );
-			 	}
+			 	//check if a class is passed through the data-animate attribute, if true add the class //
+			 	if( animate_class !== undefined ) $element.addClass( animate_class );
+			 	
 			    //check to see if this current container is within viewport
 			    if ( (element_bottom_position >= window_top_position) &&
         			 (element_top_position <= window_bottom_position)
 			    	){
 			    		
-			     	 	$element.addClass( "in-view" );
+			     	 	$element.addClass( "in-view" ); //add the in-view class when in view //
 			    	} 
 			    else {
-			      		$element.removeClass( "in-view" );
+			      		$element.removeClass( "in-view" );//remove the in-view class when we've passed the element//
 			    	}
 
-			  });
+			  });//end $.each //
+
 			}
 
+			/**
+			 * Attach the scroll on animate module to the scroll and resize events 
+			 * run the module immediately the page is ready too 
+			 */
 			$window.on('scroll resize', check_if_in_view);
 			$window.trigger('scroll');
 
@@ -341,7 +348,7 @@
 
 			links.each( function( elem, index ){
 				var elem = $(this);
-				//if(!elem.hasClass( "active" )) continue;
+				if(!elem.hasClass( "active" )) return; //skip if we dont have the class //
 				elem.removeClass( "active" );
 			});
 
