@@ -247,13 +247,13 @@
 		display: block;
 	}
 	.inner-margin-none-mobile{
-		margin-top: 0px;
-		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
 	}
 
 	.outer-margin-none-mobile{
-		margin-left: 0px;
-		margin-right: 0px;
+		margin-top: 0px;
+		margin-bottom: 0px;
 	}
 
 	.auto-height-mobile{
@@ -397,12 +397,7 @@
 	}
 
 	
-	#custom-page .entry-content,
-	#custom-page #page-sidebar, 
-	#search-page #search-results
-	{
-	 	&:extend(.no-inner-padding-mobile);
-	}
+	
 
 	#content, 
 	{
@@ -410,22 +405,6 @@
 		padding-right: 5px !important;
 	}
 
-	#post-page .post-excerpt{
-		font-size: 14px;
-	}
-	
-	#search-page #content{
-		&:extend(.inner-padding-mobile);
-	}
-	#search-page #search-results{
-			margin-top: 15px;
-	}
-	
-	#post-page {
-		.post-panel-heading,.post-excerpts, .post-panel-footer{
-			&:extend(.inner-padding-mobile);
-		} 
-	}
 	
 	.mini-popup, .full-popup{
 		left: 5%;
@@ -435,11 +414,21 @@
 		top: unset;
 		bottom: 10px;
 	}
-	.related-posts{
-		.post-panel-thumbnail img{
-			height: 180px;
+	
+	.mobile-height{
+		height: 180px;
+	}
+
+	.post-slide-body{
+		padding-top: 0px !important;
+		.post-slide-excerpt{
+			max-height: 120px;
+		}
+		.post-slide-title{
+			max-height: 60px;
 		}
 	}
+		
 
 	.navbar-collapse .navbar-form{
 		padding: 15px 20px 0px 20px;
