@@ -416,6 +416,13 @@ function abbey_post_medias( $type = 'image', $post_id = "", $size = "full", $all
 
 }
 
+/**
+ * Show layout settings links on archive pages 
+ *
+ * these links allow to change the layout setup e.g. grid-column, grid-row, grid-1, grid-2
+ * these layouts determine how posts are arranged in archive pages 
+ *@since: 0.12
+ */
 function abbey_archive_layouts(){	
 	global $abbey_defaults;
 	$links = array(); 
