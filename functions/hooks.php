@@ -436,7 +436,7 @@ endif; //endif function exist abbey_archive_heading //
  */
 add_filter( "abbey_theme_page_media", "abbey_video_thumbnail", 20, 2 );//abbey_page_media function, check functions/template-tags.php 
 function abbey_video_thumbnail( $thumbnail, $page_id ){
-
+	global $abbey_defaults;
 	// check if there is a thumbnail already for the post //
 	if( !empty( $thumbnail ) ) return $thumbnail; //bail early //
 
@@ -510,10 +510,11 @@ function abbey_default_thumbnail( $thumbnail ){
 	// bail again if the default thumbnail in the settings is empty //
 	if( empty( $media_defaults[ "thumbnail" ] ) ) return $thumbnail;
 
+	$thumbnail = !empty( $media_defaults[ "thumbnail" ][ "placeholder" ] ) ? $media_defaults[ "thumbnail" ][ "placeholder" ] : $thumbnail;
 	/** Return the default image and generate a markup */
 	return sprintf( '<img class="wp-post-image" src="%1$s" alt="%2$s" />', 
-					esc_url( $media_defaults[ "thumbnail" ] ), 
-					esc_attr__( "No Post thumbnail image", "abbey" )
+					esc_url( $thumbnail ), 
+					esc_attr__( "Post thumbnail placeholder", "abbey" )
 					 );
 }
 
