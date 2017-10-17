@@ -299,7 +299,8 @@ function abbey_archive_defaults( $defaults ){
 	$defaults[ "archive" ] = array(
 		"posts_per_page" => get_option( "posts_per_page" ), 
 		"sidebar" => 0,
-		"ajax_load_posts" => 1
+		"ajax_load_posts" => 1,
+		"layout_links" => 1
 	);
 	return $defaults;
 }
@@ -340,7 +341,7 @@ function abbey_media_defaults( $defaults ){
 	// Add a placeholder image using a thumbnail key //
 	$media = array( 
 				"thumbnail" => array(
-					"placeholder" => get_template_directory_uri()."/img/thumbnail_placeholder.jpg" 
+					"placeholder" => get_template_directory_uri()."/img/thumbnail_placeholder.jpg"
 				)
 			);
 
