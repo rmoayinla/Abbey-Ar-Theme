@@ -163,11 +163,11 @@ a > iframe{
 }
 
 .related-posts .post-panel{
-	.transition(all,1250ms,ease-in-out,0s);
-	/*.wp-post-image, iframe{
-		height: 180px;
+	//.transition(all,1250ms,ease-in-out,0s);
+	.wp-post-image, iframe{
+		&:extend(.mobile-height);
 	}
-	&:hover{
+	/*&:hover{
 		.wp-post-image, iframe{
 			height: 240px;
 		}
