@@ -32,9 +32,9 @@
 			<?php endif; ?>
 		</footer>
 	</div>
-	<div id="floating-video" class="post-panel">
-		<div class="post-panel-video"><?php abbey_recording_video(); ?></div>
-		<div class="post-panel-body">
+	<div id="floating-video" class="panel">
+		<div class="panel-video"><?php abbey_recording_video(); ?></div>
+		<div class="panel-body">
 			<h4 class="post-panel-title"><?php the_title(); ?> </h4>
 		</div>
 	</div>
