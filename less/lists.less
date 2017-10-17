@@ -76,10 +76,8 @@
 .post-info{
 	&:extend(.no-right-padding, .no-left-padding);
 	li {
-		&:extend(.pad-xs,.strong, .no-overflow, .relative, .middle, .inline-block);
+		&:extend(.pad-xs,.strong, .no-overflow, .relative, .middle, .inline-block, .text-ellipsis);
 		max-width: 180px;
-		white-space: nowrap;
-		text-overflow: ellipsis;
 	}
 	
 	li + li{
@@ -104,8 +102,10 @@
 }
 
 .archive-layout .list-inline{
+	&:extend(.no-padding-right);
 	.layout-links{
 		&:extend(.pad-small);
+		.transition(all,300ms,ease-in-out);
 		&:hover{
 			&:extend(.bg-white);
 		}
@@ -113,5 +113,8 @@
 			font-size: 1.5em;
 			margin: 0px 2px;
 		}
+	}
+	.layout-links.active{
+		&:extend(.bg-dark);
 	}
 }
