@@ -338,7 +338,11 @@ function abbey_media_defaults( $defaults ){
 	if( empty( $defaults[ "media" ] ) ) $defaults[ "media" ] = array();
 
 	// Add a placeholder image using a thumbnail key //
-	$media = array( "thumbnail" => get_template_directory_uri()."/img/thumbnail_placeholder.jpg" );
+	$media = array( 
+				"thumbnail" => array(
+					"placeholder" => get_template_directory_uri()."/img/thumbnail_placeholder.jpg" 
+				)
+			);
 
 	$defaults[ "media" ] = wp_parse_args( $media, $defaults[ "media" ] );
 	
