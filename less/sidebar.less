@@ -17,7 +17,7 @@
 }
 
 #post-page .sidebar{
-	&:extend(.no-padding, .one-third-largescreen);
+	&:extend(.one-third-largescreen);
 	.widget{
 		&:extend(.bg-white, .inner-pad-small, .padding-bottom-sm, .border-radius-md, .no-overflow);
 		box-shadow: 0px 2px 1px @gray-color;
@@ -114,5 +114,5 @@
 	.btn-link{
 		&:extend(.primary);
 	}
-	&:extend(.inner-padding-mobile);
+	&:extend(.inner-padding-mobile, .no-inner-padding);
 }
