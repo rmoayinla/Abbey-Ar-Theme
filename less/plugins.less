@@ -99,9 +99,10 @@ body .mfp-bg.mfp-ready{
 
 /* WP plugin Abbey_Recent_Posts */
 .thumbnail-post{
-	&:extend(.no-padding, .no-border);
+	&:extend(.no-padding, .margin-bottom-sm, .no-bg);
 	height: 180px;
 	.transition(all,0.9s, ease-in-out);
+
 	background-color: #fff;
 	.post-thumbnail-image, .post-thumbnail-content, .row{
 		&:extend( .no-padding, .no-margin );
@@ -111,9 +112,10 @@ body .mfp-bg.mfp-ready{
 		padding-right: 7px !important;
 	}
 	.post-thumbnail-image{
-		.wp-post-image{
+		&:extend(.no-overflow);
+		.wp-post-image, iframe{
 			height: 180px;
-			&:extend(.full-width);
+			&:extend(.auto-width);
 		}
 	}
 	.col-md-12, .col-md-8{
@@ -121,15 +123,11 @@ body .mfp-bg.mfp-ready{
 		&:extend(.inline-block);
 	}
 	&:hover{
-		&:extend(#box-shadow .box-shadow-small);
-		.post-thumbnail-image{
-			&:extend(.pad-xs);
-			.wp-post-image{
-				border-radius: 100%;
-				height: 160px;
-			}
-		}
+		&:extend(.bg-light);
+		border-radius: 0px 10px 10px 0px;
+		box-shadow: 0px 3px 6px 0px @dark-primary-color;
 	}
+	
 }
 
 .icons-footer{
