@@ -38,17 +38,15 @@ $queried_name = $queried_object->slug;
 //check if we have some archive settings in our theme global settings //
 $archive_options = ( !empty( $abbey_defaults[ "archive" ] ) ) ? $abbey_defaults[ "archive" ] : array();
 ?>
+	<header id="<?php echo $queried_name; ?>-archive-header" class="text-center archive-header row">
+		
+		<div class="md-50"><?php do_action( "abbey_archive_page_heading", $queried_object ); ?></div>
+		<?php print_r( get_term_meta( $queried_object->term_id, "thumbnail", true ) ); ?>
+
+	</header>
 
 	<main id="<?php abbey_theme_page_id(); ?>" class="row archives <?php abbey_page_class(); ?>">
 		
-		<header id="<?php echo $queried_name; ?>-archive-header" class="text-center archive-header">
-			
-			<div class="md-50"><?php do_action( "abbey_archive_page_heading", $queried_object ); ?></div>
-
-			<?php print_r( get_term_meta( $queried_object->term_id, "thumbnail", true ) ); ?>
-
-		</header>
-
 		<section id="content" class="row archive-content">
 
 			<?php if ( have_posts() ) : abbey_setup_query(); ?>
