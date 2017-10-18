@@ -511,6 +511,7 @@ function abbey_default_thumbnail( $thumbnail ){
 	if( empty( $media_defaults[ "thumbnail" ] ) ) return $thumbnail;
 
 	$thumbnail = !empty( $media_defaults[ "thumbnail" ][ "placeholder" ] ) ? $media_defaults[ "thumbnail" ][ "placeholder" ] : $thumbnail;
+	
 	/** Return the default image and generate a markup */
 	return sprintf( '<img class="wp-post-image" src="%1$s" alt="%2$s" />', 
 					esc_url( $thumbnail ), 
