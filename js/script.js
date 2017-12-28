@@ -54,7 +54,7 @@
 		$( function(){
 
 			/**
-			 * Loop through the '.collapse-heading' element and add a collapse indicator 
+			 * Loop through the '.collapse-heading' element and add a collapse indicator icon 
 			 * this indicator is a simple Fontawesome icon showing if the collapse is hidden or shown 
 			 */
 			$( ".collapse-heading" ).each( function(){
@@ -319,7 +319,7 @@
 
 	});//end of function i.e. magnific popup module for gallery and video 
 	
-	if (typeof $.fn.popover == 'function') $('[data-toggle="tooltip"]').tooltip(); 
+	if (typeof $.fn.popover === 'function') $('[data-toggle="tooltip"]').tooltip(); 
 
 	$(function(){
 		var postCard, hoverCard;
@@ -356,7 +356,7 @@
 		});
 		
 
-	})//end function //
+	});//end function //
 
 
 	$(function(){
