@@ -299,7 +299,7 @@ function abbey_archive_defaults( $defaults ){
 	$defaults[ "archive" ] = array(
 		"posts_per_page" => get_option( "posts_per_page" ), 
 		"sidebar" => 0,
-		"ajax_load_posts" => 1,
+		"ajax_load_posts" => 0,
 		"layout_links" => 1
 	);
 	return $defaults;
