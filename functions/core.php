@@ -652,7 +652,7 @@ function abbey_posts_pagination( $args = array() ){
 	global $abbey_defaults;
 
 	$archive_options = null;
-	
+	$navigation = $links = ""; // declare variables  //
 	/**
 	 * Check the global theme settings for archive settings 
 	 *if the load method for archive is through AJAX, display a load more button instead of pagination links
@@ -663,7 +663,7 @@ function abbey_posts_pagination( $args = array() ){
 			echo sprintf( 	'<div class="load-more"><button class="load-more-btn btn btn-default">%s</button></div>',
 							 esc_html__( "Load more . . .", "abbey" )
 						 );
-			return; 
+			return;
 		}
 	}
 
@@ -672,12 +672,10 @@ function abbey_posts_pagination( $args = array() ){
 	//override $default options with passed options in $args // 
 	$args = wp_parse_args( $args, $defaults );
 
-	$navigation = $links = ""; // declare variables  //
-
 	$links = paginate_links( $args ); 
 	$navigation .= "<ul class='pagination'>\n";//start the pagination list//
 
-	foreach( $links as $link ){
+	foreach( $links as $key => $link ){
 		$navigation .= "<li>".$link."</li>\n";
 	}
 	$navigation .= "</ul>\n";//close the pagination  list //
